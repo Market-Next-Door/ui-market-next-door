@@ -42,6 +42,11 @@ const FarmerDashboard = () => {
 
         <button className="post-btn">ADD ITEM</button>
       </form>
+      <p
+        style={{ paddingLeft: "3rem", fontSize: "1.4rem", fontWeight: "bold" }}
+      >
+        INVENTORY FOR THE WEEK OF MON DEC 10 2023 - SUN DEC 17 2023{" "}
+      </p>
       <section className="vendor-items-display">
         <VendorItemCard />
         <VendorItemCard />

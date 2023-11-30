@@ -1,0 +1,134 @@
+.customer-container {
+  height: 100vh;
+
+  background-size: cover;
+
+  height: 100vh;
+  font-family: "Inter";
+  color: black;
+  gap: 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.products {
+  border: 0.2rem solid #274e13;
+  font-family: Inter;
+  color: #274e13;
+  font-weight: 500;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+.products:hover {
+  color: white;
+  cursor: pointer;
+  background-color: #274e13;
+}
+.orders {
+  border: 0.2rem solid #ce7e00;
+  font-family: Inter;
+  color: #ce7e00;
+  font-weight: 500;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+.orders:hover {
+  color: white;
+  cursor: pointer;
+  background-color: #ce7e00;
+}
+
+.settings {
+  border: 0.2rem solid;
+  font-family: Inter;
+  color: #343a40;
+  font-weight: 500;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+.settings:hover {
+  color: white;
+  cursor: pointer;
+  background-color: #343a40;
+}
+.btn {
+  border: none;
+  padding: 1.5rem 6rem;
+  background-color: rgba(255, 255, 255, 0.899);
+  border-radius: 1.5rem;
+}
+
+.customer-find-vendor {
+  background-color: #e5e7ebe2;
+  margin-bottom: 2rem;
+  padding: 1.6rem 3.2rem;
+  margin-right: 2rem;
+  margin-left: 2rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.6rem;
+  border-radius: 1.6rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.search-input,
+.select-input {
+  background-color: #ffffff;
+  border: none;
+  border-radius: 100rem;
+  padding: 1rem;
+  margin-left: 1rem;
+  font-size: 1.4rem;
+  width: 20rem;
+}
+
+.customer-view-item-card {
+  font-size: 1.4rem;
+  display: flex;
+  margin: 2rem;
+  padding: 1.5rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  background-color: #e5e7ebe2;
+}
+
+.purchase-btn {
+  padding: 8px 15px;
+  cursor: pointer;
+  background-color: #274e13;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.purchase-btn:hover {
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  transform: scale(1.05);
+}
+
+.item-details {
+  display: flex;
+  gap: 5rem;
+}
+
+.quantity-num {
+  text-align: center;
+  font-size: 1.4rem;
+  height: 3.5rem;
+  width: 3.5rem;
+}
+
+.quantity-btn {
+  height: 3rem;
+  width: 3rem;
+  margin: 1rem;
+}
+
+.selected-vendor {
+  font-size: 1.8rem;
+}

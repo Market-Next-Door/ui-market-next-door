@@ -1,8 +1,8 @@
 .landing-container {
   height: 100vh;
   background-image: linear-gradient(
-      rgba(15, 15, 15, 0.2),
-      rgba(15, 15, 15, 0.6)
+      rgba(15, 15, 15, 0.5),
+      rgba(15, 15, 15, 0.7)
     ),
     url("../../../public/landing.png");
   background-size: cover;
@@ -51,4 +51,33 @@
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
   transform: scale(1.05);
+}
+.how-it-works-svg {
+  height: 5rem;
+  width: 5rem;
+}
+
+.how-it-works-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.how-it-works-steps {
+  display: flex;
+  align-items: center;
+  color: black;
+  justify-content: center;
+  gap: 2rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  background-color: #ffffffbc;
+  padding: 2rem 4rem;
+  border-radius: 1rem;
+  margin-left: 4rem;
+  margin-right: 4rem;
+
+  text-align: center;
 }

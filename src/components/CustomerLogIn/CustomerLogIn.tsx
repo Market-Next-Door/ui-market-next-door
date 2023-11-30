@@ -1,7 +1,7 @@
 import React from 'react'
-import './VendorLogIn.css'
+import './CustomerLogIn.css'
 
-const VendorLogIn = () => {
+const CustomerLogIn = () => {
 
   return (
     <div className='login-container'>
@@ -9,7 +9,7 @@ const VendorLogIn = () => {
       <input className='login-input'
         type='text'
         placeholder='Enter email...'
-        value='Farmer Doe'
+        value='Customer Doe'
       />
       <input className='login-input'
         type='text'
@@ -24,4 +24,4 @@ const VendorLogIn = () => {
   )
 }
 
-export default VendorLogIn
+export default CustomerLogIn

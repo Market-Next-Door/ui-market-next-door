@@ -4,7 +4,7 @@
   background-size: cover;
 
   height: 100vh;
-  font-family: "Inter";
+  font-family: 'Inter';
   color: black;
   gap: 5rem;
   display: flex;
@@ -54,16 +54,6 @@
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
   transform: scale(1.05);
-}
-
-.vendor-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Inter";
-  font-size: 3rem;
-  letter-spacing: 1rem;
-  margin-top: 4rem;
 }
 
 .products {

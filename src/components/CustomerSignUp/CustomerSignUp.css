@@ -1,10 +1,10 @@
-.login-container {
+.sign-up-container {
   height: 100vh;
   background-image: linear-gradient(
       rgba(15, 15, 15, 0.2),
       rgba(15, 15, 15, 0.6)
     ),
-    url("../../../public/login.jpeg");
+    url("../../../public/signup.jpeg");
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -18,12 +18,12 @@
   gap: 5rem;
 }
 
-.login-header {
+.sign-up-header {
   font-size: 5rem;
   letter-spacing: 2rem;
 }
 
-.login-input {
+.sign-up-input {
   background-color: #ffffffbc;
   border: none;
   /* text-transform: uppercase; */
@@ -37,11 +37,7 @@
   width: 25%;
 }
 
-.login-text {
-  font-size: 3.2rem;
-}
-
-.login-submit-btn {
+.sign-up-btn {
   background-color: #ffffffbc;
   border: none;
   text-transform: uppercase;
@@ -55,13 +51,13 @@
   width: 25%;
 }
 
-.login-submit-btn:hover {
+.sign-up-btn:hover {
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
   transform: scale(1.05);
 }
 
-.login-go-back-btn {
+.sign-up-go-back-btn {
   background-color: #ffffffbc;
   border: none;
   /* text-transform: uppercase; */
@@ -74,7 +70,7 @@
   align-items: center;
 }
 
-.login-go-back-btn:hover {
+.sign-up-go-back-btn:hover {
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
   transform: scale(1.05);

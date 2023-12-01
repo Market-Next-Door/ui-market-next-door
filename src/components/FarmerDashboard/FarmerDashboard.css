@@ -96,19 +96,6 @@
   cursor: pointer;
   background-color: #343a40;
 }
-.btn {
-  border: none;
-  padding: 1.5rem 6rem;
-  background-color: rgba(255, 255, 255, 0.899);
-  border-radius: 1.5rem;
-}
-
-.vendor-nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4rem;
-}
 
 .vendor-item-card {
   display: flex;

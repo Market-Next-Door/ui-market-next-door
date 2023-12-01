@@ -1,0 +1,54 @@
+.vendor-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+}
+
+.btn {
+  border: none;
+  padding: 1.5rem 6rem;
+  background-color: rgba(255, 255, 255, 0.899);
+  border-radius: 1.5rem;
+}
+
+.products {
+  border: 0.2rem solid #274e13;
+  font-family: Inter;
+  color: #274e13;
+  font-weight: 500;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+.products:hover {
+  color: white;
+  cursor: pointer;
+  background-color: #274e13;
+}
+.orders {
+  border: 0.2rem solid #ce7e00;
+  font-family: Inter;
+  color: #ce7e00;
+  font-weight: 500;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+.orders:hover {
+  color: white;
+  cursor: pointer;
+  background-color: #ce7e00;
+}
+
+.settings {
+  border: 0.2rem solid;
+  font-family: Inter;
+  color: #343a40;
+  font-weight: 500;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+.settings:hover {
+  color: white;
+  cursor: pointer;
+  background-color: #343a40;
+}

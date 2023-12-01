@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
 import './FarmerDashboard.css';
 import Header from '../Header/Header';
+import NavigationBar from '../NavigationBar/NavigationBar';
 
 const FarmerDashboard = () => {
   return (
     <div className="vendor-container">
       <Header />
-      <nav className="vendor-nav">
-        <button className="products btn">PRODUCTS</button>
-        <button className="orders btn">ORDERS</button>
-        <button className="settings btn">SETTINGS</button>
-      </nav>
+      <NavigationBar />
       <form className="add-item-form">
         <input
           className="add-item-item-name"

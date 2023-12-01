@@ -1,26 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './CustomerLogIn.css'
 
 const CustomerLogIn = () => {
 
+  const [customerLoginEmail, setCustomerLoginEmail] = useState('')
+  const [customerLoginPassword, setCustomerLoginPassword] = useState('')
   return (
-    <div className='login-container'>
-      <h2 className='login-header'>MARKET NEXT DOOR</h2>
-      <input className='login-input'
+    <form className='customer-login-container'>
+      <h2 className='customer-login-header'>MARKET NEXT DOOR</h2>
+      <input className='customer-login-input'
         type='text'
+        name='customerEmail'
         placeholder='Enter email...'
-        value='Customer Doe'
+        value={customerLoginEmail}
+        onChange={e => setCustomerLoginEmail(e.target.value)}
       />
-      <input className='login-input'
+      <input className='customer-login-input'
         type='text'
-        placeholder='Password...'
-        value='123'
+        name='customerPassword'
+        placeholder='Enter password...'
+        value={customerLoginPassword}
+        onChange={e => setCustomerLoginPassword(e.target.value)}
       />
-      <button className='login-submit-btn'>SIGN IN</button>
-      <p className='login-text'>OR</p>
-      <button className='login-submit-btn'>SIGN UP</button>
-      <button className='login-go-back-btn'>Go Back</button>
-    </div>
+      <button className='customer-login-submit-btn'>SIGN IN</button>
+      <p className='customer-login-text'>OR</p>
+      <button className='customer-login-submit-btn'>SIGN UP</button>
+      <button className='customer-login-go-back-btn'>Go Back</button>
+    </form>
   )
 }
 

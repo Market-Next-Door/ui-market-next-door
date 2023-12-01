@@ -1,4 +1,4 @@
-.sign-up-container {
+.customer-sign-up-container {
   height: 100vh;
   background-image: linear-gradient(
       rgba(15, 15, 15, 0.2),
@@ -18,50 +18,50 @@
   gap: 5rem;
 }
 
-.sign-up-header {
+.customer-sign-up-header {
   font-size: 5rem;
   letter-spacing: 2rem;
 }
 
-.sign-up-input {
+.customer-sign-up-input {
   background-color: #ffffffbc;
   border: none;
   /* text-transform: uppercase; */
-  font-size: 3.2rem;
+  font-size: 2rem;
   border-radius: 100rem;
-  cursor: pointer;
+  /* cursor: pointer; */
   transition: 0.3s;
   padding: 1rem 2rem;
   justify-content: center;
   align-items: center;
-  width: 25%;
+  width: 22%;
 }
 
-.sign-up-btn {
+.customer-sign-up-btn {
   background-color: #ffffffbc;
   border: none;
   text-transform: uppercase;
-  font-size: 3.2rem;
+  font-size: 2rem;
   border-radius: 100rem;
   cursor: pointer;
   transition: 0.3s;
   padding: 1rem 2rem;
   justify-content: center;
   align-items: center;
-  width: 25%;
+  width: 22%;
 }
 
-.sign-up-btn:hover {
+.customer-sign-up-btn:hover {
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
   transform: scale(1.05);
 }
 
-.sign-up-go-back-btn {
+.customer-sign-up-go-back-btn {
   background-color: #ffffffbc;
   border: none;
   /* text-transform: uppercase; */
-  font-size: 3.2rem;
+  font-size: 2rem;
   border-radius: 100rem;
   cursor: pointer;
   transition: 0.3s;
@@ -70,7 +70,7 @@
   align-items: center;
 }
 
-.sign-up-go-back-btn:hover {
+.customer-sign-up-go-back-btn:hover {
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
   transform: scale(1.05);

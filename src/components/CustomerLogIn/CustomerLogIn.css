@@ -1,4 +1,4 @@
-.login-container {
+.customer-login-container {
   height: 100vh;
   background-image: linear-gradient(
       rgba(15, 15, 15, 0.2),
@@ -18,54 +18,53 @@
   gap: 5rem;
 }
 
-.login-header {
+.customer-login-header {
   font-size: 5rem;
   letter-spacing: 2rem;
 }
 
-.login-input {
+.customer-login-input {
   background-color: #ffffffbc;
   border: none;
   /* text-transform: uppercase; */
-  font-size: 3.2rem;
+  font-size: 2rem;
   border-radius: 100rem;
-  cursor: pointer;
   transition: 0.3s;
   padding: 1rem 2rem;
   justify-content: center;
   align-items: center;
-  width: 25%;
+  width: 22%;
 }
 
-.login-text {
-  font-size: 3.2rem;
+.customer-login-text {
+  font-size: 2rem;
 }
 
-.login-submit-btn {
+.customer-login-submit-btn {
   background-color: #ffffffbc;
   border: none;
   text-transform: uppercase;
-  font-size: 3.2rem;
+  font-size: 2rem;
   border-radius: 100rem;
   cursor: pointer;
   transition: 0.3s;
   padding: 1rem 2rem;
   justify-content: center;
   align-items: center;
-  width: 25%;
+  width: 22%;
 }
 
-.login-submit-btn:hover {
+.customer-login-submit-btn:hover {
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
   transform: scale(1.05);
 }
 
-.login-go-back-btn {
+.customer-login-go-back-btn {
   background-color: #ffffffbc;
   border: none;
   /* text-transform: uppercase; */
-  font-size: 3.2rem;
+  font-size: 2rem;
   border-radius: 100rem;
   cursor: pointer;
   transition: 0.3s;
@@ -74,7 +73,7 @@
   align-items: center;
 }
 
-.login-go-back-btn:hover {
+.customer-login-go-back-btn:hover {
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
   transform: scale(1.05);

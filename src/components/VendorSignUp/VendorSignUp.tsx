@@ -1,44 +1,67 @@
-import React from "react";
-import "./VendorSignUp.css";
+
+import React, { useState } from 'react'
+import './VendorSignUp.css'
 
 const VendorSignUp = () => {
+  const [vendorFirstName, setVendorFirstName] = useState('')
+  const [vendorLastName, setVendorLastName] = useState('')
+  const [vendorEmail, setVendorEmail] = useState('')
+  const [vendorPassword, setVendorPassword] = useState('')
+  const [vendorPasswordMatch, setVendorPasswordMatch] = useState('')
+
+  const submitVendor = () => {
+    const newVendor = {
+      vendorFirstName,
+      vendorLastName,
+      vendorPassword,
+      vendorPasswordMatch,
+    }
+  }
   return (
-    <div className="sign-up-container">
-      <h2 className="sign-up-header">MARKET NEXT DOOR</h2>
-      <input
-        className="sign-up-input"
-        type="text"
-        placeholder="FIRST NAME..."
-        value="John"
+    
+    <form className='vendor-sign-up-container'>
+      <h2 className='vendor-sign-up-header'>MARKET NEXT DOOR</h2>
+      <input className='vendor-sign-up-input'
+        type='text'
+        name='firstName'
+        placeholder='FIRST NAME...'
+        value={vendorFirstName}
+        onChange={e => setVendorFirstName(e.target.value)}
       />
-      <input
-        className="sign-up-input"
-        type="text"
-        placeholder="LAST NAME..."
-        value="Lamb"
+      <input className='vendor-sign-up-input'
+        type='text'
+        name='lastName'
+        placeholder='LAST NAME...'
+        value={vendorLastName}
+        onChange={e => setVendorLastName(e.target.value)}
       />
-      <input
-        className="sign-up-input"
-        type="text"
-        placeholder="ENTER E-MAIL..."
-        value="john@mail.com"
+      <input className='vendor-sign-up-input'
+        type='text'
+        name='vendorEmail'
+        placeholder='ENTER E-MAIL...'
+        value={vendorEmail}
+        onChange={e => setVendorEmail(e.target.value)}
       />
-      <input
-        className="sign-up-input"
-        type="text"
-        placeholder="ENTER PASSWORD..."
-        value="456"
+      <input className='vendor-sign-up-input'
+        type='text'
+        name='password'
+        placeholder='ENTER PASSWORD...'
+        value={vendorPassword}
+        onChange={e => setVendorPassword(e.target.value)}
       />
-      <input
-        className="sign-up-input"
-        type="text"
-        placeholder="RE-ENTER PASSWORD..."
-        value="456"
+      <input className='vendor-sign-up-input'
+        type='text'
+        name='passwordMatch'
+        placeholder='RE-ENTER PASSWORD...'
+        value={vendorPasswordMatch}
+        onChange={e => setVendorPasswordMatch(e.target.value)}
       />
-      <button className="sign-up-btn">SIGN UP</button>
-      <button className="sign-up-go-back-btn">Go Back</button>
-    </div>
-  );
-};
+      <button className='vendor-sign-up-btn'>SIGN UP</button>
+      <button className='vendor-sign-up-go-back-btn'>Go Back</button>
+    </form>
+    
+  )
+}
+
 
 export default VendorSignUp;

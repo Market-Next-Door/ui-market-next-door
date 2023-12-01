@@ -27,28 +27,28 @@
   background-color: #ffffffbc;
   border: none;
   /* text-transform: uppercase; */
-  font-size: 2.3rem;
+  font-size: 2rem;
   border-radius: 100rem;
   /* cursor: pointer; */
   transition: 0.3s;
   padding: 1rem 2rem;
   justify-content: center;
   align-items: center;
-  width: 24%;
+  width: 22%;
 }
 
 .vendor-sign-up-btn {
   background-color: #ffffffbc;
   border: none;
   text-transform: uppercase;
-  font-size: 2.3rem;
+  font-size: 2rem;
   border-radius: 100rem;
   cursor: pointer;
   transition: 0.3s;
   padding: 1rem 2rem;
   justify-content: center;
   align-items: center;
-  width: 24%;
+  width: 22%;
 }
 
 .vendor-sign-up-btn:hover {
@@ -61,7 +61,7 @@
   background-color: #ffffffbc;
   border: none;
   /* text-transform: uppercase; */
-  font-size: 2.3rem;
+  font-size: 2rem;
   border-radius: 100rem;
   cursor: pointer;
   transition: 0.3s;

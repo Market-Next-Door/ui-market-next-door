@@ -4,7 +4,7 @@
   background-size: cover;
 
   height: 100vh;
-  font-family: "Inter";
+  font-family: 'Inter';
   color: black;
   gap: 5rem;
   display: flex;
@@ -56,16 +56,6 @@
   transform: scale(1.05);
 }
 
-.vendor-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Inter";
-  font-size: 3rem;
-  letter-spacing: 1rem;
-  margin-top: 4rem;
-}
-
 .products {
   border: 0.2rem solid #274e13;
   font-family: Inter;
@@ -105,19 +95,6 @@
   color: white;
   cursor: pointer;
   background-color: #343a40;
-}
-.btn {
-  border: none;
-  padding: 1.5rem 6rem;
-  background-color: rgba(255, 255, 255, 0.899);
-  border-radius: 1.5rem;
-}
-
-.vendor-nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4rem;
 }
 
 .vendor-item-card {

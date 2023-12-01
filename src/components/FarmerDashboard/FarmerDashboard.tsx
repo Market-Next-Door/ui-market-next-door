@@ -1,15 +1,13 @@
-import React, { useState } from "react";
-import "./FarmerDashboard.css";
+import React, { useState } from 'react';
+import './FarmerDashboard.css';
+import Header from '../Header/Header';
+import NavigationBar from '../NavigationBar/NavigationBar';
 
 const FarmerDashboard = () => {
   return (
     <div className="vendor-container">
-      <header className="vendor-header">Welcome, Brian's Potatoes!</header>
-      <nav className="vendor-nav">
-        <button className="products btn">PRODUCTS</button>
-        <button className="orders btn">ORDERS</button>
-        <button className="settings btn">SETTINGS</button>
-      </nav>
+      <Header />
+      <NavigationBar />
       <form className="add-item-form">
         <input
           className="add-item-item-name"
@@ -43,9 +41,9 @@ const FarmerDashboard = () => {
         <button className="post-btn">ADD ITEM</button>
       </form>
       <p
-        style={{ paddingLeft: "3rem", fontSize: "1.4rem", fontWeight: "bold" }}
+        style={{ paddingLeft: '3rem', fontSize: '1.4rem', fontWeight: 'bold' }}
       >
-        INVENTORY FOR THE WEEK OF MON DEC 10 2023 - SUN DEC 17 2023{" "}
+        INVENTORY FOR THE WEEK OF MON DEC 10 2023 - SUN DEC 17 2023{' '}
       </p>
       <section className="vendor-items-display">
         <VendorItemCard />
@@ -58,10 +56,10 @@ const FarmerDashboard = () => {
 };
 
 const VendorItemCard = () => {
-  const [itemName, setItemName] = useState<string>("Carrots");
-  const [itemSize, setItemSize] = useState<string>("5lb");
+  const [itemName, setItemName] = useState<string>('Carrots');
+  const [itemSize, setItemSize] = useState<string>('5lb');
   const [itemDetails, setItemDetails] = useState<string>(
-    "Small, crooked carrots"
+    'Small, crooked carrots'
   );
   const [quantityAvailable, setQuantityAvailable] = useState<number>(47);
   const [isEditable, setIsEditable] = useState<boolean>(false);
@@ -85,7 +83,7 @@ const VendorItemCard = () => {
           <input
             className="item-input"
             value={itemName}
-            onChange={(e) => setItemName(e.target.value)}
+            onChange={e => setItemName(e.target.value)}
             readOnly={!isEditable}
           />
         </p>
@@ -94,7 +92,7 @@ const VendorItemCard = () => {
           <input
             className="item-input"
             value={itemSize}
-            onChange={(e) => setItemSize(e.target.value)}
+            onChange={e => setItemSize(e.target.value)}
             readOnly={!isEditable}
           />
         </p>
@@ -103,7 +101,7 @@ const VendorItemCard = () => {
           <input
             className="item-input"
             value={itemPrice}
-            onChange={(e) => setItemPrice(parseInt(e.target.value))}
+            onChange={e => setItemPrice(parseInt(e.target.value))}
             readOnly={!isEditable}
           />
         </p>
@@ -112,7 +110,7 @@ const VendorItemCard = () => {
           <input
             className="item-input"
             value={itemDetails}
-            onChange={(e) => setItemDetails(e.target.value)}
+            onChange={e => setItemDetails(e.target.value)}
             readOnly={!isEditable}
           />
         </p>
@@ -123,7 +121,7 @@ const VendorItemCard = () => {
               className="item-input"
               type="number"
               value={quantityAvailable}
-              onChange={(e) => setQuantityAvailable(Number(e.target.value))}
+              onChange={e => setQuantityAvailable(Number(e.target.value))}
               readOnly={!isEditable}
             />
           </p>

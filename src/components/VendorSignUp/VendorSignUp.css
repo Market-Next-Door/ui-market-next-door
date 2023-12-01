@@ -4,7 +4,7 @@
       rgba(15, 15, 15, 0.2),
       rgba(15, 15, 15, 0.6)
     ),
-    url("../../../public/landing.png");
+    url("../../../public/signup.jpeg");
   background-size: cover;
   display: flex;
   flex-direction: column;

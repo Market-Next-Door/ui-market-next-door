@@ -1,46 +1,9 @@
 version: 2.1
 orbs:
-  cypress: cypress-io/cypress@13.6.0 # Make sure to use the latest version of the Cypress orb
-
-jobs:
-  build:
-    docker:
-      - image: cypress/browsers:node14.17.0-chrome88-ff89 # Use an image with browsers pre-installed
-    working_directory: ~/repo
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
-      - run: npm install
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-      - run:
-          name: Run TypeScript Compiler
-          command: npm run tsc # Make sure you have a script in your package.json to run TypeScript compiler
-
-  test:
-    docker:
-      - image: cypress/browsers:node14.17.0-chrome88-ff89
-    working_directory: ~/repo
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
-      - run: npm install
-      - cypress/install
-      - cypress/run
-
+  cypress: cypress-io/cypress@1
 workflows:
-  version: 2
-  build-and-test:
+  build:
     jobs:
-      - build
-      - test:
-          requires:
-            - build
+      - cypress/run:
+          start: 'npm run start'
+          command: 'npx cypress run --headless'

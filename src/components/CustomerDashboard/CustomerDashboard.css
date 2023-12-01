@@ -179,6 +179,9 @@
 
 .invoice-header {
   font-size: 3.2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 }
 .invoice-invoice-num {
   font-size: 1.8rem;
@@ -222,4 +225,15 @@
 .details-invoice {
   max-height: 4rem;
   overflow: scroll;
+}
+
+.printer-icon {
+  height: 4rem;
+  width: 4rem;
+}
+
+.printer-icon:hover {
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  transform: scale(1.05);
 }

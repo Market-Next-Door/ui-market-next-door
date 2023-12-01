@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react'
 import './VendorSignUp.css'
 
@@ -62,4 +63,5 @@ const VendorSignUp = () => {
   )
 }
 
-export default VendorSignUp
+
+export default VendorSignUp;

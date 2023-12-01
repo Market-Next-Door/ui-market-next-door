@@ -8,17 +8,20 @@ import VendorLogIn from "../VendorLogIn/VendorLogIn";
 import VendorSignUp from "../VendorSignUp/VendorSignUp";
 import CustomerLogIn from "../CustomerLogIn/CustomerLogIn";
 import CustomerSignUp from "../CustomerSignUp/CustomerSignUp";
-
+import VendorOrders from "../VendorOrders/VendorOrders";
+import CustomerOrders from "../CustomerOrders/CustomerOrders";
 function App() {
   return (
     <div className="App">
       <LandingPage />
-      <VendorLogIn />
+      {/* <VendorLogIn />
       <VendorSignUp />
       <CustomerLogIn />
-      <CustomerSignUp />
+      <CustomerSignUp /> */}
       <FarmerDashboard />
       <CustomerDash />
+      <VendorOrders />
+      <CustomerOrders />
     </div>
   );
 }

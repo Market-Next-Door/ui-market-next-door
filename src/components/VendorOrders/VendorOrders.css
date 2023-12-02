@@ -10,6 +10,7 @@
   display: flex;
   flex-direction: column;
   gap: 4rem;
+  overflow: scroll;
 }
 
 .vendor-view-orders-card {
@@ -78,4 +79,16 @@
   gap: 1rem;
   justify-content: center;
   align-items: center;
+}
+
+@media (max-width: 910px) {
+  .vendor-view-orders-card {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 841px) {
+  .vendor-view-orders-card {
+    flex-direction: column;
+  }
 }

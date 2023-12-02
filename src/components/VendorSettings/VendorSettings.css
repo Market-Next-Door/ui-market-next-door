@@ -1,0 +1,106 @@
+.customer-settings-container {
+  height: 100vh;
+  background-size: cover;
+  height: 100vh;
+  font-family: "Inter";
+  color: black;
+  gap: 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  align-items: center;
+}
+
+.delete-account {
+  color: #5a5a5a;
+  background-color: #d9dadd;
+  border: none;
+  border-radius: 50rem;
+  padding: 0.4rem;
+  font-size: 1.4rem;
+  width: 15rem;
+}
+
+.delete-account:hover {
+  color: black;
+  cursor: pointer;
+  font-family: "Quicksand", sans-serif;
+  box-shadow: 0 0 3.2rem rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  transform: scale(1.05);
+}
+
+.account-box {
+  color: black;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 40rem;
+  font-size: 1.4rem;
+  display: flex;
+  margin: 2rem;
+  padding: 1.5rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  background-color: #e5e7ebe2;
+  display: flex;
+  gap: 2rem;
+}
+
+.my-account-info {
+  display: inline-block;
+  text-align: center;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+}
+
+.account-input,
+.account-input-password {
+  background-color: white;
+  border: none;
+  border-radius: 100rem;
+  padding: 0.4rem;
+  padding-left: 1rem;
+  margin-left: 1rem;
+  font-size: 1.4rem;
+  width: 20rem;
+}
+.account-email {
+  margin-left: 1rem;
+}
+
+.my-account-info-email {
+  font-size: 1.4rem;
+}
+
+.my-account-info-password {
+  font-size: 1.4rem;
+}
+
+.settings-account-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (max-width: 460px) {
+  .my-account-info {
+    font-size: 1.2rem;
+  }
+  .my-account-info-email {
+    font-size: 1.2rem;
+    align-self: center;
+  }
+  .my-account-info-password {
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .account-box {
+    width: 25rem;
+  }
+}

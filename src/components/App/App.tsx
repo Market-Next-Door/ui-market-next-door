@@ -1,15 +1,17 @@
-import React from 'react';
+import React from "react";
 
-import './App.css';
-import LandingPage from '../LandingPage/LandingPage';
-import FarmerDashboard from '../FarmerDashboard/FarmerDashboard';
-import CustomerDash from '../CustomerDashboard/CustomerDashboard';
-import VendorLogIn from '../VendorLogIn/VendorLogIn';
-import VendorSignUp from '../VendorSignUp/VendorSignUp';
-import CustomerLogIn from '../CustomerLogIn/CustomerLogIn';
-import CustomerSignUp from '../CustomerSignUp/CustomerSignUp';
-import VendorOrders from '../VendorOrders/VendorOrders';
-import CustomerOrders from '../CustomerOrders/CustomerOrders';
+import "./App.css";
+import LandingPage from "../LandingPage/LandingPage";
+import FarmerDashboard from "../FarmerDashboard/FarmerDashboard";
+import CustomerDash from "../CustomerDashboard/CustomerDashboard";
+import VendorLogIn from "../VendorLogIn/VendorLogIn";
+import VendorSignUp from "../VendorSignUp/VendorSignUp";
+import CustomerLogIn from "../CustomerLogIn/CustomerLogIn";
+import CustomerSignUp from "../CustomerSignUp/CustomerSignUp";
+import VendorOrders from "../VendorOrders/VendorOrders";
+import CustomerOrders from "../CustomerOrders/CustomerOrders";
+import CustomerSettings from "../CustomerSettings/CustomerSettings";
+import VendorSettings from "../VendorSettings/VendorSettings";
 function App() {
   return (
     <div className="App">
@@ -22,6 +24,8 @@ function App() {
       <CustomerDash />
       <VendorOrders />
       <CustomerOrders />
+      <CustomerSettings />
+      <VendorSettings />
     </div>
   );
 }

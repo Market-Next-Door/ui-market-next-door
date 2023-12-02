@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import './FarmerDashboard.css';
-import Header from '../Header/Header';
-import NavigationBar from '../NavigationBar/NavigationBar';
+import React, { useState } from "react";
+import "./FarmerDashboard.css";
+import Header from "../Header/Header";
+import NavigationBar from "../NavigationBar/NavigationBar";
+import Switch from "react-switch";
 
 const FarmerDashboard = () => {
   return (
@@ -41,9 +42,9 @@ const FarmerDashboard = () => {
         <button className="post-btn">ADD ITEM</button>
       </form>
       <p
-        style={{ paddingLeft: '3rem', fontSize: '1.4rem', fontWeight: 'bold' }}
+        style={{ paddingLeft: "3rem", fontSize: "1.4rem", fontWeight: "bold" }}
       >
-        INVENTORY FOR THE WEEK OF MON DEC 10 2023 - SUN DEC 17 2023{' '}
+        INVENTORY FOR THE WEEK OF MON DEC 10 2023 - SUN DEC 17 2023{" "}
       </p>
       <section className="vendor-items-display">
         <VendorItemCard />
@@ -56,10 +57,18 @@ const FarmerDashboard = () => {
 };
 
 const VendorItemCard = () => {
-  const [itemName, setItemName] = useState<string>('Carrots');
-  const [itemSize, setItemSize] = useState<string>('5lb');
+  const [
+    checkedAvailablehandleChangeAvailable,
+    setCheckedAvailablehandleChangeAvailable,
+  ] = useState(false);
+
+  const handleChangeAvailable = (newChecked: boolean) => {
+    setCheckedAvailablehandleChangeAvailable(newChecked);
+  };
+  const [itemName, setItemName] = useState<string>("Carrots");
+  const [itemSize, setItemSize] = useState<string>("5lb");
   const [itemDetails, setItemDetails] = useState<string>(
-    'Small, crooked carrots'
+    "Small, crooked carrots"
   );
   const [quantityAvailable, setQuantityAvailable] = useState<number>(47);
   const [isEditable, setIsEditable] = useState<boolean>(false);
@@ -83,7 +92,7 @@ const VendorItemCard = () => {
           <input
             className="item-input"
             value={itemName}
-            onChange={e => setItemName(e.target.value)}
+            onChange={(e) => setItemName(e.target.value)}
             readOnly={!isEditable}
           />
         </p>
@@ -92,7 +101,7 @@ const VendorItemCard = () => {
           <input
             className="item-input"
             value={itemSize}
-            onChange={e => setItemSize(e.target.value)}
+            onChange={(e) => setItemSize(e.target.value)}
             readOnly={!isEditable}
           />
         </p>
@@ -101,7 +110,7 @@ const VendorItemCard = () => {
           <input
             className="item-input"
             value={itemPrice}
-            onChange={e => setItemPrice(parseInt(e.target.value))}
+            onChange={(e) => setItemPrice(parseInt(e.target.value))}
             readOnly={!isEditable}
           />
         </p>
@@ -110,7 +119,7 @@ const VendorItemCard = () => {
           <input
             className="item-input"
             value={itemDetails}
-            onChange={e => setItemDetails(e.target.value)}
+            onChange={(e) => setItemDetails(e.target.value)}
             readOnly={!isEditable}
           />
         </p>
@@ -121,16 +130,23 @@ const VendorItemCard = () => {
               className="item-input"
               type="number"
               value={quantityAvailable}
-              onChange={e => setQuantityAvailable(Number(e.target.value))}
+              onChange={(e) => setQuantityAvailable(Number(e.target.value))}
               readOnly={!isEditable}
             />
           </p>
           <p>Quantity Ordered: 3 </p>
         </div>
+        <div className="available-container">
+          <p>Available</p>
+          <Switch
+            onChange={handleChangeAvailable}
+            checked={checkedAvailablehandleChangeAvailable}
+          />
+        </div>
         <div className="item-btns">
           {isEditable ? (
             <button className="save-changes" onClick={handleSaveChanges}>
-              Save Changes
+              Save
             </button>
           ) : (
             <button className="edit-changes" onClick={handleEditToggle}>

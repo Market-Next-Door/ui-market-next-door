@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import './CustomerDashboard.css';
-import Header from '../Header/Header';
-import NavigationBar from '../NavigationBar/NavigationBar';
-import { useRef } from 'react';
-import { useReactToPrint } from 'react-to-print';
+import React, { useState } from "react";
+import "./CustomerDashboard.css";
+import Header from "../Header/Header";
+import NavigationBar from "../NavigationBar/NavigationBar";
+import { useRef } from "react";
+import { useReactToPrint } from "react-to-print";
 
 const CustomerDash = () => {
-  const vendors: string[] = ['Vendor A', 'Vendor B', 'Vendor C', 'Vendor D'];
+  const vendors: string[] = ["Vendor A", "Vendor B", "Vendor C", "Vendor D"];
 
   const [selectedVendor, setSelectedVendor] = useState<string | null>(null);
-  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
-  const filteredVendors = vendors.filter(vendor =>
+  const filteredVendors = vendors.filter((vendor) =>
     vendor.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -24,7 +24,7 @@ const CustomerDash = () => {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     const selectedValue = event.target.value;
-    setSelectedVendor(selectedValue !== 'default' ? selectedValue : null);
+    setSelectedVendor(selectedValue !== "default" ? selectedValue : null);
   };
 
   return (
@@ -42,7 +42,7 @@ const CustomerDash = () => {
         <select
           name="select-input"
           className="select-input"
-          value={selectedVendor || 'default'}
+          value={selectedVendor || "default"}
           onChange={handleVendorSelection}
         >
           <option value="default">Select a vendor</option>
@@ -89,27 +89,27 @@ const CustomerViewItemCard = () => {
   const [quantity, setQuantity] = useState<number>(0);
 
   const increaseQuantity = () => {
-    setQuantity(prevQuantity => prevQuantity + 1);
+    setQuantity((prevQuantity) => prevQuantity + 1);
   };
 
   const decreaseQuantity = () => {
-    setQuantity(prevQuantity => Math.max(prevQuantity - 1, 0));
+    setQuantity((prevQuantity) => Math.max(prevQuantity - 1, 0));
   };
 
   const [creditCard, setCreditCard] = useState({
-    cardNumber: '',
-    expirationDate: '',
-    cvv: '',
+    cardNumber: "",
+    expirationDate: "",
+    cvv: "",
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setCreditCard(prev => ({ ...prev, [name]: value }));
+    setCreditCard((prev) => ({ ...prev, [name]: value }));
   };
   return (
     <>
       <div className="customer-view-item-card">
-        <div className="vendor-item-image">
+        <div className="customer-item-image">
           <img src="carrots.jpg" alt="Item" />
         </div>
         <div className="item-details">
@@ -133,7 +133,7 @@ const CustomerViewItemCard = () => {
             <input
               className="quantity-num"
               value={quantity}
-              onChange={e =>
+              onChange={(e) =>
                 setQuantity(Math.max(0, parseInt(e.target.value) || 0))
               }
             />
@@ -153,7 +153,7 @@ const CustomerViewItemCard = () => {
               &times;
             </span>
             <h2 className="invoice-header">
-              Order Confirmation{' '}
+              Order Confirmation{" "}
               {/* <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -217,7 +217,7 @@ const CustomerViewItemCard = () => {
               </p>
             </div>
             <p className="invoice-total">
-              <strong>Total:</strong> $10.00{' '}
+              <strong>Total:</strong> $10.00{" "}
             </p>
             <div className="invoice-payment-info">
               <label>Card Number:</label>
@@ -247,7 +247,7 @@ const CustomerViewItemCard = () => {
             </div>
             <button
               className="order-confirm-btn"
-              onClick={() => alert('Order Confirmed!')}
+              onClick={() => alert("Order Confirmed!")}
             >
               Confirm Order
             </button>

@@ -3,7 +3,7 @@
 describe('should load customer dashboard elements', () => {
   it('should display customer dashboard page elements', () => {
     cy.visit('https://market-next-door-fe-f6728ad38b62.herokuapp.com/');
-    cy.get('.customer-container > .vendor-header').should(
+    cy.get('.customer-container > .mnd-header').should(
       'have.text',
       'Welcome, Vendors and Customers!'
     );

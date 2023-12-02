@@ -81,6 +81,9 @@
   transition: transform 0.3s ease-in-out;
   transform: scale(1.05);
 }
+.vendor-login-text {
+  font-size: 2rem;
+}
 
 @media (max-width: 495px) {
   .vendor-login-header {
@@ -99,6 +102,9 @@
   }
   .vendor-login-go-back-btn {
     width: 22rem;
+    font-size: 1.2rem;
+  }
+  .vendor-login-text {
     font-size: 1.2rem;
   }
 }

@@ -4,12 +4,11 @@
   background-size: cover;
 
   height: 100vh;
-  font-family: 'Inter';
+  font-family: "Inter";
   color: black;
-  gap: 5rem;
+  gap: 4rem;
   display: flex;
   flex-direction: column;
-  gap: 4rem;
 }
 
 .add-item-form {
@@ -118,7 +117,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .item-input {
@@ -172,4 +171,28 @@
   display: flex;
   gap: 1rem;
   align-items: center;
+}
+
+@media (max-width: 1077px) {
+  .add-item-item-name,
+  .add-item-item-size,
+  .add-item-item-price,
+  .add-item-item-quantity,
+  .add-item-item-notes {
+    font-size: 1.2rem;
+  }
+  .add-item-form {
+    gap: 1rem;
+  }
+  .post-btn {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 711px) {
+  .item-details {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
 }

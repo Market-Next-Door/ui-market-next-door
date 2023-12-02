@@ -1,7 +1,7 @@
 .vendor-sign-up-container {
   height: 100vh;
   background-image: linear-gradient(
-      rgba(15, 15, 15, 0.2),
+      rgba(15, 15, 15, 0.8),
       rgba(15, 15, 15, 0.6)
     ),
     url("../../../public/signup.jpeg");
@@ -15,26 +15,27 @@
   height: 100vh;
   font-family: "Inter";
   color: white;
-  gap: 5rem;
+  gap: 3rem;
 }
 
 .vendor-sign-up-header {
-  font-size: 5rem;
+  font-size: 3rem;
   letter-spacing: 2rem;
+  text-align: center;
 }
 
 .vendor-sign-up-input {
   background-color: #ffffffbc;
   border: none;
   /* text-transform: uppercase; */
-  font-size: 2rem;
+  font-size: 1.6rem;
   border-radius: 100rem;
   /* cursor: pointer; */
   transition: 0.3s;
   padding: 1rem 2rem;
   justify-content: center;
   align-items: center;
-  width: 22%;
+  width: 30rem;
 }
 
 .vendor-sign-up-btn {
@@ -48,7 +49,7 @@
   padding: 1rem 2rem;
   justify-content: center;
   align-items: center;
-  width: 22%;
+  width: 30rem;
 }
 
 .vendor-sign-up-btn:hover {
@@ -74,4 +75,53 @@
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
   transform: scale(1.05);
+}
+.vendor-sign-up-subtext {
+  text-align: center;
+  font-size: 2rem;
+  letter-spacing: 2rem;
+}
+
+@media (max-width: 495px) {
+  .vendor-sign-up-header {
+    font-size: 2rem;
+  }
+  .vendor-sign-up-subtext {
+    font-size: 1.2rem;
+  }
+  .vendor-sign-up-input {
+    width: 22rem;
+    font-size: 1.2rem;
+  }
+  .vendor-sign-up-btn {
+    width: 22rem;
+    font-size: 1.2rem;
+  }
+  .vendor-sign-up-go-back-btn {
+    width: 22rem;
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 393px) {
+  .vendor-sign-up-header {
+    font-size: 1.4rem;
+    letter-spacing: 1rem;
+  }
+  .vendor-sign-up-subtext {
+    font-size: 1rem;
+    letter-spacing: 1rem;
+  }
+  .vendor-sign-up-input {
+    width: 22rem;
+    font-size: 1.2rem;
+  }
+  .vendor-sign-up-btn {
+    width: 22rem;
+    font-size: 1.2rem;
+  }
+  .vendor-sign-up-go-back-btn {
+    width: 22rem;
+    font-size: 1.2rem;
+  }
 }

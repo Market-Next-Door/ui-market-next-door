@@ -61,12 +61,8 @@ function CustomerOrderCard() {
           <strong>View/Print Details</strong>
         </div>
         <div className="status-container">
-          <strong>Paid </strong>
-          <div className="status-circle"></div>
-        </div>
-        <div className="status-container">
-          <strong>Picked Up </strong>
-          <Switch onChange={handleChangePacked} checked={checkedPacked} />
+          <strong>Status: </strong>
+          Upcoming
         </div>
       </div>
       {isModalOpen && (

@@ -1,9 +1,16 @@
-.vendor-header {
+.mnd-header {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Inter';
+  font-family: "Inter";
   font-size: 3rem;
   letter-spacing: 1rem;
   margin-top: 4rem;
+  text-align: center;
+}
+
+@media (max-width: 1077px) {
+  .mnd-header {
+    font-size: 1.8rem;
+  }
 }

@@ -1,4 +1,4 @@
-.vendor-nav {
+.mnd-nav {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -51,4 +51,19 @@
   color: white;
   cursor: pointer;
   background-color: #343a40;
+}
+
+@media (max-width: 1077px) {
+  .mnd-nav {
+    gap: 2rem;
+    flex-direction: column;
+  }
+  .products,
+  .orders,
+  .settings {
+    font-size: 1.4rem;
+  }
+  .btn {
+    padding: 0.5rem 8rem;
+  }
 }

@@ -49,7 +49,7 @@ function VendorOrderCard() {
     <div className="vendor-view-orders-card-modal">
       <div className="vendor-view-orders-card">
         <div>
-          <strong>Invoice Number: </strong>12
+          <strong>Invoice #: </strong>12
         </div>
         <div>
           <strong>Order Recieved: </strong>12/11/2023 13:43
@@ -58,8 +58,8 @@ function VendorOrderCard() {
           <strong>View/Print Details</strong>
         </div>
         <div className="status-container">
-          <strong>Paid </strong>
-          <div className="status-circle"></div>
+          <strong>Status: </strong>
+          Past
         </div>
         <div className="status-container">
           <strong>Packed </strong>

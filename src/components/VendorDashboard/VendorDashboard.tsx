@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import './FarmerDashboard.css';
+import './VendorDashboard.css';
 import Header from '../Header/Header';
 import NavigationBar from '../NavigationBar/NavigationBar';
 
-const FarmerDashboard = () => {
+const VendorDashboard = () => {
   return (
     <div className="vendor-container">
       <Header />
@@ -144,4 +144,4 @@ const VendorItemCard = () => {
   );
 };
 
-export default FarmerDashboard;
+export default VendorDashboard;

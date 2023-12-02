@@ -2,7 +2,7 @@ import React from 'react';
 
 import './App.css';
 import LandingPage from '../LandingPage/LandingPage';
-import FarmerDashboard from '../FarmerDashboard/FarmerDashboard';
+import VendorDashboard from '../VendorDashboard/VendorDashboard';
 import CustomerDash from '../CustomerDashboard/CustomerDashboard';
 import VendorLogIn from '../VendorLogIn/VendorLogIn';
 import VendorSignUp from '../VendorSignUp/VendorSignUp';
@@ -18,7 +18,7 @@ function App() {
       <VendorSignUp />
       <CustomerLogIn />
       <CustomerSignUp />
-      <FarmerDashboard />
+      <VendorDashboard />
       <CustomerDash />
       <VendorOrders />
       <CustomerOrders />

@@ -40,7 +40,6 @@
   justify-content: center;
   align-items: center;
   width: 30rem;
-  font-size: 2rem;
 }
 
 .vendor-login-submit-btn {
@@ -55,6 +54,7 @@
   justify-content: center;
   align-items: center;
   width: 30rem;
+  font-size: 1.6rem;
 }
 
 .vendor-login-submit-btn:hover {
@@ -67,7 +67,7 @@
   background-color: #ffffffbc;
   border: none;
   /* text-transform: uppercase; */
-  font-size: 2rem;
+  font-size: 1.6rem;
   border-radius: 100rem;
   cursor: pointer;
   transition: 0.3s;

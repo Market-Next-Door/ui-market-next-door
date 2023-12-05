@@ -9,7 +9,7 @@ export type VendorDashboardProps = {
   allItems: Item[];
 };
 
-type ItemAttributes = {
+export type ItemAttributes = {
   item_name: string;
   vendor_name: string;
   price: number;

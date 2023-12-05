@@ -28,7 +28,7 @@ export default function CustomerSettings() {
   }
   return (
     <div className="customer-settings-container">
-      <Header />
+      <Header name='Sue'/>
       <NavigationBar />
       <div className="account-box">
         <p className="my-account-info">

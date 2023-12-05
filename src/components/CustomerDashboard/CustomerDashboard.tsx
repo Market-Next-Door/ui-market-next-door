@@ -29,7 +29,7 @@ const CustomerDash = () => {
 
   return (
     <div className="customer-container">
-      <Header />
+      <Header name='Sue'/>
       <NavigationBar />
       <section className="customer-find-vendor">
         <input

@@ -9,7 +9,7 @@ import Switch from "react-switch";
 function VendorOrders() {
   return (
     <div className="vendor-orders-container">
-      <Header />
+      <Header name='Sue'/>
       <NavigationBar />
       <div className="vendor-orders-display">
         <VendorOrderCard />

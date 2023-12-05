@@ -8,15 +8,25 @@ type Customer = {
   first_name: string;
   last_name: string;
   email: string;
+  password: string;
 };
 export default function CustomerSettings() {
   const [currentCustomer, setCurrentCustomer] = useState<Customer | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isEditable, setIsEditable] = useState(false);
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   useEffect(() => {
     const fetchData = async () => {
       try {
         const customerData = await getOneCustomer(3);
         setCurrentCustomer(customerData);
+        setFirstName(customerData?.first_name || "");
+        setLastName(customerData?.last_name || "");
+        setPassword(customerData?.password || "");
+        setEmail(customerData?.email || "");
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -24,12 +34,6 @@ export default function CustomerSettings() {
     };
     fetchData();
   }, []);
-
-  const [isEditable, setIsEditable] = useState(false);
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [password, setPassword] = useState("");
-
   function handleEditToggle() {
     setIsEditable(!isEditable);
   }
@@ -47,18 +51,18 @@ export default function CustomerSettings() {
     console.log("changes saved!");
     setIsEditable(false);
   }
-  return isLoading || !currentCustomer ? (
+  return !currentCustomer ? (
     <p>Loading...</p>
   ) : (
     <div className="customer-settings-container">
-      <Header name={currentCustomer.first_name} />
+      <Header name={firstName} />
       <NavigationBar />
       <div className="account-box">
         <p className="my-account-info">
           First name:
           <input
             className="account-input"
-            value={currentCustomer.first_name}
+            value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             readOnly={!isEditable}
           />
@@ -67,14 +71,14 @@ export default function CustomerSettings() {
           Last name:
           <input
             className="account-input"
-            value={currentCustomer.last_name}
+            value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             readOnly={!isEditable}
           />
         </p>
         <p className="my-account-info-email">
           EMAIL:
-          <span className="account-email">{currentCustomer.email}</span>
+          <span className="account-email">{email}</span>
         </p>
         <p className="my-account-info-password">
           Password:

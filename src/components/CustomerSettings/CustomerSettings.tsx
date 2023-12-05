@@ -1,14 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import NavigationBar from "../NavigationBar/NavigationBar";
 import "./CustomerSettings.css";
+import { getOneCustomer } from "../../apiCalls";
 
+type Customer = {
+  first_name: string;
+  last_name: string;
+  email: string;
+  password: string;
+};
 export default function CustomerSettings() {
+  const [currentCustomer, setCurrentCustomer] = useState<Customer | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [isEditable, setIsEditable] = useState(false);
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [password, setPassword] = useState("");
-
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const customerData = await getOneCustomer(3);
+        setCurrentCustomer(customerData);
+        setFirstName(customerData?.first_name || "");
+        setLastName(customerData?.last_name || "");
+        setPassword(customerData?.password || "");
+        setEmail(customerData?.email || "");
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
   function handleEditToggle() {
     setIsEditable(!isEditable);
   }
@@ -26,9 +51,11 @@ export default function CustomerSettings() {
     console.log("changes saved!");
     setIsEditable(false);
   }
-  return (
+  return !currentCustomer ? (
+    <p>Loading...</p>
+  ) : (
     <div className="customer-settings-container">
-      <Header name='Sue'/>
+      <Header name={firstName} />
       <NavigationBar />
       <div className="account-box">
         <p className="my-account-info">
@@ -51,7 +78,7 @@ export default function CustomerSettings() {
         </p>
         <p className="my-account-info-email">
           EMAIL:
-          <span className="account-email">potatoes@mail.com</span>
+          <span className="account-email">{email}</span>
         </p>
         <p className="my-account-info-password">
           Password:

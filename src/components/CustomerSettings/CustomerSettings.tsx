@@ -1,9 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import NavigationBar from "../NavigationBar/NavigationBar";
 import "./CustomerSettings.css";
+import { getOneCustomer } from "../../apiCalls";
 
+type Customer = {
+  first_name: string;
+  last_name: string;
+  email: string;
+};
 export default function CustomerSettings() {
+  const [currentCustomer, setCurrentCustomer] = useState<Customer | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const customerData = await getOneCustomer(3);
+        setCurrentCustomer(customerData);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
   const [isEditable, setIsEditable] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -26,16 +47,18 @@ export default function CustomerSettings() {
     console.log("changes saved!");
     setIsEditable(false);
   }
-  return (
+  return isLoading || !currentCustomer ? (
+    <p>Loading...</p>
+  ) : (
     <div className="customer-settings-container">
-      <Header name='Sue'/>
+      <Header name={currentCustomer.first_name} />
       <NavigationBar />
       <div className="account-box">
         <p className="my-account-info">
           First name:
           <input
             className="account-input"
-            value={firstName}
+            value={currentCustomer.first_name}
             onChange={(e) => setFirstName(e.target.value)}
             readOnly={!isEditable}
           />
@@ -44,14 +67,14 @@ export default function CustomerSettings() {
           Last name:
           <input
             className="account-input"
-            value={lastName}
+            value={currentCustomer.last_name}
             onChange={(e) => setLastName(e.target.value)}
             readOnly={!isEditable}
           />
         </p>
         <p className="my-account-info-email">
           EMAIL:
-          <span className="account-email">potatoes@mail.com</span>
+          <span className="account-email">{currentCustomer.email}</span>
         </p>
         <p className="my-account-info-password">
           Password:

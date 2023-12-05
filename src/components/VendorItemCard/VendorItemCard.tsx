@@ -1,44 +1,67 @@
-import { useState } from 'react';
+import React from 'react';
 import Switch from 'react-switch';
 import './VendorItemCard.css';
+import { useState } from 'react';
 
-const VendorItemCard = () => {
-  const [
-    checkedAvailablehandleChangeAvailable,
-    setCheckedAvailablehandleChangeAvailable,
-  ] = useState(false);
+type VendorItemCardProps = {
+  item_name: string;
+  vendor_name: string;
+  price: number;
+  quantity_available: number;
+  size: string;
+  available: boolean;
+  description: string;
+  img: string;
+};
 
-  const handleChangeAvailable = (newChecked: boolean) => {
-    setCheckedAvailablehandleChangeAvailable(newChecked);
-  };
-  const [itemName, setItemName] = useState<string>('Carrots');
-  const [itemSize, setItemSize] = useState<string>('5lb');
-  const [itemDetails, setItemDetails] = useState<string>(
-    'Small, crooked carrots'
-  );
-  const [quantityAvailable, setQuantityAvailable] = useState<number>(47);
+const VendorItemCard = ({
+  item_name,
+  vendor_name,
+  price,
+  quantity_available,
+  size,
+  available,
+  description,
+  img,
+}: VendorItemCardProps) => {
+  console.log('VendorItemCard props:', {
+    item_name,
+    vendor_name,
+    price,
+    quantity_available,
+    size,
+    available,
+    description,
+    img,
+  });
+  const [isChecked, setIsChecked] = useState(available);
   const [isEditable, setIsEditable] = useState<boolean>(false);
-  const [itemPrice, setItemPrice] = useState<number>(5.99);
+
+  const handleToggleAvailable = (newChecked: boolean) => {
+    setIsChecked(newChecked);
+  };
+
   const handleEditToggle = () => {
     setIsEditable(!isEditable);
   };
 
   const handleSaveChanges = () => {
     setIsEditable(false);
+    // Here, you might want to save changes to the server or parent component
   };
 
   return (
     <div className="vendor-item-card">
       <div className="vendor-item-image">
-        <img src="carrots.jpg" alt="Item" />
+        <img src={img} alt={item_name} />
       </div>
       <div className="item-details">
         <p>
           Name:
           <input
             className="item-input"
-            value={itemName}
-            onChange={e => setItemName(e.target.value)}
+            value={item_name}
+            // onChange={e => setItemName(e.target.value)}
             readOnly={!isEditable}
           />
         </p>
@@ -46,8 +69,8 @@ const VendorItemCard = () => {
           Size:
           <input
             className="item-input"
-            value={itemSize}
-            onChange={e => setItemSize(e.target.value)}
+            value={size}
+            // onChange={e => setItemSize(e.target.value)}
             readOnly={!isEditable}
           />
         </p>
@@ -55,8 +78,8 @@ const VendorItemCard = () => {
           Price:
           <input
             className="item-input"
-            value={itemPrice}
-            onChange={e => setItemPrice(parseInt(e.target.value))}
+            value={price}
+            // onChange={e => setItemPrice(parseInt(e.target.value))}
             readOnly={!isEditable}
           />
         </p>
@@ -64,8 +87,8 @@ const VendorItemCard = () => {
           Details:
           <input
             className="item-input"
-            value={itemDetails}
-            onChange={e => setItemDetails(e.target.value)}
+            value={description}
+            // onChange={e => setItemDetails(e.target.value)}
             readOnly={!isEditable}
           />
         </p>
@@ -75,19 +98,19 @@ const VendorItemCard = () => {
             <input
               className="item-input"
               type="number"
-              value={quantityAvailable}
-              onChange={e => setQuantityAvailable(Number(e.target.value))}
+              value={quantity_available}
+              //   onChange={e => setQuantityAvailable(Number(e.target.value))}
               readOnly={!isEditable}
             />
           </p>
-          <p>Quantity Ordered: 3 </p>
+          {/* <p>Quantity Ordered: 3 </p> */}
         </div>
         <div className="available-container">
           <p>Available</p>
-          <Switch
+          {/* <Switch
             onChange={handleChangeAvailable}
             checked={checkedAvailablehandleChangeAvailable}
-          />
+          /> */}
         </div>
         <div className="item-btns">
           {isEditable ? (

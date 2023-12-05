@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
 import './App.css';
-import { getAllVendors, getAllCustomers, getAllItems, getAllPreOrders } from '../../apiCalls';
+import {
+  getAllVendors,
+  getAllCustomers,
+  getAllItems,
+  getAllPreOrders,
+} from '../../apiCalls';
 import LandingPage from '../LandingPage/LandingPage';
 import VendorDashboard from '../VendorDashboard/VendorDashboard';
 import CustomerDash from '../CustomerDashboard/CustomerDashboard';
@@ -13,13 +18,13 @@ import VendorOrders from '../VendorOrders/VendorOrders';
 import CustomerOrders from '../CustomerOrders/CustomerOrders';
 import CustomerSettings from '../CustomerSettings/CustomerSettings';
 import VendorSettings from '../VendorSettings/VendorSettings';
-function App() {
 
-  const [allVendors, setAllVendors] = useState([])
-  const [allCustomers, setAllCustomers] = useState([])
-  const [allItems, setAllItems] = useState([])
-  const [allPreOrders, setAllPreOrders] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
+function App() {
+  const [allVendors, setAllVendors] = useState([]);
+  const [allCustomers, setAllCustomers] = useState([]);
+  const [allItems, setAllItems] = useState([]);
+  const [allPreOrders, setAllPreOrders] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,8 +34,8 @@ function App() {
         const itemsData = await getAllItems();
         //const preOrdersData = await getAllPreOrders();
         setAllVendors(vendorsData);
-        setAllCustomers(customersData)
-        setAllItems(itemsData)
+        setAllCustomers(customersData);
+        setAllItems(itemsData.data);
         //setAllPreOrders(preOrdersData)
         setIsLoading(false);
       } catch (error) {
@@ -39,16 +44,17 @@ function App() {
     };
     fetchData();
   }, []);
-  
-  return (
-    isLoading ? <p>Loading...</p> : 
+
+  return isLoading ? (
+    <p>Loading...</p>
+  ) : (
     <div className="App">
       <LandingPage />
       <VendorLogIn />
       <VendorSignUp />
       <CustomerLogIn />
       <CustomerSignUp />
-      <VendorDashboard allVendors={allVendors}/>
+      <VendorDashboard allVendors={allVendors} allItems={allItems} />
       <CustomerDash />
       <VendorOrders />
       <CustomerOrders />

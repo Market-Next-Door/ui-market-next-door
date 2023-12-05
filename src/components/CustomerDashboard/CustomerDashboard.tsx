@@ -68,6 +68,10 @@ const CustomerDash = ({ allVendors }: CustomerDashboardProps) => {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     const selectedValue = event.target.value;
+    if (selectedValue === "default") {
+      setSelectedVendorId(null);
+      setSelectedVendor(null);
+    }
     const selectedVendor = allVendors.find((vendor) => vendor.vendor_name === selectedValue);
 
     if (selectedVendor) {

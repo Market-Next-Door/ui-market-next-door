@@ -5,7 +5,7 @@ import NavigationBar from '../NavigationBar/NavigationBar';
 import VendorItemCard from '../VendorItemCard/VendorItemCard';
 
 export type VendorDashboardProps = {
-  // allVendors: string[] | number[];
+  allVendors: string[] | number[];
   allItems: Item[];
 };
 
@@ -21,8 +21,9 @@ type Item = {
   image: string;
 };
 
-const VendorDashboard = ({ allItems }: VendorDashboardProps) => {
+const VendorDashboard = ({ allItems, allVendors }: VendorDashboardProps) => {
   console.log('VendorDashboard allItems:', allItems);
+  console.log('VendorDashboard allVendors', allVendors);
 
   return (
     <div className="vendor-container">

@@ -53,6 +53,20 @@
   background-color: #343a40;
 }
 
+.signout {
+  border: 0.2rem solid;
+  font-family: Inter;
+  color: #801e17;
+  font-weight: 500;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+.signout:hover {
+  color: white;
+  cursor: pointer;
+  background-color: #343a40;
+}
+
 @media (max-width: 1077px) {
   .mnd-nav {
     gap: 2rem;

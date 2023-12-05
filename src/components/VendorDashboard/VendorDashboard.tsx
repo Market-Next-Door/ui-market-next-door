@@ -43,7 +43,7 @@ const VendorDashboard = ({ allItems, allVendors }: VendorDashboardProps) => {
         />
         <input
           className="add-item-item-price"
-          type="text"
+          type="number"
           placeholder="Price..."
         />
         <input

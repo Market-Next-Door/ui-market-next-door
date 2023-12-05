@@ -37,8 +37,18 @@ const VendorItemCard = ({
   const [isChecked, setIsChecked] = useState(availability);
   const [isEditable, setIsEditable] = useState<boolean>(false);
 
-  const handleToggleAvailable = (newChecked: boolean) => {
-    setIsChecked(newChecked);
+  const [itemName, setItemName] = useState<string>(item_name);
+  const [itemSize, setItemSize] = useState<string>(size);
+  const [itemDetails, setItemDetails] = useState<string>(description);
+  const [quantityAvailable, setQuantityAvailable] = useState<number>(47);
+  const [itemPrice, setItemPrice] = useState<number>(price);
+  const [
+    checkedAvailablehandleChangeAvailable,
+    setCheckedAvailablehandleChangeAvailable,
+  ] = useState(false);
+
+  const handleChangeAvailable = (newChecked: boolean) => {
+    setCheckedAvailablehandleChangeAvailable(newChecked);
   };
 
   const handleEditToggle = () => {
@@ -53,42 +63,46 @@ const VendorItemCard = ({
   return (
     <div className="vendor-item-card">
       <div className="vendor-item-image">
-        <img src={image} alt={item_name} />
+        <img src={image} alt={itemName} />
       </div>
       <div className="item-details">
         <p>
           Name:
           <input
+            type="text"
             className="item-input"
-            value={item_name}
-            // onChange={e => setItemName(e.target.value)}
+            value={itemName}
+            onChange={e => setItemName(e.target.value)}
             readOnly={!isEditable}
           />
         </p>
         <p>
           Size:
           <input
+            type="text"
             className="item-input"
-            value={size}
-            // onChange={e => setItemSize(e.target.value)}
+            value={itemSize}
+            onChange={e => setItemSize(e.target.value)}
             readOnly={!isEditable}
           />
         </p>
         <p>
           Price:
           <input
+            type="number"
             className="item-input"
-            value={price}
-            // onChange={e => setItemPrice(parseInt(e.target.value))}
+            value={itemPrice}
+            onChange={e => setItemPrice(parseFloat(e.target.value))}
             readOnly={!isEditable}
           />
         </p>
         <p>
           Details:
           <input
+            type="text"
             className="item-input"
-            value={description}
-            // onChange={e => setItemDetails(e.target.value)}
+            value={itemDetails}
+            onChange={e => setItemDetails(e.target.value)}
             readOnly={!isEditable}
           />
         </p>
@@ -98,19 +112,18 @@ const VendorItemCard = ({
             <input
               className="item-input"
               type="number"
-              value={quantity}
-              //   onChange={e => setQuantityAvailable(Number(e.target.value))}
+              value={quantityAvailable}
+              onChange={e => setQuantityAvailable(Number(e.target.value))}
               readOnly={!isEditable}
             />
           </p>
-          {/* <p>Quantity Ordered: 3 </p> */}
         </div>
         <div className="available-container">
           <p>Available</p>
-          {/* <Switch
+          <Switch
             onChange={handleChangeAvailable}
             checked={checkedAvailablehandleChangeAvailable}
-          /> */}
+          />
         </div>
         <div className="item-btns">
           {isEditable ? (

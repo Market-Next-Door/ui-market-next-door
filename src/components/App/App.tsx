@@ -49,7 +49,7 @@ function App() {
       <CustomerLogIn />
       <CustomerSignUp />
       <VendorDashboard allVendors={allVendors}/>
-      <CustomerDash />
+      <CustomerDash allVendors={allVendors}/>
       <VendorOrders />
       <CustomerOrders />
       <CustomerSettings />

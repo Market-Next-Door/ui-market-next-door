@@ -18,11 +18,12 @@ import VendorOrders from '../VendorOrders/VendorOrders';
 import CustomerOrders from '../CustomerOrders/CustomerOrders';
 import CustomerSettings from '../CustomerSettings/CustomerSettings';
 import VendorSettings from '../VendorSettings/VendorSettings';
+import { NewItem, Item } from '../VendorDashboard/VendorDashboard';
 
 function App() {
   const [allVendors, setAllVendors] = useState([]);
   const [allCustomers, setAllCustomers] = useState([]);
-  const [allItems, setAllItems] = useState([]);
+  const [allItems, setAllItems] = useState<Item[]>([]);
   const [allPreOrders, setAllPreOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -45,6 +46,14 @@ function App() {
     fetchData();
   }, []);
 
+  function addItem(newItem: NewItem) {
+    // Generate a temporary ID - for frontend development use only
+    const tempId = new Date().getTime(); // or any other method to generate a unique ID
+
+    // Add the newItem with the temporary ID to the existing items
+    setAllItems(prevItems => [...prevItems, { ...newItem, id: tempId }]);
+  }
+
   return isLoading ? (
     <p>Loading...</p>
   ) : (
@@ -54,9 +63,13 @@ function App() {
       <VendorSignUp />
       <CustomerLogIn />
       <CustomerSignUp />
-      <VendorDashboard allItems={allItems} allVendors={allVendors} />   
+      <VendorDashboard
+        allItems={allItems}
+        allVendors={allVendors}
+        addItem={addItem}
+      />
 
-      <CustomerDash allVendors={allVendors}/>
+      <CustomerDash allVendors={allVendors} />
 
       <VendorOrders />
       <CustomerOrders />

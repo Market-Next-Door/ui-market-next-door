@@ -4,10 +4,16 @@ import Header from '../Header/Header';
 import NavigationBar from '../NavigationBar/NavigationBar';
 import VendorItemCard from '../VendorItemCard/VendorItemCard';
 
-const VendorDashboard = () => {
+type VendorDashboardProps = {
+  allVendors: string[] | number[];
+}
+const VendorDashboard = ({ allVendors }: VendorDashboardProps) => {
+
+console.log('VendorDashboard allVendors: ', allVendors)
+
   return (
     <div className="vendor-container">
-      <Header />
+      <Header name='Sue'/>
       <NavigationBar />
       <form className="add-item-form">
         <input

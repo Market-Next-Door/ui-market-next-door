@@ -54,8 +54,10 @@ function App() {
       <VendorSignUp />
       <CustomerLogIn />
       <CustomerSignUp />
-      <VendorDashboard allItems={allItems} allVendors={allVendors} />
-      <CustomerDash />
+      <VendorDashboard allItems={allItems} allVendors={allVendors} />   
+
+      <CustomerDash allVendors={allVendors}/>
+
       <VendorOrders />
       <CustomerOrders />
       <CustomerSettings />

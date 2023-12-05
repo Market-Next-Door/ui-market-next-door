@@ -7,7 +7,7 @@ const NavigationBar = () => {
       <button className="products btn">PRODUCTS</button>
       <button className="orders btn">ORDERS</button>
       <button className="settings btn">SETTINGS</button>
-      <button className="settings btn">SIGN OUT</button>
+      <button className="signout btn">SIGN OUT</button>
     </nav>
   );
 };

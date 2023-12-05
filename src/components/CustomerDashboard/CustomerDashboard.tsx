@@ -1,15 +1,58 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./CustomerDashboard.css";
 import Header from "../Header/Header";
 import NavigationBar from "../NavigationBar/NavigationBar";
 import { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
+import { getSelectedVendorsItems } from "../../apiCalls";
 
-const CustomerDash = () => {
-  const vendors: string[] = ["Vendor A", "Vendor B", "Vendor C", "Vendor D"];
+type Vendor = {
+  email: string;
+  first_name: string;
+  id: number;
+  last_name: string;
+  location: string;
+  market: number;
+  vendor_name: string;
+}
 
+type CustomerDashboardProps = {
+  allVendors: Vendor[]
+}
+
+
+const CustomerDash = ({ allVendors }: CustomerDashboardProps) => {
+
+  console.log('CustomerDash allVendors: ', allVendors)
+
+  const [selectedVendorId, setSelectedVendorId] = useState<number | null>(null);
+  
+
+  const vendors: string[] = allVendors.map((vendor) => {
+    return vendor.vendor_name
+  })
+
+  
   const [selectedVendor, setSelectedVendor] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [selectedVendorsItems, setSelectedVendorsItems] = useState<selectedVendorItem[] | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    if (selectedVendorId !== null) {
+      getSelectedVendorsItems(selectedVendorId)
+        .then(data => {
+          setSelectedVendorsItems(data);
+          setIsLoading(false);
+        })
+        .catch(error => console.log(error));
+    }
+  }, [selectedVendorId]);
+
+
+  console.log('CustomerDash selectedVendorsItems: ', selectedVendorsItems)
+
+  console.log('CustomerDash selectedVendor: ', selectedVendor)
 
   const filteredVendors = vendors.filter((vendor) =>
     vendor.toLowerCase().includes(searchQuery.toLowerCase())
@@ -17,6 +60,7 @@ const CustomerDash = () => {
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const searchValue = event.target.value;
+    
     setSearchQuery(searchValue);
   };
 
@@ -24,10 +68,49 @@ const CustomerDash = () => {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     const selectedValue = event.target.value;
+    const selectedVendor = allVendors.find((vendor) => vendor.vendor_name === selectedValue);
+
+    if (selectedVendor) {
+      setSelectedVendorId(selectedVendor.id);
+      setSelectedVendor(selectedValue !== "default" ? selectedValue : null);
+      console.log('vendor id stored', selectedVendorId)
+    }
     setSelectedVendor(selectedValue !== "default" ? selectedValue : null);
   };
 
+  // const selectedVendorsItemsCards = selectedVendorsItems ?selectedVendorsItems.map((item) => { console.log('item', item)
+  //   return <CustomerViewItemCard
+  //     key={item.id}
+  //     item_name={item.item_name}
+  //     price={item.price}
+  //     size={item.size}
+  //     item_quantity={item.quantity}
+  //     description={item.description}
+  //     />
+  // })
+  // : null;
+
+  const selectedVendorsItemsCards = selectedVendorId !== null ? (
+    selectedVendorsItems ? (
+      selectedVendorsItems.map((item) => (
+        <CustomerViewItemCard
+          key={item.id}
+          item_name={item.item_name}
+          price={item.price}
+          size={item.size}
+          item_quantity={item.quantity}
+          description={item.description}
+        />
+      ))
+    ) : (
+      <p>No items available for the selected vendor.</p>
+    )
+  ) : (
+    <p>Please select a vendor to view items.</p>
+  );
+
   return (
+   
     <div className="customer-container">
       <Header name='Sue'/>
       <NavigationBar />
@@ -59,15 +142,47 @@ const CustomerDash = () => {
         )}
       </section>
       <section className="customer-view-items-display">
-        <CustomerViewItemCard />
-        <CustomerViewItemCard />
-        <CustomerViewItemCard />
+        {selectedVendorsItemsCards}
       </section>
     </div>
   );
 };
 
-const CustomerViewItemCard = () => {
+
+// type Item = {
+//   item_name: string;
+//   vendor: number;
+//   price: string;
+//   size: number;
+//   quantity: number;
+//   availability: boolean;
+//   description: string;
+//   image: string;
+// }
+
+type selectedVendorItem = {
+  id: number;
+  item_name: string;
+  vendor: number;
+  price: string;
+  size: string;
+  quantity: number;
+  availability: boolean;
+  description: string;
+  image: string;
+  date_created: string;
+  updated_at: string;
+}
+
+type CustomerViewItemCardProps = {
+  item_name: string;
+  price: string;
+  size: string;
+  item_quantity: number;
+  description: string;
+}
+
+const CustomerViewItemCard = ({ item_name, price, size, item_quantity, description }: CustomerViewItemCardProps) => {
   const componentRef = useRef(null);
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
@@ -114,17 +229,17 @@ const CustomerViewItemCard = () => {
         </div>
         <div className="item-details">
           <p>
-            Name: <span>Carrots</span>
+            Name: <span>{item_name}</span>
           </p>
           <p>
-            Size: <span>5lb</span>
+            Size: <span>{size}</span>
           </p>
           <p>
-            Details: <span>Small, crooked carrots</span>
+            Details: <span>{description}</span>
           </p>
 
           <p>
-            Quantity Available: <span>47</span>
+            Quantity Available: <span>{item_quantity}</span>
           </p>
           <div className="quantity-input">
             <button className="quantity-btn" onClick={decreaseQuantity}>

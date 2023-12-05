@@ -5,29 +5,23 @@ import NavigationBar from '../NavigationBar/NavigationBar';
 import VendorItemCard from '../VendorItemCard/VendorItemCard';
 
 export type VendorDashboardProps = {
-  allVendors: string[] | number[];
+  // allVendors: string[] | number[];
   allItems: Item[];
 };
 
-export type ItemAttributes = {
-  item_name: string;
-  vendor_name: string;
-  price: number;
-  quantity_available: number;
-  size: string;
-  available: boolean;
-  description: string;
-  img: string;
-};
-
 type Item = {
-  attributes: ItemAttributes;
   id: number;
-  type: string;
+  item_name: string;
+  vendor: string;
+  price: number;
+  quantity: number;
+  size: string;
+  availability: boolean;
+  description: string;
+  image: string;
 };
 
-const VendorDashboard = ({ allVendors, allItems }: VendorDashboardProps) => {
-  console.log('VendorDashboard allVendors: ', allVendors);
+const VendorDashboard = ({ allItems }: VendorDashboardProps) => {
   console.log('VendorDashboard allItems:', allItems);
 
   return (
@@ -76,14 +70,14 @@ const VendorDashboard = ({ allVendors, allItems }: VendorDashboardProps) => {
           allItems.map(item => (
             <VendorItemCard
               key={item.id}
-              item_name={item.attributes.item_name}
-              vendor_name={item.attributes.vendor_name}
-              price={item.attributes.price}
-              quantity_available={item.attributes.quantity_available}
-              size={item.attributes.size}
-              available={item.attributes.available}
-              description={item.attributes.description}
-              img={item.attributes.img}
+              item_name={item.item_name}
+              vendor={item.vendor}
+              price={item.price}
+              quantity={item.quantity}
+              size={item.size}
+              availability={item.availability}
+              description={item.description}
+              image={item.image}
             />
           ))}
       </section>

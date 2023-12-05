@@ -35,7 +35,7 @@ function App() {
         //const preOrdersData = await getAllPreOrders();
         setAllVendors(vendorsData);
         setAllCustomers(customersData);
-        setAllItems(itemsData.data);
+        setAllItems(itemsData);
         //setAllPreOrders(preOrdersData)
         setIsLoading(false);
       } catch (error) {
@@ -54,7 +54,7 @@ function App() {
       <VendorSignUp />
       <CustomerLogIn />
       <CustomerSignUp />
-      <VendorDashboard allVendors={allVendors} allItems={allItems} />
+      <VendorDashboard allItems={allItems} />
       <CustomerDash />
       <VendorOrders />
       <CustomerOrders />

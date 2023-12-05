@@ -5,36 +5,36 @@ import { useState } from 'react';
 
 type VendorItemCardProps = {
   item_name: string;
-  vendor_name: string;
+  vendor: string;
   price: number;
-  quantity_available: number;
+  quantity: number;
   size: string;
-  available: boolean;
+  availability: boolean;
   description: string;
-  img: string;
+  image: string;
 };
 
 const VendorItemCard = ({
   item_name,
-  vendor_name,
+  vendor,
   price,
-  quantity_available,
+  quantity,
   size,
-  available,
+  availability,
   description,
-  img,
+  image,
 }: VendorItemCardProps) => {
   console.log('VendorItemCard props:', {
     item_name,
-    vendor_name,
+    vendor,
     price,
-    quantity_available,
+    quantity,
     size,
-    available,
+    availability,
     description,
-    img,
+    image,
   });
-  const [isChecked, setIsChecked] = useState(available);
+  const [isChecked, setIsChecked] = useState(availability);
   const [isEditable, setIsEditable] = useState<boolean>(false);
 
   const handleToggleAvailable = (newChecked: boolean) => {
@@ -53,7 +53,7 @@ const VendorItemCard = ({
   return (
     <div className="vendor-item-card">
       <div className="vendor-item-image">
-        <img src={img} alt={item_name} />
+        <img src={image} alt={item_name} />
       </div>
       <div className="item-details">
         <p>
@@ -98,7 +98,7 @@ const VendorItemCard = ({
             <input
               className="item-input"
               type="number"
-              value={quantity_available}
+              value={quantity}
               //   onChange={e => setQuantityAvailable(Number(e.target.value))}
               readOnly={!isEditable}
             />

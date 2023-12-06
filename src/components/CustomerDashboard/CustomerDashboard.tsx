@@ -34,6 +34,7 @@ const CustomerDash = ({ allVendors }: CustomerDashboardProps) => {
 
   
   const [selectedVendor, setSelectedVendor] = useState<string | null>(null);
+  const [selectedVendorObject, setSelectedVendorObject] = useState<Vendor | null>(null)
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [selectedVendorsItems, setSelectedVendorsItems] = useState<selectedVendorItem[] | null>(null)
   const [isLoading, setIsLoading] = useState(true)
@@ -71,15 +72,19 @@ const CustomerDash = ({ allVendors }: CustomerDashboardProps) => {
     if (selectedValue === "default") {
       setSelectedVendorId(null);
       setSelectedVendor(null);
-    }
-    const selectedVendor = allVendors.find((vendor) => vendor.vendor_name === selectedValue);
-
-    if (selectedVendor) {
-      setSelectedVendorId(selectedVendor.id);
+      setSelectedVendorObject(null);
+    } else {
+      const foundVendorObject = allVendors.find((vendor) => vendor.vendor_name === selectedValue);
+      console.log('variable selectedVendor: ', foundVendorObject)
+      if (foundVendorObject) {
+      setSelectedVendorId(foundVendorObject.id);
       setSelectedVendor(selectedValue !== "default" ? selectedValue : null);
+      setSelectedVendorObject(foundVendorObject)
       console.log('vendor id stored', selectedVendorId)
     }
-    setSelectedVendor(selectedValue !== "default" ? selectedValue : null);
+    
+    }
+    // setSelectedVendor(selectedValue !== "default" ? selectedValue : null);
   };
 
   // const selectedVendorsItemsCards = selectedVendorsItems ?selectedVendorsItems.map((item) => { console.log('item', item)
@@ -98,6 +103,7 @@ const CustomerDash = ({ allVendors }: CustomerDashboardProps) => {
     selectedVendorsItems ? (
       selectedVendorsItems.map((item) => (
         <CustomerViewItemCard
+          selectedVendorObject={selectedVendorObject}
           key={item.id}
           item_name={item.item_name}
           price={item.price}
@@ -184,9 +190,24 @@ type CustomerViewItemCardProps = {
   size: string;
   item_quantity: number;
   description: string;
+  selectedVendorObject: Vendor | null;
 }
 
-const CustomerViewItemCard = ({ item_name, price, size, item_quantity, description }: CustomerViewItemCardProps) => {
+const CustomerViewItemCard = ({ item_name, price, size, item_quantity, description, selectedVendorObject }: CustomerViewItemCardProps) => {
+  // current date and time
+  // current Vendor info:  name and email
+  // current Customer info:  name and email
+  // pick up date:
+  // pick up time:
+  // Item
+  // size
+  // description
+  // price
+  // quantity
+
+
+  console.log('CustomerViewItemCard selectedVendorObject: ', selectedVendorObject)
+
   const componentRef = useRef(null);
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
@@ -227,7 +248,8 @@ const CustomerViewItemCard = ({ item_name, price, size, item_quantity, descripti
   };
   return (
     <>
-      <div className="customer-view-item-card">
+      {selectedVendorObject !== null ? (
+        <div className="customer-view-item-card">
         <div className="customer-item-image">
           <img src="carrots.jpg" alt="Item" />
         </div>
@@ -265,6 +287,10 @@ const CustomerViewItemCard = ({ item_name, price, size, item_quantity, descripti
           </button>
         </div>
       </div>
+      ) : (
+        <p>No vendor selected.</p>
+      )}
+      
       {isModalOpen && (
         <div className="modal" ref={componentRef}>
           <div className="modal-content">
@@ -298,10 +324,10 @@ const CustomerViewItemCard = ({ item_name, price, size, item_quantity, descripti
                 13:44
               </p>
               <p>
-                <strong>Vendor:</strong> Brian's Potatoes
+                <strong>Vendor:</strong> {selectedVendorObject ? selectedVendorObject.vendor_name: 'N/A'}
               </p>
               <p>
-                <strong>Vendor Contact:</strong> brianpotatoes@mail.com
+                <strong>Vendor Contact:</strong> {selectedVendorObject ? selectedVendorObject.email : 'N/A'}
               </p>
               <p>
                 <strong>Customer:</strong> Ryan Spyin

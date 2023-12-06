@@ -59,7 +59,7 @@ function App() {
   ) : (
     <div className="App">
       <LandingPage />
-      <VendorLogIn />
+      {/* <VendorLogIn />
       <VendorSignUp />
       <CustomerLogIn />
       <CustomerSignUp />
@@ -74,7 +74,7 @@ function App() {
       <VendorOrders />
       <CustomerOrders />
       <CustomerSettings />
-      <VendorSettings />
+      <VendorSettings /> */}
     </div>
   );
 }

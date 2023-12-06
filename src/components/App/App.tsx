@@ -4,7 +4,7 @@ import './App.css';
 import {
   getAllVendors,
   getAllCustomers,
-  getAllItems,
+  // getAllItems,
   getAllPreOrders,
 } from '../../apiCalls';
 import LandingPage from '../LandingPage/LandingPage';
@@ -32,11 +32,11 @@ function App() {
       try {
         const vendorsData = await getAllVendors();
         const customersData = await getAllCustomers();
-        const itemsData = await getAllItems();
+        // const itemsData = await getAllItems();
         //const preOrdersData = await getAllPreOrders();
         setAllVendors(vendorsData);
         setAllCustomers(customersData);
-        setAllItems(itemsData);
+        // setAllItems(itemsData);
         //setAllPreOrders(preOrdersData)
         setIsLoading(false);
       } catch (error) {
@@ -59,7 +59,7 @@ function App() {
   ) : (
     <div className="App">
       <LandingPage />
-      {/* <VendorLogIn />
+      <VendorLogIn />
       <VendorSignUp />
       <CustomerLogIn />
       <CustomerSignUp />
@@ -74,7 +74,7 @@ function App() {
       <VendorOrders />
       <CustomerOrders />
       <CustomerSettings />
-      <VendorSettings /> */}
+      <VendorSettings />
     </div>
   );
 }

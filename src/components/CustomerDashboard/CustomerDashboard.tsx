@@ -87,18 +87,6 @@ const CustomerDash = ({ allVendors }: CustomerDashboardProps) => {
     // setSelectedVendor(selectedValue !== "default" ? selectedValue : null);
   };
 
-  // const selectedVendorsItemsCards = selectedVendorsItems ?selectedVendorsItems.map((item) => { console.log('item', item)
-  //   return <CustomerViewItemCard
-  //     key={item.id}
-  //     item_name={item.item_name}
-  //     price={item.price}
-  //     size={item.size}
-  //     item_quantity={item.quantity}
-  //     description={item.description}
-  //     />
-  // })
-  // : null;
-
   const selectedVendorsItemsCards = selectedVendorId !== null ? (
     selectedVendorsItems ? (
       selectedVendorsItems.map((item) => (
@@ -157,18 +145,6 @@ const CustomerDash = ({ allVendors }: CustomerDashboardProps) => {
     </div>
   );
 };
-
-
-// type Item = {
-//   item_name: string;
-//   vendor: number;
-//   price: string;
-//   size: number;
-//   quantity: number;
-//   availability: boolean;
-//   description: string;
-//   image: string;
-// }
 
 type selectedVendorItem = {
   id: number;
@@ -247,8 +223,19 @@ const CustomerViewItemCard = ({ item_name, price, size, item_quantity, descripti
     setCreditCard((prev) => ({ ...prev, [name]: value }));
   };
 
-  const currentDateTime = Date.now()
+  const currentDateTime: number = Date.now()
   console.log('currentDateTime: ', currentDateTime)
+
+  const getNextSaturday = (orderDate: Date): Date => {
+    const daysUntilSaturday = (6 - orderDate.getDay() + 7) % 7;
+    const nextSaturdayDate = new Date(orderDate);
+    nextSaturdayDate.setDate(orderDate.getDate() + daysUntilSaturday);
+    return nextSaturdayDate;
+  };
+  
+  const orderDate = new Date(currentDateTime);
+  const nextSaturday = getNextSaturday(orderDate);
+
   return (
     <>
       {selectedVendorObject !== null ? (
@@ -341,10 +328,10 @@ const CustomerViewItemCard = ({ item_name, price, size, item_quantity, descripti
                 <strong>Market:</strong> Market Next Door
               </p>
               <p>
-                <strong>Pick Up Date:</strong> Saturday December 12, 2023
+                <strong>Pick Up Date:</strong> Saturday, {nextSaturday.toLocaleDateString()}
               </p>
               <p>
-                <strong>Pick Up Time:</strong> 10am - 2pm
+                <strong>Pick Up Time:</strong> 8am - 1pm
               </p>
               <p>
                 <strong>Item:</strong> {item_name}

@@ -1,5 +1,5 @@
 export function getAllVendors() {
-  return fetch('https://6c085813-47a4-4651-aa7b-f46895da24ad.mock.pstmn.io/vendors')
+  return fetch('https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors')
   .then(response => {
     if(!response.ok) {
       throw new Error(`${response.status} ${response.statusText}`)
@@ -9,7 +9,7 @@ export function getAllVendors() {
 }
 
 export function getAllCustomers() {
-  return fetch('https://6c085813-47a4-4651-aa7b-f46895da24ad.mock.pstmn.io/customers')
+  return fetch('https://quiet-depths-54407-77a00505f51e.herokuapp.com/customers')
   .then(response => {
     if(!response.ok) {
       throw new Error(`${response.status} ${response.statusText}`)
@@ -19,7 +19,7 @@ export function getAllCustomers() {
 }
 
 export function getAllItems() {
-  return fetch('https://6c085813-47a4-4651-aa7b-f46895da24ad.mock.pstmn.io/items')
+  return fetch('https://quiet-depths-54407-77a00505f51e.herokuapp.com/items')
   .then(response => {
     if(!response.ok) {
       throw new Error(`${response.status} ${response.statusText}`)
@@ -29,7 +29,7 @@ export function getAllItems() {
 }
 
 export function getAllPreOrders() {
-  return fetch('https://6c085813-47a4-4651-aa7b-f46895da24ad.mock.pstmn.io/preorders')
+  return fetch('https://quiet-depths-54407-77a00505f51e.herokuapp.com/preorders')
   .then(response => {
     if(!response.ok) {
       throw new Error(`${response.status} ${response.statusText}`)
@@ -39,7 +39,7 @@ export function getAllPreOrders() {
 }
 
 export function getSelectedVendorsItems(id: number) {
-  return fetch(`https://6c085813-47a4-4651-aa7b-f46895da24ad.mock.pstmn.io/vendors/${id}/items/`)
+  return fetch(`https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/${id}/items/`)
   .then(response => {
     if(!response.ok) {
       throw new Error(`${response.status} ${response.statusText}`)
@@ -50,7 +50,7 @@ export function getSelectedVendorsItems(id: number) {
 
 export function getOneVendor(vendorID: number) {
   return fetch(
-    `https://6c085813-47a4-4651-aa7b-f46895da24ad.mock.pstmn.io/vendors/${vendorID}`
+    `https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/${vendorID}`
   ).then((response) => {
     if (!response.ok) {
       throw new Error(`${response.status} ${response.statusText}`);
@@ -61,7 +61,7 @@ export function getOneVendor(vendorID: number) {
 
 export function getOneCustomer(customerID: number) {
   return fetch(
-    `https://6c085813-47a4-4651-aa7b-f46895da24ad.mock.pstmn.io/customers/${customerID}`
+    `https://quiet-depths-54407-77a00505f51e.herokuapp.com/customers/${customerID}`
   ).then((response) => {
     if (!response.ok) {
       throw new Error(`${response.status} ${response.statusText}`);

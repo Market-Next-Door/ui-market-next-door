@@ -196,14 +196,14 @@ type CustomerViewItemCardProps = {
 const CustomerViewItemCard = ({ item_name, price, size, item_quantity, description, selectedVendorObject }: CustomerViewItemCardProps) => {
   // current date and time
   // DONE current Vendor info:  name and email
-  // current Customer info:  name and email
-  // pick up date:
-  // pick up time:
-  // Item
-  // size
-  // description
-  // price
-  // quantity
+  // NEED SIGN IN INFO current Customer info:  name and email
+  // WHERE TO GET? pick up date:
+  // WHERE TO GET? pick up time:
+  // DONE Item
+  // DONE size
+  // DONE description
+  // DONE price
+  // DONE quantity
 
 
   console.log('CustomerViewItemCard selectedVendorObject: ', selectedVendorObject)
@@ -246,6 +246,9 @@ const CustomerViewItemCard = ({ item_name, price, size, item_quantity, descripti
     const { name, value } = e.target;
     setCreditCard((prev) => ({ ...prev, [name]: value }));
   };
+
+  const currentDateTime = Date.now()
+  console.log('currentDateTime: ', currentDateTime)
   return (
     <>
       {selectedVendorObject !== null ? (
@@ -320,8 +323,7 @@ const CustomerViewItemCard = ({ item_name, price, size, item_quantity, descripti
             </p>
             <div className="invoice-info">
               <p>
-                <strong>Order Created at:</strong> Wednesday, December 4th, 2023
-                13:44
+                <strong>Order Created at:</strong> {new Date(currentDateTime).toLocaleString()}
               </p>
               <p>
                 <strong>Vendor:</strong> {selectedVendorObject ? selectedVendorObject.vendor_name: 'N/A'}

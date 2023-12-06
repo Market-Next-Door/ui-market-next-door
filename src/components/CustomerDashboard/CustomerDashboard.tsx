@@ -195,7 +195,7 @@ type CustomerViewItemCardProps = {
 
 const CustomerViewItemCard = ({ item_name, price, size, item_quantity, description, selectedVendorObject }: CustomerViewItemCardProps) => {
   // current date and time
-  // current Vendor info:  name and email
+  // DONE current Vendor info:  name and email
   // current Customer info:  name and email
   // pick up date:
   // pick up time:
@@ -345,24 +345,24 @@ const CustomerViewItemCard = ({ item_name, price, size, item_quantity, descripti
                 <strong>Pick Up Time:</strong> 10am - 2pm
               </p>
               <p>
-                <strong>Item:</strong> Carrots
+                <strong>Item:</strong> {item_name}
               </p>
               <p>
-                <strong>Size:</strong> 5lb
+                <strong>Size:</strong> {size}
               </p>
               <p className="details-invoice">
-                <strong>Details:</strong> Small, crooked carrots Small, crooked
+                <strong>Details:</strong> {description}
               </p>
               <p>
-                <strong>Price per Item:</strong> $5.00
+                <strong>Price per Item:</strong> {price}
               </p>
 
               <p>
-                <strong>Quantity:</strong> 2
+                <strong>Quantity:</strong> {quantity}
               </p>
             </div>
             <p className="invoice-total">
-              <strong>Total:</strong> $10.00{" "}
+            <strong>Total:</strong> {price && quantity ? `$${(parseFloat(price) * quantity).toFixed(2)}` : 'N/A'}
             </p>
             <div className="invoice-payment-info">
               <label>Card Number:</label>

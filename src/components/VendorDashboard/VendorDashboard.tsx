@@ -1,20 +1,19 @@
-import React, { useState, useRef } from 'react';
-import './VendorDashboard.css';
-import Header from '../Header/Header';
-import NavigationBar from '../NavigationBar/NavigationBar';
-import VendorItemCard from '../VendorItemCard/VendorItemCard';
-
+import React, { useState, useRef, useEffect } from "react";
+import "./VendorDashboard.css";
+import Header from "../Header/Header";
+import NavigationBar from "../NavigationBar/NavigationBar";
+import VendorItemCard from "../VendorItemCard/VendorItemCard";
+import { getSelectedVendorsItems } from "../../apiCalls";
 export type VendorDashboardProps = {
   allVendors: string[] | number[];
   allItems: Item[];
-  addItem: (newItem: NewItem) => void;
 };
 
 export type Item = {
   id: number;
   item_name: string;
-  vendor: string;
-  price: number;
+  vendor: number;
+  price: string;
   quantity: number;
   size: string;
   availability: boolean;
@@ -33,13 +32,22 @@ export type NewItem = {
   image: string;
 };
 
-const VendorDashboard = ({
-  allItems,
-  allVendors,
-  addItem,
-}: VendorDashboardProps) => {
-  console.log('VendorDashboard allItems:', allItems);
-  console.log('VendorDashboard allVendors', allVendors);
+type selectedVendorItem = {
+  id: number;
+  item_name: string;
+  vendor: string;
+  price: number;
+  size: string;
+  quantity: number;
+  availability: boolean;
+  description: string;
+  image: string;
+  date_created: string;
+  updated_at: string;
+};
+const VendorDashboard = ({ allItems, allVendors }: VendorDashboardProps) => {
+  console.log("VendorDashboard allItems:", allItems);
+  console.log("VendorDashboard allVendors", allVendors);
 
   const [addItemName, setAddItemName] = useState<string>();
   const [addItemSize, setAddItemSize] = useState<string>();
@@ -49,17 +57,49 @@ const VendorDashboard = ({
   const [addItemFile, setAddItemFile] = useState<File | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
+  // function addItem(newItem: NewItem) {
+  //   // Generate a temporary ID - for frontend development use only
+  //   const tempId = new Date().getTime(); // or any other method to generate a unique ID
+
+  //   // Add the newItem with the temporary ID to the existing items
+  //   setSelectedVendorsItems((prevItems) => [
+  //     ...prevItems,
+  //     { ...newItem, id: tempId },
+  //   ]);
+  //   console.log("hi");
+  // }
+
+  function addItem(newItem: NewItem) {
+    // Generate a temporary ID - for frontend development use only
+    const tempId = new Date().getTime(); // or any other method to generate a unique ID
+    const currentDateTime: number = Date.now();
+
+    const dateCreatedFormatted = new Date(currentDateTime).toLocaleString();
+
+    // Add the newItem with the temporary ID to the existing items
+    setSelectedVendorsItems((prevItems) => [
+      ...prevItems,
+      {
+        ...newItem,
+        id: tempId,
+        date_created: dateCreatedFormatted, // Add appropriate values for date_created and updated_at
+        updated_at: dateCreatedFormatted,
+      },
+    ]);
+    console.log("hi");
+  }
+
   function submitItem(event: React.FormEvent) {
     event.preventDefault();
     const newItem: NewItem = {
-      item_name: addItemName || '',
-      vendor: 'DefaultVendor', //this should load our current vendor
-      size: addItemSize || '',
+      item_name: addItemName || "",
+      vendor: "DefaultVendor", //this should load our current vendor
+      size: addItemSize || "",
       price: addItemPrice || 0,
       quantity: addQuantityAvailable || 0,
-      description: addItemDetails || '',
+      description: addItemDetails || "",
       availability: true,
-      image: '', // Handle image as needed
+      image: "", // Handle image as needed
     };
 
     addItem(newItem);
@@ -79,13 +119,35 @@ const VendorDashboard = ({
     if (formRef.current) {
       formRef.current.reset();
     }
-    setAddItemName('');
-    setAddItemSize('');
+    setAddItemName("");
+    setAddItemSize("");
     setAddItemPrice(0);
-    setAddItemDetails('');
+    setAddItemDetails("");
     setAddQuantityAvailable(0);
     setAddItemFile(null);
   }
+
+  const selectedVendorId = 1;
+  // const [selectedVendorsItems, setSelectedVendorsItems] = useState<
+  //   selectedVendorItem[] | null
+  // >(null);
+
+  const [selectedVendorsItems, setSelectedVendorsItems] = useState<
+    selectedVendorItem[]
+  >([]);
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (selectedVendorId !== null) {
+      getSelectedVendorsItems(selectedVendorId)
+        .then((data) => {
+          setSelectedVendorsItems(data);
+          setIsLoading(false);
+        })
+        .catch((error) => console.log(error));
+    }
+  }, [selectedVendorId]);
 
   return (
     <div className="vendor-container">
@@ -98,7 +160,7 @@ const VendorDashboard = ({
           type="text"
           placeholder="Item Name..."
           value={addItemName}
-          onChange={event => setAddItemName(event.target.value)}
+          onChange={(event) => setAddItemName(event.target.value)}
         />
 
         <input
@@ -107,7 +169,7 @@ const VendorDashboard = ({
           type="text"
           placeholder="Size..."
           value={addItemSize}
-          onChange={event => setAddItemSize(event.target.value)}
+          onChange={(event) => setAddItemSize(event.target.value)}
         />
         <input
           className="add-item-item-price"
@@ -115,7 +177,7 @@ const VendorDashboard = ({
           type="number"
           placeholder="Price..."
           value={addItemPrice}
-          onChange={event => setAddItemPrice(parseFloat(event.target.value))}
+          onChange={(event) => setAddItemPrice(parseFloat(event.target.value))}
         />
         <input
           className="add-item-item-quantity"
@@ -123,7 +185,7 @@ const VendorDashboard = ({
           type="text"
           placeholder="Quantity Available..."
           value={addQuantityAvailable}
-          onChange={event =>
+          onChange={(event) =>
             setAddQuantityAvailable(parseFloat(event.target.value))
           }
         />
@@ -133,7 +195,7 @@ const VendorDashboard = ({
           type="text"
           placeholder="Details..."
           value={addItemDetails}
-          onChange={event => setAddItemDetails(event.target.value)}
+          onChange={(event) => setAddItemDetails(event.target.value)}
         />
         <label htmlFor="files">upload photo</label>
         <input
@@ -144,18 +206,18 @@ const VendorDashboard = ({
           onChange={handleFileChange}
         />
 
-        <button className="post-btn" onClick={event => submitItem(event)}>
+        <button className="post-btn" onClick={(event) => submitItem(event)}>
           ADD ITEM
         </button>
       </form>
       <p
-        style={{ paddingLeft: '3rem', fontSize: '1.4rem', fontWeight: 'bold' }}
+        style={{ paddingLeft: "3rem", fontSize: "1.4rem", fontWeight: "bold" }}
       >
-        INVENTORY FOR THE WEEK OF MON DEC 10 2023 - SUN DEC 17 2023{' '}
+        INVENTORY FOR THE WEEK OF MON DEC 10 2023 - SUN DEC 17 2023{" "}
       </p>
       <section className="vendor-items-display">
-        {allItems &&
-          allItems.map(item => (
+        {selectedVendorsItems &&
+          selectedVendorsItems.map((item) => (
             <VendorItemCard
               key={item.id}
               item_name={item.item_name}

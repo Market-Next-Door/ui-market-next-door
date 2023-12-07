@@ -14,46 +14,44 @@ type Vendor = {
   location: string;
   market: number;
   vendor_name: string;
-}
+};
 
 type CustomerDashboardProps = {
-  allVendors: Vendor[]
-}
-
+  allVendors: Vendor[];
+};
 
 const CustomerDash = ({ allVendors }: CustomerDashboardProps) => {
-
-  console.log('CustomerDash allVendors: ', allVendors)
+  console.log("CustomerDash allVendors: ", allVendors);
 
   const [selectedVendorId, setSelectedVendorId] = useState<number | null>(null);
-  
 
   const vendors: string[] = allVendors.map((vendor) => {
-    return vendor.vendor_name
-  })
+    return vendor.vendor_name;
+  });
 
-  
   const [selectedVendor, setSelectedVendor] = useState<string | null>(null);
-  const [selectedVendorObject, setSelectedVendorObject] = useState<Vendor | null>(null)
+  const [selectedVendorObject, setSelectedVendorObject] =
+    useState<Vendor | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [selectedVendorsItems, setSelectedVendorsItems] = useState<selectedVendorItem[] | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
+  const [selectedVendorsItems, setSelectedVendorsItems] = useState<
+    selectedVendorItem[] | null
+  >(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (selectedVendorId !== null) {
       getSelectedVendorsItems(selectedVendorId)
-        .then(data => {
+        .then((data) => {
           setSelectedVendorsItems(data);
           setIsLoading(false);
         })
-        .catch(error => console.log(error));
+        .catch((error) => console.log(error));
     }
   }, [selectedVendorId]);
 
+  console.log("CustomerDash selectedVendorsItems: ", selectedVendorsItems);
 
-  console.log('CustomerDash selectedVendorsItems: ', selectedVendorsItems)
-
-  console.log('CustomerDash selectedVendor: ', selectedVendor)
+  console.log("CustomerDash selectedVendor: ", selectedVendor);
 
   const filteredVendors = vendors.filter((vendor) =>
     vendor.toLowerCase().includes(searchQuery.toLowerCase())
@@ -61,7 +59,7 @@ const CustomerDash = ({ allVendors }: CustomerDashboardProps) => {
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const searchValue = event.target.value;
-    
+
     setSearchQuery(searchValue);
   };
 
@@ -74,43 +72,44 @@ const CustomerDash = ({ allVendors }: CustomerDashboardProps) => {
       setSelectedVendor(null);
       setSelectedVendorObject(null);
     } else {
-      const foundVendorObject = allVendors.find((vendor) => vendor.vendor_name === selectedValue);
-      console.log('variable selectedVendor: ', foundVendorObject)
+      const foundVendorObject = allVendors.find(
+        (vendor) => vendor.vendor_name === selectedValue
+      );
+      console.log("variable selectedVendor: ", foundVendorObject);
       if (foundVendorObject) {
-      setSelectedVendorId(foundVendorObject.id);
-      setSelectedVendor(selectedValue !== "default" ? selectedValue : null);
-      setSelectedVendorObject(foundVendorObject)
-      console.log('vendor id stored', selectedVendorId)
-    }
-    
+        setSelectedVendorId(foundVendorObject.id);
+        setSelectedVendor(selectedValue !== "default" ? selectedValue : null);
+        setSelectedVendorObject(foundVendorObject);
+        console.log("vendor id stored", selectedVendorId);
+      }
     }
     // setSelectedVendor(selectedValue !== "default" ? selectedValue : null);
   };
 
-  const selectedVendorsItemsCards = selectedVendorId !== null ? (
-    selectedVendorsItems ? (
-      selectedVendorsItems.map((item) => (
-        <CustomerViewItemCard
-          selectedVendorObject={selectedVendorObject}
-          key={item.id}
-          item_name={item.item_name}
-          price={item.price}
-          size={item.size}
-          item_quantity={item.quantity}
-          description={item.description}
-        />
-      ))
+  const selectedVendorsItemsCards =
+    selectedVendorId !== null ? (
+      selectedVendorsItems ? (
+        selectedVendorsItems.map((item) => (
+          <CustomerViewItemCard
+            selectedVendorObject={selectedVendorObject}
+            key={item.id}
+            item_name={item.item_name}
+            price={item.price}
+            size={item.size}
+            item_quantity={item.quantity}
+            description={item.description}
+          />
+        ))
+      ) : (
+        <p>No items available for the selected vendor.</p>
+      )
     ) : (
-      <p>No items available for the selected vendor.</p>
-    )
-  ) : (
-    <p>Please select a vendor to view items.</p>
-  );
+      <p>Please select a vendor to view items.</p>
+    );
 
   return (
-   
     <div className="customer-container">
-      <Header name='Sue'/>
+      <Header name="Sue" />
       <NavigationBar />
       <section className="customer-find-vendor">
         <input
@@ -158,7 +157,7 @@ type selectedVendorItem = {
   image: string;
   date_created: string;
   updated_at: string;
-}
+};
 
 type CustomerViewItemCardProps = {
   item_name: string;
@@ -167,9 +166,16 @@ type CustomerViewItemCardProps = {
   item_quantity: number;
   description: string;
   selectedVendorObject: Vendor | null;
-}
+};
 
-const CustomerViewItemCard = ({ item_name, price, size, item_quantity, description, selectedVendorObject }: CustomerViewItemCardProps) => {
+const CustomerViewItemCard = ({
+  item_name,
+  price,
+  size,
+  item_quantity,
+  description,
+  selectedVendorObject,
+}: CustomerViewItemCardProps) => {
   // current date and time
   // DONE current Vendor info:  name and email
   // NEED SIGN IN INFO current Customer info:  name and email
@@ -181,8 +187,10 @@ const CustomerViewItemCard = ({ item_name, price, size, item_quantity, descripti
   // DONE price
   // DONE quantity
 
-
-  console.log('CustomerViewItemCard selectedVendorObject: ', selectedVendorObject)
+  console.log(
+    "CustomerViewItemCard selectedVendorObject: ",
+    selectedVendorObject
+  );
 
   const componentRef = useRef(null);
   const handlePrint = useReactToPrint({
@@ -223,8 +231,8 @@ const CustomerViewItemCard = ({ item_name, price, size, item_quantity, descripti
     setCreditCard((prev) => ({ ...prev, [name]: value }));
   };
 
-  const currentDateTime: number = Date.now()
-  console.log('currentDateTime: ', currentDateTime)
+  const currentDateTime: number = Date.now();
+  console.log("currentDateTime: ", currentDateTime);
 
   const getNextSaturday = (orderDate: Date): Date => {
     const daysUntilSaturday = (6 - orderDate.getDay() + 7) % 7;
@@ -232,7 +240,7 @@ const CustomerViewItemCard = ({ item_name, price, size, item_quantity, descripti
     nextSaturdayDate.setDate(orderDate.getDate() + daysUntilSaturday);
     return nextSaturdayDate;
   };
-  
+
   const orderDate = new Date(currentDateTime);
   const nextSaturday = getNextSaturday(orderDate);
 
@@ -240,47 +248,47 @@ const CustomerViewItemCard = ({ item_name, price, size, item_quantity, descripti
     <>
       {selectedVendorObject !== null ? (
         <div className="customer-view-item-card">
-        <div className="customer-item-image">
-          <img src="carrots.jpg" alt="Item" />
-        </div>
-        <div className="item-details">
-          <p>
-            Name: <span>{item_name}</span>
-          </p>
-          <p>
-            Size: <span>{size}</span>
-          </p>
-          <p>
-            Details: <span>{description}</span>
-          </p>
+          <div className="customer-item-image">
+            <img src="carrots.jpg" alt="Item" />
+          </div>
+          <div className="item-details">
+            <p>
+              Name: <span>{item_name}</span>
+            </p>
+            <p>
+              Size: <span>{size}</span>
+            </p>
+            <p>
+              Details: <span>{description}</span>
+            </p>
 
-          <p>
-            Quantity Available: <span>{item_quantity}</span>
-          </p>
-          <div className="quantity-input">
-            <button className="quantity-btn" onClick={decreaseQuantity}>
-              -
-            </button>
-            <input
-              className="quantity-num"
-              value={quantity}
-              onChange={(e) =>
-                setQuantity(Math.max(0, parseInt(e.target.value) || 0))
-              }
-            />
-            <button className="quantity-btn" onClick={increaseQuantity}>
-              +
+            <p>
+              Quantity Available: <span>{item_quantity}</span>
+            </p>
+            <div className="quantity-input">
+              <button className="quantity-btn" onClick={decreaseQuantity}>
+                -
+              </button>
+              <input
+                className="quantity-num"
+                value={quantity}
+                onChange={(e) =>
+                  setQuantity(Math.max(0, parseInt(e.target.value) || 0))
+                }
+              />
+              <button className="quantity-btn" onClick={increaseQuantity}>
+                +
+              </button>
+            </div>
+            <button className="purchase-btn" onClick={handlePreOrderClick}>
+              Pre-order
             </button>
           </div>
-          <button className="purchase-btn" onClick={handlePreOrderClick}>
-            Pre-order
-          </button>
         </div>
-      </div>
       ) : (
         <p>No vendor selected.</p>
       )}
-      
+
       {isModalOpen && (
         <div className="modal" ref={componentRef}>
           <div className="modal-content">
@@ -310,13 +318,18 @@ const CustomerViewItemCard = ({ item_name, price, size, item_quantity, descripti
             </p>
             <div className="invoice-info">
               <p>
-                <strong>Order Created at:</strong> {new Date(currentDateTime).toLocaleString()}
+                <strong>Order Created at:</strong>{" "}
+                {new Date(currentDateTime).toLocaleString()}
               </p>
               <p>
-                <strong>Vendor:</strong> {selectedVendorObject ? selectedVendorObject.vendor_name: 'N/A'}
+                <strong>Vendor:</strong>{" "}
+                {selectedVendorObject
+                  ? selectedVendorObject.vendor_name
+                  : "N/A"}
               </p>
               <p>
-                <strong>Vendor Contact:</strong> {selectedVendorObject ? selectedVendorObject.email : 'N/A'}
+                <strong>Vendor Contact:</strong>{" "}
+                {selectedVendorObject ? selectedVendorObject.email : "N/A"}
               </p>
               <p>
                 <strong>Customer:</strong> Ryan Spyin
@@ -328,7 +341,8 @@ const CustomerViewItemCard = ({ item_name, price, size, item_quantity, descripti
                 <strong>Market:</strong> Market Next Door
               </p>
               <p>
-                <strong>Pick Up Date:</strong> Saturday, {nextSaturday.toLocaleDateString()}
+                <strong>Pick Up Date:</strong> Saturday,{" "}
+                {nextSaturday.toLocaleDateString()}
               </p>
               <p>
                 <strong>Pick Up Time:</strong> 8am - 1pm
@@ -351,7 +365,10 @@ const CustomerViewItemCard = ({ item_name, price, size, item_quantity, descripti
               </p>
             </div>
             <p className="invoice-total">
-            <strong>Total:</strong> {price && quantity ? `$${(parseFloat(price) * quantity).toFixed(2)}` : 'N/A'}
+              <strong>Total:</strong>{" "}
+              {price && quantity
+                ? `$${(parseFloat(price) * quantity).toFixed(2)}`
+                : "N/A"}
             </p>
             <div className="invoice-payment-info">
               <label>Card Number:</label>

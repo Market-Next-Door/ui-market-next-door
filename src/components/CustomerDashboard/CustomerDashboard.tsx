@@ -5,6 +5,7 @@ import NavigationBar from "../NavigationBar/NavigationBar";
 import { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import { getSelectedVendorsItems } from "../../apiCalls";
+import { postCustomerOrder } from "../../apiCalls";
 
 type Vendor = {
   email: string;
@@ -91,6 +92,7 @@ const CustomerDash = ({ allVendors }: CustomerDashboardProps) => {
       selectedVendorsItems ? (
         selectedVendorsItems.map((item) => (
           <CustomerViewItemCard
+            id={item.id}
             selectedVendorObject={selectedVendorObject}
             key={item.id}
             item_name={item.item_name}
@@ -160,6 +162,7 @@ type selectedVendorItem = {
 };
 
 type CustomerViewItemCardProps = {
+  id: number;
   item_name: string;
   price: string;
   size: string;
@@ -169,6 +172,7 @@ type CustomerViewItemCardProps = {
 };
 
 const CustomerViewItemCard = ({
+  id,
   item_name,
   price,
   size,
@@ -176,11 +180,11 @@ const CustomerViewItemCard = ({
   description,
   selectedVendorObject,
 }: CustomerViewItemCardProps) => {
-  // current date and time
+  // DONE current date and time
   // DONE current Vendor info:  name and email
   // NEED SIGN IN INFO current Customer info:  name and email
-  // WHERE TO GET? pick up date:
-  // WHERE TO GET? pick up time:
+  // DONE pick up date:
+  // DONE pick up time:
   // DONE Item
   // DONE size
   // DONE description
@@ -243,6 +247,24 @@ const CustomerViewItemCard = ({
 
   const orderDate = new Date(currentDateTime);
   const nextSaturday = getNextSaturday(orderDate);
+
+  const submitOrder = () => {
+    alert("Order Confirmed!")
+
+    const newOrder = {
+      customer: 1,
+      item: id,
+      ready: true,
+      quantity_requested: quantity,
+    }
+
+    console.log('CustomerDash newOrder: ', newOrder)
+    
+    postCustomerOrder(newOrder)
+      .then(data => console.log(data))
+  }
+
+
 
   return (
     <>
@@ -396,9 +418,10 @@ const CustomerViewItemCard = ({
                 onChange={handleInputChange}
               />
             </div>
+            {/* alert("Order Confirmed!") */}
             <button
               className="order-confirm-btn"
-              onClick={() => alert("Order Confirmed!")}
+              onClick={() => submitOrder()}
             >
               Confirm Order
             </button>

@@ -1,24 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-import './App.css';
+import "./App.css";
 import {
   getAllVendors,
   getAllCustomers,
   // getAllItems,
   getAllPreOrders,
-} from '../../apiCalls';
-import LandingPage from '../LandingPage/LandingPage';
-import VendorDashboard from '../VendorDashboard/VendorDashboard';
-import CustomerDash from '../CustomerDashboard/CustomerDashboard';
-import VendorLogIn from '../VendorLogIn/VendorLogIn';
-import VendorSignUp from '../VendorSignUp/VendorSignUp';
-import CustomerLogIn from '../CustomerLogIn/CustomerLogIn';
-import CustomerSignUp from '../CustomerSignUp/CustomerSignUp';
-import VendorOrders from '../VendorOrders/VendorOrders';
-import CustomerOrders from '../CustomerOrders/CustomerOrders';
-import CustomerSettings from '../CustomerSettings/CustomerSettings';
-import VendorSettings from '../VendorSettings/VendorSettings';
-import { NewItem, Item } from '../VendorDashboard/VendorDashboard';
+} from "../../apiCalls";
+import LandingPage from "../LandingPage/LandingPage";
+import VendorDashboard from "../VendorDashboard/VendorDashboard";
+import CustomerDash from "../CustomerDashboard/CustomerDashboard";
+import VendorLogIn from "../VendorLogIn/VendorLogIn";
+import VendorSignUp from "../VendorSignUp/VendorSignUp";
+import CustomerLogIn from "../CustomerLogIn/CustomerLogIn";
+import CustomerSignUp from "../CustomerSignUp/CustomerSignUp";
+import VendorOrders from "../VendorOrders/VendorOrders";
+import CustomerOrders from "../CustomerOrders/CustomerOrders";
+import CustomerSettings from "../CustomerSettings/CustomerSettings";
+import VendorSettings from "../VendorSettings/VendorSettings";
+import { NewItem, Item } from "../VendorDashboard/VendorDashboard";
 
 function App() {
   const [allVendors, setAllVendors] = useState([]);
@@ -40,19 +40,11 @@ function App() {
         //setAllPreOrders(preOrdersData)
         setIsLoading(false);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
     };
     fetchData();
   }, []);
-
-  function addItem(newItem: NewItem) {
-    // Generate a temporary ID - for frontend development use only
-    const tempId = new Date().getTime(); // or any other method to generate a unique ID
-
-    // Add the newItem with the temporary ID to the existing items
-    setAllItems(prevItems => [...prevItems, { ...newItem, id: tempId }]);
-  }
 
   return isLoading ? (
     <p>Loading...</p>
@@ -63,11 +55,7 @@ function App() {
       <VendorSignUp />
       <CustomerLogIn />
       <CustomerSignUp />
-      <VendorDashboard
-        allItems={allItems}
-        allVendors={allVendors}
-        addItem={addItem}
-      />
+      <VendorDashboard allItems={allItems} allVendors={allVendors} />
 
       <CustomerDash allVendors={allVendors} />
 

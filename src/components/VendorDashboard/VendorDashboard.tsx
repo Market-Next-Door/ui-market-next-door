@@ -3,7 +3,11 @@ import './VendorDashboard.css';
 import Header from '../Header/Header';
 import NavigationBar from '../NavigationBar/NavigationBar';
 import VendorItemCard from '../VendorItemCard/VendorItemCard';
-import { getSelectedVendorsItems, postVendorItem } from '../../apiCalls';
+import {
+  getSelectedVendorsItems,
+  postVendorItem,
+  updateVendorItem,
+} from '../../apiCalls';
 export type VendorDashboardProps = {
   allVendors: string[] | number[];
   allItems: Item[];

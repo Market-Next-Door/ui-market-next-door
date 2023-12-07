@@ -2,6 +2,7 @@ import React from 'react';
 import Switch from 'react-switch';
 import './VendorItemCard.css';
 import { useState } from 'react';
+import { updateVendorItem } from '../../apiCalls';
 
 type VendorItemCardProps = {
   item_name: string;
@@ -12,6 +13,17 @@ type VendorItemCardProps = {
   availability: boolean;
   description: string;
   image: string;
+};
+
+export type updatedItem = {
+  item_name: string;
+  vendor: number;
+  size: string;
+  price: string;
+  quantity: number;
+  description: string;
+  availability: boolean;
+  image: File | null;
 };
 
 const VendorItemCard = ({
@@ -40,7 +52,7 @@ const VendorItemCard = ({
   const [itemName, setItemName] = useState<string>(item_name);
   const [itemSize, setItemSize] = useState<string>(size);
   const [itemDetails, setItemDetails] = useState<string>(description);
-  const [quantityAvailable, setQuantityAvailable] = useState<number>(47);
+  const [quantityAvailable, setQuantityAvailable] = useState<number>(quantity);
   const [itemPrice, setItemPrice] = useState<string>(price);
   const [
     checkedAvailablehandleChangeAvailable,
@@ -56,8 +68,20 @@ const VendorItemCard = ({
   };
 
   const handleSaveChanges = () => {
+    const updatedItem: updatedItem = {
+      item_name: itemName,
+      vendor: 1,
+      price: itemPrice,
+      size: itemSize,
+      quantity: quantityAvailable,
+      availability: checkedAvailablehandleChangeAvailable,
+      description: itemDetails,
+      image: null,
+    };
     setIsEditable(false);
-    // Here, you might want to save changes to the server or parent component
+    updateVendorItem(updatedItem)
+      .then(data => console.log(data))
+      .catch(error => console.log(error));
   };
 
   return (

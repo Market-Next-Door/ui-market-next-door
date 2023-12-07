@@ -2,8 +2,8 @@
 
 describe('should load vendor dashboard page elements', () => {
   it('should display vendor dashboard page elements', () => {
-    // cy.visit('https://market-next-door-fe-f6728ad38b62.herokuapp.com/');
-    cy.visit('http://localhost:3000')
+    cy.visit('https://market-next-door-fe-f6728ad38b62.herokuapp.com/');
+    // cy.visit('http://localhost:3000')
     cy.get('.vendor-container > .mnd-header').should(
       'have.text',
       'Welcome, Sue!'

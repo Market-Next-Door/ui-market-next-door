@@ -1,3 +1,7 @@
+type ItemQuantity = {
+  quantity: number;
+}
+
 export function getAllVendors() {
   return fetch(
     "https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/"
@@ -55,7 +59,7 @@ export function getSelectedVendorsItems(id: number) {
 export function getOneVendor(vendorID: number) {
   return fetch(
     `https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/${vendorID}`
-  ).then((response) => {
+  ).then(response => {
     if (!response.ok) {
       throw new Error(`${response.status} ${response.statusText}`);
     }
@@ -66,7 +70,7 @@ export function getOneVendor(vendorID: number) {
 export function getOneCustomer(customerID: number) {
   return fetch(
     `https://quiet-depths-54407-77a00505f51e.herokuapp.com/customers/${customerID}`
-  ).then((response) => {
+  ).then(response => {
     if (!response.ok) {
       throw new Error(`${response.status} ${response.statusText}`);
     }
@@ -115,3 +119,44 @@ export function getSelectedVendorOrders(id: number) {
     return response.json();
   });
 }
+
+export function updateVendorItem(updatedItem: any) {
+  return fetch(
+    'https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/1/items/1',
+    {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedItem),
+    }
+  )
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Uh oh, we apologize ANN, something went wrong');
+      }
+      return response;
+    })
+    .then(response => response.json());
+}
+export function updateItemQuantity(newQuantity: ItemQuantity) {
+  return fetch(
+    'https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/1/items/1',
+    {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newQuantity),
+    }
+  )
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Uh oh, we apologize ANN, something went wrong');
+      }
+      return response;
+    })
+    .then(response => response.json());
+}
+
+

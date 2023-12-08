@@ -1,21 +1,23 @@
 export function getAllVendors() {
-  return fetch('https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/')
-  .then(response => {
-    if(!response.ok) {
-      throw new Error(`${response.status} ${response.statusText}`)
+  return fetch(
+    "https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/"
+  ).then((response) => {
+    if (!response.ok) {
+      throw new Error(`${response.status} ${response.statusText}`);
     }
-    return response.json()
-  })
+    return response.json();
+  });
 }
 
 export function getAllCustomers() {
-  return fetch('https://quiet-depths-54407-77a00505f51e.herokuapp.com/customers/')
-  .then(response => {
-    if(!response.ok) {
-      throw new Error(`${response.status} ${response.statusText}`)
+  return fetch(
+    "https://quiet-depths-54407-77a00505f51e.herokuapp.com/customers/"
+  ).then((response) => {
+    if (!response.ok) {
+      throw new Error(`${response.status} ${response.statusText}`);
     }
-    return response.json()
-  })
+    return response.json();
+  });
 }
 
 // export function getAllItems(vendorId) {
@@ -29,23 +31,25 @@ export function getAllCustomers() {
 // }
 
 export function getAllPreOrders() {
-  return fetch('https://quiet-depths-54407-77a00505f51e.herokuapp.com/preorders')
-  .then(response => {
-    if(!response.ok) {
-      throw new Error(`${response.status} ${response.statusText}`)
+  return fetch(
+    "https://quiet-depths-54407-77a00505f51e.herokuapp.com/preorders"
+  ).then((response) => {
+    if (!response.ok) {
+      throw new Error(`${response.status} ${response.statusText}`);
     }
-    return response.json()
-  })
+    return response.json();
+  });
 }
 
 export function getSelectedVendorsItems(id: number) {
-  return fetch(`https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/${id}/items/`)
-  .then(response => {
-    if(!response.ok) {
-      throw new Error(`${response.status} ${response.statusText}`)
+  return fetch(
+    `https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/${id}/items/`
+  ).then((response) => {
+    if (!response.ok) {
+      throw new Error(`${response.status} ${response.statusText}`);
     }
-    return response.json()
-  })
+    return response.json();
+  });
 }
 
 export function getOneVendor(vendorID: number) {
@@ -71,18 +75,43 @@ export function getOneCustomer(customerID: number) {
 }
 
 export function postCustomerOrder(newOrder: any) {
-  return fetch ('https://quiet-depths-54407-77a00505f51e.herokuapp.com/customers/1/preorders/', {
-    method: 'POST',
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(newOrder)
-  })
-  .then(response => {
-    if(!response.ok) {
-      throw new Error ('Uh oh, we apologize, something went wrong')
+  return fetch(
+    "https://quiet-depths-54407-77a00505f51e.herokuapp.com/customers/1/preorders/",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newOrder),
     }
-    return response
-  })
-  .then(response => response.json())
+  )
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Uh oh, we apologize, something went wrong");
+      }
+      return response;
+    })
+    .then((response) => response.json());
+}
+
+export function getSelectedCustomerOrders(id: number) {
+  return fetch(
+    `https://quiet-depths-54407-77a00505f51e.herokuapp.com/customers/${id}/preorders/`
+  ).then((response) => {
+    if (!response.ok) {
+      throw new Error(`${response.status} ${response.statusText}`);
+    }
+    return response.json();
+  });
+}
+
+export function getSelectedVendorOrders(id: number) {
+  return fetch(
+    `https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/${id}/preorders/`
+  ).then((response) => {
+    if (!response.ok) {
+      throw new Error(`${response.status} ${response.statusText}`);
+    }
+    return response.json();
+  });
 }

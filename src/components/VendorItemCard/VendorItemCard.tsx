@@ -3,6 +3,7 @@ import Switch from 'react-switch';
 import './VendorItemCard.css';
 import { useState } from 'react';
 import { updateVendorItem } from '../../apiCalls';
+// import { VendorDashboardProps, Item } from '../VendorDashboard/VendorDashboard';
 
 type VendorItemCardProps = {
   id: number;
@@ -14,6 +15,7 @@ type VendorItemCardProps = {
   availability: boolean;
   description: string;
   image: string;
+  onDelete: (id: number) => void;
 };
 
 export type updatedItem = {
@@ -28,6 +30,7 @@ export type updatedItem = {
 };
 
 const VendorItemCard = ({
+  id,
   item_name,
   vendor,
   price,
@@ -36,6 +39,7 @@ const VendorItemCard = ({
   availability,
   description,
   image,
+  onDelete,
 }: VendorItemCardProps) => {
   console.log('VendorItemCard props:', {
     item_name,
@@ -50,6 +54,7 @@ const VendorItemCard = ({
   const [isChecked, setIsChecked] = useState(availability);
   const [isEditable, setIsEditable] = useState<boolean>(false);
 
+  // const [allItems, setAllItems] = useState<Item[]>([]);
   const [itemName, setItemName] = useState<string>(item_name);
   const [itemSize, setItemSize] = useState<string>(size);
   const [itemDetails, setItemDetails] = useState<string>(description);
@@ -161,7 +166,9 @@ const VendorItemCard = ({
               Edit
             </button>
           )}
-          <button className="delete-item-btn">X</button>
+          <button className="delete-item-btn" onClick={() => onDelete(id)}>
+            X
+          </button>
         </div>
       </div>
     </div>

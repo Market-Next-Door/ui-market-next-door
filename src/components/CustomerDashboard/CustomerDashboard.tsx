@@ -6,6 +6,7 @@ import { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import { getSelectedVendorsItems } from "../../apiCalls";
 import { postCustomerOrder } from "../../apiCalls";
+import { updateItemQuantity } from "../../apiCalls";
 
 type Vendor = {
   email: string;
@@ -220,14 +221,15 @@ const CustomerViewItemCard = ({
   function handlePreOrderClick() {
     openModal();
   }
-  const [quantity, setQuantity] = useState<number>(0);
+  const [serverQuantity, setServerQuantity] = useState<number>(item_quantity)
+  const [requestedQuantity, setRequestedQuantity] = useState<number>(0);
 
   const increaseQuantity = () => {
-    setQuantity((prevQuantity) => prevQuantity + 1);
+    setRequestedQuantity((prevQuantity) => prevQuantity + 1);
   };
 
   const decreaseQuantity = () => {
-    setQuantity((prevQuantity) => Math.max(prevQuantity - 1, 0));
+    setRequestedQuantity((prevQuantity) => Math.max(prevQuantity - 1, 0));
   };
 
   const [creditCard, setCreditCard] = useState({
@@ -261,16 +263,34 @@ const CustomerViewItemCard = ({
       customer: 1,
       item: id,
       ready: true,
-      quantity_requested: quantity,
+      quantity_requested: requestedQuantity,
     }
 
     console.log('CustomerDash newOrder: ', newOrder)
     
     postCustomerOrder(newOrder)
       .then(data => console.log(data))
+      .catch(error => console.log(error))
+
+    
+    const newQuantity = {
+      quantity: item_quantity - requestedQuantity
+    }
+
+
+    updateItemQuantity(newQuantity)
+      .then(updatedItemData => {
+        console.log('put quantityData: ', updatedItemData)
+        setServerQuantity(updatedItemData.quantity)
+      })
+      .catch(error => console.log(error))
+
+    clearInputs()
   }
 
- 
+  const clearInputs = () => {
+    setRequestedQuantity(0)
+  }
 
   return (
     <>
@@ -300,9 +320,9 @@ const CustomerViewItemCard = ({
               </button>
               <input
                 className="quantity-num"
-                value={quantity}
+                value={requestedQuantity}
                 onChange={(e) =>
-                  setQuantity(Math.max(0, parseInt(e.target.value) || 0))
+                  setRequestedQuantity(Math.max(0, parseInt(e.target.value) || 0))
                 }
               />
               <button className="quantity-btn" onClick={increaseQuantity}>
@@ -389,13 +409,13 @@ const CustomerViewItemCard = ({
               </p>
 
               <p>
-                <strong>Quantity:</strong> {quantity}
+                <strong>Quantity:</strong> {requestedQuantity}
               </p>
             </div>
             <p className="invoice-total">
               <strong>Total:</strong>{" "}
-              {price && quantity
-                ? `$${(parseFloat(price) * quantity).toFixed(2)}`
+              {price && requestedQuantity
+                ? `$${(parseFloat(price) * requestedQuantity).toFixed(2)}`
                 : "N/A"}
             </p>
             <div className="invoice-payment-info">

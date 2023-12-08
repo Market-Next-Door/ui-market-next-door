@@ -224,6 +224,11 @@ const CustomerViewItemCard = ({
   const [serverQuantity, setServerQuantity] = useState<number>(item_quantity)
   const [requestedQuantity, setRequestedQuantity] = useState<number>(0);
 
+  useEffect(() => {
+    console.log('serverQuantity has changed:', serverQuantity)
+    setServerQuantity(item_quantity)
+  }, [item_quantity])
+
   const increaseQuantity = () => {
     setRequestedQuantity((prevQuantity) => prevQuantity + 1);
   };
@@ -277,13 +282,17 @@ const CustomerViewItemCard = ({
       quantity: item_quantity - requestedQuantity
     }
 
-
-    updateItemQuantity(newQuantity)
+    if (selectedVendorObject && selectedVendorObject.id) {
+      updateItemQuantity(selectedVendorObject.id, id, newQuantity)
       .then(updatedItemData => {
         console.log('put quantityData: ', updatedItemData)
-        setServerQuantity(updatedItemData.quantity)
+        setServerQuantity(newQuantity.quantity)
       })
       .catch(error => console.log(error))
+    } else {
+      console.log("Error: selectedVendorObject or its id is null.");
+    }
+    
 
     clearInputs()
   }

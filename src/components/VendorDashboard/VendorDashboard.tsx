@@ -6,7 +6,7 @@ import VendorItemCard from '../VendorItemCard/VendorItemCard';
 import {
   getSelectedVendorsItems,
   postVendorItem,
-  updateVendorItem,
+  deleteVendorItem,
 } from '../../apiCalls';
 
 export type VendorDashboardProps = {
@@ -127,6 +127,19 @@ const VendorDashboard = ({ allItems, allVendors }: VendorDashboardProps) => {
     }
   }, [selectedVendorId]);
 
+  const deleteItem = (id: number) => {
+    deleteVendorItem(id)
+      .then(() => {
+        const updatedItems = selectedVendorsItems.filter(
+          item => item.id !== id
+        );
+        setSelectedVendorsItems(updatedItems);
+      })
+      .catch(error => {
+        console.error('Error deleting item:', error);
+      });
+  };
+
   return (
     <div className="vendor-container">
       <Header name="Sue" />
@@ -207,6 +220,7 @@ const VendorDashboard = ({ allItems, allVendors }: VendorDashboardProps) => {
               availability={item.availability}
               description={item.description}
               image={item.image}
+              onDelete={deleteItem}
             />
           ))}
       </section>

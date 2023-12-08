@@ -159,6 +159,27 @@ export function updateVendorItem(updatedItem: any) {
     })
     .then(response => response.json());
 }
+
+export function deleteVendorItem(id: number) {
+  return fetch(
+    `https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/1/items/${id}`,
+    {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  )
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`${response.status} ${response.statusText}`);
+      }
+      return response.json();
+    })
+
+    .catch(error => console.log(error));
+}
+
 export function updateItemQuantity(newQuantity: ItemQuantity) {
   return fetch(
     'https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/1/items/1',

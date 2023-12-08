@@ -57,7 +57,7 @@ const VendorItemCard = ({
   const [
     checkedAvailablehandleChangeAvailable,
     setCheckedAvailablehandleChangeAvailable,
-  ] = useState(true);
+  ] = useState(availability);
 
   const handleChangeAvailable = (newChecked: boolean) => {
     setCheckedAvailablehandleChangeAvailable(newChecked);

@@ -91,7 +91,9 @@ const CustomerDash = ({ allVendors }: CustomerDashboardProps) => {
     selectedVendorId !== null ? (
       selectedVendorsItems ? (
         selectedVendorsItems.map((item) => (
-          <CustomerViewItemCard
+          item.availability && (
+               <CustomerViewItemCard
+            availability={item.availability}
             id={item.id}
             selectedVendorObject={selectedVendorObject}
             key={item.id}
@@ -101,6 +103,8 @@ const CustomerDash = ({ allVendors }: CustomerDashboardProps) => {
             item_quantity={item.quantity}
             description={item.description}
           />
+          )
+       
         ))
       ) : (
         <p>No items available for the selected vendor.</p>
@@ -162,6 +166,7 @@ type selectedVendorItem = {
 };
 
 type CustomerViewItemCardProps = {
+  availability: boolean;
   id: number;
   item_name: string;
   price: string;
@@ -172,6 +177,7 @@ type CustomerViewItemCardProps = {
 };
 
 const CustomerViewItemCard = ({
+  availability,
   id,
   item_name,
   price,
@@ -190,7 +196,7 @@ const CustomerViewItemCard = ({
   // DONE description
   // DONE price
   // DONE quantity
-
+  
   console.log(
     "CustomerViewItemCard selectedVendorObject: ",
     selectedVendorObject
@@ -264,11 +270,12 @@ const CustomerViewItemCard = ({
       .then(data => console.log(data))
   }
 
-
+ 
 
   return (
     <>
-      {selectedVendorObject !== null ? (
+      {selectedVendorObject !== null && availability === true ? (
+        
         <div className="customer-view-item-card">
           <div className="customer-item-image">
             <img src="carrots.jpg" alt="Item" />
@@ -307,8 +314,7 @@ const CustomerViewItemCard = ({
             </button>
           </div>
         </div>
-      ) : (
-        <p>No vendor selected.</p>
+      ) : ( null
       )}
 
       {isModalOpen && (

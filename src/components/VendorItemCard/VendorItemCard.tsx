@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { updateVendorItem } from '../../apiCalls';
 
 type VendorItemCardProps = {
+  id: number;
   item_name: string;
   vendor: string;
   price: string;
@@ -57,7 +58,7 @@ const VendorItemCard = ({
   const [
     checkedAvailablehandleChangeAvailable,
     setCheckedAvailablehandleChangeAvailable,
-  ] = useState(true);
+  ] = useState(availability);
 
   const handleChangeAvailable = (newChecked: boolean) => {
     setCheckedAvailablehandleChangeAvailable(newChecked);

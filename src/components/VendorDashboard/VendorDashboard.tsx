@@ -8,6 +8,7 @@ import {
   postVendorItem,
   updateVendorItem,
 } from '../../apiCalls';
+
 export type VendorDashboardProps = {
   allVendors: string[] | number[];
   allItems: Item[];
@@ -61,18 +62,6 @@ const VendorDashboard = ({ allItems, allVendors }: VendorDashboardProps) => {
   const [addItemFile, setAddItemFile] = useState<File | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
-  // function addItem(newItem: NewItem) {
-  //   // Generate a temporary ID - for frontend development use only
-  //   const tempId = new Date().getTime(); // or any other method to generate a unique ID
-
-  //   // Add the newItem with the temporary ID to the existing items
-  //   setSelectedVendorsItems((prevItems) => [
-  //     ...prevItems,
-  //     { ...newItem, id: tempId },
-  //   ]);
-  //   console.log("hi");
-  // }
-
   function addItem(newItem: NewItem) {
     //Add the newItem with the temporary ID to the existing items
     postVendorItem(newItem).then(data => {
@@ -120,9 +109,6 @@ const VendorDashboard = ({ allItems, allVendors }: VendorDashboardProps) => {
   }
 
   const selectedVendorId = 1;
-  // const [selectedVendorsItems, setSelectedVendorsItems] = useState<
-  //   selectedVendorItem[] | null
-  // >(null);
 
   const [selectedVendorsItems, setSelectedVendorsItems] = useState<
     selectedVendorItem[]
@@ -211,6 +197,7 @@ const VendorDashboard = ({ allItems, allVendors }: VendorDashboardProps) => {
         {selectedVendorsItems &&
           selectedVendorsItems.map(item => (
             <VendorItemCard
+              id={item.id}
               key={item.id}
               item_name={item.item_name}
               vendor={item.vendor}

@@ -57,7 +57,7 @@ const VendorItemCard = ({
   const [
     checkedAvailablehandleChangeAvailable,
     setCheckedAvailablehandleChangeAvailable,
-  ] = useState(false);
+  ] = useState(true);
 
   const handleChangeAvailable = (newChecked: boolean) => {
     setCheckedAvailablehandleChangeAvailable(newChecked);
@@ -147,6 +147,7 @@ const VendorItemCard = ({
           <Switch
             onChange={handleChangeAvailable}
             checked={checkedAvailablehandleChangeAvailable}
+            disabled={!isEditable}
           />
         </div>
         <div className="item-btns">

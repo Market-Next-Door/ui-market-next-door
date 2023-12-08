@@ -181,7 +181,7 @@ export function deleteVendorItem(id: number) {
     .catch(error => console.log(error));
 }
 
-export function updateItemQuantity(newQuantity: ItemQuantity) {
+export function updateItemQuantity(vendorId: number, itemNum: number, newQuantity: ItemQuantity) {
   return fetch(
     `https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/${vendorId}/items/${itemNum}`,
     {

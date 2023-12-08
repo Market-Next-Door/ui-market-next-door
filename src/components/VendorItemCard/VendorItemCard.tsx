@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { updateVendorItem } from '../../apiCalls';
 
 type VendorItemCardProps = {
+  id: number;
   item_name: string;
   vendor: string;
   price: string;

@@ -159,9 +159,9 @@ export function updateVendorItem(updatedItem: any) {
     })
     .then(response => response.json());
 }
-export function updateItemQuantity(newQuantity: ItemQuantity) {
+export function updateItemQuantity(vendorId: number, itemNum: number, newQuantity: ItemQuantity) {
   return fetch(
-    'https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/1/items/1',
+    `https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/${vendorId}/items/${itemNum}`,
     {
       method: 'PUT',
       headers: {

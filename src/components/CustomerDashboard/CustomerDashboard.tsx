@@ -7,6 +7,8 @@ import { useReactToPrint } from "react-to-print";
 import { getSelectedVendorsItems } from "../../apiCalls";
 import { postCustomerOrder } from "../../apiCalls";
 import { updateItemQuantity } from "../../apiCalls";
+import { useParams } from "react-router";
+import { getOneCustomer } from "../../apiCalls";
 
 type Vendor = {
   email: string;
@@ -18,11 +20,20 @@ type Vendor = {
   vendor_name: string;
 };
 
-type CustomerDashboardProps = {
+export type CustomerDashboardProps = {
   allVendors: Vendor[];
 };
 
 const CustomerDash = ({ allVendors }: CustomerDashboardProps) => {
+  const customerid = useParams();
+
+  const [currentUser, setCurrentUser] = useState();
+  useEffect(() => {
+    getOneCustomer(Number(customerid.id)).then((data) => {
+      setCurrentUser(data);
+    });
+  }, []);
+
   console.log("CustomerDash allVendors: ", allVendors);
 
   const [selectedVendorId, setSelectedVendorId] = useState<number | null>(null);
@@ -36,7 +47,8 @@ const CustomerDash = ({ allVendors }: CustomerDashboardProps) => {
     useState<Vendor | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [selectedVendorsItems, setSelectedVendorsItems] = useState<
-    selectedVendorItem[]>([]);
+    selectedVendorItem[]
+  >([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -98,23 +110,24 @@ const CustomerDash = ({ allVendors }: CustomerDashboardProps) => {
   const selectedVendorsItemsCards =
     selectedVendorId !== null ? (
       selectedVendorsItems ? (
-        selectedVendorsItems.map((item) => (
-          item.availability && (
-               <CustomerViewItemCard
-            availability={item.availability}
-            id={item.id}
-            selectedVendorObject={selectedVendorObject}
-            key={item.id}
-            item_name={item.item_name}
-            price={item.price}
-            size={item.size}
-            item_quantity={item.quantity}
-            description={item.description}
-            onUpdateQuantity={handleUpdateQuantity}
-          />
-          )
-       
-        ))
+        selectedVendorsItems.map(
+          (item) =>
+            item.availability && (
+              <CustomerViewItemCard
+                availability={item.availability}
+                id={item.id}
+                selectedVendorObject={selectedVendorObject}
+                key={item.id}
+                item_name={item.item_name}
+                price={item.price}
+                size={item.size}
+                item_quantity={item.quantity}
+                description={item.description}
+                onUpdateQuantity={handleUpdateQuantity}
+                currentUser={currentUser}
+              />
+            )
+        )
       ) : (
         <p>No items available for the selected vendor.</p>
       )
@@ -174,6 +187,10 @@ type selectedVendorItem = {
   updated_at: string;
 };
 
+type CurrentCustomer = {
+  first_name: string;
+  email: string;
+};
 type CustomerViewItemCardProps = {
   availability: boolean;
   id: number;
@@ -184,6 +201,7 @@ type CustomerViewItemCardProps = {
   description: string;
   selectedVendorObject: Vendor | null;
   onUpdateQuantity: (itemId: number, updatedQuantity: number) => void;
+  currentUser?: CurrentCustomer;
 };
 
 const CustomerViewItemCard = ({
@@ -195,8 +213,11 @@ const CustomerViewItemCard = ({
   item_quantity,
   description,
   selectedVendorObject,
-  onUpdateQuantity
+  onUpdateQuantity,
+  currentUser,
 }: CustomerViewItemCardProps) => {
+  const customerid = useParams();
+
   // DONE current date and time
   // DONE current Vendor info:  name and email
   // NEED SIGN IN INFO current Customer info:  name and email
@@ -207,7 +228,7 @@ const CustomerViewItemCard = ({
   // DONE description
   // DONE price
   // DONE quantity
-  
+
   console.log(
     "CustomerViewItemCard selectedVendorObject: ",
     selectedVendorObject
@@ -231,13 +252,13 @@ const CustomerViewItemCard = ({
   function handlePreOrderClick() {
     openModal();
   }
-  const [serverQuantity, setServerQuantity] = useState<number>(item_quantity)
+  const [serverQuantity, setServerQuantity] = useState<number>(item_quantity);
   const [requestedQuantity, setRequestedQuantity] = useState<number>(0);
 
   useEffect(() => {
-    console.log('serverQuantity has changed:', serverQuantity)
-    setServerQuantity(item_quantity)
-  }, [item_quantity])
+    console.log("serverQuantity has changed:", serverQuantity);
+    setServerQuantity(item_quantity);
+  }, [item_quantity]);
 
   const increaseQuantity = () => {
     setRequestedQuantity((prevQuantity) => prevQuantity + 1);
@@ -272,50 +293,50 @@ const CustomerViewItemCard = ({
   const nextSaturday = getNextSaturday(orderDate);
 
   const submitOrder = () => {
-    alert("Order Confirmed!")
+    alert("Order Confirmed!");
 
     const newOrder = {
-      customer: 1,
+      customer: customerid.id,
       item: id,
       ready: true,
       quantity_requested: requestedQuantity,
+    };
+
+    console.log("CustomerDash newOrder: ", newOrder);
+
+    if (customerid.id) {
+      postCustomerOrder(newOrder, customerid.id)
+        .then((data) => console.log(data))
+        .catch((error) => console.log(error));
     }
 
-    console.log('CustomerDash newOrder: ', newOrder)
-    
-    postCustomerOrder(newOrder)
-      .then(data => console.log(data))
-      .catch(error => console.log(error))
-
-    
     const newQuantity = {
-      quantity: item_quantity - requestedQuantity
-    }
+      quantity: item_quantity - requestedQuantity,
+    };
 
     if (selectedVendorObject && selectedVendorObject.id) {
       updateItemQuantity(selectedVendorObject.id, id, newQuantity)
-      .then(updatedItemData => {
-        console.log('put quantityData: ', updatedItemData)
-        setServerQuantity(newQuantity.quantity)
-      })
-      .catch(error => console.log(error))
+        .then((updatedItemData) => {
+          console.log("put quantityData: ", updatedItemData);
+          setServerQuantity(newQuantity.quantity);
+        })
+        .catch((error) => console.log(error));
     } else {
       console.log("Error: selectedVendorObject or its id is null.");
     }
-    
+
     onUpdateQuantity(id, newQuantity.quantity);
 
-    clearInputs()
-  }
+    clearInputs();
+  };
 
   const clearInputs = () => {
-    setRequestedQuantity(0)
-  }
+    setRequestedQuantity(0);
+  };
 
   return (
     <>
       {selectedVendorObject !== null && availability === true ? (
-        
         <div className="customer-view-item-card">
           <div className="customer-item-image">
             <img src="carrots.jpg" alt="Item" />
@@ -342,7 +363,9 @@ const CustomerViewItemCard = ({
                 className="quantity-num"
                 value={requestedQuantity}
                 onChange={(e) =>
-                  setRequestedQuantity(Math.max(0, parseInt(e.target.value) || 0))
+                  setRequestedQuantity(
+                    Math.max(0, parseInt(e.target.value) || 0)
+                  )
                 }
               />
               <button className="quantity-btn" onClick={increaseQuantity}>
@@ -354,8 +377,7 @@ const CustomerViewItemCard = ({
             </button>
           </div>
         </div>
-      ) : ( null
-      )}
+      ) : null}
 
       {isModalOpen && (
         <div className="modal" ref={componentRef}>
@@ -400,10 +422,10 @@ const CustomerViewItemCard = ({
                 {selectedVendorObject ? selectedVendorObject.email : "N/A"}
               </p>
               <p>
-                <strong>Customer:</strong> Ryan Spyin
+                <strong>Customer:</strong> {currentUser?.first_name || "N/A"}
               </p>
               <p>
-                <strong>Customer Contact:</strong> ryanspyin@mail.com
+                <strong>Customer Contact:</strong> {currentUser?.email || "N/A"}
               </p>
               <p>
                 <strong>Market:</strong> Market Next Door
@@ -465,10 +487,7 @@ const CustomerViewItemCard = ({
               />
             </div>
             {/* alert("Order Confirmed!") */}
-            <button
-              className="order-confirm-btn"
-              onClick={() => submitOrder()}
-            >
+            <button className="order-confirm-btn" onClick={() => submitOrder()}>
               Confirm Order
             </button>
           </div>

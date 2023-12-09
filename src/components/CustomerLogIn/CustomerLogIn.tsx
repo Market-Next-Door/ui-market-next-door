@@ -1,7 +1,47 @@
 import React, { useState } from "react";
 import "./CustomerLogIn.css";
+import { useNavigate } from "react-router";
+import { CustomerDashboardProps } from "../CustomerDashboard/CustomerDashboard";
 
-const CustomerLogIn = () => {
+type Customer = {
+  email: string;
+  first_name: string;
+  id: number;
+  last_name: string;
+  location: string;
+  market: number;
+  vendor_name: string;
+  password: string;
+};
+
+export type CustomerLoginProps = {
+  allCustomers: Customer[];
+};
+
+const CustomerLogIn = ({ allCustomers }: CustomerLoginProps) => {
+  const navigate = useNavigate();
+
+  function handleGoBack() {
+    navigate("/");
+  }
+
+  function handleSignUp() {
+    navigate("/customersignup");
+  }
+
+  function handleLogin(e: any) {
+    e.preventDefault();
+    console.log("allcustomers", allCustomers);
+    const validCustomer = allCustomers.find(
+      (customer) =>
+        customer.email === customerLoginEmail &&
+        customer.password === customerLoginPassword
+    );
+
+    if (validCustomer) {
+      navigate(`/customerdashboard/${validCustomer.id}`);
+    }
+  }
   const [customerLoginEmail, setCustomerLoginEmail] = useState("");
   const [customerLoginPassword, setCustomerLoginPassword] = useState("");
   return (
@@ -24,10 +64,19 @@ const CustomerLogIn = () => {
         value={customerLoginPassword}
         onChange={(e) => setCustomerLoginPassword(e.target.value)}
       />
-      <button className="customer-login-submit-btn">SIGN IN</button>
+      <button
+        className="customer-login-submit-btn"
+        onClick={(e) => handleLogin(e)}
+      >
+        SIGN IN
+      </button>
       <p className="customer-login-text">OR</p>
-      <button className="customer-login-submit-btn">SIGN UP</button>
-      <button className="customer-login-go-back-btn">Go Back</button>
+      <button className="customer-login-submit-btn" onClick={handleSignUp}>
+        SIGN UP
+      </button>
+      <button className="customer-login-go-back-btn" onClick={handleGoBack}>
+        Go Back
+      </button>
     </form>
   );
 };

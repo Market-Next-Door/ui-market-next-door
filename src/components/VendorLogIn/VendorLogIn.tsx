@@ -1,7 +1,38 @@
 import React, { useState } from "react";
 import "./VendorLogIn.css";
+import { useNavigate } from "react-router";
+import { VendorDashboardProps } from "../VendorDashboard/VendorDashboard";
 
-const VendorLogIn = () => {
+export type Vendor = {
+  email: string;
+  password: string;
+  id: number;
+};
+
+const VendorLogIn = ({ allItems, allVendors }: VendorDashboardProps) => {
+  const navigate = useNavigate();
+  function handleGoBack() {
+    navigate("/");
+  }
+
+  function handleSignup() {
+    navigate("/vendorsignup");
+  }
+
+  function handleLogin(e: any) {
+    e.preventDefault();
+    console.log(allVendors);
+    const validUser = allVendors.find(
+      (vendor: Vendor) =>
+        vendor.email === vendorLoginEmail &&
+        vendor.password === vendorLoginPassword
+    );
+
+    if (validUser) {
+      console.log(validUser, "validuser");
+      navigate(`/vendordashboard/${validUser.id}`);
+    }
+  }
   const [vendorLoginEmail, setVendorLoginEmail] = useState("");
   const [vendorLoginPassword, setVendorLoginPassword] = useState("");
   return (
@@ -25,10 +56,19 @@ const VendorLogIn = () => {
         value={vendorLoginPassword}
         onChange={(e) => setVendorLoginPassword(e.target.value)}
       />
-      <button className="vendor-login-submit-btn">SIGN IN</button>
+      <button
+        className="vendor-login-submit-btn"
+        onClick={(e) => handleLogin(e)}
+      >
+        SIGN IN
+      </button>
       <p className="vendor-login-text">OR</p>
-      <button className="vendor-login-submit-btn">SIGN UP</button>
-      <button className="vendor-login-go-back-btn">Go Back</button>
+      <button className="vendor-login-submit-btn" onClick={handleSignup}>
+        SIGN UP
+      </button>
+      <button className="vendor-login-go-back-btn" onClick={handleGoBack}>
+        Go Back
+      </button>
     </form>
   );
 };

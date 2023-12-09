@@ -1,3 +1,5 @@
+import { updatedItem } from './components/VendorItemCard/VendorItemCard';
+
 type ItemQuantity = {
   quantity: number;
 };
@@ -56,9 +58,9 @@ export function getSelectedVendorsItems(id: number) {
   });
 }
 
-export function postVendorItem(newItem: any) {
+export function postVendorItem(id: string, newItem: any) {
   return fetch(
-    'https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/1/items/',
+    `https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/${id}/items/`,
     {
       method: 'POST',
       headers: {
@@ -140,9 +142,13 @@ export function getSelectedVendorOrders(id: number) {
   });
 }
 
-export function updateVendorItem(updatedItem: any) {
+export function updateVendorItem(
+  vendorid: string,
+  id: number,
+  updatedItem: updatedItem
+) {
   return fetch(
-    'https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/1/items/1/',
+    `https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/${vendorid}/items/${id}/`,
     {
       method: 'PUT',
       headers: {
@@ -160,9 +166,9 @@ export function updateVendorItem(updatedItem: any) {
     .then(response => response.json());
 }
 
-export function deleteVendorItem(id: number) {
+export function deleteVendorItem(vendorid: string, id: number) {
   return fetch(
-    `https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/1/items/${id}`,
+    `https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/${vendorid}/items/${id}`,
     {
       method: 'DELETE',
       headers: {

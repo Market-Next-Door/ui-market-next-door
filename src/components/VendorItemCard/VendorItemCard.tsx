@@ -15,6 +15,7 @@ type VendorItemCardProps = {
   availability: boolean;
   description: string;
   image: string;
+  vendorid: string;
   onDelete: (id: number) => void;
 };
 
@@ -39,6 +40,7 @@ const VendorItemCard = ({
   availability,
   description,
   image,
+  vendorid,
   onDelete,
 }: VendorItemCardProps) => {
   console.log('VendorItemCard props:', {
@@ -76,7 +78,7 @@ const VendorItemCard = ({
   const handleSaveChanges = () => {
     const updatedItem: updatedItem = {
       item_name: itemName,
-      vendor: 1,
+      vendor: Number(vendorid),
       price: itemPrice,
       size: itemSize,
       quantity: quantityAvailable,
@@ -85,7 +87,7 @@ const VendorItemCard = ({
       image: null,
     };
     setIsEditable(false);
-    updateVendorItem(updatedItem)
+    updateVendorItem(vendorid, id, updatedItem)
       .then(data => console.log(data))
       .catch(error => console.log(error));
   };

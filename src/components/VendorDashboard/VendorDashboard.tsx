@@ -12,6 +12,10 @@ import {
 import { Vendor } from '../VendorLogIn/VendorLogIn';
 import { useParams } from 'react-router';
 
+type VendorParams = {
+  vendorid: string;
+};
+
 export type VendorDashboardProps = {
   allVendors: Vendor[];
   allItems: Item[];
@@ -65,7 +69,7 @@ const VendorDashboard = ({
   setIsVendor,
   currentUserId,
 }: VendorDashboardProps) => {
-  const vendorid = useParams();
+  const { vendorid } = useParams<VendorParams>();
   console.log(vendorid, 'vendorid');
 
   console.log('VendorDashboard allItems:', allItems);
@@ -80,19 +84,27 @@ const VendorDashboard = ({
   const formRef = useRef<HTMLFormElement>(null);
 
   function addItem(newItem: NewItem) {
-    //Add the newItem with the temporary ID to the existing items
-    postVendorItem(newItem).then(data => {
-      console.log('newItem:POST data', data);
-      setSelectedVendorsItems([...selectedVendorsItems, data]);
-    });
+    if (vendorid) {
+      // Check if vendorId is not null
+      postVendorItem(vendorid, newItem)
+        .then(data => {
+          console.log('newItem:POST data', data);
+          setSelectedVendorsItems([...selectedVendorsItems, data]);
+        })
+        .catch(error => {
+          console.error('Error posting new item:', error);
+        });
+    } else {
+      console.error('Vendor ID is not available.');
+    }
   }
 
   function submitItem(event: React.FormEvent) {
     event.preventDefault();
     const newItem: NewItem = {
-      id: vendorid.id ?? '',
+      id: vendorid ?? '',
       item_name: addItemName || '',
-      vendor: vendorid.id ?? '',
+      vendor: vendorid ?? '',
       price: addItemPrice || '',
       size: addItemSize || '',
       quantity: addQuantityAvailable || 0,
@@ -126,7 +138,7 @@ const VendorDashboard = ({
     setAddItemFile(null);
   }
 
-  const selectedVendorId = vendorid.id;
+  const selectedVendorId = vendorid;
   console.log('vendor id check', selectedVendorId);
 
   const [selectedVendorsItems, setSelectedVendorsItems] = useState<
@@ -147,16 +159,20 @@ const VendorDashboard = ({
   }, [selectedVendorId]);
 
   const deleteItem = (id: number) => {
-    deleteVendorItem(id)
-      .then(() => {
-        const updatedItems = selectedVendorsItems.filter(
-          item => item.id !== id
-        );
-        setSelectedVendorsItems(updatedItems);
-      })
-      .catch(error => {
-        console.error('Error deleting item:', error);
-      });
+    if (vendorid) {
+      deleteVendorItem(vendorid, id)
+        .then(() => {
+          const updatedItems = selectedVendorsItems.filter(
+            item => item.id !== id
+          );
+          setSelectedVendorsItems(updatedItems);
+        })
+        .catch(error => {
+          console.error('Error deleting item:', error);
+        });
+    } else {
+      console.error('Vendor ID is not available for deletion.');
+    }
   };
 
   return (
@@ -239,6 +255,7 @@ const VendorDashboard = ({
               availability={item.availability}
               description={item.description}
               image={item.image}
+              vendorid={vendorid || ''}
               onDelete={deleteItem}
             />
           ))}

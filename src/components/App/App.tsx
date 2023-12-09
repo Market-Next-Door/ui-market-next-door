@@ -81,7 +81,7 @@ function App() {
         />
         <Route path="/customersignup" element={<CustomerSignUp />} />
         <Route
-          path="/vendordashboard/:id"
+          path="/vendordashboard/:vendorid"
           element={
             <VendorDashboard
               allItems={allItems}

@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import Header from '../Header/Header';
-import NavigationBar from '../NavigationBar/NavigationBar';
-import './CustomerSettings.css';
-import { getOneCustomer } from '../../apiCalls';
-import { NavigationBarProps } from '../NavigationBar/NavigationBar';
+import React, { useEffect, useState } from "react";
+import Header from "../Header/Header";
+import NavigationBar from "../NavigationBar/NavigationBar";
+import "./CustomerSettings.css";
+import { getOneCustomer } from "../../apiCalls";
+import { NavigationBarProps } from "../NavigationBar/NavigationBar";
+import { ThreeDots } from "react-loader-spinner";
 
 type Customer = {
   first_name: string;
@@ -18,22 +19,22 @@ export default function CustomerSettings({
   const [currentCustomer, setCurrentCustomer] = useState<Customer | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isEditable, setIsEditable] = useState(false);
-  const [firstName, setFirstName] = useState<string>('');
-  const [lastName, setLastName] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   useEffect(() => {
     const fetchData = async () => {
       try {
         const customerData = await getOneCustomer(3);
         setCurrentCustomer(customerData);
-        setFirstName(customerData?.first_name || '');
-        setLastName(customerData?.last_name || '');
-        setPassword(customerData?.password || '');
-        setEmail(customerData?.email || '');
+        setFirstName(customerData?.first_name || "");
+        setLastName(customerData?.last_name || "");
+        setPassword(customerData?.password || "");
+        setEmail(customerData?.email || "");
         setIsLoading(false);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
     };
     fetchData();
@@ -44,19 +45,27 @@ export default function CustomerSettings({
 
   function handleDeleteAccountClick() {
     const confirmed = window.confirm(
-      'Are you sure you want to delete your account? This action is IRREVERSIBLE! AH😬'
+      "Are you sure you want to delete your account? This action is IRREVERSIBLE! AH😬"
     );
     if (confirmed) {
-      console.log('account deleted!');
+      console.log("account deleted!");
     }
   }
 
   function handleSaveChanges() {
-    console.log('changes saved!');
+    console.log("changes saved!");
     setIsEditable(false);
   }
   return !currentCustomer ? (
-    <p>Loading...</p>
+    <ThreeDots
+      height="80"
+      width="80"
+      radius="9"
+      color="#4fa94d"
+      ariaLabel="three-dots-loading"
+      wrapperStyle={{}}
+      visible={true}
+    />
   ) : (
     <div className="customer-settings-container">
       <Header name={firstName} />
@@ -67,7 +76,7 @@ export default function CustomerSettings({
           <input
             className="account-input"
             value={firstName}
-            onChange={e => setFirstName(e.target.value)}
+            onChange={(e) => setFirstName(e.target.value)}
             readOnly={!isEditable}
           />
         </p>
@@ -76,7 +85,7 @@ export default function CustomerSettings({
           <input
             className="account-input"
             value={lastName}
-            onChange={e => setLastName(e.target.value)}
+            onChange={(e) => setLastName(e.target.value)}
             readOnly={!isEditable}
           />
         </p>
@@ -90,7 +99,7 @@ export default function CustomerSettings({
             className="account-input-password"
             type="password"
             value={password}
-            onChange={e => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
             readOnly={!isEditable}
           />
         </p>

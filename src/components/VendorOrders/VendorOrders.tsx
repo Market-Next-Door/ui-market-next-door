@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import './VendorOrders.css';
-import Header from '../Header/Header';
-import NavigationBar from '../NavigationBar/NavigationBar';
-import { useReactToPrint } from 'react-to-print';
-import { useRef } from 'react';
-import Switch from 'react-switch';
-import { getSelectedVendorOrders } from '../../apiCalls';
-import { getOneCustomer } from '../../apiCalls';
-import { getOneVendor } from '../../apiCalls';
-import { getSelectedVendorsItems } from '../../apiCalls';
-import { NavigationBarProps } from '../NavigationBar/NavigationBar';
+import React, { useEffect, useState } from "react";
+import "./VendorOrders.css";
+import Header from "../Header/Header";
+import NavigationBar from "../NavigationBar/NavigationBar";
+import { useReactToPrint } from "react-to-print";
+import { useRef } from "react";
+import Switch from "react-switch";
+import { getSelectedVendorOrders } from "../../apiCalls";
+import { getOneCustomer } from "../../apiCalls";
+import { getOneVendor } from "../../apiCalls";
+import { getSelectedVendorsItems } from "../../apiCalls";
+import { NavigationBarProps } from "../NavigationBar/NavigationBar";
+import { ThreeDots } from "react-loader-spinner";
 
 type VendorOrderCardProps = {
   key: number;
@@ -89,7 +90,7 @@ function VendorOrders({ isVendor, currentUserId }: NavigationBarProps) {
         setSelectedVendorOrders(orderVendorCustomerDetails);
         setIsLoading(false);
       } catch (error) {
-        console.error('Error fetching order details:', error);
+        console.error("Error fetching order details:", error);
         setIsLoading(false);
       }
     };
@@ -98,13 +99,21 @@ function VendorOrders({ isVendor, currentUserId }: NavigationBarProps) {
   }, [selectedCustomerId]);
 
   return isLoading ? (
-    <p>Loading...</p>
+    <ThreeDots
+      height="80"
+      width="80"
+      radius="9"
+      color="#4fa94d"
+      ariaLabel="three-dots-loading"
+      wrapperStyle={{}}
+      visible={true}
+    />
   ) : (
     <div className="vendor-orders-container">
       <Header name="Sue" />
       <NavigationBar isVendor={isVendor} currentUserId={currentUserId} />
       <div className="vendor-orders-display">
-        {selectedVendorOrders.map(orderData => {
+        {selectedVendorOrders.map((orderData) => {
           // console.log("Order Data:", orderData);
           return (
             <VendorOrderCard key={orderData.orderObj?.id} data={orderData} />
@@ -121,19 +130,19 @@ function VendorOrderCard({ data }: VendorOrderCardProps) {
   const customerDetails = data.customerDetails;
   const vendorItems = data.vendorItems;
 
-  const orderedItem = vendorItems.find(vendorItem => {
+  const orderedItem = vendorItems.find((vendorItem) => {
     return vendorItem.id === order.item;
   });
 
-  const itemName = orderedItem ? orderedItem.item_name : 'Unknown Item';
+  const itemName = orderedItem ? orderedItem.item_name : "Unknown Item";
 
-  const itemSize = orderedItem ? orderedItem.size : 'Unknown Size';
+  const itemSize = orderedItem ? orderedItem.size : "Unknown Size";
 
   const itemDetails = orderedItem
     ? orderedItem.description
-    : 'Unknown description';
+    : "Unknown description";
 
-  const itemPrice = orderedItem ? orderedItem.price : 'Unknown Price';
+  const itemPrice = orderedItem ? orderedItem.price : "Unknown Price";
 
   const [isModalOpen, setModalOpen] = useState(false);
   const componentRef = useRef(null);
@@ -177,23 +186,23 @@ function VendorOrderCard({ data }: VendorOrderCardProps) {
           {order.id}
         </div>
         <div>
-          <strong>Order Recieved: </strong>{' '}
-          {new Date(order.date_created).toLocaleDateString('en-US', {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: 'numeric',
-            minute: 'numeric',
-            second: 'numeric',
+          <strong>Order Recieved: </strong>{" "}
+          {new Date(order.date_created).toLocaleDateString("en-US", {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            hour: "numeric",
+            minute: "numeric",
+            second: "numeric",
           })}
         </div>
-        <div onClick={openModal} style={{ cursor: 'pointer' }}>
+        <div onClick={openModal} style={{ cursor: "pointer" }}>
           <strong>View/Print Details</strong>
         </div>
         <div className="status-container">
           <strong>Status: </strong>
-          {isUpcoming ? 'Upcoming' : 'Past'}
+          {isUpcoming ? "Upcoming" : "Past"}
         </div>
         <div className="status-container">
           <strong>Packed: </strong>
@@ -211,7 +220,7 @@ function VendorOrderCard({ data }: VendorOrderCardProps) {
               &times;
             </span>
             <h2 className="invoice-header">
-              INVOICE{' '}
+              INVOICE{" "}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -233,15 +242,15 @@ function VendorOrderCard({ data }: VendorOrderCardProps) {
             </p>
             <div className="invoice-info">
               <p>
-                <strong>Order Created at:</strong>{' '}
-                {new Date(order.date_created).toLocaleDateString('en-US', {
-                  weekday: 'long',
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                  hour: 'numeric',
-                  minute: 'numeric',
-                  second: 'numeric',
+                <strong>Order Created at:</strong>{" "}
+                {new Date(order.date_created).toLocaleDateString("en-US", {
+                  weekday: "long",
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                  hour: "numeric",
+                  minute: "numeric",
+                  second: "numeric",
                 })}
               </p>
               <p>
@@ -260,12 +269,12 @@ function VendorOrderCard({ data }: VendorOrderCardProps) {
                 <strong>Market:</strong> Market Next Door
               </p>
               <p>
-                <strong>Pick Up Date:</strong>{' '}
-                {nextSaturday.toLocaleDateString('en-US', {
-                  weekday: 'long',
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
+                <strong>Pick Up Date:</strong>{" "}
+                {nextSaturday.toLocaleDateString("en-US", {
+                  weekday: "long",
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
                 })}
               </p>
               <p>
@@ -290,7 +299,7 @@ function VendorOrderCard({ data }: VendorOrderCardProps) {
               </p>
             </div>
             <p className="invoice-total">
-              <strong>Total:</strong>{' '}
+              <strong>Total:</strong>{" "}
               {(order.quantity_requested * parseFloat(itemPrice)).toFixed(2)}
             </p>
           </div>

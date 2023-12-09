@@ -34,6 +34,7 @@ const CustomerSignUp = ({ addCustomer }: CustomerSignUpProps) => {
       .then(data => {
         addCustomer(data);
         console.log(data);
+        navigate('/customerlogin');
       })
       .catch(error => console.log(error));
   }

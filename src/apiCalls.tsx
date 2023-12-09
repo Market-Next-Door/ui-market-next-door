@@ -1,3 +1,5 @@
+import { updatedItem } from './components/VendorItemCard/VendorItemCard';
+
 type ItemQuantity = {
   quantity: number;
 };
@@ -140,9 +142,13 @@ export function getSelectedVendorOrders(id: number) {
   });
 }
 
-export function updateVendorItem(updatedItem: any) {
+export function updateVendorItem(
+  vendorid: string,
+  id: number,
+  updatedItem: updatedItem
+) {
   return fetch(
-    'https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/1/items/1/',
+    `https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/${vendorid}/items/${id}/`,
     {
       method: 'PUT',
       headers: {

@@ -255,6 +255,7 @@ const VendorDashboard = ({
               availability={item.availability}
               description={item.description}
               image={item.image}
+              vendorid={vendorid || ''}
               onDelete={deleteItem}
             />
           ))}

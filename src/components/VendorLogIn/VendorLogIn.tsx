@@ -7,6 +7,11 @@ export type Vendor = {
   email: string;
   password: string;
   id: number;
+  first_name: string;
+  last_name: string;
+  vendor_name: string;
+  market: number;
+  location: string;
 };
 
 const VendorLogIn = ({

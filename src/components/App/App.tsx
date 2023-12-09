@@ -22,6 +22,7 @@ import CustomerSettings from '../CustomerSettings/CustomerSettings';
 import VendorSettings from '../VendorSettings/VendorSettings';
 import { NewItem, Item } from '../VendorDashboard/VendorDashboard';
 import { Customer } from '../CustomerLogIn/CustomerLogIn';
+import { Vendor } from '../VendorLogIn/VendorLogIn';
 
 // type Customer = {
 //   date_created: string;
@@ -35,8 +36,10 @@ import { Customer } from '../CustomerLogIn/CustomerLogIn';
 //   updated_at: string;
 // };
 
+
+
 function App() {
-  const [allVendors, setAllVendors] = useState([]);
+  const [allVendors, setAllVendors] = useState<Vendor[]>([]);
   const [allCustomers, setAllCustomers] = useState<Customer[]>([]);
   const [allItems, setAllItems] = useState<Item[]>([]);
   const [allPreOrders, setAllPreOrders] = useState([]);
@@ -67,6 +70,10 @@ function App() {
     setAllCustomers([...allCustomers, newCustomer]);
   }
 
+  function addVendor(newVendor: Vendor) {
+    setAllVendors([...allVendors, newVendor]);
+  }
+
   return isLoading ? (
     <p>Loading...</p>
   ) : (
@@ -86,7 +93,7 @@ function App() {
             />
           }
         />
-        <Route path="/vendorsignup" element={<VendorSignUp />} />
+        <Route path="/vendorsignup" element={<VendorSignUp addVendor={addVendor}/>} />
         <Route
           path="/customerlogin"
           element={

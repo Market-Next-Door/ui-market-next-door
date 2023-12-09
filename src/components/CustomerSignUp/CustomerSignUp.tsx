@@ -1,7 +1,17 @@
 import React, { useState } from "react";
 import "./CustomerSignUp.css";
+import { useNavigate } from "react-router";
 
 const CustomerSignUp = () => {
+  const navigate = useNavigate();
+
+  function handleGoBack() {
+    navigate("/");
+  }
+  function handleSignup() {
+    //post request
+  }
+
   const [customerFirstName, setCustomerFirstName] = useState("");
   const [customerLastName, setCustomerLastName] = useState("");
   const [customerEmail, setCustomerEmail] = useState("");
@@ -61,8 +71,12 @@ const CustomerSignUp = () => {
         value={customerPasswordMatch}
         onChange={(e) => setCustomerPasswordMatch(e.target.value)}
       />
-      <button className="customer-sign-up-btn">SIGN UP</button>
-      <button className="customer-sign-up-go-back-btn">Go Back</button>
+      <button className="customer-sign-up-btn" onClick={handleSignup}>
+        SIGN UP
+      </button>
+      <button className="customer-sign-up-go-back-btn" onClick={handleGoBack}>
+        Go Back
+      </button>
     </form>
   );
 };

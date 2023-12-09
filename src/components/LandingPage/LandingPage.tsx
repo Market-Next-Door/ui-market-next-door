@@ -1,15 +1,29 @@
 import React from "react";
 import "./LandingPage.css";
+import { useNavigate } from "react-router";
 
 const LandingPage = () => {
+  const navigate = useNavigate();
+  function handleVendorClick() {
+    navigate("/vendorlogin");
+  }
+
+  function handleCustomerClick() {
+    navigate("/customerlogin");
+  }
+
   return (
     <div className="landing-container">
       <p className="landing-tagline">Community • Reducing Waste • Local </p>
       <h2 className="landing-header">MARKET NEXT DOOR</h2>
       <p className="landing-tagline">Perfectly Imperfect Goods & Foods</p>
       <div className="landing-btns">
-        <button className="landing-btn">Vendor</button>
-        <button className="landing-btn">Customer</button>
+        <button className="landing-btn" onClick={handleVendorClick}>
+          Vendor
+        </button>
+        <button className="landing-btn" onClick={handleCustomerClick}>
+          Customer
+        </button>
       </div>
       <p className="landing-tagline">HOW IT WORKS </p>
       <div className="how-it-works-steps">

@@ -1,16 +1,19 @@
-import React, { useState, useRef, useEffect } from 'react';
-import './VendorDashboard.css';
-import Header from '../Header/Header';
-import NavigationBar from '../NavigationBar/NavigationBar';
-import VendorItemCard from '../VendorItemCard/VendorItemCard';
+import React, { useState, useRef, useEffect } from "react";
+import "./VendorDashboard.css";
+import Header from "../Header/Header";
+import NavigationBar from "../NavigationBar/NavigationBar";
+import VendorItemCard from "../VendorItemCard/VendorItemCard";
 import {
   getSelectedVendorsItems,
   postVendorItem,
   deleteVendorItem,
-} from '../../apiCalls';
+} from "../../apiCalls";
+
+import { Vendor } from "../VendorLogIn/VendorLogIn";
+import { useParams } from "react-router";
 
 export type VendorDashboardProps = {
-  allVendors: string[] | number[];
+  allVendors: Vendor[];
   allItems: Item[];
 };
 
@@ -28,13 +31,14 @@ export type Item = {
 
 export type NewItem = {
   item_name: string;
-  vendor: number;
+  vendor: string;
   size: string;
   price: string;
   quantity: number;
   description: string;
   availability: boolean;
   image: File | null;
+  id: string;
 };
 
 type selectedVendorItem = {
@@ -51,8 +55,11 @@ type selectedVendorItem = {
   updated_at: string;
 };
 const VendorDashboard = ({ allItems, allVendors }: VendorDashboardProps) => {
-  console.log('VendorDashboard allItems:', allItems);
-  console.log('VendorDashboard allVendors', allVendors);
+  const vendorid = useParams();
+  console.log(vendorid, "vendorid");
+
+  console.log("VendorDashboard allItems:", allItems);
+  console.log("VendorDashboard allVendors", allVendors);
 
   const [addItemName, setAddItemName] = useState<string>();
   const [addItemSize, setAddItemSize] = useState<string>();
@@ -64,8 +71,8 @@ const VendorDashboard = ({ allItems, allVendors }: VendorDashboardProps) => {
 
   function addItem(newItem: NewItem) {
     //Add the newItem with the temporary ID to the existing items
-    postVendorItem(newItem).then(data => {
-      console.log('newItem:POST data', data);
+    postVendorItem(newItem).then((data) => {
+      console.log("newItem:POST data", data);
       setSelectedVendorsItems([...selectedVendorsItems, data]);
     });
   }
@@ -73,13 +80,14 @@ const VendorDashboard = ({ allItems, allVendors }: VendorDashboardProps) => {
   function submitItem(event: React.FormEvent) {
     event.preventDefault();
     const newItem: NewItem = {
-      item_name: addItemName || '',
-      vendor: 1,
-      price: addItemPrice || '',
-      size: addItemSize || '',
+      id: vendorid.id ?? "",
+      item_name: addItemName || "",
+      vendor: vendorid.id ?? "",
+      price: addItemPrice || "",
+      size: addItemSize || "",
       quantity: addQuantityAvailable || 0,
       availability: true,
-      description: addItemDetails || '',
+      description: addItemDetails || "",
       image: addItemFile || null, // Handle image as needed
     };
 
@@ -100,15 +108,16 @@ const VendorDashboard = ({ allItems, allVendors }: VendorDashboardProps) => {
     if (formRef.current) {
       formRef.current.reset();
     }
-    setAddItemName('');
-    setAddItemSize('');
-    setAddItemPrice('');
-    setAddItemDetails('');
+    setAddItemName("");
+    setAddItemSize("");
+    setAddItemPrice("");
+    setAddItemDetails("");
     setAddQuantityAvailable(0);
     setAddItemFile(null);
   }
 
-  const selectedVendorId = 1;
+  const selectedVendorId = vendorid.id;
+  console.log("vendor id check", selectedVendorId);
 
   const [selectedVendorsItems, setSelectedVendorsItems] = useState<
     selectedVendorItem[]
@@ -117,13 +126,13 @@ const VendorDashboard = ({ allItems, allVendors }: VendorDashboardProps) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (selectedVendorId !== null) {
-      getSelectedVendorsItems(selectedVendorId)
-        .then(data => {
+    if (selectedVendorId !== undefined && selectedVendorId !== null) {
+      getSelectedVendorsItems(Number(selectedVendorId))
+        .then((data) => {
           setSelectedVendorsItems(data);
           setIsLoading(false);
         })
-        .catch(error => console.log(error));
+        .catch((error) => console.log(error));
     }
   }, [selectedVendorId]);
 
@@ -131,12 +140,12 @@ const VendorDashboard = ({ allItems, allVendors }: VendorDashboardProps) => {
     deleteVendorItem(id)
       .then(() => {
         const updatedItems = selectedVendorsItems.filter(
-          item => item.id !== id
+          (item) => item.id !== id
         );
         setSelectedVendorsItems(updatedItems);
       })
-      .catch(error => {
-        console.error('Error deleting item:', error);
+      .catch((error) => {
+        console.error("Error deleting item:", error);
       });
   };
 
@@ -151,7 +160,7 @@ const VendorDashboard = ({ allItems, allVendors }: VendorDashboardProps) => {
           type="text"
           placeholder="Item Name..."
           value={addItemName}
-          onChange={event => setAddItemName(event.target.value)}
+          onChange={(event) => setAddItemName(event.target.value)}
         />
 
         <input
@@ -160,7 +169,7 @@ const VendorDashboard = ({ allItems, allVendors }: VendorDashboardProps) => {
           type="text"
           placeholder="Size..."
           value={addItemSize}
-          onChange={event => setAddItemSize(event.target.value)}
+          onChange={(event) => setAddItemSize(event.target.value)}
         />
         <input
           className="add-item-item-price"
@@ -168,7 +177,7 @@ const VendorDashboard = ({ allItems, allVendors }: VendorDashboardProps) => {
           type="number"
           placeholder="Price..."
           value={addItemPrice}
-          onChange={event => setAddItemPrice(event.target.value)}
+          onChange={(event) => setAddItemPrice(event.target.value)}
         />
         <input
           className="add-item-item-quantity"
@@ -176,7 +185,7 @@ const VendorDashboard = ({ allItems, allVendors }: VendorDashboardProps) => {
           type="text"
           placeholder="Quantity Available..."
           value={addQuantityAvailable}
-          onChange={event =>
+          onChange={(event) =>
             setAddQuantityAvailable(parseFloat(event.target.value))
           }
         />
@@ -186,7 +195,7 @@ const VendorDashboard = ({ allItems, allVendors }: VendorDashboardProps) => {
           type="text"
           placeholder="Details..."
           value={addItemDetails}
-          onChange={event => setAddItemDetails(event.target.value)}
+          onChange={(event) => setAddItemDetails(event.target.value)}
         />
         <label htmlFor="files">upload photo</label>
         <input
@@ -197,18 +206,18 @@ const VendorDashboard = ({ allItems, allVendors }: VendorDashboardProps) => {
           onChange={handleFileChange}
         />
 
-        <button className="post-btn" onClick={event => submitItem(event)}>
+        <button className="post-btn" onClick={(event) => submitItem(event)}>
           ADD ITEM
         </button>
       </form>
       <p
-        style={{ paddingLeft: '3rem', fontSize: '1.4rem', fontWeight: 'bold' }}
+        style={{ paddingLeft: "3rem", fontSize: "1.4rem", fontWeight: "bold" }}
       >
-        INVENTORY FOR THE WEEK OF MON DEC 10 2023 - SUN DEC 17 2023{' '}
+        INVENTORY FOR THE WEEK OF MON DEC 10 2023 - SUN DEC 17 2023{" "}
       </p>
       <section className="vendor-items-display">
         {selectedVendorsItems &&
-          selectedVendorsItems.map(item => (
+          selectedVendorsItems.map((item) => (
             <VendorItemCard
               id={item.id}
               key={item.id}

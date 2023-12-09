@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./VendorSignUp.css";
+import { useNavigate } from "react-router";
 
 const VendorSignUp = () => {
   const [vendorFirstName, setVendorFirstName] = useState("");
@@ -17,6 +18,14 @@ const VendorSignUp = () => {
       vendorPasswordMatch,
     };
   };
+  const navigate = useNavigate();
+  function handleGoBack() {
+    navigate("/");
+  }
+
+  function handleSignUp() {
+    // do a post request
+  }
   return (
     <form className="vendor-sign-up-container">
       <h2 className="vendor-sign-up-header">MARKET NEXT DOOR</h2>
@@ -70,8 +79,12 @@ const VendorSignUp = () => {
         value={vendorPasswordMatch}
         onChange={(e) => setVendorPasswordMatch(e.target.value)}
       />
-      <button className="vendor-sign-up-btn">SIGN UP</button>
-      <button className="vendor-sign-up-go-back-btn">Go Back</button>
+      <button className="vendor-sign-up-btn" onClick={handleSignUp}>
+        SIGN UP
+      </button>
+      <button className="vendor-sign-up-go-back-btn" onClick={handleGoBack}>
+        Go Back
+      </button>
     </form>
   );
 };

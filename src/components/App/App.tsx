@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
 import {
@@ -50,19 +51,34 @@ function App() {
     <p>Loading...</p>
   ) : (
     <div className="App">
-      <LandingPage />
-      <VendorLogIn />
-      <VendorSignUp />
-      <CustomerLogIn />
-      <CustomerSignUp />
-      <VendorDashboard allItems={allItems} allVendors={allVendors} />
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route
+          path="/vendorlogin"
+          element={<VendorLogIn allVendors={allVendors} allItems={allItems} />}
+        />
+        <Route path="/vendorsignup" element={<VendorSignUp />} />
+        <Route
+          path="/customerlogin"
+          element={<CustomerLogIn allCustomers={allCustomers} />}
+        />
+        <Route path="/customersignup" element={<CustomerSignUp />} />
+        <Route
+          path="/vendordashboard/:id"
+          element={
+            <VendorDashboard allItems={allItems} allVendors={allVendors} />
+          }
+        />
+        <Route
+          path="/customerdashboard/:id"
+          element={<CustomerDash allVendors={allVendors} />}
+        />
 
-      <CustomerDash allVendors={allVendors} />
-
-      <VendorOrders />
-      <CustomerOrders />
-      <CustomerSettings />
-      <VendorSettings />
+        <Route path="/vendororders/:id" element={<VendorOrders />} />
+        <Route path="/customerorders/:id" element={<CustomerOrders />} />
+        <Route path="/customersettings/:id" element={<CustomerSettings />} />
+        <Route path="/vendorsettings/:id" element={<VendorSettings />} />
+      </Routes>
     </div>
   );
 }

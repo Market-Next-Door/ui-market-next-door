@@ -1,36 +1,57 @@
 import React, { useEffect, useState } from "react";
 import "./VendorSignUp.css";
 import { useNavigate } from "react-router";
+import { postNewVendor } from "../../apiCalls";  
 
-const VendorSignUp = () => {
+type VendorSignUpProps = {
+  addVendor: Function;
+}
+
+const VendorSignUp = ({addVendor}: VendorSignUpProps) => {
   const [vendorFirstName, setVendorFirstName] = useState("");
   const [vendorLastName, setVendorLastName] = useState("");
-  const [vendorMarketName, setVendorMarketName] = useState("");
+  // const [vendorMarketName, setVendorMarketName] = useState(0);
   const [vendorEmail, setVendorEmail] = useState("");
   const [vendorPassword, setVendorPassword] = useState("");
   const [vendorPasswordMatch, setVendorPasswordMatch] = useState("");
+  const [vendorName, setVendorName] = useState("")
 
-  const submitVendor = () => {
-    const newVendor = {
-      vendorFirstName,
-      vendorLastName,
-      vendorPassword,
-      vendorPasswordMatch,
-    };
-  };
   const navigate = useNavigate();
   function handleGoBack() {
     navigate("/");
   }
 
-  function handleSignUp() {
-    // do a post request
+  function handleSignUp(e: any) {
+    e.preventDefault()
+
+    const newVendor = {
+      first_name: vendorFirstName,
+      last_name:vendorLastName,
+      vendor_name: vendorName,
+      password: vendorPassword,
+      email: vendorEmail,
+      market: 1,
+    };
+
+    postNewVendor(newVendor)
+      .then(data => console.log('new vendor data: ', data))
+      .catch(error => console.log(error))
+
+    addVendor(newVendor)
   }
   return (
     <form className="vendor-sign-up-container">
       <h2 className="vendor-sign-up-header">MARKET NEXT DOOR</h2>
       <h3 className="vendor-sign-up-subtext">VENDOR SIGN UP</h3>
 
+      <input
+        className="vendor-sign-up-input"
+        type="text"
+        name="vendorName"
+        placeholder="BUSINESS NAME..."
+        value={vendorName}
+        onChange={(e) => setVendorName(e.target.value)}
+      />
       <input
         className="vendor-sign-up-input"
         type="text"
@@ -47,14 +68,14 @@ const VendorSignUp = () => {
         value={vendorLastName}
         onChange={(e) => setVendorLastName(e.target.value)}
       />
-      <input
+      {/* <input
         className="vendor-sign-up-input"
         type="text"
         name="marketName"
         placeholder="MARKET NAME..."
         value={vendorMarketName}
         onChange={(e) => setVendorMarketName(e.target.value)}
-      />
+      /> */}
       <input
         className="vendor-sign-up-input"
         type="text"
@@ -79,7 +100,7 @@ const VendorSignUp = () => {
         value={vendorPasswordMatch}
         onChange={(e) => setVendorPasswordMatch(e.target.value)}
       />
-      <button className="vendor-sign-up-btn" onClick={handleSignUp}>
+      <button className="vendor-sign-up-btn" onClick={e => handleSignUp(e)}>
         SIGN UP
       </button>
       <button className="vendor-sign-up-go-back-btn" onClick={handleGoBack}>

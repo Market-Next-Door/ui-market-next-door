@@ -140,6 +140,25 @@ export function postNewCustomer(newCustomer: any) {
     })
     .then(response => response.json());
 }
+export function postNewVendor(newVendor: any) {
+  return fetch(
+    'https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newVendor),
+    }
+  )
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Uh oh, we apologize, something went wrong');
+      }
+      return response;
+    })
+    .then(response => response.json());
+}
 
 export function getSelectedVendorOrders(id: number) {
   return fetch(

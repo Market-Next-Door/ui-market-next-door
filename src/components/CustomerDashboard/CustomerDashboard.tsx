@@ -36,8 +36,7 @@ const CustomerDash = ({ allVendors }: CustomerDashboardProps) => {
     useState<Vendor | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [selectedVendorsItems, setSelectedVendorsItems] = useState<
-    selectedVendorItem[] | null
-  >(null);
+    selectedVendorItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -88,6 +87,14 @@ const CustomerDash = ({ allVendors }: CustomerDashboardProps) => {
     // setSelectedVendor(selectedValue !== "default" ? selectedValue : null);
   };
 
+  const handleUpdateQuantity = (itemId: number, updatedQuantity: number) => {
+    setSelectedVendorsItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === itemId ? { ...item, quantity: updatedQuantity } : item
+      )
+    );
+  };
+
   const selectedVendorsItemsCards =
     selectedVendorId !== null ? (
       selectedVendorsItems ? (
@@ -103,6 +110,7 @@ const CustomerDash = ({ allVendors }: CustomerDashboardProps) => {
             size={item.size}
             item_quantity={item.quantity}
             description={item.description}
+            onUpdateQuantity={handleUpdateQuantity}
           />
           )
        
@@ -175,6 +183,7 @@ type CustomerViewItemCardProps = {
   item_quantity: number;
   description: string;
   selectedVendorObject: Vendor | null;
+  onUpdateQuantity: (itemId: number, updatedQuantity: number) => void;
 };
 
 const CustomerViewItemCard = ({
@@ -186,6 +195,7 @@ const CustomerViewItemCard = ({
   item_quantity,
   description,
   selectedVendorObject,
+  onUpdateQuantity
 }: CustomerViewItemCardProps) => {
   // DONE current date and time
   // DONE current Vendor info:  name and email
@@ -293,6 +303,7 @@ const CustomerViewItemCard = ({
       console.log("Error: selectedVendorObject or its id is null.");
     }
     
+    onUpdateQuantity(id, newQuantity.quantity);
 
     clearInputs()
   }

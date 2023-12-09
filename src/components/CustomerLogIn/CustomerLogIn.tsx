@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import "./CustomerLogIn.css";
-import { useNavigate } from "react-router";
-import { CustomerDashboardProps } from "../CustomerDashboard/CustomerDashboard";
+import React, { useState } from 'react';
+import './CustomerLogIn.css';
+import { useNavigate } from 'react-router';
+import { CustomerDashboardProps } from '../CustomerDashboard/CustomerDashboard';
 
 type Customer = {
   email: string;
@@ -16,34 +16,42 @@ type Customer = {
 
 export type CustomerLoginProps = {
   allCustomers: Customer[];
+  setIsVendor: Function;
+  setCurrentUserId: Function;
 };
 
-const CustomerLogIn = ({ allCustomers }: CustomerLoginProps) => {
+const CustomerLogIn = ({
+  allCustomers,
+  setIsVendor,
+  setCurrentUserId,
+}: CustomerLoginProps) => {
   const navigate = useNavigate();
 
   function handleGoBack() {
-    navigate("/");
+    navigate('/');
   }
 
   function handleSignUp() {
-    navigate("/customersignup");
+    navigate('/customersignup');
   }
 
   function handleLogin(e: any) {
     e.preventDefault();
-    console.log("allcustomers", allCustomers);
+    console.log('allcustomers', allCustomers);
     const validCustomer = allCustomers.find(
-      (customer) =>
+      customer =>
         customer.email === customerLoginEmail &&
         customer.password === customerLoginPassword
     );
 
     if (validCustomer) {
+      setIsVendor(false);
+      setCurrentUserId(validCustomer.id);
       navigate(`/customerdashboard/${validCustomer.id}`);
     }
   }
-  const [customerLoginEmail, setCustomerLoginEmail] = useState("");
-  const [customerLoginPassword, setCustomerLoginPassword] = useState("");
+  const [customerLoginEmail, setCustomerLoginEmail] = useState('');
+  const [customerLoginPassword, setCustomerLoginPassword] = useState('');
   return (
     <form className="customer-login-container">
       <h2 className="customer-login-header">MARKET NEXT DOOR</h2>
@@ -54,7 +62,7 @@ const CustomerLogIn = ({ allCustomers }: CustomerLoginProps) => {
         name="customerEmail"
         placeholder="Enter email..."
         value={customerLoginEmail}
-        onChange={(e) => setCustomerLoginEmail(e.target.value)}
+        onChange={e => setCustomerLoginEmail(e.target.value)}
       />
       <input
         className="customer-login-input"
@@ -62,11 +70,11 @@ const CustomerLogIn = ({ allCustomers }: CustomerLoginProps) => {
         name="customerPassword"
         placeholder="Enter password..."
         value={customerLoginPassword}
-        onChange={(e) => setCustomerLoginPassword(e.target.value)}
+        onChange={e => setCustomerLoginPassword(e.target.value)}
       />
       <button
         className="customer-login-submit-btn"
-        onClick={(e) => handleLogin(e)}
+        onClick={e => handleLogin(e)}
       >
         SIGN IN
       </button>

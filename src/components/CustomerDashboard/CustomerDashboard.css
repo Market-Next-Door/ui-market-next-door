@@ -95,7 +95,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   background-color: #e5e7ebe2;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
 }
 
 .customer-item-image img {
@@ -125,7 +125,9 @@
 .item-details {
   display: flex;
   gap: 3rem;
+  justify-content: left;
   align-items: center;
+  width: 900px;
 }
 
 .quantity-num {
@@ -139,6 +141,11 @@
   height: 3rem;
   width: 3rem;
   margin: 1rem;
+}
+
+.quantity-order-btn-container {
+  display: flex;
+  
 }
 
 .selected-vendor {

@@ -356,31 +356,36 @@ const CustomerViewItemCard = ({
               Size: <span>{size}</span>
             </p>
             <p>
+              Price: <span>${price}</span>
+            </p>
+            <p>
               Details: <span>{description}</span>
             </p>
 
             <p>
               Quantity Available: <span>{item_quantity}</span>
             </p>
+          </div>
+          <div className="quantity-order-btn-container">
             <div className="quantity-input">
-              <button className="quantity-btn" onClick={decreaseQuantity}>
-                -
-              </button>
-              <input
-                className="quantity-num"
-                value={requestedQuantity}
-                onChange={e =>
-                  setRequestedQuantity(
-                    Math.max(0, parseInt(e.target.value) || 0)
-                  )
-                }
-              />
-              <button className="quantity-btn" onClick={increaseQuantity}>
-                +
-              </button>
+            <button className="quantity-btn" onClick={decreaseQuantity}>
+              -
+            </button>
+            <input
+              className="quantity-num"
+              value={requestedQuantity}
+              onChange={e =>
+                setRequestedQuantity(
+                  Math.max(0, parseInt(e.target.value) || 0)
+                )
+              }
+            />
+            <button className="quantity-btn" onClick={increaseQuantity}>
+              +
+            </button>
             </div>
             <button className="purchase-btn" onClick={handlePreOrderClick}>
-              Pre-order
+            Pre-order
             </button>
           </div>
         </div>

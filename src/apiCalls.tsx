@@ -26,16 +26,6 @@ export function getAllCustomers() {
   });
 }
 
-// export function getAllItems(vendorId) {
-//   return fetch(`https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/${vendorId}/items`)
-//   .then(response => {
-//     if(!response.ok) {
-//       throw new Error(`${response.status} ${response.statusText}`)
-//     }
-//     return response.json()
-//   })
-// }
-
 export function getAllPreOrders() {
   return fetch(
     'https://quiet-depths-54407-77a00505f51e.herokuapp.com/preorders'
@@ -129,6 +119,26 @@ export function getSelectedCustomerOrders(id: number) {
     }
     return response.json();
   });
+}
+
+export function postNewCustomer(newCustomer: any) {
+  return fetch(
+    'https://quiet-depths-54407-77a00505f51e.herokuapp.com/customers/',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newCustomer),
+    }
+  )
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Uh oh, we apologize, something went wrong');
+      }
+      return response;
+    })
+    .then(response => response.json());
 }
 
 export function getSelectedVendorOrders(id: number) {

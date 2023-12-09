@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { newCustomer } from '../CustomerSignUp/CustomerSignUp';
 
 import './App.css';
 import {
@@ -20,10 +21,23 @@ import CustomerOrders from '../CustomerOrders/CustomerOrders';
 import CustomerSettings from '../CustomerSettings/CustomerSettings';
 import VendorSettings from '../VendorSettings/VendorSettings';
 import { NewItem, Item } from '../VendorDashboard/VendorDashboard';
+import { Customer } from '../CustomerLogIn/CustomerLogIn';
+
+// type Customer = {
+//   date_created: string;
+//   email: string;
+//   first_name: string;
+//   id: number;
+//   last_name: string;
+//   location: string;
+//   password: string;
+//   phone: string;
+//   updated_at: string;
+// };
 
 function App() {
   const [allVendors, setAllVendors] = useState([]);
-  const [allCustomers, setAllCustomers] = useState([]);
+  const [allCustomers, setAllCustomers] = useState<Customer[]>([]);
   const [allItems, setAllItems] = useState<Item[]>([]);
   const [allPreOrders, setAllPreOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -48,6 +62,10 @@ function App() {
     };
     fetchData();
   }, []);
+
+  function addCustomer(newCustomer: Customer) {
+    setAllCustomers([...allCustomers, newCustomer]);
+  }
 
   return isLoading ? (
     <p>Loading...</p>
@@ -79,7 +97,10 @@ function App() {
             />
           }
         />
-        <Route path="/customersignup" element={<CustomerSignUp />} />
+        <Route
+          path="/customersignup"
+          element={<CustomerSignUp addCustomer={addCustomer} />}
+        />
         <Route
           path="/vendordashboard/:vendorid"
           element={

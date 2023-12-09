@@ -3,7 +3,7 @@ import './CustomerLogIn.css';
 import { useNavigate } from 'react-router';
 import { CustomerDashboardProps } from '../CustomerDashboard/CustomerDashboard';
 
-type Customer = {
+export type Customer = {
   email: string;
   first_name: string;
   id: number;

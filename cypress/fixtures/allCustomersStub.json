@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "first_name": "Jerry",
+    "last_name": "Potatoes",
+    "phone": "4444444444",
+    "email": "jj@gmail.com",
+    "password": "1234",
+    "location": "Denver, CO",
+    "date_created": "2023-12-06T18:01:04.074896Z",
+    "updated_at": "2023-12-06T18:01:04.074911Z"
+  },
+  {
+    "id": 2,
+    "first_name": "Betty",
+    "last_name": "Lettuce",
+    "phone": "4444444444",
+    "email": "bl@gmail.com",
+    "password": "1234",
+    "location": "Denver, CO",
+    "date_created": "2023-12-06T18:01:46.145640Z",
+    "updated_at": "2023-12-06T18:01:46.145654Z"
+  },
+  {
+    "id": 3,
+    "first_name": "Kerry",
+    "last_name": "Tomatoes",
+    "phone": "4444444444",
+    "email": "kt@gmail.com",
+    "password": "1234",
+    "location": "Denver, CO",
+    "date_created": "2023-12-06T23:41:40.341884Z",
+    "updated_at": "2023-12-06T23:41:40.341899Z"
+  }
+]

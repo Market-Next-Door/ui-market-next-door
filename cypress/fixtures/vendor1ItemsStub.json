@@ -1,0 +1,54 @@
+[
+  {
+    "id": 3,
+    "item_name": "Red Potatoes",
+    "vendor": 1,
+    "price": "3.00",
+    "size": "2 lb",
+    "quantity": 6,
+    "availability": false,
+    "description": "Red Potatoes!",
+    "image": null,
+    "date_created": "2023-12-06T18:08:57.592411Z",
+    "updated_at": "2023-12-07T04:02:29.086898Z"
+  },
+  {
+    "id": 1,
+    "item_name": "tomatoes",
+    "vendor": 1,
+    "price": "5.00",
+    "size": "each",
+    "quantity": 174,
+    "availability": true,
+    "description": "Heriloooooooom",
+    "image": null,
+    "date_created": "2023-12-06T18:04:38.817233Z",
+    "updated_at": "2023-12-09T02:23:26.153686Z"
+  },
+  {
+    "id": 14,
+    "item_name": "Garlic",
+    "vendor": 1,
+    "price": "2.99",
+    "size": "each",
+    "quantity": 103,
+    "availability": true,
+    "description": "Garlic is in season!!",
+    "image": null,
+    "date_created": "2023-12-09T04:27:48.961110Z",
+    "updated_at": "2023-12-09T16:37:22.496005Z"
+  },
+  {
+    "id": 13,
+    "item_name": "Pumpkin",
+    "vendor": 1,
+    "price": "10.99",
+    "size": "12lbs",
+    "quantity": 50,
+    "availability": true,
+    "description": "It's FALL. Let's make PIE!!",
+    "image": null,
+    "date_created": "2023-12-08T21:27:29.020050Z",
+    "updated_at": "2023-12-09T17:42:11.208754Z"
+  }
+]

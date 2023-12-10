@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+import 'cypress-file-upload';
 // ***********************************************
 // This example commands.ts shows you how to
 // create various custom commands and overwrite

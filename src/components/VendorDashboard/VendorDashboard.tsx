@@ -1,19 +1,19 @@
-import React, { useState, useRef, useEffect } from "react";
-import "./VendorDashboard.css";
-import Header from "../Header/Header";
-import NavigationBar from "../NavigationBar/NavigationBar";
-import VendorItemCard from "../VendorItemCard/VendorItemCard";
+import React, { useState, useRef, useEffect } from 'react';
+import './VendorDashboard.css';
+import Header from '../Header/Header';
+import NavigationBar from '../NavigationBar/NavigationBar';
+import VendorItemCard from '../VendorItemCard/VendorItemCard';
 import {
   getSelectedVendorsItems,
   postVendorItem,
   deleteVendorItem,
   getOneCustomer,
   getOneVendor,
-} from "../../apiCalls";
+} from '../../apiCalls';
 
-import { Vendor } from "../VendorLogIn/VendorLogIn";
-import { useParams } from "react-router";
-import ErrorPage from "../ErrorPage/ErrorPage";
+import { Vendor } from '../VendorLogIn/VendorLogIn';
+import { useParams } from 'react-router';
+import ErrorPage from '../ErrorPage/ErrorPage';
 
 type VendorParams = {
   vendorid: string;
@@ -73,10 +73,10 @@ const VendorDashboard = ({
   currentUserId,
 }: VendorDashboardProps) => {
   const { vendorid } = useParams<VendorParams>();
-  console.log(vendorid, "vendorid");
+  console.log(vendorid, 'vendorid');
 
-  console.log("VendorDashboard allItems:", allItems);
-  console.log("VendorDashboard allVendors", allVendors);
+  console.log('VendorDashboard allItems:', allItems);
+  console.log('VendorDashboard allVendors', allVendors);
 
   const [addItemName, setAddItemName] = useState<string>();
   const [addItemSize, setAddItemSize] = useState<string>();
@@ -84,23 +84,23 @@ const VendorDashboard = ({
   const [addQuantityAvailable, setAddQuantityAvailable] = useState<number>();
   const [addItemPrice, setAddItemPrice] = useState<string>();
   const [addItemFile, setAddItemFile] = useState<File | null>(null);
-  const [vendorDashError, setVendorDashError] = useState("")
+  const [vendorDashError, setVendorDashError] = useState('');
   const formRef = useRef<HTMLFormElement>(null);
 
   function addItem(newItem: NewItem) {
     if (vendorid) {
       // Check if vendorId is not null
       postVendorItem(vendorid, newItem)
-        .then((data) => {
-          console.log("newItem:POST data", data);
+        .then(data => {
+          console.log('newItem:POST data', data);
           setSelectedVendorsItems([...selectedVendorsItems, data]);
         })
-        .catch((error) => {
-          console.error("Error posting new item:", error);
-          setVendorDashError(error.message)
+        .catch(error => {
+          console.error('Error posting new item:', error);
+          setVendorDashError(error.message);
         });
     } else {
-      console.error("Vendor ID is not available.");
+      console.error('Vendor ID is not available.');
     }
   }
   type User = {
@@ -116,8 +116,8 @@ const VendorDashboard = ({
           setCurrentUserObj(result);
         }
       } catch (error: any) {
-        console.error("Error fetching data:", error);
-        setVendorDashError(error.message)
+        console.error('Error fetching data:', error);
+        setVendorDashError(error.message);
       }
     };
 
@@ -127,14 +127,14 @@ const VendorDashboard = ({
   function submitItem(event: React.FormEvent) {
     event.preventDefault();
     const newItem: NewItem = {
-      id: vendorid ?? "",
-      item_name: addItemName || "",
-      vendor: vendorid ?? "",
-      price: addItemPrice || "",
-      size: addItemSize || "",
+      id: vendorid ?? '',
+      item_name: addItemName || '',
+      vendor: vendorid ?? '',
+      price: addItemPrice || '',
+      size: addItemSize || '',
       quantity: addQuantityAvailable || 0,
       availability: true,
-      description: addItemDetails || "",
+      description: addItemDetails || '',
       image: addItemFile || null, // Handle image as needed
     };
 
@@ -155,16 +155,15 @@ const VendorDashboard = ({
     if (formRef.current) {
       formRef.current.reset();
     }
-    setAddItemName("");
-    setAddItemSize("");
-    setAddItemPrice("");
-    setAddItemDetails("");
+    setAddItemName('');
+    setAddItemSize('');
+    setAddItemPrice('');
+    setAddItemDetails('');
     setAddQuantityAvailable(0);
     setAddItemFile(null);
   }
 
   const selectedVendorId = vendorid;
-  console.log("vendor id check", selectedVendorId);
 
   const [selectedVendorsItems, setSelectedVendorsItems] = useState<
     selectedVendorItem[]
@@ -175,11 +174,11 @@ const VendorDashboard = ({
   useEffect(() => {
     if (selectedVendorId !== undefined && selectedVendorId !== null) {
       getSelectedVendorsItems(Number(selectedVendorId))
-        .then((data) => {
+        .then(data => {
           setSelectedVendorsItems(data);
           setIsLoading(false);
         })
-        .catch((error) => setVendorDashError(error.message));
+        .catch(error => setVendorDashError(error.message));
     }
   }, [selectedVendorId]);
 
@@ -193,16 +192,16 @@ const VendorDashboard = ({
         deleteVendorItem(vendorid, id)
           .then(() => {
             const updatedItems = selectedVendorsItems.filter(
-              (item) => item.id !== id
+              item => item.id !== id
             );
             setSelectedVendorsItems(updatedItems);
           })
-          .catch((error) => {
-            console.error("Error deleting item:", error);
-            setVendorDashError(error.message)
+          .catch(error => {
+            console.error('Error deleting item:', error);
+            setVendorDashError(error.message);
           });
       } else {
-        console.error("Vendor ID is not available for deletion.");
+        console.error('Vendor ID is not available for deletion.');
       }
     }
   };
@@ -218,15 +217,15 @@ const VendorDashboard = ({
     const endDate = new Date(startDate);
     endDate.setDate(startDate.getDate() + 6);
 
-    const startDateString = startDate.toLocaleDateString("en-US", {
-      month: "long",
-      day: "numeric",
-      year: "numeric",
+    const startDateString = startDate.toLocaleDateString('en-US', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
     });
-    const endDateString = endDate.toLocaleDateString("en-US", {
-      month: "long",
-      day: "numeric",
-      year: "numeric",
+    const endDateString = endDate.toLocaleDateString('en-US', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
     });
 
     return `INVENTORY FOR THE WEEK OF ${startDateString} - ${endDateString}`;
@@ -234,9 +233,12 @@ const VendorDashboard = ({
 
   const dynamicDateLine = getCurrentWeekDates();
 
-  return vendorDashError? (
-    <ErrorPage error={vendorDashError} message="We're experiencing server issues.  Please try again later."/>
-    ) : (
+  return vendorDashError ? (
+    <ErrorPage
+      error={vendorDashError}
+      message="We're experiencing server issues.  Please try again later."
+    />
+  ) : (
     <div className="vendor-container">
       {currentUserObj?.first_name && (
         <Header name={currentUserObj.first_name} />
@@ -249,7 +251,7 @@ const VendorDashboard = ({
           type="text"
           placeholder="Item Name..."
           value={addItemName}
-          onChange={(event) => setAddItemName(event.target.value)}
+          onChange={event => setAddItemName(event.target.value)}
         />
 
         <input
@@ -258,7 +260,7 @@ const VendorDashboard = ({
           type="text"
           placeholder="Size..."
           value={addItemSize}
-          onChange={(event) => setAddItemSize(event.target.value)}
+          onChange={event => setAddItemSize(event.target.value)}
         />
         <input
           className="add-item-item-price"
@@ -266,7 +268,7 @@ const VendorDashboard = ({
           type="number"
           placeholder="Price..."
           value={addItemPrice}
-          onChange={(event) => setAddItemPrice(event.target.value)}
+          onChange={event => setAddItemPrice(event.target.value)}
         />
         <input
           className="add-item-item-quantity"
@@ -274,7 +276,7 @@ const VendorDashboard = ({
           type="text"
           placeholder="Quantity Available..."
           value={addQuantityAvailable}
-          onChange={(event) =>
+          onChange={event =>
             setAddQuantityAvailable(parseFloat(event.target.value))
           }
         />
@@ -284,7 +286,7 @@ const VendorDashboard = ({
           type="text"
           placeholder="Details..."
           value={addItemDetails}
-          onChange={(event) => setAddItemDetails(event.target.value)}
+          onChange={event => setAddItemDetails(event.target.value)}
         />
         <label htmlFor="files">upload photo</label>
         <input
@@ -295,18 +297,18 @@ const VendorDashboard = ({
           onChange={handleFileChange}
         />
 
-        <button className="post-btn" onClick={(event) => submitItem(event)}>
+        <button className="post-btn" onClick={event => submitItem(event)}>
           ADD ITEM
         </button>
       </form>
       <p
-        style={{ paddingLeft: "3rem", fontSize: "1.4rem", fontWeight: "bold" }}
+        style={{ paddingLeft: '3rem', fontSize: '1.4rem', fontWeight: 'bold' }}
       >
         {dynamicDateLine.toUpperCase()}
       </p>
       <section className="vendor-items-display">
         {selectedVendorsItems &&
-          selectedVendorsItems.map((item) => (
+          selectedVendorsItems.map(item => (
             <VendorItemCard
               id={item.id}
               key={item.id}
@@ -318,7 +320,7 @@ const VendorDashboard = ({
               availability={item.availability}
               description={item.description}
               image={item.image}
-              vendorid={vendorid || ""}
+              vendorid={vendorid || ''}
               onDelete={deleteItem}
             />
           ))}

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./VendorSignUp.css";
 import { useNavigate } from "react-router";
-import { postNewVendor } from "../../apiCalls";  
+import { postNewVendor } from "../../apiCalls";
+import ErrorPage from "../ErrorPage/ErrorPage";
 
 type VendorSignUpProps = {
   addVendor: Function;
@@ -15,6 +16,7 @@ const VendorSignUp = ({addVendor}: VendorSignUpProps) => {
   const [vendorPassword, setVendorPassword] = useState("");
   const [vendorPasswordMatch, setVendorPasswordMatch] = useState("");
   const [vendorName, setVendorName] = useState("")
+  const [vendorSignUpError, setVendorSignUpError] = useState ("")
 
   const navigate = useNavigate();
   function handleGoBack() {
@@ -39,11 +41,13 @@ const VendorSignUp = ({addVendor}: VendorSignUpProps) => {
         addVendor(data)
         navigate('/vendorlogin');
       })
-      .catch(error => console.log(error))
+      .catch(error => setVendorSignUpError(error.message))
 
     addVendor(newVendor)
   }
-  return (
+  return vendorSignUpError ? (
+    <ErrorPage error={vendorSignUpError} message="We're experiencing server issues.  Please try again later."/>
+    ) : (
     <form className="vendor-sign-up-container">
       <h2 className="vendor-sign-up-header">MARKET NEXT DOOR</h2>
       <h3 className="vendor-sign-up-subtext">VENDOR SIGN UP</h3>

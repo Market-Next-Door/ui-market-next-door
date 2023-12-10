@@ -7,6 +7,7 @@ import { getOneVendor } from "../../apiCalls";
 import { NavigationBarProps } from "../NavigationBar/NavigationBar";
 import { ThreeDots } from "react-loader-spinner";
 import { useParams } from "react-router";
+import ErrorPage from "../ErrorPage/ErrorPage";
 
 type Vendor = {
   first_name: string;
@@ -27,6 +28,7 @@ export default function VendorSettings({
   const [marketName, setMarketName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [email, setEmail] = useState<string>("");
+  const [vendorSettingsError, setVendorSettingsError] = useState("")
 
   const paramsid = useParams();
   useEffect(() => {
@@ -40,8 +42,9 @@ export default function VendorSettings({
         setPassword(vendorData?.password || "");
         setEmail(vendorData?.email || "");
         setIsLoading(false);
-      } catch (error) {
+      } catch (error: any) {
         console.error("Error fetching data:", error);
+        setVendorSettingsError(error.message)
       }
     };
     fetchData();
@@ -64,7 +67,9 @@ export default function VendorSettings({
     console.log("changes saved!");
     setIsEditable(false);
   }
-  return !currentVendor ? (
+  return vendorSettingsError ? (
+    <ErrorPage error={vendorSettingsError} message="We're experiencing server issues.  Please try again later."/>
+    ) : !currentVendor ? (
     <ThreeDots
       height="80"
       width="80"

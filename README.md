@@ -18,7 +18,7 @@ Market Next Door is a dynamic application crafted with TypeScript and React on t
 
 - **Customer Functionalities:**
 
-  - Customers are provided with a range of functionalities to enhance their shopping experience. They can create accounts to browse vendor items, place pre-orders, access detailed invoices, print invoices for their records, and manage their orders with ease.
+  - Customers are provided with a range of functionalities to enhance their shopping experience. They can create accounts to filter and browse through vendor items, place pre-orders, access detailed invoices, print invoices for their records, and manage their orders with ease.
 
 - **Order Management:**
   - Both customers and vendors can access an order management system. They can view and track their orders, access detailed invoices, and print invoices for their records.
@@ -28,15 +28,20 @@ Market Next Door is a dynamic application crafted with TypeScript and React on t
 - **Front End:**
 
   - TypeScript
+
     ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 
   - React
-    ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 
-    ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
+     ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+
+
+     ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
 
 - **Testing:**
-  ![cypress](https://img.shields.io/badge/-cypress-%23E5E5E5?style=for-the-badge&logo=cypress&logoColor=058a5e)
+   - Cypress 
+
+     ![cypress](https://img.shields.io/badge/-cypress-%23E5E5E5?style=for-the-badge&logo=cypress&logoColor=058a5e)
 
 # Key Features
 
@@ -63,6 +68,9 @@ Market Next Door is a dynamic application crafted with TypeScript and React on t
 - **Error Handling:**
 
   - Implements effective error handling to enhance user experience.
+ 
+- **Input Field Validation:**
+  - Enhances user empathy and guidance.
 
 - **Component Structure:**
 

@@ -1,0 +1,11 @@
+{
+  "id": 1,
+  "first_name": "Jerry",
+  "last_name": "Potatoes",
+  "phone": "4444444444",
+  "email": "jj@gmail.com",
+  "password": "1234",
+  "location": "Denver, CO",
+  "date_created": "2023-12-06T18:01:04.074896Z",
+  "updated_at": "2023-12-06T18:01:04.074911Z"
+}

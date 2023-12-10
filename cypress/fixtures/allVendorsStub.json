@@ -1,0 +1,41 @@
+[
+  {
+    "id": 1,
+    "market": 1,
+    "vendor_name": "Potato Spuuuds",
+    "first_name": "Potato",
+    "last_name": "Bob",
+    "phone": "4444444444",
+    "email": "potatoes4lyfe@gmail.com",
+    "password": "1234",
+    "location": "Denver, CO",
+    "date_created": "2023-12-06T18:03:23.387192Z",
+    "updated_at": "2023-12-06T18:03:23.387204Z"
+  },
+  {
+    "id": 2,
+    "market": 1,
+    "vendor_name": "Lettuce Always",
+    "first_name": "Jerry",
+    "last_name": "Jarks",
+    "phone": "4444444444",
+    "email": "jj@gmail.com",
+    "password": "1234",
+    "location": "Denver, CO",
+    "date_created": "2023-12-06T18:04:07.290214Z",
+    "updated_at": "2023-12-06T18:04:07.290227Z"
+  },
+  {
+    "id": 3,
+    "market": 1,
+    "vendor_name": "Sheepez Farmez",
+    "first_name": "Dylan",
+    "last_name": "T",
+    "phone": "123-456-7891",
+    "email": "sheepy@gmail.com",
+    "password": "mcfleecy",
+    "location": "Wherever",
+    "date_created": "2023-12-09T20:56:18.753423Z",
+    "updated_at": "2023-12-09T20:56:18.753434Z"
+  }
+]

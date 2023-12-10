@@ -6,7 +6,6 @@ import "./App.css";
 import {
   getAllVendors,
   getAllCustomers,
-  // getAllItems,
   getAllPreOrders,
 } from "../../apiCalls";
 import LandingPage from "../LandingPage/LandingPage";
@@ -25,17 +24,6 @@ import { Customer } from "../CustomerLogIn/CustomerLogIn";
 import { Vendor } from "../VendorLogIn/VendorLogIn";
 import ErrorPage from "../ErrorPage/ErrorPage";
 
-// type Customer = {
-//   date_created: string;
-//   email: string;
-//   first_name: string;
-//   id: number;
-//   last_name: string;
-//   location: string;
-//   password: string;
-//   phone: string;
-//   updated_at: string;
-// };
 
 function App() {
   const [allVendors, setAllVendors] = useState<Vendor[]>([]);
@@ -51,12 +39,8 @@ function App() {
       try {
         const vendorsData = await getAllVendors();
         const customersData = await getAllCustomers();
-        // const itemsData = await getAllItems();
-        //const preOrdersData = await getAllPreOrders();
         setAllVendors(vendorsData);
         setAllCustomers(customersData);
-        // setAllItems(itemsData);
-        //setAllPreOrders(preOrdersData)
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);

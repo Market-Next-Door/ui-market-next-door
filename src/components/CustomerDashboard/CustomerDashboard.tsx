@@ -158,7 +158,15 @@ const CustomerDash = ({
         <p>No items available for the selected vendor.</p>
       )
     ) : (
-      <p>Please select a vendor to view items.</p>
+      <p
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        Please select a vendor to view items.
+      </p>
     );
 
   return (

@@ -1,8 +1,8 @@
-import React from 'react';
-import Switch from 'react-switch';
-import './VendorItemCard.css';
-import { useState } from 'react';
-import { updateVendorItem } from '../../apiCalls';
+import React from "react";
+import Switch from "react-switch";
+import "./VendorItemCard.css";
+import { useState } from "react";
+import { updateVendorItem } from "../../apiCalls";
 // import { VendorDashboardProps, Item } from '../VendorDashboard/VendorDashboard';
 
 type VendorItemCardProps = {
@@ -43,7 +43,7 @@ const VendorItemCard = ({
   vendorid,
   onDelete,
 }: VendorItemCardProps) => {
-  console.log('VendorItemCard props:', {
+  console.log("VendorItemCard props:", {
     item_name,
     vendor,
     price,
@@ -88,8 +88,8 @@ const VendorItemCard = ({
     };
     setIsEditable(false);
     updateVendorItem(vendorid, id, updatedItem)
-      .then(data => console.log(data))
-      .catch(error => console.log(error));
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -104,7 +104,7 @@ const VendorItemCard = ({
             type="text"
             className="item-input"
             value={itemName}
-            onChange={e => setItemName(e.target.value)}
+            onChange={(e) => setItemName(e.target.value)}
             readOnly={!isEditable}
           />
         </p>
@@ -114,7 +114,7 @@ const VendorItemCard = ({
             type="text"
             className="item-input"
             value={itemSize}
-            onChange={e => setItemSize(e.target.value)}
+            onChange={(e) => setItemSize(e.target.value)}
             readOnly={!isEditable}
           />
         </p>
@@ -124,7 +124,7 @@ const VendorItemCard = ({
             type="number"
             className="item-input"
             value={itemPrice}
-            onChange={e => setItemPrice(e.target.value)}
+            onChange={(e) => setItemPrice(e.target.value)}
             readOnly={!isEditable}
           />
         </p>
@@ -134,7 +134,7 @@ const VendorItemCard = ({
             type="text"
             className="item-input"
             value={itemDetails}
-            onChange={e => setItemDetails(e.target.value)}
+            onChange={(e) => setItemDetails(e.target.value)}
             readOnly={!isEditable}
           />
         </p>
@@ -145,7 +145,7 @@ const VendorItemCard = ({
               className="item-input"
               type="number"
               value={quantityAvailable}
-              onChange={e => setQuantityAvailable(Number(e.target.value))}
+              onChange={(e) => setQuantityAvailable(Number(e.target.value))}
               readOnly={!isEditable}
             />
           </p>

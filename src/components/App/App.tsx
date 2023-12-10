@@ -1,28 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import { newCustomer } from '../CustomerSignUp/CustomerSignUp';
+import React, { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import { newCustomer } from "../CustomerSignUp/CustomerSignUp";
 
-import './App.css';
+import "./App.css";
 import {
   getAllVendors,
   getAllCustomers,
   // getAllItems,
   getAllPreOrders,
-} from '../../apiCalls';
-import LandingPage from '../LandingPage/LandingPage';
-import VendorDashboard from '../VendorDashboard/VendorDashboard';
-import CustomerDash from '../CustomerDashboard/CustomerDashboard';
-import VendorLogIn from '../VendorLogIn/VendorLogIn';
-import VendorSignUp from '../VendorSignUp/VendorSignUp';
-import CustomerLogIn from '../CustomerLogIn/CustomerLogIn';
-import CustomerSignUp from '../CustomerSignUp/CustomerSignUp';
-import VendorOrders from '../VendorOrders/VendorOrders';
-import CustomerOrders from '../CustomerOrders/CustomerOrders';
-import CustomerSettings from '../CustomerSettings/CustomerSettings';
-import VendorSettings from '../VendorSettings/VendorSettings';
-import { NewItem, Item } from '../VendorDashboard/VendorDashboard';
-import { Customer } from '../CustomerLogIn/CustomerLogIn';
-import { Vendor } from '../VendorLogIn/VendorLogIn';
+} from "../../apiCalls";
+import LandingPage from "../LandingPage/LandingPage";
+import VendorDashboard from "../VendorDashboard/VendorDashboard";
+import CustomerDash from "../CustomerDashboard/CustomerDashboard";
+import VendorLogIn from "../VendorLogIn/VendorLogIn";
+import VendorSignUp from "../VendorSignUp/VendorSignUp";
+import CustomerLogIn from "../CustomerLogIn/CustomerLogIn";
+import CustomerSignUp from "../CustomerSignUp/CustomerSignUp";
+import VendorOrders from "../VendorOrders/VendorOrders";
+import CustomerOrders from "../CustomerOrders/CustomerOrders";
+import CustomerSettings from "../CustomerSettings/CustomerSettings";
+import VendorSettings from "../VendorSettings/VendorSettings";
+import { NewItem, Item } from "../VendorDashboard/VendorDashboard";
+import { Customer } from "../CustomerLogIn/CustomerLogIn";
+import { Vendor } from "../VendorLogIn/VendorLogIn";
+import ErrorPage from "../ErrorPage/ErrorPage";
 
 // type Customer = {
 //   date_created: string;
@@ -36,8 +37,6 @@ import { Vendor } from '../VendorLogIn/VendorLogIn';
 //   updated_at: string;
 // };
 
-
-
 function App() {
   const [allVendors, setAllVendors] = useState<Vendor[]>([]);
   const [allCustomers, setAllCustomers] = useState<Customer[]>([]);
@@ -45,7 +44,7 @@ function App() {
   const [allPreOrders, setAllPreOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isVendor, setIsVendor] = useState<boolean>(false);
-  const [currentUserId, setCurrentUserId] = useState<string>('');
+  const [currentUserId, setCurrentUserId] = useState<string>("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -60,7 +59,7 @@ function App() {
         //setAllPreOrders(preOrdersData)
         setIsLoading(false);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
     };
     fetchData();
@@ -93,7 +92,10 @@ function App() {
             />
           }
         />
-        <Route path="/vendorsignup" element={<VendorSignUp addVendor={addVendor}/>} />
+        <Route
+          path="/vendorsignup"
+          element={<VendorSignUp addVendor={addVendor} />}
+        />
         <Route
           path="/customerlogin"
           element={
@@ -159,6 +161,7 @@ function App() {
             <VendorSettings isVendor={isVendor} currentUserId={currentUserId} />
           }
         />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>
   );

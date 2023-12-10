@@ -5,6 +5,7 @@ import "./CustomerSettings.css";
 import { getOneCustomer } from "../../apiCalls";
 import { NavigationBarProps } from "../NavigationBar/NavigationBar";
 import { ThreeDots } from "react-loader-spinner";
+import { useParams } from "react-router";
 
 type Customer = {
   first_name: string;
@@ -23,10 +24,12 @@ export default function CustomerSettings({
   const [lastName, setLastName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [email, setEmail] = useState<string>("");
+  const paramsid = useParams();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const customerData = await getOneCustomer(3);
+        const customerData = await getOneCustomer(Number(paramsid.id) || 0);
         setCurrentCustomer(customerData);
         setFirstName(customerData?.first_name || "");
         setLastName(customerData?.last_name || "");

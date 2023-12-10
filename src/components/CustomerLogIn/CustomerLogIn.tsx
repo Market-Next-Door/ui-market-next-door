@@ -50,8 +50,10 @@ const CustomerLogIn = ({
       navigate(`/customerdashboard/${validCustomer.id}`);
     }
   }
+
   const [customerLoginEmail, setCustomerLoginEmail] = useState('');
   const [customerLoginPassword, setCustomerLoginPassword] = useState('');
+  
   return (
     <form className="customer-login-container">
       <h2 className="customer-login-header">MARKET NEXT DOOR</h2>

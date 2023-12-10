@@ -6,7 +6,7 @@ type ItemQuantity = {
 
 export function getAllVendors() {
   return fetch(
-    "https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/"
+    "http://127.0.0.1:8000/vendors/"
   ).then((response) => {
     if (!response.ok) {
       throw new Error(`${response.status} ${response.statusText}`);
@@ -17,7 +17,7 @@ export function getAllVendors() {
 
 export function getAllCustomers() {
   return fetch(
-    "https://quiet-depths-54407-77a00505f51e.herokuapp.com/customers/"
+    "http://127.0.0.1:8000/customers/"
   ).then((response) => {
     if (!response.ok) {
       throw new Error(`${response.status} ${response.statusText}`);
@@ -28,7 +28,7 @@ export function getAllCustomers() {
 
 export function getAllPreOrders() {
   return fetch(
-    "https://quiet-depths-54407-77a00505f51e.herokuapp.com/preorders"
+    "http://127.0.0.1:8000/preorders"
   ).then((response) => {
     if (!response.ok) {
       throw new Error(`${response.status} ${response.statusText}`);
@@ -39,7 +39,7 @@ export function getAllPreOrders() {
 
 export function getSelectedVendorsItems(id: number) {
   return fetch(
-    `https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/${id}/items/`
+    `http://127.0.0.1:8000/vendors/${id}/items/`
   ).then((response) => {
     if (!response.ok) {
       throw new Error(`${response.status} ${response.statusText}`);
@@ -50,7 +50,7 @@ export function getSelectedVendorsItems(id: number) {
 
 export function postVendorItem(id: string, newItem: any) {
   return fetch(
-    `https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/${id}/items/`,
+    `http://127.0.0.1:8000/vendors/${id}/items/`,
     {
       method: "POST",
       headers: {
@@ -70,7 +70,7 @@ export function postVendorItem(id: string, newItem: any) {
 
 export function getOneVendor(vendorID: number) {
   return fetch(
-    `https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/${vendorID}`
+    `http://127.0.0.1:8000/vendors/${vendorID}`
   ).then((response) => {
     if (!response.ok) {
       throw new Error(`${response.status} ${response.statusText}`);
@@ -81,7 +81,7 @@ export function getOneVendor(vendorID: number) {
 
 export function getOneCustomer(customerID: number) {
   return fetch(
-    `https://quiet-depths-54407-77a00505f51e.herokuapp.com/customers/${customerID}`
+    `http://127.0.0.1:8000/customers/${customerID}`
   ).then((response) => {
     if (!response.ok) {
       throw new Error(`${response.status} ${response.statusText}`);
@@ -92,7 +92,7 @@ export function getOneCustomer(customerID: number) {
 
 export function postCustomerOrder(newOrder: any, customerid: string) {
   return fetch(
-    `https://quiet-depths-54407-77a00505f51e.herokuapp.com/customers/${customerid}/preorders/`,
+    `http://127.0.0.1:8000/customers/${customerid}/preorders/`,
     {
       method: "POST",
       headers: {
@@ -112,7 +112,7 @@ export function postCustomerOrder(newOrder: any, customerid: string) {
 
 export function getSelectedCustomerOrders(id: number) {
   return fetch(
-    `https://quiet-depths-54407-77a00505f51e.herokuapp.com/customers/${id}/preorders/`
+    `http://127.0.0.1:8000/customers/${id}/preorders/`
   ).then((response) => {
     if (!response.ok) {
       throw new Error(`${response.status} ${response.statusText}`);
@@ -123,7 +123,7 @@ export function getSelectedCustomerOrders(id: number) {
 
 export function postNewCustomer(newCustomer: any) {
   return fetch(
-    "https://quiet-depths-54407-77a00505f51e.herokuapp.com/customers/",
+    "http://127.0.0.1:8000/customers/",
     {
       method: "POST",
       headers: {
@@ -142,7 +142,7 @@ export function postNewCustomer(newCustomer: any) {
 }
 export function postNewVendor(newVendor: any) {
   return fetch(
-    "https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/",
+    "http://127.0.0.1:8000/vendors/",
     {
       method: "POST",
       headers: {
@@ -162,7 +162,7 @@ export function postNewVendor(newVendor: any) {
 
 export function getSelectedVendorOrders(id: number) {
   return fetch(
-    `https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/${id}/preorders/`
+    `http://127.0.0.1:8000/vendors/${id}/preorders/`
   ).then((response) => {
     if (!response.ok) {
       throw new Error(`${response.status} ${response.statusText}`);
@@ -177,7 +177,7 @@ export function updateVendorItem(
   updatedItem: updatedItem
 ) {
   return fetch(
-    `https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/${vendorid}/items/${id}/`,
+    `http://127.0.0.1:8000/vendors/${vendorid}/items/${id}/`,
     {
       method: "PUT",
       headers: {
@@ -197,7 +197,7 @@ export function updateVendorItem(
 
 export function deleteVendorItem(vendorid: string, id: number) {
   return fetch(
-    `https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/${vendorid}/items/${id}`,
+    `http://127.0.0.1:8000/vendors/${vendorid}/items/${id}`,
     {
       method: "DELETE",
       headers: {
@@ -221,7 +221,7 @@ export function updateItemQuantity(
   newQuantity: ItemQuantity
 ) {
   return fetch(
-    `https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/${vendorId}/items/${itemNum}/`,
+    `http://127.0.0.1:8000/vendors/${vendorId}/items/${itemNum}/`,
     {
       method: "PUT",
       headers: {

@@ -1,0 +1,57 @@
+.error-container {
+  height: 100vh;
+  background-image: linear-gradient(
+      rgba(15, 15, 15, 0.2),
+      rgba(15, 15, 15, 0.6)
+    ),
+    url("../../../public/IMG_3189.jpeg");
+  background-size: cover;
+  background-position: center center; /* Center the background image */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  padding: 5rem;
+  font-family: "Inter";
+}
+
+.error-header {
+  color: white;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.error-mnd {
+  font-size: 6.8rem;
+  font-family: "Inter";
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.error-btns {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+.error-btn {
+  border: none;
+  font-family: "Inter";
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 3.2rem;
+  border-radius: 100rem;
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 1rem 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-btn:hover {
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  transform: scale(1.05);
+}

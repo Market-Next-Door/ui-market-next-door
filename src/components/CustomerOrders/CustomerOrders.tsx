@@ -11,6 +11,7 @@ import { getOneVendor } from "../../apiCalls";
 import { getSelectedVendorsItems } from "../../apiCalls";
 import { NavigationBarProps } from "../NavigationBar/NavigationBar";
 import { ThreeDots } from "react-loader-spinner";
+import { useParams } from "react-router";
 
 type VendorDetails = {
   email: string;
@@ -52,25 +53,18 @@ type CustomerOrderCardProps = {
   };
 };
 function CustomerOrders({ isVendor, currentUserId }: NavigationBarProps) {
+  const { id: paramsId } = useParams<{ id?: string }>();
+
   const [isLoading, setIsLoading] = useState(true);
   const [selectedCustomerOrders, setSelectedCustomerOrders] = useState<
     {
       orderObj: CustomerOrder;
       vendorDetails: VendorDetails;
       customerDetails: CustomerDetails;
-      vendorItems: VendorItem[]; // Fix: Initialize as an empty array
+      vendorItems: VendorItem[];
     }[]
   >([]);
-
-  const selectedCustomerId = 1;
-  // useEffect(() => {
-  //   getSelectedCustomerOrders(selectedCustomerId)
-  //     .then((data) => {
-  //       setSelectedCustomerOrders(data);
-  //       setIsLoading(false);
-  //     })
-  //     .catch((error) => console.log(error));
-  // }, []);
+  const selectedCustomerId = paramsId ? parseInt(paramsId, 10) : 1;
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -105,6 +99,27 @@ function CustomerOrders({ isVendor, currentUserId }: NavigationBarProps) {
     fetchData();
   }, [selectedCustomerId]);
 
+  type User = {
+    first_name?: string;
+  };
+  const [currentUserObj, setCurrentUserObj] = useState<User>({});
+  const customerid = useParams();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (customerid.id !== undefined) {
+          const result = await getOneCustomer(parseInt(customerid.id));
+          setCurrentUserObj(result);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, [customerid]);
+
   return isLoading ? (
     <ThreeDots
       height="80"
@@ -117,7 +132,9 @@ function CustomerOrders({ isVendor, currentUserId }: NavigationBarProps) {
     />
   ) : (
     <div className="vendor-orders-container">
-      <Header name="Sue" />
+      {currentUserObj?.first_name && (
+        <Header name={currentUserObj.first_name} />
+      )}
       <NavigationBar isVendor={isVendor} currentUserId={currentUserId} />
       <div className="vendor-orders-display">
         {selectedCustomerOrders.map((orderData) => {

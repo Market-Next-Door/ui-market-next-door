@@ -6,6 +6,7 @@ import NavigationBar from "../NavigationBar/NavigationBar";
 import { getOneVendor } from "../../apiCalls";
 import { NavigationBarProps } from "../NavigationBar/NavigationBar";
 import { ThreeDots } from "react-loader-spinner";
+import { useParams } from "react-router";
 
 type Vendor = {
   first_name: string;
@@ -26,10 +27,12 @@ export default function VendorSettings({
   const [marketName, setMarketName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [email, setEmail] = useState<string>("");
+
+  const paramsid = useParams();
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const vendorData = await getOneVendor(1);
+        const vendorData = await getOneVendor(Number(paramsid.id) || 0);
         setCurrentVendor(vendorData);
         setFirstName(vendorData?.first_name || "");
         setLastName(vendorData?.last_name || "");

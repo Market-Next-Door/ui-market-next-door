@@ -55,6 +55,7 @@
   transition: transform 0.3s ease-in-out;
   transform: scale(1.05);
 }
+
 .how-it-works-svg {
   height: 5rem;
   width: 5rem;
@@ -89,7 +90,6 @@
   .landing-header {
     font-size: 3rem;
   }
-
   .landing-tagline {
     font-size: 1.4rem;
   }
@@ -112,7 +112,6 @@
   .landing-header {
     font-size: 2rem;
   }
-
   .landing-tagline {
     font-size: 1rem;
   }

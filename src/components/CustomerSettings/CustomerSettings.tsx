@@ -54,12 +54,10 @@ export default function CustomerSettings({
       "Are you sure you want to delete your account? This action is IRREVERSIBLE! AH😬"
     );
     if (confirmed) {
-      console.log("account deleted!");
     }
   }
 
   function handleSaveChanges() {
-    console.log("changes saved!");
     setIsEditable(false);
   }
   return customerSettingsError ? (

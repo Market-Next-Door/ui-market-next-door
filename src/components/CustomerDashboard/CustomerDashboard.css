@@ -1,8 +1,6 @@
 .customer-container {
   height: 100vh;
-
   background-size: cover;
-
   height: 100vh;
   font-family: "Inter";
   color: black;
@@ -21,11 +19,13 @@
   font-weight: bold;
   font-size: 1.4rem;
 }
+
 .products:hover {
   color: white;
   cursor: pointer;
   background-color: #274e13;
 }
+
 .orders {
   border: 0.2rem solid #ce7e00;
   font-family: Inter;
@@ -34,6 +34,7 @@
   font-weight: bold;
   font-size: 1.4rem;
 }
+
 .orders:hover {
   color: white;
   cursor: pointer;
@@ -48,11 +49,13 @@
   font-weight: bold;
   font-size: 1.4rem;
 }
+
 .settings:hover {
   color: white;
   cursor: pointer;
   background-color: #343a40;
 }
+
 .btn {
   border: none;
   padding: 1.5rem 6rem;
@@ -144,8 +147,7 @@
 }
 
 .quantity-order-btn-container {
-  display: flex;
-  
+  display: flex; 
 }
 
 .selected-vendor {
@@ -185,6 +187,7 @@
   font-size: 30px;
   cursor: pointer;
 }
+
 .modal-input-cc {
   width: 40%;
 }
@@ -192,6 +195,7 @@
 .modal-input-cc-ex {
   width: 20%;
 }
+
 .modal-input-cc-cvv {
   width: 20%;
 }
@@ -202,6 +206,7 @@
   align-items: center;
   gap: 2rem;
 }
+
 .invoice-invoice-num {
   font-size: 1.8rem;
 }

@@ -27,10 +27,8 @@
 .vendor-sign-up-input {
   background-color: #ffffffbc;
   border: none;
-  /* text-transform: uppercase; */
   font-size: 1.6rem;
   border-radius: 100rem;
-  /* cursor: pointer; */
   transition: 0.3s;
   padding: 1rem 2rem;
   justify-content: center;
@@ -61,7 +59,6 @@
 .vendor-sign-up-go-back-btn {
   background-color: #ffffffbc;
   border: none;
-  /* text-transform: uppercase; */
   font-size: 1.6rem;
   border-radius: 100rem;
   cursor: pointer;
@@ -76,6 +73,7 @@
   transition: transform 0.3s ease-in-out;
   transform: scale(1.05);
 }
+
 .vendor-sign-up-subtext {
   text-align: center;
   font-size: 2rem;

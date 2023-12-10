@@ -73,11 +73,6 @@ const VendorDashboard = ({
   currentUserId,
 }: VendorDashboardProps) => {
   const { vendorid } = useParams<VendorParams>();
-  console.log(vendorid, 'vendorid');
-
-  console.log('VendorDashboard allItems:', allItems);
-  console.log('VendorDashboard allVendors', allVendors);
-
   const [addItemName, setAddItemName] = useState<string>();
   const [addItemSize, setAddItemSize] = useState<string>();
   const [addItemDetails, setAddItemDetails] = useState<string>();
@@ -104,11 +99,9 @@ const VendorDashboard = ({
       // Check if vendorId is not null
       postVendorItem(vendorid, newItem)
         .then(data => {
-          console.log('newItem:POST data', data);
           setSelectedVendorsItems([...selectedVendorsItems, data]);
         })
         .catch((error) => {
-          console.error("Error posting new item:", error);
           setVendorDashError(error.message);
         });
     } else {

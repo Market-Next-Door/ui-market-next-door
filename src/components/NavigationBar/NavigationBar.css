@@ -21,11 +21,13 @@
   font-weight: bold;
   font-size: 1.4rem;
 }
+
 .products:hover {
   color: white;
   cursor: pointer;
   background-color: #274e13;
 }
+
 .orders {
   border: 0.2rem solid #ce7e00;
   font-family: Inter;
@@ -34,6 +36,7 @@
   font-weight: bold;
   font-size: 1.4rem;
 }
+
 .orders:hover {
   color: white;
   cursor: pointer;
@@ -48,6 +51,7 @@
   font-weight: bold;
   font-size: 1.4rem;
 }
+
 .settings:hover {
   color: white;
   cursor: pointer;
@@ -62,6 +66,7 @@
   font-weight: bold;
   font-size: 1.4rem;
 }
+
 .signout:hover {
   color: white;
   cursor: pointer;

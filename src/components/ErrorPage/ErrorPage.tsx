@@ -9,7 +9,6 @@ type ErrorPageProps = {
 function ErrorPage({ error, message }: ErrorPageProps) {
   const location = useLocation();
   const { someProp } = location.state || {};
-  console.log("SOME PROP", someProp);
   const navigate = useNavigate();
   function navigateToHome() {
     navigate("/");

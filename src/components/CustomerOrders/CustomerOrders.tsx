@@ -146,7 +146,6 @@ function CustomerOrders({ isVendor, currentUserId }: NavigationBarProps) {
       <NavigationBar isVendor={isVendor} currentUserId={currentUserId} />
       <div className="vendor-orders-display">
         {selectedCustomerOrders.map((orderData) => {
-          // console.log("Order Data:", orderData);
           return (
             <CustomerOrderCard key={orderData.orderObj?.id} data={orderData} />
           );

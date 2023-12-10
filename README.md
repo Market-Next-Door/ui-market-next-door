@@ -1,4 +1,6 @@
 # Market Next Door
+![image](https://github.com/Market-Next-Door/ui-market-next-door/assets/125393235/148e0b22-e963-4f5b-8d6b-d9d19d5520ea)
+
 
 Market Next Door is a dynamic application crafted with TypeScript and React on the front end, featuring Cypress for testing. The user interface was designed with both vendor and customer users in mind, taking into consideration their specific needs to create a minimalistic, intuitive, and accessible user experience.
 
@@ -18,25 +20,59 @@ Market Next Door is a dynamic application crafted with TypeScript and React on t
 
 - **Customer Functionalities:**
 
-  - Customers are provided with a range of functionalities to enhance their shopping experience. They can create accounts to browse vendor items, place pre-orders, access detailed invoices, print invoices for their records, and manage their orders with ease.
+  - Customers are provided with a range of functionalities to enhance their shopping experience. They can create accounts to filter and browse through vendor items, place pre-orders, access detailed invoices, print invoices for their records, and manage their orders with ease.
 
 - **Order Management:**
   - Both customers and vendors can access an order management system. They can view and track their orders, access detailed invoices, and print invoices for their records.
+ 
+- ## Preview & Demo Clips
+<details>
+<summary>
+🖼️ Screen Shots
+</summary>
+<div align="center"> 
+
+### Current Customer User Flow
+![image](https://github.com/Market-Next-Door/ui-market-next-door/assets/125393235/0a31eb5b-b970-4bf7-bece-6d8dae7d9758)
+
+![image](https://github.com/Market-Next-Door/ui-market-next-door/assets/125393235/d60dd649-1239-4d59-9c36-60813273a54c)
+
+![image](https://github.com/Market-Next-Door/ui-market-next-door/assets/125393235/f3b13ad5-9e65-480c-a0b2-41fc4b4c8653)
+
+### Current Vendor User Flow
+
+![image](https://github.com/Market-Next-Door/ui-market-next-door/assets/125393235/43809480-fd27-41cf-be20-7045b011329c)
+
+![image](https://github.com/Market-Next-Door/ui-market-next-door/assets/125393235/e2da7f23-9b16-482f-9122-4a326f39df96)
+
+
+
+
+
+
+
+</div>
+</details>
 
 ## Technology Stack
 
 - **Front End:**
 
   - TypeScript
+
     ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 
   - React
-    ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 
-    ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
+     ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+
+
+     ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
 
 - **Testing:**
-  ![cypress](https://img.shields.io/badge/-cypress-%23E5E5E5?style=for-the-badge&logo=cypress&logoColor=058a5e)
+   - Cypress 
+
+     ![cypress](https://img.shields.io/badge/-cypress-%23E5E5E5?style=for-the-badge&logo=cypress&logoColor=058a5e)
 
 # Key Features
 
@@ -63,6 +99,9 @@ Market Next Door is a dynamic application crafted with TypeScript and React on t
 - **Error Handling:**
 
   - Implements effective error handling to enhance user experience.
+ 
+- **Input Field Validation:**
+  - Enhances user empathy and guidance.
 
 - **Component Structure:**
 
@@ -91,3 +130,6 @@ To check out Market Next Door, follow these steps:
 1. Clone the repository.
 2. Install dependencies using `npm install`.
 3. Start the development server with `npm start`.
+
+## Getting Started
+- Add back end info here

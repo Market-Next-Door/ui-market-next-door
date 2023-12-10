@@ -4,7 +4,7 @@ import "./ErrorPage.css";
 type ErrorPageProps = {
   error: string;
   message: string;
-}
+};
 
 function ErrorPage({ error, message }: ErrorPageProps) {
   const location = useLocation();
@@ -20,13 +20,14 @@ function ErrorPage({ error, message }: ErrorPageProps) {
       <h1 className="error-header" cy-test="error-message">
         Am I at the right market? I think I'm lost...
       </h1>
-      <h1 className="error-header" cy-test="error-message">{error}</h1>
-      <h1 className="error-header" cy-test="error-message">{message}</h1>
+      <h1 className="error-header" cy-test="error-message">
+        {error}
+      </h1>
+      <h1 className="error-header" cy-test="error-message">
+        {message}
+      </h1>
       <h1 className="error-mnd">Market Next Door</h1>
       <div>
-        <h1 className="error-header">
-          Hmmm... looks like this page isn't found.
-        </h1>
         <div className="error-btns">
           <button
             id="error-login"

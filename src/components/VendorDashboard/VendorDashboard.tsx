@@ -84,10 +84,22 @@ const VendorDashboard = ({
   const [addQuantityAvailable, setAddQuantityAvailable] = useState<number>();
   const [addItemPrice, setAddItemPrice] = useState<string>();
   const [addItemFile, setAddItemFile] = useState<File | null>(null);
-  const [vendorDashError, setVendorDashError] = useState("")
+  const [vendorDashError, setVendorDashError] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
 
   function addItem(newItem: NewItem) {
+    if (
+      !addItemName ||
+      !addItemPrice ||
+      !addItemSize ||
+      !addQuantityAvailable ||
+      !addItemDetails ||
+      !addItemFile
+    ) {
+      window.alert("Please fill in all the fields!");
+      return;
+    }
+
     if (vendorid) {
       // Check if vendorId is not null
       postVendorItem(vendorid, newItem)
@@ -97,7 +109,7 @@ const VendorDashboard = ({
         })
         .catch((error) => {
           console.error("Error posting new item:", error);
-          setVendorDashError(error.message)
+          setVendorDashError(error.message);
         });
     } else {
       console.error("Vendor ID is not available.");
@@ -117,7 +129,7 @@ const VendorDashboard = ({
         }
       } catch (error: any) {
         console.error("Error fetching data:", error);
-        setVendorDashError(error.message)
+        setVendorDashError(error.message);
       }
     };
 
@@ -199,7 +211,7 @@ const VendorDashboard = ({
           })
           .catch((error) => {
             console.error("Error deleting item:", error);
-            setVendorDashError(error.message)
+            setVendorDashError(error.message);
           });
       } else {
         console.error("Vendor ID is not available for deletion.");
@@ -234,9 +246,12 @@ const VendorDashboard = ({
 
   const dynamicDateLine = getCurrentWeekDates();
 
-  return vendorDashError? (
-    <ErrorPage error={vendorDashError} message="We're experiencing server issues.  Please try again later."/>
-    ) : (
+  return vendorDashError ? (
+    <ErrorPage
+      error={vendorDashError}
+      message="We're experiencing server issues.  Please try again later."
+    />
+  ) : (
     <div className="vendor-container">
       {currentUserObj?.first_name && (
         <Header name={currentUserObj.first_name} />

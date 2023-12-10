@@ -99,3 +99,6 @@ To check out Market Next Door, follow these steps:
 1. Clone the repository.
 2. Install dependencies using `npm install`.
 3. Start the development server with `npm start`.
+
+## Getting Started
+- Add back end info here

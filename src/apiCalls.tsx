@@ -49,14 +49,16 @@ export function getSelectedVendorsItems(id: number) {
 }
 
 export function postVendorItem(id: string, newItem: any) {
+  const formData = new FormData();
+  for(const name in newItem) {
+    formData.append(name, newItem[name]);
+  }
+
   return fetch(
     `https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/${id}/items/`,
     {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newItem),
+      body: formData,
     }
   )
     .then((response) => {

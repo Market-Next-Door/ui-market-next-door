@@ -13,6 +13,7 @@ import {
 
 import { Vendor } from "../VendorLogIn/VendorLogIn";
 import { useParams } from "react-router";
+import ErrorPage from "../ErrorPage/ErrorPage";
 
 type VendorParams = {
   vendorid: string;
@@ -83,6 +84,7 @@ const VendorDashboard = ({
   const [addQuantityAvailable, setAddQuantityAvailable] = useState<number>();
   const [addItemPrice, setAddItemPrice] = useState<string>();
   const [addItemFile, setAddItemFile] = useState<File | null>(null);
+  const [vendorDashError, setVendorDashError] = useState("")
   const formRef = useRef<HTMLFormElement>(null);
 
   function addItem(newItem: NewItem) {
@@ -95,6 +97,7 @@ const VendorDashboard = ({
         })
         .catch((error) => {
           console.error("Error posting new item:", error);
+          setVendorDashError(error.message)
         });
     } else {
       console.error("Vendor ID is not available.");
@@ -112,8 +115,9 @@ const VendorDashboard = ({
           const result = await getOneVendor(parseInt(vendorid));
           setCurrentUserObj(result);
         }
-      } catch (error) {
+      } catch (error: any) {
         console.error("Error fetching data:", error);
+        setVendorDashError(error.message)
       }
     };
 
@@ -175,7 +179,7 @@ const VendorDashboard = ({
           setSelectedVendorsItems(data);
           setIsLoading(false);
         })
-        .catch((error) => console.log(error));
+        .catch((error) => setVendorDashError(error.message));
     }
   }, [selectedVendorId]);
 
@@ -195,6 +199,7 @@ const VendorDashboard = ({
           })
           .catch((error) => {
             console.error("Error deleting item:", error);
+            setVendorDashError(error.message)
           });
       } else {
         console.error("Vendor ID is not available for deletion.");
@@ -229,7 +234,9 @@ const VendorDashboard = ({
 
   const dynamicDateLine = getCurrentWeekDates();
 
-  return (
+  return vendorDashError? (
+    <ErrorPage error={vendorDashError} message="We're experiencing server issues.  Please try again later."/>
+    ) : (
     <div className="vendor-container">
       {currentUserObj?.first_name && (
         <Header name={currentUserObj.first_name} />

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './CustomerSignUp.css';
 import { useNavigate } from 'react-router';
 import { postNewCustomer } from '../../apiCalls';
+import ErrorPage from '../ErrorPage/ErrorPage';
 
 export type newCustomer = {
   customerFirstName: string;
@@ -17,6 +18,7 @@ type CustomerSignUpProps = {
 
 const CustomerSignUp = ({ addCustomer }: CustomerSignUpProps) => {
   const navigate = useNavigate();
+  const [customerSignUpError, setCustomerSignUpError] = useState("")
 
   function handleGoBack() {
     navigate('/');
@@ -36,7 +38,7 @@ const CustomerSignUp = ({ addCustomer }: CustomerSignUpProps) => {
         console.log(data);
         navigate('/customerlogin');
       })
-      .catch(error => console.log(error));
+      .catch(error => setCustomerSignUpError(error.message));
   }
 
   const [customerFirstName, setCustomerFirstName] = useState('');
@@ -45,7 +47,9 @@ const CustomerSignUp = ({ addCustomer }: CustomerSignUpProps) => {
   const [customerPassword, setCustomerPassword] = useState('');
   const [customerPasswordMatch, setCustomerPasswordMatch] = useState('');
 
-  return (
+  return customerSignUpError ? (
+    <ErrorPage error={customerSignUpError} message="We're experiencing server issues.  Please try again later."/>
+    ) : (
     <form className="customer-sign-up-container">
       <h2 className="customer-sign-up-header">MARKET NEXT DOOR</h2>
       <h3 className="customer-sign-up-subtext">CUSTOMER SIGN UP</h3>

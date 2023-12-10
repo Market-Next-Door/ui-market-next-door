@@ -12,6 +12,7 @@ import { getSelectedVendorsItems } from "../../apiCalls";
 import { NavigationBarProps } from "../NavigationBar/NavigationBar";
 import { ThreeDots } from "react-loader-spinner";
 import { useParams } from "react-router";
+import ErrorPage from "../ErrorPage/ErrorPage";
 
 type VendorOrderCardProps = {
   key: number;
@@ -64,6 +65,7 @@ function VendorOrders({ isVendor, currentUserId }: NavigationBarProps) {
       vendorItems: VendorItem[];
     }[]
   >([]);
+  const [vendorOrdersError, setVendorOrdersError] = useState("")
 
   const selectedCustomerId = paramsId ? parseInt(paramsId, 10) : 1;
 
@@ -92,8 +94,9 @@ function VendorOrders({ isVendor, currentUserId }: NavigationBarProps) {
 
         setSelectedVendorOrders(orderVendorCustomerDetails);
         setIsLoading(false);
-      } catch (error) {
+      } catch (error: any) {
         console.error("Error fetching order details:", error);
+        setVendorOrdersError(error.message)
         setIsLoading(false);
       }
     };
@@ -115,15 +118,18 @@ function VendorOrders({ isVendor, currentUserId }: NavigationBarProps) {
           const result = await getOneVendor(parseInt(vendorID.id));
           setCurrentUserObj(result);
         }
-      } catch (error) {
+      } catch (error: any) {
         console.error("Error fetching data:", error);
+        setVendorOrdersError(error.message)
       }
     };
 
     fetchData();
   }, [vendorID]);
 
-  return isLoading ? (
+  return vendorOrdersError ? (
+    <ErrorPage error={vendorOrdersError} message="We're experiencing server issues.  Please try again later."/>
+    ) : isLoading ? (
     <ThreeDots
       height="80"
       width="80"

@@ -12,6 +12,7 @@ import { getSelectedVendorsItems } from "../../apiCalls";
 import { NavigationBarProps } from "../NavigationBar/NavigationBar";
 import { ThreeDots } from "react-loader-spinner";
 import { useParams } from "react-router";
+import ErrorPage from "../ErrorPage/ErrorPage";
 
 type VendorDetails = {
   email: string;
@@ -64,7 +65,9 @@ function CustomerOrders({ isVendor, currentUserId }: NavigationBarProps) {
       vendorItems: VendorItem[];
     }[]
   >([]);
+  const [customerOrdersError, setCustomerOrdersError] = useState("")
   const selectedCustomerId = paramsId ? parseInt(paramsId, 10) : 1;
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -90,8 +93,9 @@ function CustomerOrders({ isVendor, currentUserId }: NavigationBarProps) {
 
         setSelectedCustomerOrders(orderVendorCustomerDetails);
         setIsLoading(false);
-      } catch (error) {
+      } catch (error: any) {
         console.error("Error fetching order details:", error);
+        setCustomerOrdersError(error.message)
         setIsLoading(false);
       }
     };
@@ -112,15 +116,19 @@ function CustomerOrders({ isVendor, currentUserId }: NavigationBarProps) {
           const result = await getOneCustomer(parseInt(customerid.id));
           setCurrentUserObj(result);
         }
-      } catch (error) {
+      } catch (error: any) {
         console.error("Error fetching data:", error);
+        setCustomerOrdersError(error.message)
       }
     };
 
     fetchData();
   }, [customerid]);
 
-  return isLoading ? (
+  return customerOrdersError ? (
+    <ErrorPage error={customerOrdersError} message="We're experiencing server issues.  Please try again later."/>
+    ) : (
+    isLoading ? (
     <ThreeDots
       height="80"
       width="80"
@@ -145,7 +153,7 @@ function CustomerOrders({ isVendor, currentUserId }: NavigationBarProps) {
         })}
       </div>
     </div>
-  );
+  ));
 }
 
 function CustomerOrderCard({ data }: CustomerOrderCardProps) {

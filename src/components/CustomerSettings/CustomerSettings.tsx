@@ -6,6 +6,7 @@ import { getOneCustomer } from "../../apiCalls";
 import { NavigationBarProps } from "../NavigationBar/NavigationBar";
 import { ThreeDots } from "react-loader-spinner";
 import { useParams } from "react-router";
+import ErrorPage from "../ErrorPage/ErrorPage";
 
 type Customer = {
   first_name: string;
@@ -25,6 +26,7 @@ export default function CustomerSettings({
   const [password, setPassword] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const paramsid = useParams();
+  const [customerSettingsError, setCustomerSettingsError] = useState("")
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,8 +38,9 @@ export default function CustomerSettings({
         setPassword(customerData?.password || "");
         setEmail(customerData?.email || "");
         setIsLoading(false);
-      } catch (error) {
+      } catch (error: any) {
         console.error("Error fetching data:", error);
+        setCustomerSettingsError(error.message)
       }
     };
     fetchData();
@@ -59,7 +62,10 @@ export default function CustomerSettings({
     console.log("changes saved!");
     setIsEditable(false);
   }
-  return !currentCustomer ? (
+  return customerSettingsError ? (
+    <ErrorPage error={customerSettingsError} message="We're experiencing server issues.  Please try again later."/>
+    ) : (
+      !currentCustomer ? (
     <ThreeDots
       height="80"
       width="80"
@@ -122,5 +128,5 @@ export default function CustomerSettings({
         </div>
       </div>
     </div>
-  );
+  ));
 }

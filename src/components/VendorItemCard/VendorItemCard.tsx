@@ -3,6 +3,7 @@ import Switch from "react-switch";
 import "./VendorItemCard.css";
 import { useState } from "react";
 import { updateVendorItem } from "../../apiCalls";
+import ErrorPage from "../ErrorPage/ErrorPage";
 // import { VendorDashboardProps, Item } from '../VendorDashboard/VendorDashboard';
 
 type VendorItemCardProps = {
@@ -66,6 +67,7 @@ const VendorItemCard = ({
     checkedAvailablehandleChangeAvailable,
     setCheckedAvailablehandleChangeAvailable,
   ] = useState(availability);
+  const [vendorItemCardError, setVendorItemCardError] = useState("")
 
   const handleChangeAvailable = (newChecked: boolean) => {
     setCheckedAvailablehandleChangeAvailable(newChecked);
@@ -89,10 +91,12 @@ const VendorItemCard = ({
     setIsEditable(false);
     updateVendorItem(vendorid, id, updatedItem)
       .then((data) => console.log(data))
-      .catch((error) => console.log(error));
+      .catch((error) => setVendorItemCardError(error.message));
   };
 
-  return (
+  return vendorItemCardError ? (
+    <ErrorPage error={vendorItemCardError} message="We're experiencing server issues.  Please try again later."/>
+    ) : (
     <div className="vendor-item-card">
       <div className="vendor-item-image">
         <img src={image} alt={itemName} />

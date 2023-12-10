@@ -10,6 +10,7 @@ import { updateItemQuantity } from "../../apiCalls";
 import { useParams } from "react-router";
 import { getOneCustomer } from "../../apiCalls";
 import { NavigationBarProps } from "../NavigationBar/NavigationBar";
+import ErrorPage from "../ErrorPage/ErrorPage";
 
 type Vendor = {
   email: string;
@@ -35,10 +36,12 @@ const CustomerDash = ({
   const customerid = useParams();
 
   const [currentUser, setCurrentUser] = useState();
+  const [customerDashOneCustomerError, setCustomerDashOneCustomerError] = useState("")
+
   useEffect(() => {
-    getOneCustomer(Number(customerid.id)).then((data) => {
-      setCurrentUser(data);
-    });
+    getOneCustomer(Number(customerid.id))
+      .then(data => setCurrentUser(data))
+      .catch(error => setCustomerDashOneCustomerError(error.message))
   }, []);
 
   console.log("CustomerDash allVendors: ", allVendors);
@@ -54,8 +57,9 @@ const CustomerDash = ({
           const result = await getOneCustomer(parseInt(customerid.id));
           setCurrentUserObj(result);
         }
-      } catch (error) {
+      } catch (error: any) {
         console.error("Error fetching data:", error);
+        setCustomerDashOneCustomerError(error.message)
       }
     };
 
@@ -76,6 +80,7 @@ const CustomerDash = ({
     selectedVendorItem[]
   >([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedVendorItemsError, setSelectedVendorItemsError] = useState("")
 
   useEffect(() => {
     if (selectedVendorId !== null) {
@@ -84,7 +89,7 @@ const CustomerDash = ({
           setSelectedVendorsItems(data);
           setIsLoading(false);
         })
-        .catch((error) => console.log(error));
+        .catch(error => setSelectedVendorItemsError(error.message));
     }
   }, [selectedVendorId]);
 
@@ -169,7 +174,9 @@ const CustomerDash = ({
       </p>
     );
 
-  return (
+  return customerDashOneCustomerError || selectedVendorItemsError ? (
+    <ErrorPage error={customerDashOneCustomerError} message="We're experiencing server issues.  Please try again later."/>
+    ) : (
     <div className="customer-container">
       {currentUserObj?.first_name && (
         <Header name={currentUserObj.first_name} />
@@ -265,6 +272,8 @@ const CustomerViewItemCard = ({
   });
 
   const [isModalOpen, setModalOpen] = useState(false);
+  const [postCustomerOrderError, setPostCustomerOrderError] = useState("")
+  const [updateItemQuantityError, setUpdateItemQuantityError] = useState("")
 
   const openModal = () => {
     setModalOpen(true);
@@ -332,7 +341,7 @@ const CustomerViewItemCard = ({
     if (customerid.id) {
       postCustomerOrder(newOrder, customerid.id)
         .then((data) => console.log(data))
-        .catch((error) => console.log(error));
+        .catch(error => setPostCustomerOrderError(error.message));
     }
 
     const newQuantity = {
@@ -345,7 +354,7 @@ const CustomerViewItemCard = ({
           console.log("put quantityData: ", updatedItemData);
           setServerQuantity(newQuantity.quantity);
         })
-        .catch((error) => console.log(error));
+        .catch(error => setUpdateItemQuantityError(error.message));
     } else {
       console.log("Error: selectedVendorObject or its id is null.");
     }
@@ -359,7 +368,9 @@ const CustomerViewItemCard = ({
     setRequestedQuantity(0);
   };
 
-  return (
+  return postCustomerOrderError || updateItemQuantityError ? (
+    <ErrorPage error={postCustomerOrderError} message="We're experiencing server issues.  Please try again later."/>
+    ) : (
     <>
       {selectedVendorObject !== null && availability === true ? (
         <div className="customer-view-item-card">

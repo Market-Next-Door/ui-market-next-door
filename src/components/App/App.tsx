@@ -32,6 +32,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [isVendor, setIsVendor] = useState<boolean>(false);
   const [currentUserId, setCurrentUserId] = useState<string>("");
+  const [appError, setAppError] = useState<string>("")
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,8 +42,9 @@ function App() {
         setAllVendors(vendorsData);
         setAllCustomers(customersData);
         setIsLoading(false);
-      } catch (error) {
+      } catch (error: any) {
         console.error("Error fetching data:", error);
+        setAppError(error.message)
       }
     };
     fetchData();
@@ -56,7 +58,10 @@ function App() {
     setAllVendors([...allVendors, newVendor]);
   }
 
-  return isLoading ? (
+  return appError ? (
+    <ErrorPage error={appError} message="We're experiencing server issues.  Please try again later."/>
+  ) : (
+    isLoading ? (
     <p>Loading...</p>
   ) : (
     <div className="App">
@@ -144,10 +149,10 @@ function App() {
             <VendorSettings isVendor={isVendor} currentUserId={currentUserId} />
           }
         />
-        <Route path="*" element={<ErrorPage />} />
+        <Route path="*" element={<ErrorPage error={appError} message="The page you're looking for doesn't exist, please try a different url."/>} />
       </Routes>
     </div>
-  );
+  ));
 }
 
 export default App;

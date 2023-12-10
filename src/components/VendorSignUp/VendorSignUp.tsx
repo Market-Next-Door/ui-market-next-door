@@ -34,7 +34,11 @@ const VendorSignUp = ({addVendor}: VendorSignUpProps) => {
     };
 
     postNewVendor(newVendor)
-      .then(data => console.log('new vendor data: ', data))
+      .then(data => {
+        console.log('new vendor data: ', data)
+        addVendor(data)
+        navigate('/vendorlogin');
+      })
       .catch(error => console.log(error))
 
     addVendor(newVendor)

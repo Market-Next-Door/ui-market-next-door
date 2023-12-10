@@ -11,6 +11,7 @@ import { getOneVendor } from "../../apiCalls";
 import { getSelectedVendorsItems } from "../../apiCalls";
 import { NavigationBarProps } from "../NavigationBar/NavigationBar";
 import { ThreeDots } from "react-loader-spinner";
+import { useParams } from "react-router";
 
 type VendorOrderCardProps = {
   key: number;
@@ -52,17 +53,19 @@ type CustomerOrder = {
 };
 
 function VendorOrders({ isVendor, currentUserId }: NavigationBarProps) {
+  const { id: paramsId } = useParams<{ id?: string }>();
+
   const [isLoading, setIsLoading] = useState(true);
   const [selectedVendorOrders, setSelectedVendorOrders] = useState<
     {
       orderObj: CustomerOrder;
       vendorDetails: VendorDetails;
       customerDetails: CustomerDetails;
-      vendorItems: VendorItem[]; // Fix: Initialize as an empty array
+      vendorItems: VendorItem[];
     }[]
   >([]);
 
-  const selectedCustomerId = 1;
+  const selectedCustomerId = paramsId ? parseInt(paramsId, 10) : 1;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -98,6 +101,28 @@ function VendorOrders({ isVendor, currentUserId }: NavigationBarProps) {
     fetchData();
   }, [selectedCustomerId]);
 
+  type User = {
+    first_name?: string;
+  };
+  const [currentUserObj, setCurrentUserObj] = useState<User>({});
+
+  const vendorID = useParams();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (vendorID.id !== undefined) {
+          const result = await getOneVendor(parseInt(vendorID.id));
+          setCurrentUserObj(result);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, [vendorID]);
+
   return isLoading ? (
     <ThreeDots
       height="80"
@@ -110,7 +135,9 @@ function VendorOrders({ isVendor, currentUserId }: NavigationBarProps) {
     />
   ) : (
     <div className="vendor-orders-container">
-      <Header name="Sue" />
+      {currentUserObj?.first_name && (
+        <Header name={currentUserObj.first_name} />
+      )}
       <NavigationBar isVendor={isVendor} currentUserId={currentUserId} />
       <div className="vendor-orders-display">
         {selectedVendorOrders.map((orderData) => {

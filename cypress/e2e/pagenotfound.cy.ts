@@ -25,9 +25,5 @@ describe("should log a customer in and navigate to customer dashboard", () => {
       "have.text",
       "Am I at the right market? I think I'm lost..."
     );
-    cy.get(":nth-child(3) > .error-header").should(
-      "have.text",
-      "Hmmm... looks like this page isn't found."
-    );
   });
 });

@@ -1,0 +1,13 @@
+{
+  "id": 39,
+  "item_name": "Garlic",
+  "vendor": 4,
+  "price": "1.89",
+  "size": "Each",
+  "quantity": 250,
+  "availability": true,
+  "description": "Elephant garlic.",
+  "image": "https://market-nextdoor-bucket.s3.amazonaws.com/images/garlic.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS5VC6INVO5MA43PH%2F20231210%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20231210T220634Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=5f059b93bcf5b998788b0f1e7523ebff5041e085894a6ae1bf369099c8ad6c42",
+  "date_created": "2023-12-10T21:04:24.697693Z",
+  "updated_at": "2023-12-10T21:04:24.697706Z"
+}

@@ -246,17 +246,6 @@ const CustomerViewItemCard = ({
 }: CustomerViewItemCardProps) => {
   const customerid = useParams();
 
-  // DONE current date and time
-  // DONE current Vendor info:  name and email
-  // NEED SIGN IN INFO current Customer info:  name and email
-  // DONE pick up date:
-  // DONE pick up time:
-  // DONE Item
-  // DONE size
-  // DONE description
-  // DONE price
-  // DONE quantity
-
   console.log(
     "CustomerViewItemCard selectedVendorObject: ",
     selectedVendorObject

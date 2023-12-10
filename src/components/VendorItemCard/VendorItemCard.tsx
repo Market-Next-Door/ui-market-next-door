@@ -97,7 +97,7 @@ const VendorItemCard = ({
       <div className="vendor-item-image">
         <img src={image} alt={itemName} />
       </div>
-      <div className="item-details">
+      <div className="vendor-item-details">
         <p>
           Name:
           <input

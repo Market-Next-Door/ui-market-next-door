@@ -84,10 +84,22 @@ const VendorDashboard = ({
   const [addQuantityAvailable, setAddQuantityAvailable] = useState<number>();
   const [addItemPrice, setAddItemPrice] = useState<string>();
   const [addItemFile, setAddItemFile] = useState<File | null>(null);
-  const [vendorDashError, setVendorDashError] = useState('');
+  const [vendorDashError, setVendorDashError] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
 
   function addItem(newItem: NewItem) {
+    if (
+      !addItemName ||
+      !addItemPrice ||
+      !addItemSize ||
+      !addQuantityAvailable ||
+      !addItemDetails ||
+      !addItemFile
+    ) {
+      window.alert("Please fill in all the fields!");
+      return;
+    }
+
     if (vendorid) {
       // Check if vendorId is not null
       postVendorItem(vendorid, newItem)
@@ -95,8 +107,8 @@ const VendorDashboard = ({
           console.log('newItem:POST data', data);
           setSelectedVendorsItems([...selectedVendorsItems, data]);
         })
-        .catch(error => {
-          console.error('Error posting new item:', error);
+        .catch((error) => {
+          console.error("Error posting new item:", error);
           setVendorDashError(error.message);
         });
     } else {
@@ -116,7 +128,7 @@ const VendorDashboard = ({
           setCurrentUserObj(result);
         }
       } catch (error: any) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
         setVendorDashError(error.message);
       }
     };
@@ -196,8 +208,8 @@ const VendorDashboard = ({
             );
             setSelectedVendorsItems(updatedItems);
           })
-          .catch(error => {
-            console.error('Error deleting item:', error);
+          .catch((error) => {
+            console.error("Error deleting item:", error);
             setVendorDashError(error.message);
           });
       } else {

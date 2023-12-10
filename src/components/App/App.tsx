@@ -24,7 +24,6 @@ import { Customer } from "../CustomerLogIn/CustomerLogIn";
 import { Vendor } from "../VendorLogIn/VendorLogIn";
 import ErrorPage from "../ErrorPage/ErrorPage";
 
-
 function App() {
   const [allVendors, setAllVendors] = useState<Vendor[]>([]);
   const [allCustomers, setAllCustomers] = useState<Customer[]>([]);

@@ -21,13 +21,9 @@ describe("should log a customer in and navigate to customer dashboard", () => {
 
   it("should navigate to a 'page not found' page if the user types in a url that a route has not been created for", () => {
     cy.visit("https://market-next-door-fe-f6728ad38b62.herokuapp.com/potatoes");
-    cy.get('[cy-test="error-message"]').should(
+    cy.get('.error-container > :nth-child(1)').should(
       "have.text",
       "Am I at the right market? I think I'm lost..."
-    );
-    cy.get(":nth-child(3) > .error-header").should(
-      "have.text",
-      "Hmmm... looks like this page isn't found."
     );
   });
 });

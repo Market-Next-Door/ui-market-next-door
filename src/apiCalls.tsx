@@ -61,7 +61,7 @@ export function postVendorItem(id: string, newItem: any) {
   )
     .then(response => {
       if (!response.ok) {
-        throw new Error('Uh oh, we apologize ANN, something went wrong');
+        throw new Error(`${response.status} ${response.statusText}`);
       }
       return response;
     })
@@ -103,7 +103,7 @@ export function postCustomerOrder(newOrder: any, customerid: string) {
   )
     .then(response => {
       if (!response.ok) {
-        throw new Error('Uh oh, we apologize, something went wrong');
+        throw new Error(`${response.status} ${response.statusText}`);
       }
       return response;
     })
@@ -134,7 +134,7 @@ export function postNewCustomer(newCustomer: any) {
   )
     .then(response => {
       if (!response.ok) {
-        throw new Error('Uh oh, we apologize, something went wrong');
+        throw new Error(`${response.status} ${response.statusText}`);
       }
       return response;
     })
@@ -153,7 +153,7 @@ export function postNewVendor(newVendor: any) {
   )
     .then(response => {
       if (!response.ok) {
-        throw new Error('Uh oh, we apologize, something went wrong');
+        throw new Error(`${response.status} ${response.statusText}`);
       }
       return response;
     })
@@ -188,7 +188,7 @@ export function updateVendorItem(
   )
     .then(response => {
       if (!response.ok) {
-        throw new Error('Uh oh, we apologize ANN, something went wrong');
+        throw new Error(`${response.status} ${response.statusText}`);
       }
       return response;
     })
@@ -232,7 +232,7 @@ export function updateItemQuantity(
   )
     .then(response => {
       if (!response.ok) {
-        throw new Error('Uh oh, we apologize ANN, something went wrong');
+        throw new Error(`${response.status} ${response.statusText}`);
       }
       return response;
     })

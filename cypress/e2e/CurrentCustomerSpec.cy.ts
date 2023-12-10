@@ -43,7 +43,7 @@ describe('should log a customer in and navigate to customer dashboard', () => {
     cy.get("input[name='customerPassword']")
       .type('1234')
       .should('have.value', '1234');
-    cy.get('.customer-login-container > :nth-child(5)').click();
+      cy.get('.customer-login-container > :nth-child(6)').click();
 
     cy.wait('@getOneCustomer');
 

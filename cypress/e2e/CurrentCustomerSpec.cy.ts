@@ -15,7 +15,8 @@ describe('should log a customer in and navigate to customer dashboard', () => {
     ).as('getAllVendors');
 
     // Visit the initial page
-    cy.visit('http://localhost:3000/');
+    // cy.visit('http://localhost:3000/');
+    cy.visit('https://market-next-door-fe-f6728ad38b62.herokuapp.com/');
 
     // Wait for initial data loading intercepts
     cy.wait('@getAllCustomers');
@@ -32,7 +33,10 @@ describe('should log a customer in and navigate to customer dashboard', () => {
 
     // Customer login actions
     cy.get('.landing-btns > :nth-child(2)').click();
-    cy.visit('http://localhost:3000/customerlogin');
+    // cy.visit('http://localhost:3000/customerlogin');
+    cy.visit(
+      'https://market-next-door-fe-f6728ad38b62.herokuapp.com/customerlogin'
+    );
     cy.get("input[name='customerEmail']")
       .type('jj@gmail.com')
       .should('have.value', 'jj@gmail.com');
@@ -44,7 +48,10 @@ describe('should log a customer in and navigate to customer dashboard', () => {
     cy.wait('@getOneCustomer');
 
     // Visit the customer dashboard
-    cy.visit('http://localhost:3000/customerdashboard/1');
+    // cy.visit('http://localhost:3000/customerdashboard/1');
+    cy.visit(
+      'https://market-next-door-fe-f6728ad38b62.herokuapp.com/customerdashboard/1'
+    );
 
     cy.intercept(
       'GET',

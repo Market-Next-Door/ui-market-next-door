@@ -13,11 +13,13 @@ function ErrorPage() {
   return (
     <div className="error-container">
       <h1 className="error-header" cy-test="error-message">
-        Am I lost? Are you lost? Hmmm... this page isn't found.
+        Am I at the right market? I think I'm lost...
       </h1>
       <h1 className="error-mnd">Market Next Door</h1>
       <div>
-        <h1 className="error-header">...Help?</h1>
+        <h1 className="error-header">
+          Hmmm... looks like this page isn't found.
+        </h1>
         <div className="error-btns">
           <button
             id="error-login"

@@ -1,46 +1,93 @@
-# Getting Started with Create React App
+# Market Next Door
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Market Next Door is a dynamic application crafted with TypeScript and React on the front end, featuring Cypress for testing. The user interface was designed with both vendor and customer users in mind, taking into consideration their specific needs to create a minimalistic, intuitive, and accessible user experience.
 
-## Available Scripts
+## Deployed Link (Placeholder)
 
-In the project directory, you can run:
+[Explore Market Next Door - Deployed App](#)
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **User Authentication:**
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+  - Vendors and customers can sign up and log in to access personalized features.
 
-### `npm test`
+- **Vendor Functionalities:**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  - The application allows vendors to efficiently set up and manage their available inventory. Vendors have access to essential features such as adding, editing, and deleting items, providing a flexible and comprehensive inventory management system.
 
-### `npm run build`
+- **Customer Functionalities:**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  - Customers are provided with a range of functionalities to enhance their shopping experience. They can create accounts to browse vendor items, place pre-orders, access detailed invoices, print invoices for their records, and manage their orders with ease.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Order Management:**
+  - Both customers and vendors can access an order management system. They can view and track their orders, access detailed invoices, and print invoices for their records.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Technology Stack
 
-### `npm run eject`
+- **Front End:**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+  - TypeScript
+    ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  - React
+    ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+    ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- **Testing:**
+  ![cypress](https://img.shields.io/badge/-cypress-%23E5E5E5?style=for-the-badge&logo=cypress&logoColor=058a5e)
 
-## Learn More
+# Key Features
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **Complete Type Checking:**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  - Strict type checking with TypeScript ensures code reliability.
+
+- **Multi-Page UX:**
+
+  - Utilizes router for seamless multi-page user experience.
+
+- **CRUD Operations:**
+
+  - Implements CRUD operations for smooth backend communication.
+
+- **Responsive Design:**
+
+  - Ensures a seamless user experience across all screen sizes.
+
+- **Testing:**
+
+  - Thoroughly tested with Cypress to ensure robust functionality.
+
+- **Error Handling:**
+
+  - Implements effective error handling to enhance user experience.
+
+- **Component Structure:**
+
+  - Well-thought-out component structure for maintainability and scalability.
+
+- **Reusable Components:**
+  - Incorporates reusable components to streamline development.
+
+## Team Members
+
+- Ann Hochworter
+
+  - [GitHub](https://github.com/nicolerue)
+
+- Adrian Zabolitzki
+
+  - [GitHub](https://github.com/AHochworter)
+
+- Nicole Rue
+  - [GitHub](https://github.com/ganuza)
+
+## Getting Started
+
+To check out Market Next Door, follow these steps:
+
+1. Clone the repository.
+2. Install dependencies using `npm install`.
+3. Start the development server with `npm start`.

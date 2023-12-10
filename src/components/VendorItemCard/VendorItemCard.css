@@ -15,11 +15,12 @@
   margin-right: 1rem;
 }
 
-.item-details {
+.vendor-item-details {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 1rem;
+  width: 90%;
 }
 
 .item-input {
@@ -68,8 +69,13 @@
   align-items: center;
 }
 
+@media (max-width: 1077px) {
+  .vendor-item-details {
+    flex-wrap: wrap;
+  }
+}
 @media (max-width: 711px) {
-  .item-details {
+  .vendor-item-details {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;

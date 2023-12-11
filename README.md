@@ -52,7 +52,7 @@ Screen Shots
 </div>
 </details>
 
-## Technology Stack
+## Technology Stack - Front End Team
 
 - **Languages & Testing:**
 
@@ -92,11 +92,16 @@ Screen Shots
 - **Reusable Components:**  - Incorporates reusable components to streamline development.
 
 ## Team Members
+### Front End Team
 - Nicole Rue [GitHub](https://github.com/nicolerue) // [LinkedIn](https://linkedin.com/in/nicolerue)
-
 - Adrian Zabolitzki [GitHub](https://github.com/ganuza) // [LinkedIn](https://linkedin.com/in/adrian-zabolitzki/)
-
 - Ann Hochworter [GitHub](https://github.com/ahochworter) // [LinkedIn](https://linkedin.com/in/annhochworter)
+
+### Back End Team
+- Dylan Timmons [GitHub](https://github.com/DylanScotty) // [LinkedIn](https://linkedin.com/in/dylan-timmons/)
+- Ethan Van Gorkom [GitHub](https://github.com/EVanGorkom) // [LinkedIn](https://linkedin.com/in/evangorkom/)
+- Jorja Fleming [GitHub](https://github.com/JorjaF) // [LinkedIn](https://linkedin.com/in/jorjaf/)
+- Kaylee Janes [GitHub](https://github.com/kbug819) // [LinkedIn](https://linkedin.com/in/kaylee-janes/)
 
 ## Getting Started
 

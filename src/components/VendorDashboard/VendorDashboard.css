@@ -1,8 +1,6 @@
 .vendor-container {
   height: 100vh;
-
   background-size: cover;
-
   height: 100vh;
   font-family: 'Inter';
   color: black;
@@ -63,11 +61,13 @@
   font-weight: bold;
   font-size: 1.4rem;
 }
+
 .products:hover {
   color: white;
   cursor: pointer;
   background-color: #274e13;
 }
+
 .orders {
   border: 0.2rem solid #ce7e00;
   font-family: Inter;
@@ -76,6 +76,7 @@
   font-weight: bold;
   font-size: 1.4rem;
 }
+
 .orders:hover {
   color: white;
   cursor: pointer;
@@ -90,6 +91,7 @@
   font-weight: bold;
   font-size: 1.4rem;
 }
+
 .settings:hover {
   color: white;
   cursor: pointer;
@@ -99,6 +101,7 @@
 .edit-changes {
   background-color: #ce7e00;
 }
+
 .vendor-container {
   overflow: scroll;
 }

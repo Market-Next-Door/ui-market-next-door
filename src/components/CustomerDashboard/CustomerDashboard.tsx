@@ -45,7 +45,6 @@ const CustomerDash = ({
       .catch((error) => setCustomerDashOneCustomerError(error.message));
   }, []);
 
-  console.log("CustomerDash allVendors: ", allVendors);
   type User = {
     first_name?: string;
   };
@@ -94,10 +93,6 @@ const CustomerDash = ({
     }
   }, [selectedVendorId]);
 
-  console.log("CustomerDash selectedVendorsItems: ", selectedVendorsItems);
-
-  console.log("CustomerDash selectedVendor: ", selectedVendor);
-
   const filteredVendors = vendors.filter((vendor) =>
     vendor.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -120,15 +115,12 @@ const CustomerDash = ({
       const foundVendorObject = allVendors.find(
         (vendor) => vendor.vendor_name === selectedValue
       );
-      console.log("variable selectedVendor: ", foundVendorObject);
       if (foundVendorObject) {
         setSelectedVendorId(foundVendorObject.id);
         setSelectedVendor(selectedValue !== "default" ? selectedValue : null);
         setSelectedVendorObject(foundVendorObject);
-        console.log("vendor id stored", selectedVendorId);
       }
     }
-    // setSelectedVendor(selectedValue !== "default" ? selectedValue : null);
   };
 
   const handleUpdateQuantity = (itemId: number, updatedQuantity: number) => {
@@ -239,6 +231,7 @@ type CurrentCustomer = {
   first_name: string;
   email: string;
 };
+
 type CustomerViewItemCardProps = {
   availability: boolean;
   id: number;
@@ -266,11 +259,6 @@ const CustomerViewItemCard = ({
 }: CustomerViewItemCardProps) => {
   const customerid = useParams();
 
-  console.log(
-    "CustomerViewItemCard selectedVendorObject: ",
-    selectedVendorObject
-  );
-
   const componentRef = useRef(null);
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
@@ -295,7 +283,6 @@ const CustomerViewItemCard = ({
   const [requestedQuantity, setRequestedQuantity] = useState<number>(0);
 
   useEffect(() => {
-    console.log("serverQuantity has changed:", serverQuantity);
     setServerQuantity(item_quantity);
   }, [item_quantity]);
 
@@ -319,7 +306,6 @@ const CustomerViewItemCard = ({
   };
 
   const currentDateTime: number = Date.now();
-  console.log("currentDateTime: ", currentDateTime);
 
   const getNextSaturday = (orderDate: Date): Date => {
     const daysUntilSaturday = (6 - orderDate.getDay() + 7) % 7;
@@ -341,11 +327,9 @@ const CustomerViewItemCard = ({
       quantity_requested: requestedQuantity,
     };
 
-    console.log("CustomerDash newOrder: ", newOrder);
-
     if (customerid.id) {
       postCustomerOrder(newOrder, customerid.id)
-        .then((data) => console.log(data))
+        // .then((data) => console.log(data))
         .catch((error) => setPostCustomerOrderError(error.message));
     }
 
@@ -356,7 +340,6 @@ const CustomerViewItemCard = ({
     if (selectedVendorObject && selectedVendorObject.id) {
       updateItemQuantity(selectedVendorObject.id, id, newQuantity)
         .then((updatedItemData) => {
-          console.log("put quantityData: ", updatedItemData);
           setServerQuantity(newQuantity.quantity);
         })
         .catch((error) => setUpdateItemQuantityError(error.message));

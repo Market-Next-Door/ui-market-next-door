@@ -37,7 +37,6 @@ const CustomerLogIn = ({
 
   function handleLogin(e: any) {
     e.preventDefault();
-    console.log("allcustomers", allCustomers);
     const validCustomer = allCustomers.find(
       (customer) =>
         customer.email === customerLoginEmail &&

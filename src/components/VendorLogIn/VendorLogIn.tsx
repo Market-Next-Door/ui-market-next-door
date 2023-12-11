@@ -32,7 +32,6 @@ const VendorLogIn = ({
 
   function handleLogin(e: any) {
     e.preventDefault();
-    console.log(allVendors);
     const validUser = allVendors.find(
       (vendor: Vendor) =>
         vendor.email === vendorLoginEmail &&
@@ -40,7 +39,6 @@ const VendorLogIn = ({
     );
 
     if (validUser) {
-      console.log(validUser, "validuser");
       setIsVendor(true);
       setCurrentUserId(validUser.id);
       navigate(`/vendordashboard/${validUser.id}`);

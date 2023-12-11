@@ -64,7 +64,6 @@ export default function VendorSettings({
   }
 
   function handleSaveChanges() {
-    console.log("changes saved!");
     setIsEditable(false);
   }
   return vendorSettingsError ? (

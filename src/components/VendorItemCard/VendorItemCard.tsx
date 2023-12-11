@@ -44,16 +44,7 @@ const VendorItemCard = ({
   vendorid,
   onDelete,
 }: VendorItemCardProps) => {
-  console.log("VendorItemCard props:", {
-    item_name,
-    vendor,
-    price,
-    quantity,
-    size,
-    availability,
-    description,
-    image,
-  });
+ 
   const [isChecked, setIsChecked] = useState(availability);
   const [isEditable, setIsEditable] = useState<boolean>(false);
 
@@ -90,7 +81,7 @@ const VendorItemCard = ({
     };
     setIsEditable(false);
     updateVendorItem(vendorid, id, updatedItem)
-      .then((data) => console.log(data))
+      // .then((data) => console.log(data))
       .catch((error) => setVendorItemCardError(error.message));
   };
 

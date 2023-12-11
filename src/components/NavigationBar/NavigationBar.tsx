@@ -9,7 +9,6 @@ export type NavigationBarProps = {
 };
 
 const NavigationBar = ({ isVendor, currentUserId }: NavigationBarProps) => {
-  console.log("isVendor", isVendor);
   let rootProducts = "";
   isVendor
     ? (rootProducts = `/vendordashboard/${currentUserId}`)

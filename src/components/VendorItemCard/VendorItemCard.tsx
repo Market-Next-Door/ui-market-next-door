@@ -58,7 +58,7 @@ const VendorItemCard = ({
     checkedAvailablehandleChangeAvailable,
     setCheckedAvailablehandleChangeAvailable,
   ] = useState(availability);
-  const [vendorItemCardError, setVendorItemCardError] = useState("")
+  const [vendorItemCardError, setVendorItemCardError] = useState("");
 
   const handleChangeAvailable = (newChecked: boolean) => {
     setCheckedAvailablehandleChangeAvailable(newChecked);
@@ -86,8 +86,11 @@ const VendorItemCard = ({
   };
 
   return vendorItemCardError ? (
-    <ErrorPage error={vendorItemCardError} message="We're experiencing server issues.  Please try again later."/>
-    ) : (
+    <ErrorPage
+      error={vendorItemCardError}
+      message="We're experiencing server issues.  Please try again later."
+    />
+  ) : (
     <div className="vendor-item-card">
       <div className="vendor-item-image">
         <img src={image} alt={itemName} />
@@ -127,7 +130,7 @@ const VendorItemCard = ({
           Details:
           <input
             type="text"
-            className="item-input"
+            className="item-input vendor-view-card-details"
             value={itemDetails}
             onChange={(e) => setItemDetails(e.target.value)}
             readOnly={!isEditable}

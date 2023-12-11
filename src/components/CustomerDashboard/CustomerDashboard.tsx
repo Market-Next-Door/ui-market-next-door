@@ -81,6 +81,7 @@ const CustomerDash = ({
   >([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedVendorItemsError, setSelectedVendorItemsError] = useState("");
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     if (selectedVendorId !== null) {
@@ -149,6 +150,8 @@ const CustomerDash = ({
                 description={item.description}
                 onUpdateQuantity={handleUpdateQuantity}
                 currentUser={currentUser}
+                image={item.image}
+                setMessage={setMessage}
               />
             )
         )
@@ -206,6 +209,16 @@ const CustomerDash = ({
           </div>
         )}
       </section>
+      <p
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: "1.4rem",
+        }}
+      >
+        {message}
+      </p>
       <section className="customer-view-items-display">
         {selectedVendorsItemsCards}
       </section>
@@ -243,6 +256,8 @@ type CustomerViewItemCardProps = {
   selectedVendorObject: Vendor | null;
   onUpdateQuantity: (itemId: number, updatedQuantity: number) => void;
   currentUser?: CurrentCustomer;
+  image: string;
+  setMessage: Function;
 };
 
 const CustomerViewItemCard = ({
@@ -256,6 +271,8 @@ const CustomerViewItemCard = ({
   selectedVendorObject,
   onUpdateQuantity,
   currentUser,
+  image,
+  setMessage,
 }: CustomerViewItemCardProps) => {
   const customerid = useParams();
 
@@ -318,8 +335,6 @@ const CustomerViewItemCard = ({
   const nextSaturday = getNextSaturday(orderDate);
 
   const submitOrder = () => {
-    alert("Order Confirmed!");
-
     const newOrder = {
       customer: customerid.id,
       item: id,
@@ -331,6 +346,13 @@ const CustomerViewItemCard = ({
       postCustomerOrder(newOrder, customerid.id)
         // .then((data) => console.log(data))
         .catch((error) => setPostCustomerOrderError(error.message));
+      closeModal();
+      setMessage(
+        "Your pre-order was recieved! Check out your ORDERS page for details."
+      );
+      setTimeout(() => {
+        setMessage("");
+      }, 3500);
     }
 
     const newQuantity = {
@@ -366,7 +388,7 @@ const CustomerViewItemCard = ({
       {selectedVendorObject !== null && availability === true ? (
         <div className="customer-view-item-card">
           <div className="customer-item-image">
-            <img src="carrots.jpg" alt="Item" />
+            <img src={image} alt={item_name} />
           </div>
           <div className="item-details">
             <p>
@@ -378,7 +400,7 @@ const CustomerViewItemCard = ({
             <p>
               Price: <span>${price}</span>
             </p>
-            <p>
+            <p className="customer-view-card-details">
               Details: <span>{description}</span>
             </p>
 

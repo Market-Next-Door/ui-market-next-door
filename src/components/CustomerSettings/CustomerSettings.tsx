@@ -2,10 +2,14 @@ import React, { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import NavigationBar from "../NavigationBar/NavigationBar";
 import "./CustomerSettings.css";
-import { getOneCustomer } from "../../apiCalls";
+import {
+  deleteCustomer,
+  getOneCustomer,
+  updateCustomerData,
+} from "../../apiCalls";
 import { NavigationBarProps } from "../NavigationBar/NavigationBar";
 import { ThreeDots } from "react-loader-spinner";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import ErrorPage from "../ErrorPage/ErrorPage";
 
 type Customer = {
@@ -26,8 +30,9 @@ export default function CustomerSettings({
   const [password, setPassword] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const paramsid = useParams();
-  const [customerSettingsError, setCustomerSettingsError] = useState("")
+  const [customerSettingsError, setCustomerSettingsError] = useState("");
 
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -40,7 +45,7 @@ export default function CustomerSettings({
         setIsLoading(false);
       } catch (error: any) {
         console.error("Error fetching data:", error);
-        setCustomerSettingsError(error.message)
+        setCustomerSettingsError(error.message);
       }
     };
     fetchData();
@@ -53,17 +58,32 @@ export default function CustomerSettings({
     const confirmed = window.confirm(
       "Are you sure you want to delete your account? This action is IRREVERSIBLE! AH😬"
     );
-    if (confirmed) {
+
+    if (confirmed && paramsid.id !== undefined) {
+      deleteCustomer(Number(paramsid.id));
+      navigate("/");
+      window.location.reload();
     }
   }
 
   function handleSaveChanges() {
+    console.log("changes saved!");
+    const updatedUserData = {
+      first_name: firstName,
+      last_name: lastName,
+      email: email,
+      password: password,
+    };
+    updateCustomerData(Number(paramsid.id), updatedUserData);
+
     setIsEditable(false);
   }
   return customerSettingsError ? (
-    <ErrorPage error={customerSettingsError} message="We're experiencing server issues.  Please try again later."/>
-    ) : (
-      !currentCustomer ? (
+    <ErrorPage
+      error={customerSettingsError}
+      message="We're experiencing server issues.  Please try again later."
+    />
+  ) : !currentCustomer ? (
     <ThreeDots
       height="80"
       width="80"
@@ -126,5 +146,5 @@ export default function CustomerSettings({
         </div>
       </div>
     </div>
-  ));
+  );
 }

@@ -25,10 +25,10 @@ Market Next Door is a dynamic application crafted with TypeScript and React on t
 - **Order Management:**
   - Both customers and vendors can access an order management system. They can view and track their orders, access detailed invoices, and print invoices for their records.
  
-- ## Preview & Demo Clips
+## Preview & Demo Clips
 <details>
 <summary>
-🖼️ Screen Shots
+Screen Shots
 </summary>
 <div align="center"> 
 
@@ -54,23 +54,22 @@ Market Next Door is a dynamic application crafted with TypeScript and React on t
 
 ## Technology Stack
 
-- **Front End:**
+- **Languages & Testing:**
 
-  - TypeScript
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) 
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![cypress](https://img.shields.io/badge/-cypress-%23E5E5E5?style=for-the-badge&logo=cypress&logoColor=058a5e)
+</br>
 
-    ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+- **Tools:**
 
-  - React
+![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
+![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
+![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white)
 
-     ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-
-
-     ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
-
-- **Testing:**
-   - Cypress 
-
-     ![cypress](https://img.shields.io/badge/-cypress-%23E5E5E5?style=for-the-badge&logo=cypress&logoColor=058a5e)
 
 # Key Features
 
@@ -93,11 +92,11 @@ Market Next Door is a dynamic application crafted with TypeScript and React on t
 - **Reusable Components:**  - Incorporates reusable components to streamline development.
 
 ## Team Members
-- [Nicole Rue GitHub](https://github.com/nicolerue) // [LinkedIn](https://linkedin.com/in/nicolerue)
+- Nicole Rue [GitHub](https://github.com/nicolerue) // [LinkedIn](https://linkedin.com/in/nicolerue)
 
-- [Adrian Zabolitzki GitHub](https://github.com/ganuza) // [LinkedIn](https://linkedin.com/in/adrian-zabolitzki/)
+- Adrian Zabolitzki [GitHub](https://github.com/ganuza) // [LinkedIn](https://linkedin.com/in/adrian-zabolitzki/)
 
-- [Ann Hochworter GitHub](https://github.com/ahochworter) // [LinkedIn](https://linkedin.com/in/annhochworter)
+- Ann Hochworter [GitHub](https://github.com/ahochworter) // [LinkedIn](https://linkedin.com/in/annhochworter)
 
 ## Getting Started
 

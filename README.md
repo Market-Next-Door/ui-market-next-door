@@ -91,6 +91,8 @@ Demo Clips
 
 - **CRUD Operations:**  - Implements CRUD operations for smooth backend communication.
 
+- **React Functional Hooks:**  - Leveraging React Hooks to efficiently manage state, improve interactivity (e.g., connecting to the users printer), and optimize navigation, etc.
+
 - **Responsive Design:**  - Ensures a seamless user experience across all screen sizes.
 
 - **Testing:**  - Thoroughly tested with Cypress to ensure robust functionality.
@@ -124,4 +126,5 @@ To check out Market Next Door, follow these steps:
 3. Start the development server with `npm start`.
 
 ## Getting Started
-- Add back end info here
+- [Explore the Back End Repo](https://github.com/Market-Next-Door/market_nextdoor_api)
+

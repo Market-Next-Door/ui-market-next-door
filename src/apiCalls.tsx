@@ -210,7 +210,7 @@ export function updateItemQuantity(
 }
 
 export function deleteVendor(vendorID: number) {
-  return fetch(`${url}/vendors/${vendorID}`, {
+  return fetch(`${url}/vendors/${vendorID}/`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -220,13 +220,13 @@ export function deleteVendor(vendorID: number) {
       if (!response.ok) {
         throw new Error(`${response.status} ${response.statusText}`);
       }
-      return response.json();
+      return response;
     })
     .catch((error) => console.log(error));
 }
 
 export function deleteCustomer(customerID: number) {
-  return fetch(`${url}/customers/${customerID}`, {
+  return fetch(`${url}/customers/${customerID}/`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -236,7 +236,7 @@ export function deleteCustomer(customerID: number) {
       if (!response.ok) {
         throw new Error(`${response.status} ${response.statusText}`);
       }
-      return response.json();
+      return response;
     })
     .catch((error) => console.log(error));
 }

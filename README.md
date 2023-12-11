@@ -74,47 +74,30 @@ Market Next Door is a dynamic application crafted with TypeScript and React on t
 
 # Key Features
 
-- **Complete Type Checking:**
+- **Complete Type Checking:**  - Strict type checking with TypeScript ensures code reliability.
 
-  - Strict type checking with TypeScript ensures code reliability.
+- **Multi-Page UX:**  - Utilizes router for seamless multi-page user experience.
 
-- **Multi-Page UX:**
+- **CRUD Operations:**  - Implements CRUD operations for smooth backend communication.
 
-  - Utilizes router for seamless multi-page user experience.
+- **Responsive Design:**  - Ensures a seamless user experience across all screen sizes.
 
-- **CRUD Operations:**
+- **Testing:**  - Thoroughly tested with Cypress to ensure robust functionality.
 
-  - Implements CRUD operations for smooth backend communication.
-
-- **Responsive Design:**
-
-  - Ensures a seamless user experience across all screen sizes.
-
-- **Testing:**
-
-  - Thoroughly tested with Cypress to ensure robust functionality.
-
-- **Error Handling:**
-
-  - Implements effective error handling to enhance user experience.
+- **Error Handling:**  - Implements effective error handling to enhance user experience.
  
-- **Input Field Validation:**
-  - Enhances user empathy and guidance.
+- **Input Field Validation:**  - Enhances user empathy and guidance.
 
-- **Component Structure:**
+- **Component Structure:**  - Well-thought-out component structure for maintainability and scalability.
 
-  - Well-thought-out component structure for maintainability and scalability.
-
-- **Reusable Components:**
-  - Incorporates reusable components to streamline development.
+- **Reusable Components:**  - Incorporates reusable components to streamline development.
 
 ## Team Members
+- [Nicole Rue GitHub](https://github.com/nicolerue) // [LinkedIn](https://linkedin.com/in/nicolerue)
 
-- [Nicole Rue-GitHub](https://github.com/nicolerue) // [LinkedIn](https://linkedin.com/in/nicolerue)
+- [Adrian Zabolitzki GitHub](https://github.com/ganuza) // [LinkedIn](https://linkedin.com/in/adrian-zabolitzki/)
 
-- [Adrian Zabolitzki-GitHub](https://github.com/ganuza) // [LinkedIn](https://linkedin.com/in/adrian-zabolitzki/)
-
-- [Ann Hochworter-GitHub](https://github.com/ahochworter) // [LinkedIn](https://linkedin.com/in/annhochworter)
+- [Ann Hochworter GitHub](https://github.com/ahochworter) // [LinkedIn](https://linkedin.com/in/annhochworter)
 
 ## Getting Started
 

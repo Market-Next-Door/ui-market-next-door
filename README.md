@@ -110,16 +110,11 @@ Market Next Door is a dynamic application crafted with TypeScript and React on t
 
 ## Team Members
 
-- Ann Hochworter
+- [Nicole Rue-GitHub](https://github.com/nicolerue) // [LinkedIn](https://linkedin.com/in/nicolerue)
 
-  - [GitHub](https://github.com/nicolerue)
+- [Adrian Zabolitzki-GitHub](https://github.com/ganuza) // [LinkedIn](https://linkedin.com.in.adrian-zabolitzki)
 
-- Adrian Zabolitzki
-
-  - [GitHub](https://github.com/AHochworter)
-
-- Nicole Rue
-  - [GitHub](https://github.com/ganuza)
+- [Ann Hochworter-GitHub](https://github.com/ahochworter) // [LinkedIn](https://linkedin.com.in.annhochworter)
 
 ## Getting Started
 

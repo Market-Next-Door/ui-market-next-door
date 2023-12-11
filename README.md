@@ -35,15 +35,13 @@ Market Next Door is a dynamic application crafted with TypeScript and React on t
 ### Current Customer User Flow
 ![image](https://github.com/Market-Next-Door/ui-market-next-door/assets/125393235/0a31eb5b-b970-4bf7-bece-6d8dae7d9758)
 
-![image](https://github.com/Market-Next-Door/ui-market-next-door/assets/125393235/d3c16c22-df80-4d79-ae79-155146a4c0b3)
-
 ![image](https://github.com/Market-Next-Door/ui-market-next-door/assets/125393235/f3b13ad5-9e65-480c-a0b2-41fc4b4c8653)
 
 ### Current Vendor User Flow
 
 ![image](https://github.com/Market-Next-Door/ui-market-next-door/assets/125393235/43809480-fd27-41cf-be20-7045b011329c)
 
-![image](https://github.com/Market-Next-Door/ui-market-next-door/assets/125393235/e2da7f23-9b16-482f-9122-4a326f39df96)
+![image](https://github.com/Market-Next-Door/ui-market-next-door/assets/125393235/d3c16c22-df80-4d79-ae79-155146a4c0b3)
 
 
 

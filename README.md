@@ -25,7 +25,6 @@ Market Next Door is a dynamic application crafted with TypeScript and React on t
 - **Order Management:**
   - Both customers and vendors can access an order management system. They can view and track their orders, access detailed invoices, and print invoices for their records.
  
-## Preview & Demo Clips
 <details>
 <summary>
 Screen Shots
@@ -43,10 +42,23 @@ Screen Shots
 
 ![image](https://github.com/Market-Next-Door/ui-market-next-door/assets/125393235/d3c16c22-df80-4d79-ae79-155146a4c0b3)
 
+</div>
+</details>
+
+<details>
+<summary>
+Demo Clips
+</summary>
+<div align="center"> 
+
+### Current Vendor Login
+![MND-01](https://github.com/Market-Next-Door/ui-market-next-door/assets/125393235/30def911-a7b4-4bb9-be0d-bcd838681bad)
+
+### Add Item from Vendor Dashboard
+![MND-02](https://github.com/Market-Next-Door/ui-market-next-door/assets/125393235/fc504787-4835-4fbf-8e65-a4aa41018f13)
 
 
-
-
+### Customer PreOrder
 
 
 </div>

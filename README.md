@@ -6,7 +6,7 @@ Market Next Door is a dynamic application crafted with TypeScript and React on t
 
 ## Deployed Link (Placeholder)
 
-[Explore Market Next Door - Deployed App](#)
+[Explore Market Next Door - Deployed App](https://market-next-door-fe-f6728ad38b62.herokuapp.com/)
 
 ## Features
 

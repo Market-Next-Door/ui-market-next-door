@@ -62,7 +62,9 @@ export default function CustomerSettings({
     if (confirmed && paramsid.id !== undefined) {
       deleteCustomer(Number(paramsid.id));
       navigate("/");
-      window.location.reload();
+      setTimeout(function () {
+        window.location.reload();
+      }, 500);
     }
   }
 

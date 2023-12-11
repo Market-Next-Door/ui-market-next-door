@@ -62,12 +62,13 @@ export default function VendorSettings({
       console.log("account deleted!");
       deleteVendor(Number(paramsid.id));
       navigate("/");
-      window.location.reload();
+      setTimeout(function () {
+        window.location.reload();
+      }, 500);
     }
   }
 
   function handleSaveChanges() {
-
     const updatedUserData = {
       first_name: firstName,
       last_name: lastName,

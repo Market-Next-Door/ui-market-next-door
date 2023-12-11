@@ -208,3 +208,71 @@ export function updateItemQuantity(
     })
     .then((response) => response.json());
 }
+
+export function deleteVendor(vendorID: number) {
+  return fetch(`${url}/vendors/${vendorID}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`${response.status} ${response.statusText}`);
+      }
+      return response.json();
+    })
+    .catch((error) => console.log(error));
+}
+
+export function deleteCustomer(customerID: number) {
+  return fetch(`${url}/customers/${customerID}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`${response.status} ${response.statusText}`);
+      }
+      return response.json();
+    })
+    .catch((error) => console.log(error));
+}
+
+export function updateCustomerData(userID: number, updatedUserData: any) {
+  console.log("userdata look", updatedUserData);
+  return fetch(`${url}/customers/${userID}/`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(updatedUserData),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`${response.status} ${response.statusText}`);
+      }
+      return response.json();
+    })
+    .catch((error) => console.log(error));
+}
+
+export function updateVendorData(userID: number, updatedUserData: any) {
+  console.log("userdata look", updatedUserData);
+  return fetch(`${url}/vendors/${userID}/`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(updatedUserData),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`${response.status} ${response.statusText}`);
+      }
+      return response.json();
+    })
+    .catch((error) => console.log(error));
+}

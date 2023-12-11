@@ -3,10 +3,10 @@ import "./VendorSettings.css";
 import React, { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import NavigationBar from "../NavigationBar/NavigationBar";
-import { getOneVendor } from "../../apiCalls";
+import { deleteVendor, getOneVendor, updateVendorData } from "../../apiCalls";
 import { NavigationBarProps } from "../NavigationBar/NavigationBar";
 import { ThreeDots } from "react-loader-spinner";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import ErrorPage from "../ErrorPage/ErrorPage";
 
 type Vendor = {
@@ -28,8 +28,8 @@ export default function VendorSettings({
   const [marketName, setMarketName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [email, setEmail] = useState<string>("");
-  const [vendorSettingsError, setVendorSettingsError] = useState("")
-
+  const [vendorSettingsError, setVendorSettingsError] = useState("");
+  const navigate = useNavigate();
   const paramsid = useParams();
   useEffect(() => {
     const fetchData = async () => {
@@ -44,7 +44,7 @@ export default function VendorSettings({
         setIsLoading(false);
       } catch (error: any) {
         console.error("Error fetching data:", error);
-        setVendorSettingsError(error.message)
+        setVendorSettingsError(error.message);
       }
     };
     fetchData();
@@ -60,16 +60,31 @@ export default function VendorSettings({
     );
     if (confirmed) {
       console.log("account deleted!");
+      deleteVendor(Number(paramsid.id));
+      navigate("/");
+      window.location.reload();
     }
   }
 
   function handleSaveChanges() {
     console.log("changes saved!");
+    const updatedUserData = {
+      first_name: firstName,
+      last_name: lastName,
+      email: email,
+      password: password,
+      vendor_name: marketName,
+    };
+    updateVendorData(Number(paramsid.id), updatedUserData);
+
     setIsEditable(false);
   }
   return vendorSettingsError ? (
-    <ErrorPage error={vendorSettingsError} message="We're experiencing server issues.  Please try again later."/>
-    ) : !currentVendor ? (
+    <ErrorPage
+      error={vendorSettingsError}
+      message="We're experiencing server issues.  Please try again later."
+    />
+  ) : !currentVendor ? (
     <ThreeDots
       height="80"
       width="80"

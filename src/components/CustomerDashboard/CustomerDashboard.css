@@ -145,7 +145,6 @@
 
 .quantity-order-btn-container {
   display: flex;
-  
 }
 
 .selected-vendor {
@@ -294,4 +293,22 @@
   .item-details {
     margin: 10%;
   }
+}
+
+.customer-view-card-details {
+  max-height: 5rem;
+  overflow: auto;
+}
+
+.customer-view-card-details::-webkit-scrollbar {
+  width: 12px;
+}
+
+.customer-view-card-details::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 6px;
+}
+
+.customer-view-card-details::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
 }

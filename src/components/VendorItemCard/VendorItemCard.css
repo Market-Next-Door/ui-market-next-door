@@ -81,3 +81,21 @@
     align-items: flex-start;
   }
 }
+
+.vendor-view-card-details {
+  max-height: 5rem;
+  overflow: auto;
+}
+
+.vendor-view-card-details::-webkit-scrollbar {
+  width: 12px;
+}
+
+.vendor-view-card-details::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 6px;
+}
+
+.vendor-view-card-details::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}

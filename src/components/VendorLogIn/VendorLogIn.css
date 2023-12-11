@@ -29,10 +29,10 @@
   font-size: 2rem;
   letter-spacing: 2rem;
 }
+
 .vendor-login-input {
   background-color: #ffffffbc;
   border: none;
-  /* text-transform: uppercase; */
   font-size: 1.6rem;
   border-radius: 100rem;
   transition: 0.3s;
@@ -45,7 +45,6 @@
 .vendor-login-submit-btn {
   background-color: #ffffffbc;
   border: none;
-  /* text-transform: uppercase; */
   font-size: 2rem;
   border-radius: 100rem;
   cursor: pointer;
@@ -66,7 +65,6 @@
 .vendor-login-go-back-btn {
   background-color: #ffffffbc;
   border: none;
-  /* text-transform: uppercase; */
   font-size: 1.6rem;
   border-radius: 100rem;
   cursor: pointer;
@@ -81,6 +79,7 @@
   transition: transform 0.3s ease-in-out;
   transform: scale(1.05);
 }
+
 .vendor-login-text {
   font-size: 2rem;
 }

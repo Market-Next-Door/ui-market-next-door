@@ -58,6 +58,7 @@ export default function CustomerSettings({
     const confirmed = window.confirm(
       "Are you sure you want to delete your account? This action is IRREVERSIBLE! AH😬"
     );
+
     if (confirmed && paramsid.id !== undefined) {
       deleteCustomer(Number(paramsid.id));
       navigate("/");
@@ -74,6 +75,7 @@ export default function CustomerSettings({
       password: password,
     };
     updateCustomerData(Number(paramsid.id), updatedUserData);
+
     setIsEditable(false);
   }
   return customerSettingsError ? (

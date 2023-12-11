@@ -67,7 +67,7 @@ export default function VendorSettings({
   }
 
   function handleSaveChanges() {
-    console.log("changes saved!");
+
     const updatedUserData = {
       first_name: firstName,
       last_name: lastName,
@@ -76,7 +76,6 @@ export default function VendorSettings({
       vendor_name: marketName,
     };
     updateVendorData(Number(paramsid.id), updatedUserData);
-
     setIsEditable(false);
   }
   return vendorSettingsError ? (

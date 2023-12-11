@@ -25,17 +25,14 @@ Market Next Door is a dynamic application crafted with TypeScript and React on t
 - **Order Management:**
   - Both customers and vendors can access an order management system. They can view and track their orders, access detailed invoices, and print invoices for their records.
  
-- ## Preview & Demo Clips
 <details>
 <summary>
-🖼️ Screen Shots
+Screen Shots
 </summary>
 <div align="center"> 
 
 ### Current Customer User Flow
 ![image](https://github.com/Market-Next-Door/ui-market-next-door/assets/125393235/0a31eb5b-b970-4bf7-bece-6d8dae7d9758)
-
-![image](https://github.com/Market-Next-Door/ui-market-next-door/assets/125393235/d60dd649-1239-4d59-9c36-60813273a54c)
 
 ![image](https://github.com/Market-Next-Door/ui-market-next-door/assets/125393235/f3b13ad5-9e65-480c-a0b2-41fc4b4c8653)
 
@@ -43,85 +40,80 @@ Market Next Door is a dynamic application crafted with TypeScript and React on t
 
 ![image](https://github.com/Market-Next-Door/ui-market-next-door/assets/125393235/43809480-fd27-41cf-be20-7045b011329c)
 
-![image](https://github.com/Market-Next-Door/ui-market-next-door/assets/125393235/e2da7f23-9b16-482f-9122-4a326f39df96)
+![image](https://github.com/Market-Next-Door/ui-market-next-door/assets/125393235/d3c16c22-df80-4d79-ae79-155146a4c0b3)
+
+</div>
+</details>
+
+<details>
+<summary>
+Demo Clips
+</summary>
+<div align="center"> 
+
+### Current Vendor Login
+![MND-01](https://github.com/Market-Next-Door/ui-market-next-door/assets/125393235/30def911-a7b4-4bb9-be0d-bcd838681bad)
+
+### Add Item from Vendor Dashboard
+![MND-02](https://github.com/Market-Next-Door/ui-market-next-door/assets/125393235/fc504787-4835-4fbf-8e65-a4aa41018f13)
 
 
-
-
-
+### Customer PreOrder
 
 
 </div>
 </details>
 
-## Technology Stack
+## Technology Stack - Front End Team
 
-- **Front End:**
+- **Languages & Testing:**
 
-  - TypeScript
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) 
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![cypress](https://img.shields.io/badge/-cypress-%23E5E5E5?style=for-the-badge&logo=cypress&logoColor=058a5e)
+</br>
 
-    ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+- **Tools:**
 
-  - React
+![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
+![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
+![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white)
 
-     ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-
-
-     ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
-
-- **Testing:**
-   - Cypress 
-
-     ![cypress](https://img.shields.io/badge/-cypress-%23E5E5E5?style=for-the-badge&logo=cypress&logoColor=058a5e)
 
 # Key Features
 
-- **Complete Type Checking:**
+- **Complete Type Checking:**  - Strict type checking with TypeScript ensures code reliability.
 
-  - Strict type checking with TypeScript ensures code reliability.
+- **Multi-Page UX:**  - Utilizes router for seamless multi-page user experience.
 
-- **Multi-Page UX:**
+- **CRUD Operations:**  - Implements CRUD operations for smooth backend communication.
 
-  - Utilizes router for seamless multi-page user experience.
+- **Responsive Design:**  - Ensures a seamless user experience across all screen sizes.
 
-- **CRUD Operations:**
+- **Testing:**  - Thoroughly tested with Cypress to ensure robust functionality.
 
-  - Implements CRUD operations for smooth backend communication.
-
-- **Responsive Design:**
-
-  - Ensures a seamless user experience across all screen sizes.
-
-- **Testing:**
-
-  - Thoroughly tested with Cypress to ensure robust functionality.
-
-- **Error Handling:**
-
-  - Implements effective error handling to enhance user experience.
+- **Error Handling:**  - Implements effective error handling to enhance user experience.
  
-- **Input Field Validation:**
-  - Enhances user empathy and guidance.
+- **Input Field Validation:**  - Enhances user empathy and guidance.
 
-- **Component Structure:**
+- **Component Structure:**  - Well-thought-out component structure for maintainability and scalability.
 
-  - Well-thought-out component structure for maintainability and scalability.
-
-- **Reusable Components:**
-  - Incorporates reusable components to streamline development.
+- **Reusable Components:**  - Incorporates reusable components to streamline development.
 
 ## Team Members
+### Front End Team
+- Nicole Rue [GitHub](https://github.com/nicolerue) // [LinkedIn](https://linkedin.com/in/nicolerue)
+- Adrian Zabolitzki [GitHub](https://github.com/ganuza) // [LinkedIn](https://linkedin.com/in/adrian-zabolitzki/)
+- Ann Hochworter [GitHub](https://github.com/ahochworter) // [LinkedIn](https://linkedin.com/in/annhochworter)
 
-- Ann Hochworter
-
-  - [GitHub](https://github.com/nicolerue)
-
-- Adrian Zabolitzki
-
-  - [GitHub](https://github.com/AHochworter)
-
-- Nicole Rue
-  - [GitHub](https://github.com/ganuza)
+### Back End Team
+- Dylan Timmons [GitHub](https://github.com/DylanScotty) // [LinkedIn](https://linkedin.com/in/dylan-timmons/)
+- Ethan Van Gorkom [GitHub](https://github.com/EVanGorkom) // [LinkedIn](https://linkedin.com/in/evangorkom/)
+- Jorja Fleming [GitHub](https://github.com/JorjaF) // [LinkedIn](https://linkedin.com/in/jorjaf/)
+- Kaylee Janes [GitHub](https://github.com/kbug819) // [LinkedIn](https://linkedin.com/in/kaylee-janes/)
 
 ## Getting Started
 

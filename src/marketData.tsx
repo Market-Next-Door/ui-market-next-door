@@ -1,4 +1,4 @@
-{
+const farmersMarkets = {
   data: [
     {
       brief_desc: '',
@@ -185,5 +185,7 @@
       term: '',
       updatetime: 'Mar 20th, 2023',
     },
-  ];
-}
+  ],
+};
+
+export default farmersMarkets;

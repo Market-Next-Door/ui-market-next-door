@@ -1,7 +1,7 @@
-import React from "react";
-import "./NavigationBar.css";
-import { NavLink } from "react-router-dom";
-import { useNavigate } from "react-router";
+import React from 'react';
+import './NavigationBar.css';
+import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 export type NavigationBarProps = {
   isVendor: boolean;
@@ -9,25 +9,28 @@ export type NavigationBarProps = {
 };
 
 const NavigationBar = ({ isVendor, currentUserId }: NavigationBarProps) => {
-  let rootProducts = "";
+  let rootProducts = '';
   isVendor
     ? (rootProducts = `/vendordashboard/${currentUserId}`)
     : (rootProducts = `/customerdashboard/${currentUserId}`);
 
-  let rootOrders = "";
+  let rootOrders = '';
   isVendor
     ? (rootOrders = `/vendororders/${currentUserId}`)
     : (rootOrders = `/customerorders/${currentUserId}`);
 
-  let rootSettings = "";
+  let rootSettings = '';
   isVendor
     ? (rootSettings = `/vendorsettings/${currentUserId}`)
     : (rootSettings = `/customersettings/${currentUserId}`);
 
+  let rootMap = '';
+  isVendor ? (rootMap = `/map`) : (rootMap = `/map`);
+
   const navigate = useNavigate();
 
   function handleSignOut() {
-    navigate("/");
+    navigate('/');
     window.location.reload();
   }
 
@@ -39,9 +42,9 @@ const NavigationBar = ({ isVendor, currentUserId }: NavigationBarProps) => {
         style={({ isActive }) => {
           return isActive
             ? {
-                color: "white",
-                backgroundColor: "#274e13",
-                textDecoration: "none",
+                color: 'white',
+                backgroundColor: '#274e13',
+                textDecoration: 'none',
               }
             : {};
         }}
@@ -54,9 +57,9 @@ const NavigationBar = ({ isVendor, currentUserId }: NavigationBarProps) => {
         style={({ isActive }) => {
           return isActive
             ? {
-                color: "white",
-                backgroundColor: "#ce7e00",
-                textDecoration: "none",
+                color: 'white',
+                backgroundColor: '#ce7e00',
+                textDecoration: 'none',
               }
             : {};
         }}
@@ -69,14 +72,29 @@ const NavigationBar = ({ isVendor, currentUserId }: NavigationBarProps) => {
         style={({ isActive }) => {
           return isActive
             ? {
-                color: "white",
-                backgroundColor: "#343a40",
-                textDecoration: "none",
+                color: 'white',
+                backgroundColor: '#343a40',
+                textDecoration: 'none',
               }
             : {};
         }}
       >
         SETTINGS
+      </NavLink>
+      <NavLink
+        className="map btn"
+        to={rootMap}
+        style={({ isActive }) => {
+          return isActive
+            ? {
+                color: 'white',
+                backgroundColor: '#343a40',
+                textDecoration: 'none',
+              }
+            : {};
+        }}
+      >
+        MARKET MAP
       </NavLink>
       <button className="signout btn" onClick={handleSignOut}>
         SIGN OUT

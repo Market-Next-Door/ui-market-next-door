@@ -8,6 +8,7 @@ import 'leaflet/dist/leaflet.css';
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
+import { getMarkets } from '../../apiCalls';
 
 //currently our react-typescript version is not showing the default marker.  Chat-gpt suggested creating a custom one
 const customMarkerIcon: L.Icon = L.icon({
@@ -21,13 +22,24 @@ const customMarkerIcon: L.Icon = L.icon({
 });
 
 //types needed for our state object
-type Market = {
-  listing_name: string;
-  location_x: string;
-  location_y: string;
-  listing_id: string;
-  brief_desc: string;
+type MarketProps = {
+  market_name: string;
+  address: string;
+  lat: string;
+  lon: string;
 };
+
+type selectedMarketProps = [
+  {
+    market_name: string;
+    address: string;
+    lat: string;
+    lon: string;
+    website: string;
+    zipcode: string;
+    phone: string;
+  }
+];
 
 //The newest version of leaflet uses a new hook called useMap
 //This means the center=[lat, long] is no longer valid, nor is the zoom or scrollWheelZoom
@@ -50,16 +62,28 @@ function ConfigureMap({ center, zoom }: MapConfigProps) {
 }
 
 function Map() {
-  console.log('farmersMarkets', farmersMarkets);
+  //   console.log('farmersMarkets', farmersMarkets);
 
-  //use the Market type here as we set our state
-  const [activeMarket, setActiveMarket] = useState<Market | null>(null);
+  const [selectedMarketByZip, setSelectedMarketByZip] =
+    useState<selectedMarketProps | null>(null);
+
+  useEffect(() => {
+    getMarkets()
+      .then(data => {
+        setSelectedMarketByZip(data);
+        console.log('data from API', data);
+      })
+      .catch(error => console.log(error));
+  }, []);
+
+  //use the MarketProps type here as we set our state
+  const [activeMarket, setActiveMarket] = useState<MarketProps | null>(null);
   const navigate = useNavigate();
 
   //variables setting our starting map center and zoom
   //set to Denver Colorado, with zoom that shows all 5 markets from our data file
   const center: [number, number] = [39.7414378, -104.961905];
-  const zoom = 7;
+  const zoom = 11;
 
   return (
     <MapContainer style={{ height: '400px', width: '100%' }}>
@@ -67,42 +91,43 @@ function Map() {
       {activeMarket && (
         <Popup
           position={[
-            Number(activeMarket.location_y), //location_y is the positive number (approx 38)
-            Number(activeMarket.location_x), //location_x is the negative number in our data (approx -107)
+            Number(activeMarket.lon), //location_y is the positive number (approx 38)
+            Number(activeMarket.lat), //location_x is the negative number in our data (approx -107)
           ]}
         >
           <div>
-            <h2>{activeMarket.listing_name}</h2>
-            <p>{activeMarket.brief_desc}</p>
+            <h2>{activeMarket.market_name}</h2>
+            <p>{activeMarket.address}</p>
           </div>
         </Popup>
       )}
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       {/* Had to delete the attribution line of code from the TileLayer, typescript didn't like it at all */}
-      {farmersMarkets.data.map(market => {
-        console.log(
-          `Market: ${market.listing_name}, X: ${market.location_x}, Y: ${market.location_y}`
-        );
-        console.log(
-          `Type of X: ${typeof Number(
-            market.location_x
-          )}, Type of Y: ${typeof Number(market.location_y)}`
-        );
+      {selectedMarketByZip &&
+        selectedMarketByZip.map(market => {
+          console.log(
+            `Market: ${market.market_name}, X: ${market.lat}, Y: ${market.lon}`
+          );
+          console.log(
+            `Type of X: ${typeof Number(
+              market.lat
+            )}, Type of Y: ${typeof Number(market.lon)}`
+          );
 
-        return (
-          <Marker
-            key={market.listing_id}
-            position={[Number(market.location_y), Number(market.location_x)]}
-            icon={customMarkerIcon}
-            eventHandlers={{
-              click: () => {
-                navigate(`/map/${market.listing_name}`);
-                setActiveMarket(market);
-              },
-            }}
-          />
-        );
-      })}
+          return (
+            <Marker
+              key={market.market_name}
+              position={[Number(market.lon), Number(market.lat)]}
+              icon={customMarkerIcon}
+              eventHandlers={{
+                click: () => {
+                  navigate(`/map/${market.market_name}`);
+                  setActiveMarket(market);
+                },
+              }}
+            />
+          );
+        })}
     </MapContainer>
   );
 }

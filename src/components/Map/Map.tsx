@@ -100,13 +100,14 @@ function Map() {
             Number(activeMarket.lat), //location_x is the negative number in our data (approx -107)
           ]}
         >
-          <div>
+          <div style={{overflow: 'hidden'}}>
             <h2>{activeMarket.market_name}</h2>
             <p>{activeMarket.address}</p>
             <p>{activeMarket.phone}</p>
             <a href={activeMarket.website} target="_blank" rel="noopener noreferrer">
               {activeMarket.website}
             </a>
+            <button>Select My Market</button>
           </div>
         </Popup>
       )}

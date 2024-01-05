@@ -152,7 +152,7 @@ export function getSelectedVendorOrders(id: number) {
 
 export function getMarkets() {
   return fetch(
-    `https://quiet-depths-54407-77a00505f51e.herokuapp.com/markets/location/80206/10`
+    `https://quiet-depths-54407-77a00505f51e.herokuapp.com/markets/location/90210/10`
   ).then(response => {
     if (!response.ok) {
       throw new Error(`${response.status} ${response.statusText}`);

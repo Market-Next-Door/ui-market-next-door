@@ -58,6 +58,21 @@
   background-color: #343a40;
 }
 
+.map {
+  border: 0.2rem solid;
+  font-family: Inter;
+  color: #343a40;
+  font-weight: 500;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+.map:hover {
+  color: white;
+  cursor: pointer;
+  background-color: #343a40;
+}
+
 .signout {
   border: 0.2rem solid;
   font-family: Inter;

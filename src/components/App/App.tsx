@@ -1,28 +1,30 @@
-import React, { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
-import { newCustomer } from "../CustomerSignUp/CustomerSignUp";
+import React, { useEffect, useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { newCustomer } from '../CustomerSignUp/CustomerSignUp';
 
-import "./App.css";
+import './App.css';
 import {
   getAllVendors,
   getAllCustomers,
   getAllPreOrders,
-} from "../../apiCalls";
-import LandingPage from "../LandingPage/LandingPage";
-import VendorDashboard from "../VendorDashboard/VendorDashboard";
-import CustomerDash from "../CustomerDashboard/CustomerDashboard";
-import VendorLogIn from "../VendorLogIn/VendorLogIn";
-import VendorSignUp from "../VendorSignUp/VendorSignUp";
-import CustomerLogIn from "../CustomerLogIn/CustomerLogIn";
-import CustomerSignUp from "../CustomerSignUp/CustomerSignUp";
-import VendorOrders from "../VendorOrders/VendorOrders";
-import CustomerOrders from "../CustomerOrders/CustomerOrders";
-import CustomerSettings from "../CustomerSettings/CustomerSettings";
-import VendorSettings from "../VendorSettings/VendorSettings";
-import { NewItem, Item } from "../VendorDashboard/VendorDashboard";
-import { Customer } from "../CustomerLogIn/CustomerLogIn";
-import { Vendor } from "../VendorLogIn/VendorLogIn";
-import ErrorPage from "../ErrorPage/ErrorPage";
+} from '../../apiCalls';
+import LandingPage from '../LandingPage/LandingPage';
+import VendorDashboard from '../VendorDashboard/VendorDashboard';
+import CustomerDash from '../CustomerDashboard/CustomerDashboard';
+import VendorLogIn from '../VendorLogIn/VendorLogIn';
+import VendorSignUp from '../VendorSignUp/VendorSignUp';
+import CustomerLogIn from '../CustomerLogIn/CustomerLogIn';
+import CustomerSignUp from '../CustomerSignUp/CustomerSignUp';
+import VendorOrders from '../VendorOrders/VendorOrders';
+import CustomerOrders from '../CustomerOrders/CustomerOrders';
+import CustomerSettings from '../CustomerSettings/CustomerSettings';
+import VendorSettings from '../VendorSettings/VendorSettings';
+import { NewItem, Item } from '../VendorDashboard/VendorDashboard';
+import { Customer } from '../CustomerLogIn/CustomerLogIn';
+import { Vendor } from '../VendorLogIn/VendorLogIn';
+import Map from '../Map/Map';
+import ErrorPage from '../ErrorPage/ErrorPage';
+import 'leaflet/dist/leaflet.css';
 
 function App() {
   const [allVendors, setAllVendors] = useState<Vendor[]>([]);
@@ -31,8 +33,8 @@ function App() {
   const [allPreOrders, setAllPreOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isVendor, setIsVendor] = useState<boolean>(false);
-  const [currentUserId, setCurrentUserId] = useState<string>("");
-  const [appError, setAppError] = useState<string>("")
+  const [currentUserId, setCurrentUserId] = useState<string>('');
+  const [appError, setAppError] = useState<string>('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,8 +45,8 @@ function App() {
         setAllCustomers(customersData);
         setIsLoading(false);
       } catch (error: any) {
-        console.error("Error fetching data:", error);
-        setAppError(error.message)
+        console.error('Error fetching data:', error);
+        setAppError(error.message);
       }
     };
     fetchData();
@@ -59,9 +61,11 @@ function App() {
   }
 
   return appError ? (
-    <ErrorPage error={appError} message="We're experiencing server issues.  Please try again later."/>
-  ) : (
-    isLoading ? (
+    <ErrorPage
+      error={appError}
+      message="We're experiencing server issues.  Please try again later."
+    />
+  ) : isLoading ? (
     <p>Loading...</p>
   ) : (
     <div className="App">
@@ -149,10 +153,19 @@ function App() {
             <VendorSettings isVendor={isVendor} currentUserId={currentUserId} />
           }
         />
-        <Route path="*" element={<ErrorPage error={appError} message="The page you're looking for doesn't exist, please try a different url."/>} />
+        <Route path="/map" element={<Map />} />
+        <Route
+          path="*"
+          element={
+            <ErrorPage
+              error={appError}
+              message="The page you're looking for doesn't exist, please try a different url."
+            />
+          }
+        />
       </Routes>
     </div>
-  ));
+  );
 }
 
 export default App;

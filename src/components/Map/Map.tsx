@@ -20,6 +20,7 @@ const customMarkerIcon: L.Icon = L.icon({
   shadowSize: [41, 41],
 });
 
+//types needed for our state object
 type Market = {
   listing_name: string;
   location_x: string;
@@ -30,7 +31,8 @@ type Market = {
 
 //The newest version of leaflet uses a new hook called useMap
 //This means the center=[lat, long] is no longer valid, nor is the zoom or scrollWheelZoom
-//Typescript - define the useMap props
+
+//Typescript - define the props that we need for useMap
 type MapConfigProps = {
   center: [number, number];
   zoom: number;
@@ -49,10 +51,15 @@ function ConfigureMap({ center, zoom }: MapConfigProps) {
 
 function Map() {
   console.log('farmersMarkets', farmersMarkets);
+
+  //use the Market type here as we set our state
   const [activeMarket, setActiveMarket] = useState<Market | null>(null);
   const navigate = useNavigate();
+
+  //variables setting our starting map center and zoom
+  //set to Denver Colorado, with zoom that shows all 5 markets from our data file
   const center: [number, number] = [39.7414378, -104.961905];
-  const zoom = 10;
+  const zoom = 7;
 
   return (
     <MapContainer style={{ height: '400px', width: '100%' }}>
@@ -71,6 +78,7 @@ function Map() {
         </Popup>
       )}
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+      {/* Had to delete the attribution line of code from the TileLayer, typescript didn't like it at all */}
       {farmersMarkets.data.map(market => {
         console.log(
           `Market: ${market.listing_name}, X: ${market.location_x}, Y: ${market.location_y}`

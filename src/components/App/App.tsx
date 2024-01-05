@@ -24,6 +24,7 @@ import { Customer } from '../CustomerLogIn/CustomerLogIn';
 import { Vendor } from '../VendorLogIn/VendorLogIn';
 import Map from '../Map/Map';
 import ErrorPage from '../ErrorPage/ErrorPage';
+import 'leaflet/dist/leaflet.css';
 
 function App() {
   const [allVendors, setAllVendors] = useState<Vendor[]>([]);

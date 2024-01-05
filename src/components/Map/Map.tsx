@@ -9,6 +9,7 @@ import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 import { getMarkets } from '../../apiCalls';
+import './Map.css'
 
 //currently our react-typescript version is not showing the default marker.  Chat-gpt suggested creating a custom one
 const customMarkerIcon: L.Icon = L.icon({
@@ -25,6 +26,8 @@ const customMarkerIcon: L.Icon = L.icon({
 type MarketProps = {
   market_name: string;
   address: string;
+  website: string;
+  phone: string;
   lat: string;
   lon: string;
 };
@@ -86,7 +89,9 @@ function Map() {
   const zoom = 11;
 
   return (
-    <MapContainer style={{ height: '400px', width: '100%' }}>
+    <>
+    <h2>Customer Input Form Goes Here</h2>
+    <MapContainer className='map-container'>
       <ConfigureMap center={center} zoom={zoom} />
       {activeMarket && (
         <Popup
@@ -98,6 +103,10 @@ function Map() {
           <div>
             <h2>{activeMarket.market_name}</h2>
             <p>{activeMarket.address}</p>
+            <p>{activeMarket.phone}</p>
+            <a href={activeMarket.website} target="_blank" rel="noopener noreferrer">
+              {activeMarket.website}
+            </a>
           </div>
         </Popup>
       )}
@@ -121,7 +130,7 @@ function Map() {
               icon={customMarkerIcon}
               eventHandlers={{
                 click: () => {
-                  navigate(`/map/${market.market_name}`);
+                  // navigate(`/map/${market.market_name}`);
                   setActiveMarket(market);
                 },
               }}
@@ -129,6 +138,8 @@ function Map() {
           );
         })}
     </MapContainer>
+    </>
+    
   );
 }
 

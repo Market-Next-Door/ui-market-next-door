@@ -64,30 +64,31 @@ function ConfigureMap({ center, zoom }: MapConfigProps) {
   return null;
 }
 
-function Form() {
-  const [zipcode, setZipcode] = useState('')
-  const [radius, setRadius] = useState('')
-  return <>
-    <form>
-      <input
-        type='text'
-        name='zip'
-        placeholder='Enter zipcode'
-        value={zipcode}
-        >
+// function Form() {
+//   const [zipcode, setZipcode] = useState('')
+//   const [radius, setRadius] = useState('')
+//   return <>
+//     <form>
+//       <input
+//         type='text'
+//         name='zip'
+//         placeholder='Enter zipcode'
+//         value={zipcode}
+//         >
 
-      </input>
-      <input
-        type='text'
-        name='radius'
-        placeholder='Enter radius'
-        value={radius}>
-      </input>
-    </form>
+//       </input>
+//       <input
+//         type='text'
+//         name='radius'
+//         placeholder='Enter radius'
+//         value={radius}>
+//       </input>
+//       <button>Search</button>
+//     </form>
     
-  </>
+//   </>
   
-}
+// }
 
 function Map() {
 
@@ -97,12 +98,20 @@ function Map() {
     useState<selectedMarketProps | null>(null);
   const [zipcode, setZipcode] = useState('')
   const [radius, setRadius] = useState('')
-  
+  const [map, setMap] = useState<L.Map | null>(null)
+  const [searchClicked, setSearchClicked] = useState(false)
+
   useEffect(() => {
     getMarkets(zipcode, radius)
       .then(data => {
         setSelectedMarketByZip(data);
         console.log('data from API', data);
+
+        if (data && data.length > 0 && map) {
+          const firstMarket = data[0]
+          map.flyTo([Number(firstMarket.lon), Number(firstMarket.lat)], 13, {duration: 1.5,
+          })
+        }
       })
       .catch(error => console.log(error));
   }, [zipcode, radius]);
@@ -116,7 +125,29 @@ function Map() {
   const center: [number, number] = [39.7414378, -104.961905];
   const zoom = 11;
 
-  
+  const handleSearch = (e:any) => {
+    e.preventDefault()
+    setZipcode(zipcode)
+    setRadius(radius)
+    setSearchClicked(true)
+  }
+
+  function MyComponent() {
+    const map = useMap()
+    setMap(map)
+
+    useEffect(() => {
+      if (searchClicked && selectedMarketByZip && selectedMarketByZip.length > 0 && map) {
+        const firstMarket = selectedMarketByZip[0];
+        map.flyTo([Number(firstMarket.lon), Number(firstMarket.lat)], 11, {
+          duration: 1.5,
+        });
+      }
+    }, [searchClicked, selectedMarketByZip, map]);
+
+    return null
+  }
+
   return (
     <>
       <form>
@@ -125,7 +156,8 @@ function Map() {
           name='zip'
           placeholder='Enter zipcode'
           value={zipcode}
-          onChange={e => setZipcode(e.target.value)}>
+          onChange={e => setZipcode(e.target.value)}
+          >
 
         </input>
         <input
@@ -133,12 +165,16 @@ function Map() {
           name='radius'
           placeholder='Enter radius'
           value={radius}
-          onChange={e => setRadius(e.target.value)}>
+          onChange={e => setRadius(e.target.value)}
+          >
         </input>
+        <button
+        onClick={handleSearch}>Search</button>
       </form>
     
       <MapContainer className='map-container'>
         <ConfigureMap center={center} zoom={zoom} />
+        <MyComponent />
         {activeMarket && (
           <Popup
             position={[

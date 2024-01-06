@@ -64,20 +64,48 @@ function ConfigureMap({ center, zoom }: MapConfigProps) {
   return null;
 }
 
-function Map() {
-  //   console.log('farmersMarkets', farmersMarkets);
+function Form() {
+  const [zipcode, setZipcode] = useState('')
+  const [radius, setRadius] = useState('')
+  return <>
+    <form>
+      <input
+        type='text'
+        name='zip'
+        placeholder='Enter zipcode'
+        value={zipcode}
+        >
 
+      </input>
+      <input
+        type='text'
+        name='radius'
+        placeholder='Enter radius'
+        value={radius}>
+      </input>
+    </form>
+    
+  </>
+  
+}
+
+function Map() {
+
+  //   console.log('farmersMarkets', farmersMarkets);
+  
   const [selectedMarketByZip, setSelectedMarketByZip] =
     useState<selectedMarketProps | null>(null);
-
+  const [zipcode, setZipcode] = useState('')
+  const [radius, setRadius] = useState('')
+  
   useEffect(() => {
-    getMarkets()
+    getMarkets(zipcode, radius)
       .then(data => {
         setSelectedMarketByZip(data);
         console.log('data from API', data);
       })
       .catch(error => console.log(error));
-  }, []);
+  }, [zipcode, radius]);
 
   //use the MarketProps type here as we set our state
   const [activeMarket, setActiveMarket] = useState<MarketProps | null>(null);
@@ -88,59 +116,76 @@ function Map() {
   const center: [number, number] = [39.7414378, -104.961905];
   const zoom = 11;
 
+  
   return (
     <>
-    <h2>Customer Input Form Goes Here</h2>
-    <MapContainer className='map-container'>
-      <ConfigureMap center={center} zoom={zoom} />
-      {activeMarket && (
-        <Popup
-          position={[
-            Number(activeMarket.lon), //location_y is the positive number (approx 38)
-            Number(activeMarket.lat), //location_x is the negative number in our data (approx -107)
-          ]}
-        >
-          <div style={{overflow: 'hidden'}}>
-            <h2>{activeMarket.market_name}</h2>
-            <p>{activeMarket.address}</p>
-            <p>{activeMarket.phone}</p>
-            <a href={activeMarket.website} target="_blank" rel="noopener noreferrer">
-              {activeMarket.website}
-            </a>
-            <button>Select My Market</button>
-          </div>
-        </Popup>
-      )}
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-      {/* Had to delete the attribution line of code from the TileLayer, typescript didn't like it at all */}
-      {selectedMarketByZip &&
-        selectedMarketByZip.map(market => {
-          console.log(
-            `Market: ${market.market_name}, X: ${market.lat}, Y: ${market.lon}`
-          );
-          console.log(
-            `Type of X: ${typeof Number(
-              market.lat
-            )}, Type of Y: ${typeof Number(market.lon)}`
-          );
+      <form>
+        <input
+          type='text'
+          name='zip'
+          placeholder='Enter zipcode'
+          value={zipcode}
+          onChange={e => setZipcode(e.target.value)}>
 
-          return (
-            <Marker
-              key={market.market_name}
-              position={[Number(market.lon), Number(market.lat)]}
-              icon={customMarkerIcon}
-              eventHandlers={{
-                click: () => {
-                  // navigate(`/map/${market.market_name}`);
-                  setActiveMarket(market);
-                },
-              }}
-            />
-          );
-        })}
-    </MapContainer>
-    </>
+        </input>
+        <input
+          type='text'
+          name='radius'
+          placeholder='Enter radius'
+          value={radius}
+          onChange={e => setRadius(e.target.value)}>
+        </input>
+      </form>
     
+      <MapContainer className='map-container'>
+        <ConfigureMap center={center} zoom={zoom} />
+        {activeMarket && (
+          <Popup
+            position={[
+              Number(activeMarket.lon), //location_y is the positive number (approx 38)
+              Number(activeMarket.lat), //location_x is the negative number in our data (approx -107)
+            ]}
+          >
+            <div style={{overflow: 'hidden'}}>
+              <h2>{activeMarket.market_name}</h2>
+              <p>{activeMarket.address}</p>
+              <p>{activeMarket.phone}</p>
+              <a href={activeMarket.website} target="_blank" rel="noopener noreferrer">
+                {activeMarket.website}
+              </a>
+              <button>Select My Market</button>
+            </div>
+          </Popup>
+        )}
+        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        {/* Had to delete the attribution line of code from the TileLayer, typescript didn't like it at all */}
+        {selectedMarketByZip &&
+          selectedMarketByZip.map(market => {
+            console.log(
+              `Market: ${market.market_name}, X: ${market.lat}, Y: ${market.lon}`
+            );
+            console.log(
+              `Type of X: ${typeof Number(
+                market.lat
+              )}, Type of Y: ${typeof Number(market.lon)}`
+            );
+
+            return (
+              <Marker
+                key={market.market_name}
+                position={[Number(market.lon), Number(market.lat)]}
+                icon={customMarkerIcon}
+                eventHandlers={{
+                  click: () => {
+                    // navigate(`/map/${market.market_name}`);
+                    setActiveMarket(market);
+                  },
+                }}
+              />
+            );
+          })}
+      </MapContainer>
+    </>
   );
 }
 

@@ -144,7 +144,10 @@ function Map({selectedZipcode, selectedRadius, addZipAndRadius, isVendor, curren
 
   //variables setting our starting map center and zoom
   //set to Denver Colorado, with zoom that shows all 5 markets from our data file
-  const center: [number, number] = [39.7414378, -104.961905];
+  const center: [number, number] =
+  selectedMarketByZip && selectedMarketByZip.length > 0
+    ? [Number(selectedMarketByZip[0].lon), Number(selectedMarketByZip[0].lat)]
+    : [39.7414378, -104.961905]; // Default to Denver if no market is selected
   const zoom = 11;
 
   const handleSearch = (e:any) => {

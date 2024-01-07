@@ -20,6 +20,8 @@ type VendorParams = {
 };
 
 export type VendorDashboardProps = {
+  selectedZipcode: string;
+  selectedRadius: string;
   allVendors: Vendor[];
   allItems: Item[];
   isVendor: boolean;
@@ -66,6 +68,8 @@ type selectedVendorItem = {
   updated_at: string;
 };
 const VendorDashboard = ({
+  selectedZipcode,
+  selectedRadius,
   allItems,
   allVendors,
   isVendor,
@@ -248,7 +252,7 @@ const VendorDashboard = ({
       {currentUserObj?.first_name && (
         <Header name={currentUserObj.first_name} />
       )}
-      <NavigationBar isVendor={isVendor} currentUserId={currentUserId} />
+      <NavigationBar selectedZipcode={selectedZipcode} selectedRadius={selectedRadius} isVendor={isVendor} currentUserId={currentUserId} />
       <form className="add-item-form" ref={formRef}>
         <input
           className="add-item-item-name"

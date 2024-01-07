@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { MapContainer, TileLayer, useMap, Marker, Popup } from 'react-leaflet';
 import farmersMarkets from '../../marketData';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { useState } from 'react';
 import * as L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -102,19 +102,27 @@ function ConfigureMap({ center, zoom }: MapConfigProps) {
   
 // }
 
+
+
+
 function Map({selectedZipcode, selectedRadius, addZipAndRadius, isVendor, currentUserId}:MapProps) {
   console.log('selectedZipcode: ', selectedZipcode)
   //   console.log('farmersMarkets', farmersMarkets);
-  
+  const urlZipRadius = useParams()
+  console.log('urlZipRadius: ',urlZipRadius)
+  const urlZip = urlZipRadius.zip
+  const urlRadius = urlZipRadius.radius
   const [selectedMarketByZip, setSelectedMarketByZip] =
     useState<selectedMarketProps | null>(null);
   const [zipcode, setZipcode] = useState('')
   const [radius, setRadius] = useState('')
   const [map, setMap] = useState<L.Map | null>(null)
   const [searchClicked, setSearchClicked] = useState(false)
+ 
 
   useEffect(() => {
-    getMarkets(selectedZipcode, selectedRadius)
+    if(urlZip !== undefined && urlRadius !== undefined) {
+      getMarkets(urlZip, urlRadius)
       .then(data => {
         setSelectedMarketByZip(data);
         console.log('data from API', data);
@@ -126,7 +134,9 @@ function Map({selectedZipcode, selectedRadius, addZipAndRadius, isVendor, curren
         }
       })
       .catch(error => console.log(error));
-  }, [selectedZipcode, selectedRadius]);
+    }
+    
+  }, [urlZip, urlRadius, searchClicked, map]);
 
   //use the MarketProps type here as we set our state
   const [activeMarket, setActiveMarket] = useState<MarketProps | null>(null);
@@ -143,11 +153,12 @@ function Map({selectedZipcode, selectedRadius, addZipAndRadius, isVendor, curren
     // setRadius(radius)
     addZipAndRadius(zipcode, radius)
     setSearchClicked(true)
+    navigate(`/map/${zipcode}/${radius}`)
   }
 
   function MyComponent() {
     const map = useMap()
-    setMap(map)
+    // setMap(map)
 
     useEffect(() => {
       if (searchClicked && selectedMarketByZip && selectedMarketByZip.length > 0 && map) {
@@ -163,7 +174,7 @@ function Map({selectedZipcode, selectedRadius, addZipAndRadius, isVendor, curren
 
   return (
     <>
-      <NavigationBar isVendor={isVendor} currentUserId={currentUserId} />
+      <NavigationBar selectedZipcode={selectedZipcode} selectedRadius={selectedRadius} isVendor={isVendor} currentUserId={currentUserId} />
       <form>
         <input
           type='text'

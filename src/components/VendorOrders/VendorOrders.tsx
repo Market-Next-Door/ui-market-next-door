@@ -53,7 +53,7 @@ type CustomerOrder = {
   item_name: string;
 };
 
-function VendorOrders({ isVendor, currentUserId }: NavigationBarProps) {
+function VendorOrders({ selectedZipcode, selectedRadius, isVendor, currentUserId }: NavigationBarProps) {
   const { id: paramsId } = useParams<{ id?: string }>();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -144,7 +144,7 @@ function VendorOrders({ isVendor, currentUserId }: NavigationBarProps) {
       {currentUserObj?.first_name && (
         <Header name={currentUserObj.first_name} />
       )}
-      <NavigationBar isVendor={isVendor} currentUserId={currentUserId} />
+      <NavigationBar selectedZipcode={selectedZipcode} selectedRadius={selectedRadius} isVendor={isVendor} currentUserId={currentUserId} />
       <div className="vendor-orders-display">
         {selectedVendorOrders.map((orderData) => {
           return (

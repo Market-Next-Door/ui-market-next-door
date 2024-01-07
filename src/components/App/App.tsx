@@ -35,8 +35,8 @@ function App() {
   const [isVendor, setIsVendor] = useState<boolean>(false);
   const [currentUserId, setCurrentUserId] = useState<string>('');
   const [appError, setAppError] = useState<string>('');
-  const [selectedZipcode, setSelectedZipcode] = useState<string>('')
-  const [selectedRadius, setSelectedRadius] = useState<string>('')
+  const [selectedZipcode, setSelectedZipcode] = useState<string>('80206')
+  const [selectedRadius, setSelectedRadius] = useState<string>('10')
 
   useEffect(() => {
     const fetchData = async () => {
@@ -82,6 +82,8 @@ function App() {
           path="/vendorlogin"
           element={
             <VendorLogIn
+              selectedZipcode={selectedZipcode}
+              selectedRadius={selectedRadius}
               allVendors={allVendors}
               allItems={allItems}
               isVendor={isVendor}
@@ -113,6 +115,7 @@ function App() {
           path="/vendordashboard/:vendorid"
           element={
             <VendorDashboard
+              selectedZipcode={selectedZipcode} selectedRadius={selectedRadius}
               allItems={allItems}
               allVendors={allVendors}
               isVendor={isVendor}
@@ -126,6 +129,8 @@ function App() {
           path="/customerdashboard/:id"
           element={
             <CustomerDash
+              selectedZipcode={selectedZipcode}
+              selectedRadius={selectedRadius}
               allVendors={allVendors}
               isVendor={isVendor}
               currentUserId={currentUserId}
@@ -136,19 +141,29 @@ function App() {
         <Route
           path="/vendororders/:id"
           element={
-            <VendorOrders isVendor={isVendor} currentUserId={currentUserId} />
+            <VendorOrders
+              selectedZipcode={selectedZipcode}
+              selectedRadius={selectedRadius}
+              isVendor={isVendor} 
+              currentUserId={currentUserId} />
           }
         />
         <Route
           path="/customerorders/:id"
           element={
-            <CustomerOrders isVendor={isVendor} currentUserId={currentUserId} />
+            <CustomerOrders
+              selectedZipcode={selectedZipcode}
+              selectedRadius={selectedRadius}
+              isVendor={isVendor} 
+              currentUserId={currentUserId} />
           }
         />
         <Route
           path="/customersettings/:id"
           element={
             <CustomerSettings
+              selectedZipcode={selectedZipcode}
+              selectedRadius={selectedRadius}
               isVendor={isVendor}
               currentUserId={currentUserId}
             />
@@ -157,10 +172,14 @@ function App() {
         <Route
           path="/vendorsettings/:id"
           element={
-            <VendorSettings isVendor={isVendor} currentUserId={currentUserId} />
+            <VendorSettings
+              selectedZipcode={selectedZipcode}
+              selectedRadius={selectedRadius}
+              isVendor={isVendor} 
+              currentUserId={currentUserId} />
           }
         />
-        <Route path="/map" element={<Map
+        <Route path="/map/:zip/:radius" element={<Map
               addZipAndRadius={addZipAndRadius}
               selectedZipcode={selectedZipcode}
               selectedRadius={selectedRadius}

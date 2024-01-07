@@ -17,6 +17,8 @@ type Vendor = {
   vendor_name: string;
 };
 export default function VendorSettings({
+  selectedZipcode,
+  selectedRadius,
   isVendor,
   currentUserId,
 }: NavigationBarProps) {
@@ -97,7 +99,7 @@ export default function VendorSettings({
   ) : (
     <div className="customer-settings-container">
       <Header name={firstName} />
-      <NavigationBar isVendor={isVendor} currentUserId={currentUserId} />
+      <NavigationBar selectedZipcode={selectedZipcode} selectedRadius={selectedRadius} isVendor={isVendor} currentUserId={currentUserId} />
       <div className="account-box">
         <p className="my-account-info">
           First name:

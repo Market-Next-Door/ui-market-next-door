@@ -19,6 +19,8 @@ type Customer = {
   password: string;
 };
 export default function CustomerSettings({
+  selectedZipcode,
+  selectedRadius,
   isVendor,
   currentUserId,
 }: NavigationBarProps) {
@@ -98,7 +100,7 @@ export default function CustomerSettings({
   ) : (
     <div className="customer-settings-container">
       <Header name={firstName} />
-      <NavigationBar isVendor={isVendor} currentUserId={currentUserId} />
+      <NavigationBar selectedZipcode={selectedZipcode} selectedRadius={selectedRadius} isVendor={isVendor} currentUserId={currentUserId} />
       <div className="account-box">
         <p className="my-account-info">
           First name:

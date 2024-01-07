@@ -23,12 +23,15 @@ type Vendor = {
 };
 
 export type CustomerDashboardProps = {
+  selectedZipcode: string;
+  selectedRadius: string;
   allVendors: Vendor[];
   isVendor: boolean;
   currentUserId: string;
 };
 
 const CustomerDash = ({
+  selectedZipcode, selectedRadius,
   allVendors,
   isVendor,
   currentUserId,
@@ -181,7 +184,7 @@ const CustomerDash = ({
       {currentUserObj?.first_name && (
         <Header name={currentUserObj.first_name} />
       )}
-      <NavigationBar isVendor={isVendor} currentUserId={currentUserId} />
+      <NavigationBar selectedZipcode={selectedZipcode} selectedRadius={selectedRadius} isVendor={isVendor} currentUserId={currentUserId} />
       <section className="customer-find-vendor">
         <input
           name="search-input"

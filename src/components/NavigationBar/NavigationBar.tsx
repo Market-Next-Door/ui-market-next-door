@@ -4,11 +4,13 @@ import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 
 export type NavigationBarProps = {
+  selectedZipcode: string;
+  selectedRadius: string;
   isVendor: boolean;
   currentUserId: string;
 };
 
-const NavigationBar = ({ isVendor, currentUserId }: NavigationBarProps) => {
+const NavigationBar = ({ selectedZipcode, selectedRadius, isVendor, currentUserId }: NavigationBarProps) => {
   let rootProducts = '';
   isVendor
     ? (rootProducts = `/vendordashboard/${currentUserId}`)
@@ -25,7 +27,9 @@ const NavigationBar = ({ isVendor, currentUserId }: NavigationBarProps) => {
     : (rootSettings = `/customersettings/${currentUserId}`);
 
   let rootMap = '';
-  isVendor ? (rootMap = `/map`) : (rootMap = `/map`);
+  isVendor 
+    ? (rootMap = `/map/${selectedZipcode}/${selectedRadius}`)
+    : (rootMap = `/map/${selectedZipcode}/${selectedRadius}`);
 
   const navigate = useNavigate();
 

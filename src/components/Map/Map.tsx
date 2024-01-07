@@ -9,6 +9,7 @@ import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 import { getMarkets } from '../../apiCalls';
+import NavigationBar from '../NavigationBar/NavigationBar';
 import './Map.css'
 
 //currently our react-typescript version is not showing the default marker.  Chat-gpt suggested creating a custom one
@@ -44,6 +45,17 @@ type selectedMarketProps = [
   }
 ];
 
+export type MapProps = {
+  // allVendors: Vendor[];
+  // allItems: Item[];
+  isVendor: boolean;
+  // setIsVendor: Function;
+  // setCurrentUserId: Function;
+  currentUserId: string;
+  addZipAndRadius: Function;
+  selectedZipcode: string;
+  selectedRadius: string;
+};
 //The newest version of leaflet uses a new hook called useMap
 //This means the center=[lat, long] is no longer valid, nor is the zoom or scrollWheelZoom
 
@@ -90,8 +102,8 @@ function ConfigureMap({ center, zoom }: MapConfigProps) {
   
 // }
 
-function Map() {
-
+function Map({selectedZipcode, selectedRadius, addZipAndRadius, isVendor, currentUserId}:MapProps) {
+  console.log('selectedZipcode: ', selectedZipcode)
   //   console.log('farmersMarkets', farmersMarkets);
   
   const [selectedMarketByZip, setSelectedMarketByZip] =
@@ -102,7 +114,7 @@ function Map() {
   const [searchClicked, setSearchClicked] = useState(false)
 
   useEffect(() => {
-    getMarkets(zipcode, radius)
+    getMarkets(selectedZipcode, selectedRadius)
       .then(data => {
         setSelectedMarketByZip(data);
         console.log('data from API', data);
@@ -114,7 +126,7 @@ function Map() {
         }
       })
       .catch(error => console.log(error));
-  }, [zipcode, radius]);
+  }, [selectedZipcode, selectedRadius]);
 
   //use the MarketProps type here as we set our state
   const [activeMarket, setActiveMarket] = useState<MarketProps | null>(null);
@@ -127,8 +139,9 @@ function Map() {
 
   const handleSearch = (e:any) => {
     e.preventDefault()
-    setZipcode(zipcode)
-    setRadius(radius)
+    // setZipcode(zipcode)
+    // setRadius(radius)
+    addZipAndRadius(zipcode, radius)
     setSearchClicked(true)
   }
 
@@ -150,6 +163,7 @@ function Map() {
 
   return (
     <>
+      <NavigationBar isVendor={isVendor} currentUserId={currentUserId} />
       <form>
         <input
           type='text'

@@ -35,6 +35,8 @@ function App() {
   const [isVendor, setIsVendor] = useState<boolean>(false);
   const [currentUserId, setCurrentUserId] = useState<string>('');
   const [appError, setAppError] = useState<string>('');
+  const [selectedZipcode, setSelectedZipcode] = useState<string>('')
+  const [selectedRadius, setSelectedRadius] = useState<string>('')
 
   useEffect(() => {
     const fetchData = async () => {
@@ -58,6 +60,11 @@ function App() {
 
   function addVendor(newVendor: Vendor) {
     setAllVendors([...allVendors, newVendor]);
+  }
+
+  function addZipAndRadius(zipcode:string, radius:string) {
+    setSelectedZipcode(zipcode)
+    setSelectedRadius(radius)
   }
 
   return appError ? (
@@ -153,7 +160,12 @@ function App() {
             <VendorSettings isVendor={isVendor} currentUserId={currentUserId} />
           }
         />
-        <Route path="/map" element={<Map />} />
+        <Route path="/map" element={<Map
+              addZipAndRadius={addZipAndRadius}
+              selectedZipcode={selectedZipcode}
+              selectedRadius={selectedRadius}
+              isVendor={isVendor}
+              currentUserId={currentUserId}/>} />
         <Route
           path="*"
           element={

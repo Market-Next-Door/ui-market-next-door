@@ -127,7 +127,13 @@ function Map({
     setSearchClicked(true);
     navigate(`/map/${zipcode}/${radius}`);
     setHeaderText('Search Results');
+    clearInputs()
   };
+
+  const clearInputs = () => {
+    setZipcode('')
+    setRadius('')
+  }
 
   function MyComponent() {
     const map = useMap();

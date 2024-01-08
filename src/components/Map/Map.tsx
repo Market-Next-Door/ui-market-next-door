@@ -121,13 +121,26 @@ function Map({
       : [39.7414378, -104.961905]; // Default to Denver if no market is selected
   const zoom = 11;
 
+  const [errorMessage, setErrorMessage] = useState('')
+
   const handleSearch = (e: any) => {
     e.preventDefault();
+    if (zipcode === '' || radius === '') {
+      setErrorMessage('Please fill in all fields.');
+
+      setTimeout(() => {
+      setErrorMessage('');
+    }, 3000);
+
+      return;
+    }
+    
     addZipAndRadius(zipcode, radius);
     setSearchClicked(true);
     navigate(`/map/${zipcode}/${radius}`);
     setHeaderText('Search Results');
     clearInputs()
+    setErrorMessage('')
   };
 
   const clearInputs = () => {
@@ -183,6 +196,7 @@ function Map({
         ></input>
         <button className='map-form-button' onClick={handleSearch}>Search</button>
       </form>
+      <p className='error-message'>{errorMessage}</p>
 
       <MapContainer className="map-container">
         <ConfigureMap center={center} zoom={zoom} />

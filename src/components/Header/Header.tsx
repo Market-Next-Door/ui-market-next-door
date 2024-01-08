@@ -1,11 +1,16 @@
-import React from "react";
-import "./Header.css";
+import React from 'react';
+import './Header.css';
 
 type HeaderProps = {
   name: string;
-}
-const Header = ({name}: HeaderProps) => {
-  return <div className="mnd-header">Welcome, {name}!</div>;
+  greeting?: string;
+};
+const Header = ({ name, greeting }: HeaderProps) => {
+  return (
+    <div className="mnd-header">
+      {greeting} {name}!
+    </div>
+  );
 };
 
 export default Header;

@@ -83,7 +83,7 @@ const VendorDashboard = ({
   const [addQuantityAvailable, setAddQuantityAvailable] = useState<number>();
   const [addItemPrice, setAddItemPrice] = useState<string>();
   const [addItemFile, setAddItemFile] = useState<File | null>(null);
-  const [vendorDashError, setVendorDashError] = useState("");
+  const [vendorDashError, setVendorDashError] = useState('');
   const formRef = useRef<HTMLFormElement>(null);
 
   function addItem(newItem: NewItem) {
@@ -95,7 +95,7 @@ const VendorDashboard = ({
       !addItemDetails ||
       !addItemFile
     ) {
-      window.alert("Please fill in all the fields!");
+      window.alert('Please fill in all the fields!');
       return;
     }
 
@@ -105,7 +105,7 @@ const VendorDashboard = ({
         .then(data => {
           setSelectedVendorsItems([...selectedVendorsItems, data]);
         })
-        .catch((error) => {
+        .catch(error => {
           setVendorDashError(error.message);
         });
     } else {
@@ -125,7 +125,7 @@ const VendorDashboard = ({
           setCurrentUserObj(result);
         }
       } catch (error: any) {
-        console.error("Error fetching data:", error);
+        console.error('Error fetching data:', error);
         setVendorDashError(error.message);
       }
     };
@@ -205,8 +205,8 @@ const VendorDashboard = ({
             );
             setSelectedVendorsItems(updatedItems);
           })
-          .catch((error) => {
-            console.error("Error deleting item:", error);
+          .catch(error => {
+            console.error('Error deleting item:', error);
             setVendorDashError(error.message);
           });
       } else {
@@ -250,9 +250,14 @@ const VendorDashboard = ({
   ) : (
     <div className="vendor-container">
       {currentUserObj?.first_name && (
-        <Header name={currentUserObj.first_name} />
+        <Header greeting="Welcome" name={currentUserObj.first_name} />
       )}
-      <NavigationBar selectedZipcode={selectedZipcode} selectedRadius={selectedRadius} isVendor={isVendor} currentUserId={currentUserId} />
+      <NavigationBar
+        selectedZipcode={selectedZipcode}
+        selectedRadius={selectedRadius}
+        isVendor={isVendor}
+        currentUserId={currentUserId}
+      />
       <form className="add-item-form" ref={formRef}>
         <input
           className="add-item-item-name"

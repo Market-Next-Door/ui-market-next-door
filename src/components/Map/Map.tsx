@@ -90,7 +90,9 @@ function Map({
   const [radius, setRadius] = useState('');
   const [map, setMap] = useState<L.Map | null>(null);
   const [searchClicked, setSearchClicked] = useState(false);
-  const [currentUserObj, setCurrentUserObj] = useState<User>({});
+  const [headerText, setHeaderText] = useState(
+    'Please Select A Zipcode and Radius'
+  );
 
   useEffect(() => {
     if (urlZip !== undefined && urlRadius !== undefined) {
@@ -124,6 +126,7 @@ function Map({
     addZipAndRadius(zipcode, radius);
     setSearchClicked(true);
     navigate(`/map/${zipcode}/${radius}`);
+    setHeaderText('Search Results');
   };
 
   function MyComponent() {
@@ -148,7 +151,7 @@ function Map({
 
   return (
     <>
-      <Header name={'Please Select A Zipcode and Radius'} />
+      <Header name={headerText} />
       <NavigationBar
         selectedZipcode={selectedZipcode}
         selectedRadius={selectedRadius}

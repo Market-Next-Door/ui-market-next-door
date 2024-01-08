@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
-import Header from "../Header/Header";
-import NavigationBar from "../NavigationBar/NavigationBar";
-import "./CustomerSettings.css";
+import React, { useEffect, useState } from 'react';
+import Header from '../Header/Header';
+import NavigationBar from '../NavigationBar/NavigationBar';
+import './CustomerSettings.css';
 import {
   deleteCustomer,
   getOneCustomer,
   updateCustomerData,
-} from "../../apiCalls";
-import { NavigationBarProps } from "../NavigationBar/NavigationBar";
-import { ThreeDots } from "react-loader-spinner";
-import { useNavigate, useParams } from "react-router";
-import ErrorPage from "../ErrorPage/ErrorPage";
+} from '../../apiCalls';
+import { NavigationBarProps } from '../NavigationBar/NavigationBar';
+import { ThreeDots } from 'react-loader-spinner';
+import { useNavigate, useParams } from 'react-router';
+import ErrorPage from '../ErrorPage/ErrorPage';
 
 type Customer = {
   first_name: string;
@@ -27,12 +27,12 @@ export default function CustomerSettings({
   const [currentCustomer, setCurrentCustomer] = useState<Customer | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isEditable, setIsEditable] = useState(false);
-  const [firstName, setFirstName] = useState<string>("");
-  const [lastName, setLastName] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
+  const [firstName, setFirstName] = useState<string>('');
+  const [lastName, setLastName] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
   const paramsid = useParams();
-  const [customerSettingsError, setCustomerSettingsError] = useState("");
+  const [customerSettingsError, setCustomerSettingsError] = useState('');
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -40,13 +40,13 @@ export default function CustomerSettings({
       try {
         const customerData = await getOneCustomer(Number(paramsid.id) || 0);
         setCurrentCustomer(customerData);
-        setFirstName(customerData?.first_name || "");
-        setLastName(customerData?.last_name || "");
-        setPassword(customerData?.password || "");
-        setEmail(customerData?.email || "");
+        setFirstName(customerData?.first_name || '');
+        setLastName(customerData?.last_name || '');
+        setPassword(customerData?.password || '');
+        setEmail(customerData?.email || '');
         setIsLoading(false);
       } catch (error: any) {
-        console.error("Error fetching data:", error);
+        console.error('Error fetching data:', error);
         setCustomerSettingsError(error.message);
       }
     };
@@ -58,12 +58,12 @@ export default function CustomerSettings({
 
   function handleDeleteAccountClick() {
     const confirmed = window.confirm(
-      "Are you sure you want to delete your account? This action is IRREVERSIBLE! AH😬"
+      'Are you sure you want to delete your account? This action is IRREVERSIBLE! AH😬'
     );
 
     if (confirmed && paramsid.id !== undefined) {
       deleteCustomer(Number(paramsid.id));
-      navigate("/");
+      navigate('/');
       setTimeout(function () {
         window.location.reload();
       }, 500);
@@ -71,7 +71,7 @@ export default function CustomerSettings({
   }
 
   function handleSaveChanges() {
-    console.log("changes saved!");
+    console.log('changes saved!');
     const updatedUserData = {
       first_name: firstName,
       last_name: lastName,
@@ -99,15 +99,20 @@ export default function CustomerSettings({
     />
   ) : (
     <div className="customer-settings-container">
-      <Header name={firstName} />
-      <NavigationBar selectedZipcode={selectedZipcode} selectedRadius={selectedRadius} isVendor={isVendor} currentUserId={currentUserId} />
+      <Header greeting="Welcome" name={firstName} />
+      <NavigationBar
+        selectedZipcode={selectedZipcode}
+        selectedRadius={selectedRadius}
+        isVendor={isVendor}
+        currentUserId={currentUserId}
+      />
       <div className="account-box">
         <p className="my-account-info">
           First name:
           <input
             className="account-input"
             value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
+            onChange={e => setFirstName(e.target.value)}
             readOnly={!isEditable}
           />
         </p>
@@ -116,7 +121,7 @@ export default function CustomerSettings({
           <input
             className="account-input"
             value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
+            onChange={e => setLastName(e.target.value)}
             readOnly={!isEditable}
           />
         </p>
@@ -130,7 +135,7 @@ export default function CustomerSettings({
             className="account-input-password"
             type="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={e => setPassword(e.target.value)}
             readOnly={!isEditable}
           />
         </p>

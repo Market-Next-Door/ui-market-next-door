@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
-import "./CustomerOrders.css";
-import Header from "../Header/Header";
-import NavigationBar from "../NavigationBar/NavigationBar";
-import { useReactToPrint } from "react-to-print";
-import { useRef } from "react";
-import Switch from "react-switch";
-import { getSelectedCustomerOrders } from "../../apiCalls";
-import { getOneCustomer } from "../../apiCalls";
-import { getOneVendor } from "../../apiCalls";
-import { getSelectedVendorsItems } from "../../apiCalls";
-import { NavigationBarProps } from "../NavigationBar/NavigationBar";
-import { ThreeDots } from "react-loader-spinner";
-import { useParams } from "react-router";
-import ErrorPage from "../ErrorPage/ErrorPage";
+import React, { useEffect, useState } from 'react';
+import './CustomerOrders.css';
+import Header from '../Header/Header';
+import NavigationBar from '../NavigationBar/NavigationBar';
+import { useReactToPrint } from 'react-to-print';
+import { useRef } from 'react';
+import Switch from 'react-switch';
+import { getSelectedCustomerOrders } from '../../apiCalls';
+import { getOneCustomer } from '../../apiCalls';
+import { getOneVendor } from '../../apiCalls';
+import { getSelectedVendorsItems } from '../../apiCalls';
+import { NavigationBarProps } from '../NavigationBar/NavigationBar';
+import { ThreeDots } from 'react-loader-spinner';
+import { useParams } from 'react-router';
+import ErrorPage from '../ErrorPage/ErrorPage';
 
 type VendorDetails = {
   email: string;
@@ -53,7 +53,12 @@ type CustomerOrderCardProps = {
     vendorItems: VendorItem[];
   };
 };
-function CustomerOrders({ selectedZipcode, selectedRadius, isVendor, currentUserId }: NavigationBarProps) {
+function CustomerOrders({
+  selectedZipcode,
+  selectedRadius,
+  isVendor,
+  currentUserId,
+}: NavigationBarProps) {
   const { id: paramsId } = useParams<{ id?: string }>();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -65,7 +70,7 @@ function CustomerOrders({ selectedZipcode, selectedRadius, isVendor, currentUser
       vendorItems: VendorItem[];
     }[]
   >([]);
-  const [customerOrdersError, setCustomerOrdersError] = useState("")
+  const [customerOrdersError, setCustomerOrdersError] = useState('');
   const selectedCustomerId = paramsId ? parseInt(paramsId, 10) : 1;
 
   useEffect(() => {
@@ -94,8 +99,8 @@ function CustomerOrders({ selectedZipcode, selectedRadius, isVendor, currentUser
         setSelectedCustomerOrders(orderVendorCustomerDetails);
         setIsLoading(false);
       } catch (error: any) {
-        console.error("Error fetching order details:", error);
-        setCustomerOrdersError(error.message)
+        console.error('Error fetching order details:', error);
+        setCustomerOrdersError(error.message);
         setIsLoading(false);
       }
     };
@@ -117,8 +122,8 @@ function CustomerOrders({ selectedZipcode, selectedRadius, isVendor, currentUser
           setCurrentUserObj(result);
         }
       } catch (error: any) {
-        console.error("Error fetching data:", error);
-        setCustomerOrdersError(error.message)
+        console.error('Error fetching data:', error);
+        setCustomerOrdersError(error.message);
       }
     };
 
@@ -126,9 +131,11 @@ function CustomerOrders({ selectedZipcode, selectedRadius, isVendor, currentUser
   }, [customerid]);
 
   return customerOrdersError ? (
-    <ErrorPage error={customerOrdersError} message="We're experiencing server issues.  Please try again later."/>
-    ) : (
-    isLoading ? (
+    <ErrorPage
+      error={customerOrdersError}
+      message="We're experiencing server issues.  Please try again later."
+    />
+  ) : isLoading ? (
     <ThreeDots
       height="80"
       width="80"
@@ -141,18 +148,23 @@ function CustomerOrders({ selectedZipcode, selectedRadius, isVendor, currentUser
   ) : (
     <div className="vendor-orders-container">
       {currentUserObj?.first_name && (
-        <Header name={currentUserObj.first_name} />
+        <Header greeting="Welcome" name={currentUserObj.first_name} />
       )}
-      <NavigationBar selectedZipcode={selectedZipcode} selectedRadius={selectedRadius} isVendor={isVendor} currentUserId={currentUserId} />
+      <NavigationBar
+        selectedZipcode={selectedZipcode}
+        selectedRadius={selectedRadius}
+        isVendor={isVendor}
+        currentUserId={currentUserId}
+      />
       <div className="vendor-orders-display">
-        {selectedCustomerOrders.map((orderData) => {
+        {selectedCustomerOrders.map(orderData => {
           return (
             <CustomerOrderCard key={orderData.orderObj?.id} data={orderData} />
           );
         })}
       </div>
     </div>
-  ));
+  );
 }
 
 function CustomerOrderCard({ data }: CustomerOrderCardProps) {
@@ -161,19 +173,19 @@ function CustomerOrderCard({ data }: CustomerOrderCardProps) {
   const customerDetails = data.customerDetails;
   const vendorItems = data.vendorItems;
 
-  const orderedItem = vendorItems.find((vendorItem) => {
+  const orderedItem = vendorItems.find(vendorItem => {
     return vendorItem.id === order.item;
   });
 
-  const itemName = orderedItem ? orderedItem.item_name : "Unknown Item";
+  const itemName = orderedItem ? orderedItem.item_name : 'Unknown Item';
 
-  const itemSize = orderedItem ? orderedItem.size : "Unknown Size";
+  const itemSize = orderedItem ? orderedItem.size : 'Unknown Size';
 
   const itemDetails = orderedItem
     ? orderedItem.description
-    : "Unknown description";
+    : 'Unknown description';
 
-  const itemPrice = orderedItem ? orderedItem.price : "Unknown Price";
+  const itemPrice = orderedItem ? orderedItem.price : 'Unknown Price';
 
   const [isModalOpen, setModalOpen] = useState(false);
   const componentRef = useRef(null);
@@ -217,34 +229,34 @@ function CustomerOrderCard({ data }: CustomerOrderCardProps) {
           {vendorDetails.vendor_name}
         </div>
         <div>
-          <strong>Pick-up Date: </strong>{" "}
-          {nextSaturday.toLocaleDateString("en-US", {
-            weekday: "long",
-            year: "numeric",
-            month: "long",
-            day: "numeric",
+          <strong>Pick-up Date: </strong>{' '}
+          {nextSaturday.toLocaleDateString('en-US', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
           })}
           , 8am - 12pm
         </div>
         <div>
           <strong>Order Created: </strong>
-          {new Date(order.date_created).toLocaleDateString("en-US", {
-            weekday: "long",
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-            hour: "numeric",
-            minute: "numeric",
-            second: "numeric",
+          {new Date(order.date_created).toLocaleDateString('en-US', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric',
           })}
         </div>
 
-        <div onClick={openModal} style={{ cursor: "pointer" }}>
+        <div onClick={openModal} style={{ cursor: 'pointer' }}>
           <strong>View/Print Details</strong>
         </div>
         <div className="status-container">
           <strong>Status: </strong>
-          {isUpcoming ? "Upcoming" : "Past"}
+          {isUpcoming ? 'Upcoming' : 'Past'}
         </div>
       </div>
       {isModalOpen && (
@@ -254,7 +266,7 @@ function CustomerOrderCard({ data }: CustomerOrderCardProps) {
               &times;
             </span>
             <h2 className="invoice-header">
-              INVOICE{" "}
+              INVOICE{' '}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -276,15 +288,15 @@ function CustomerOrderCard({ data }: CustomerOrderCardProps) {
             </p>
             <div className="invoice-info">
               <p>
-                <strong>Order Created at:</strong>{" "}
-                {new Date(order.date_created).toLocaleDateString("en-US", {
-                  weekday: "long",
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                  hour: "numeric",
-                  minute: "numeric",
-                  second: "numeric",
+                <strong>Order Created at:</strong>{' '}
+                {new Date(order.date_created).toLocaleDateString('en-US', {
+                  weekday: 'long',
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                  hour: 'numeric',
+                  minute: 'numeric',
+                  second: 'numeric',
                 })}
               </p>
               <p>
@@ -304,12 +316,12 @@ function CustomerOrderCard({ data }: CustomerOrderCardProps) {
                 <strong>Market:</strong> Market Next Door
               </p>
               <p>
-                <strong>Pick Up Date:</strong>{" "}
-                {nextSaturday.toLocaleDateString("en-US", {
-                  weekday: "long",
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
+                <strong>Pick Up Date:</strong>{' '}
+                {nextSaturday.toLocaleDateString('en-US', {
+                  weekday: 'long',
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
                 })}
               </p>
               <p>

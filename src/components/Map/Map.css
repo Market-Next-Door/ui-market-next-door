@@ -1,3 +1,11 @@
+.map-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
+  height: 100vh;
+}
+
 .map-container {
   width: 100%;
   height: 100vh;
@@ -13,4 +21,83 @@ p {
 
 a {
   font-size: 1.5rem;
+}
+
+.map-form-input {
+  background-color: #e5e7ebe2;
+  border: none;
+  /* text-transform: uppercase; */
+  font-size: 1.6rem;
+  border-radius: 100rem;
+  transition: 0.3s;
+  padding: 1rem 2rem;
+  justify-content: center;
+  align-items: center;
+  width: 30rem;
+  margin: 10px;
+}
+
+.map-form-button {
+  background-color: #e5e7ebe2;
+  border: none;
+  text-transform: uppercase;
+  font-size: 1.6rem;
+  border-radius: 100rem;
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 1rem 2rem;
+  justify-content: center;
+  align-items: center;
+  width: 30rem;
+  margin: 10px;
+}
+
+.map-form-button:hover {
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  transform: scale(1.05);
+}
+
+.popup-container {
+  font-family: "Inter";
+  display: flex;
+  flex-direction: column;
+}
+
+.popup-details-container {
+  align-items: center;
+}
+
+.popup-button-container {
+  display: flex;
+  margin-top: 3rem;
+}
+
+.popup-button {
+  text-align: center;
+  background-color: #e5e7ebe2;
+  border: none;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  border-radius: 100rem;
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 1rem 2rem;
+  justify-content: center;
+  align-items: center;
+  width: 25rem;
+  margin: auto;
+}
+
+.popup-button:hover {
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  transform: scale(1.05);
+}
+
+@media (max-width: 1077px) {
+  form {
+    display: flex;
+    flex-direction: column;
+  }
 }

@@ -61,7 +61,7 @@
 .map {
   border: 0.2rem solid;
   font-family: Inter;
-  color: #05339f;
+  color: #2A81CB;
   font-weight: 500;
   font-weight: bold;
   font-size: 1.4rem;
@@ -70,7 +70,7 @@
 .map:hover {
   color: white;
   cursor: pointer;
-  background-color: #05339f;
+  background-color: #2A81CB;
 }
 
 .signout {

@@ -91,7 +91,7 @@ function Map({
   const [map, setMap] = useState<L.Map | null>(null);
   const [searchClicked, setSearchClicked] = useState(false);
   const [headerText, setHeaderText] = useState(
-    'Please Select A Zipcode and Radius'
+    'Please Select A Zip Code and Radius'
   );
 
   useEffect(() => {
@@ -103,8 +103,8 @@ function Map({
 
           if (data && data.length > 0 && map) {
             const firstMarket = data[0];
-            map.flyTo([Number(firstMarket.lon), Number(firstMarket.lat)], 13, {
-              duration: 1.5,
+            map.flyTo([Number(firstMarket.lon), Number(firstMarket.lat)], 11, {
+              duration: 2,
             });
           }
         })
@@ -121,13 +121,32 @@ function Map({
       : [39.7414378, -104.961905]; // Default to Denver if no market is selected
   const zoom = 11;
 
+  const [errorMessage, setErrorMessage] = useState('')
+
   const handleSearch = (e: any) => {
     e.preventDefault();
+    if (zipcode === '' || radius === '') {
+      setErrorMessage('Please fill in all fields.');
+
+      setTimeout(() => {
+      setErrorMessage('');
+    }, 3000);
+
+      return;
+    }
+    
     addZipAndRadius(zipcode, radius);
     setSearchClicked(true);
     navigate(`/map/${zipcode}/${radius}`);
     setHeaderText('Search Results');
+    clearInputs()
+    setErrorMessage('')
   };
+
+  const clearInputs = () => {
+    setZipcode('')
+    setRadius('')
+  }
 
   function MyComponent() {
     const map = useMap();
@@ -141,7 +160,7 @@ function Map({
       ) {
         const firstMarket = selectedMarketByZip[0];
         map.flyTo([Number(firstMarket.lon), Number(firstMarket.lat)], 11, {
-          duration: 1.5,
+          duration: 2,
         });
       }
     }, [searchClicked, selectedMarketByZip, map]);
@@ -150,7 +169,7 @@ function Map({
   }
 
   return (
-    <>
+    <div className='map-page'>
       <Header name={headerText} />
       <NavigationBar
         selectedZipcode={selectedZipcode}
@@ -160,21 +179,24 @@ function Map({
       />
       <form>
         <input
+          className='map-form-input'
           type="text"
           name="zip"
-          placeholder="Enter zipcode"
+          placeholder="Enter zip code..."
           value={zipcode}
           onChange={e => setZipcode(e.target.value)}
         ></input>
         <input
           type="text"
+          className='map-form-input'
           name="radius"
-          placeholder="Enter radius"
+          placeholder="Enter radius..."
           value={radius}
           onChange={e => setRadius(e.target.value)}
         ></input>
-        <button onClick={handleSearch}>Search</button>
+        <button className='map-form-button' onClick={handleSearch}>Search</button>
       </form>
+      <p className='error-message'>{errorMessage}</p>
 
       <MapContainer className="map-container">
         <ConfigureMap center={center} zoom={zoom} />
@@ -186,18 +208,24 @@ function Map({
               Number(activeMarket.lat), //location_x is the negative number in our data (approx -107)
             ]}
           >
-            <div style={{ overflow: 'hidden' }}>
-              <h2>{activeMarket.market_name}</h2>
-              <p>{activeMarket.address}</p>
-              <p>{activeMarket.phone}</p>
-              <a
-                href={activeMarket.website}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {activeMarket.website}
-              </a>
-              <button>Select My Market</button>
+            <div className='popup-container' style={{ overflow: 'hidden' }}>
+              <div className='popup-details-container'>
+                <h2>{activeMarket.market_name}</h2>
+                <p>{activeMarket.address}</p>
+                <p>{activeMarket.phone}</p>
+                <a
+                  href={activeMarket.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {activeMarket.website}
+                </a>
+              </div>
+              
+              <div className='popup-button-container'>
+                <button className='popup-button'>Select My Market</button>
+              </div>
+              
             </div>
           </Popup>
         )}
@@ -227,7 +255,7 @@ function Map({
             );
           })}
       </MapContainer>
-    </>
+    </div>
   );
 }
 

@@ -414,8 +414,14 @@ const CustomerViewItemCard = ({
             </p>
 
             <p>
-              Quantity Available: <span>{item_quantity}</span>
+              Quantity Available:{' '}
+              <span>{item_quantity > 0 ? item_quantity : 'Out of Stock'}</span>
             </p>
+            {item_quantity === 0 && (
+              <p className="out-of-stock-message">
+                This item is currently out of stock.
+              </p>
+            )}
           </div>
           <div className="quantity-order-btn-container">
             <div className="quantity-input">
@@ -435,7 +441,11 @@ const CustomerViewItemCard = ({
                 +
               </button>
             </div>
-            <button className="purchase-btn" onClick={handlePreOrderClick}>
+            <button
+              className="purchase-btn"
+              onClick={handlePreOrderClick}
+              disabled={item_quantity === 0}
+            >
               Pre-order
             </button>
           </div>

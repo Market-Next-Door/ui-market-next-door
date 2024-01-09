@@ -82,7 +82,7 @@ const NavigationBar = ({
           return isActive
             ? {
                 color: 'white',
-                backgroundColor: '#05339f',
+                backgroundColor: '#2A81CB',
                 textDecoration: 'none',
               }
             : {};

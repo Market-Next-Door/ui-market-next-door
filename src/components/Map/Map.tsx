@@ -125,8 +125,8 @@ function Map({
 
   const handleSearch = (e: any) => {
     e.preventDefault();
-    if (zipcode === '' || radius === '') {
-      setErrorMessage('Please fill in all fields.');
+    if (isNaN(Number(zipcode)) || isNaN(Number(radius)) || zipcode.length !== 5 || Number(radius) <= 0) {
+      setErrorMessage('Invalid input. Please check your entries and make sure both fields are filled.');
 
       setTimeout(() => {
       setErrorMessage('');
@@ -185,6 +185,16 @@ function Map({
           placeholder="Enter zip code..."
           value={zipcode}
           onChange={e => setZipcode(e.target.value)}
+          onKeyDown={(e) => {
+            // Allow only numbers, the delete key, and the tab key
+            const isNumericKey = !isNaN(Number(e.key));
+            const isDeleteKey = e.key === 'Delete' || e.key === 'Backspace';
+            const isTabKey = e.key === 'Tab';
+
+            if (!isNumericKey && !isDeleteKey && !isTabKey) {
+              e.preventDefault();
+            }
+          }}
         ></input>
         <input
           type="text"
@@ -193,6 +203,17 @@ function Map({
           placeholder="Enter radius..."
           value={radius}
           onChange={e => setRadius(e.target.value)}
+          min="1"
+          onKeyDown={(e) => {
+            // Allow only numbers, the delete key, and the tab key
+            const isNumericKey = !isNaN(Number(e.key));
+            const isDeleteKey = e.key === 'Delete' || e.key === 'Backspace';
+            const isTabKey = e.key === 'Tab';
+
+            if (!isNumericKey && !isDeleteKey && !isTabKey) {
+              e.preventDefault();
+            }
+          }}
         ></input>
         <button className='map-form-button' onClick={handleSearch}>Search</button>
       </form>

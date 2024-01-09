@@ -10,7 +10,12 @@ export type NavigationBarProps = {
   currentUserId: string;
 };
 
-const NavigationBar = ({ selectedZipcode, selectedRadius, isVendor, currentUserId }: NavigationBarProps) => {
+const NavigationBar = ({
+  selectedZipcode,
+  selectedRadius,
+  isVendor,
+  currentUserId,
+}: NavigationBarProps) => {
   let rootProducts = '';
   isVendor
     ? (rootProducts = `/vendordashboard/${currentUserId}`)
@@ -27,7 +32,7 @@ const NavigationBar = ({ selectedZipcode, selectedRadius, isVendor, currentUserI
     : (rootSettings = `/customersettings/${currentUserId}`);
 
   let rootMap = '';
-  isVendor 
+  isVendor
     ? (rootMap = `/map/${selectedZipcode}/${selectedRadius}`)
     : (rootMap = `/map/${selectedZipcode}/${selectedRadius}`);
 
@@ -71,6 +76,21 @@ const NavigationBar = ({ selectedZipcode, selectedRadius, isVendor, currentUserI
         ORDERS
       </NavLink>
       <NavLink
+        className="map btn"
+        to={rootMap}
+        style={({ isActive }) => {
+          return isActive
+            ? {
+                color: 'white',
+                backgroundColor: '#05339f',
+                textDecoration: 'none',
+              }
+            : {};
+        }}
+      >
+        MARKET MAP
+      </NavLink>
+      <NavLink
         className="settings btn"
         to={rootSettings}
         style={({ isActive }) => {
@@ -85,21 +105,7 @@ const NavigationBar = ({ selectedZipcode, selectedRadius, isVendor, currentUserI
       >
         SETTINGS
       </NavLink>
-      <NavLink
-        className="map btn"
-        to={rootMap}
-        style={({ isActive }) => {
-          return isActive
-            ? {
-                color: 'white',
-                backgroundColor: '#343a40',
-                textDecoration: 'none',
-              }
-            : {};
-        }}
-      >
-        MARKET MAP
-      </NavLink>
+
       <button className="signout btn" onClick={handleSignOut}>
         SIGN OUT
       </button>

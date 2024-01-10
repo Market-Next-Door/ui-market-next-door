@@ -1,0 +1,82 @@
+[
+  {
+    "market_name": "Fort Collins Farmers' Market",
+    "listing_id": "309057",
+    "address": "Harmony & Lemay, Harmony Market Place, Fort Collins, CO, 80521",
+    "lat": "-105.05806001138784",
+    "lon": "40.5237699814717",
+    "website": "http://www.fortnet.org/market",
+    "zipcode": "80521",
+    "phone": "970-495-4889"
+  },
+  {
+    "market_name": "Rocky Mountain Indoor Farmers Market",
+    "listing_id": "309116",
+    "address": "5816 South College Avenue Fort Collins, CO 80525",
+    "lat": "-105.07732291201906",
+    "lon": "40.5060841819561",
+    "website": "https://rockymountainfarmersmarket.com/",
+    "zipcode": "80525",
+    "phone": "970-593-1076"
+  },
+  {
+    "market_name": "Sunday Market on Main Street",
+    "listing_id": "309124",
+    "address": "4138 Main St, Unit A Unit A Timnath, CO 80547",
+    "lat": "-104.9822920632046",
+    "lon": "40.52928394735328",
+    "website": "",
+    "zipcode": "80547",
+    "phone": "970-402-8591"
+  },
+  {
+    "market_name": "Drake Road Farmers Market",
+    "listing_id": "309046",
+    "address": "802 W. Drake Fort Collins, CO 80526 Northwest corner of West Drake Road and Worthington. Off street parking for vendors and customers.",
+    "lat": "-105.09061063352523",
+    "lon": "40.55267995116347",
+    "website": "http://www.drakeroadfarmersmarket.com",
+    "zipcode": "80526",
+    "phone": "970-218-5521"
+  },
+  {
+    "market_name": "Northern Colorado Winters Market",
+    "listing_id": "309102",
+    "address": "PO Box 1545 Fort Collins, CO 80522",
+    "lat": "-105.08074499999998",
+    "lon": "40.583570000000066",
+    "website": "https://www.belocalnc.org/",
+    "zipcode": "80522",
+    "phone": "970-658-5198"
+  },
+  {
+    "market_name": "Fort Collins Winter Farmers Market",
+    "listing_id": "309058",
+    "address": "Fort Collins Winter Farmers Market, 123 S Colleget Ave, Fort Collins, CO 80522",
+    "lat": "-105.07719805320305",
+    "lon": "40.58663578840961",
+    "website": "",
+    "zipcode": "80522",
+    "phone": "940-230-4077"
+  },
+  {
+    "market_name": "Larimer County Farmers' Market",
+    "listing_id": "301388",
+    "address": "200 W. Oak St., Fort Collins, Colorado 80521",
+    "lat": "-105.08019",
+    "lon": "40.586073",
+    "website": "larimercountyfm.org",
+    "zipcode": "80521",
+    "phone": "970-498-6000"
+  },
+  {
+    "market_name": "Noco Virtual Farmers Market",
+    "listing_id": "309101",
+    "address": "3307 South College Avenue, Suite 216 123 North College Ave., Suite 139 Fort Collins, CO 80524",
+    "lat": "-105.07757903313151",
+    "lon": "40.58782498845264",
+    "website": "https://www.nocovirtualfarmersmarket.com/",
+    "zipcode": "80524",
+    "phone": "970-402-6002"
+  }
+]

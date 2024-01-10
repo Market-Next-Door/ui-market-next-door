@@ -1,0 +1,82 @@
+[
+  {
+    "market_name": "City Park Esplanade Fresh Market",
+    "listing_id": "309036",
+    "address": "East Colfax Ave. & Columbine Street Denver, CO 80206",
+    "lat": "-104.95739997595427",
+    "lon": "39.74018998431981",
+    "website": "http://coloradofreshmarkets.com/",
+    "zipcode": "80206",
+    "phone": "303-442-1837"
+  },
+  {
+    "market_name": "Cherry Creek Fresh Market",
+    "listing_id": "309032",
+    "address": "1st Ave. & University Blvd., Cherry Creek Shopping Center, Denver, CO, 80308",
+    "lat": "-104.95906998634295",
+    "lon": "39.71817998668095",
+    "website": "http://www.coloradofreshmarkets.com",
+    "zipcode": "80308",
+    "phone": "303-442-1837"
+  },
+  {
+    "market_name": "Golden Triangle Farmers Market",
+    "listing_id": "309068",
+    "address": "1112 Broadway Denver, CO 80203",
+    "lat": "-104.9874017794336",
+    "lon": "39.734113732523916",
+    "website": "",
+    "zipcode": "80203",
+    "phone": "720-523-3331"
+  },
+  {
+    "market_name": "Cherry Creek Valley International Farmers Market",
+    "listing_id": "309033",
+    "address": "710 S. Ash St. Denver, CO 80246",
+    "lat": "-104.93817456399742",
+    "lon": "39.70371318055",
+    "website": "https://www.localharvestfoods.com/",
+    "zipcode": "80246",
+    "phone": "303-997-2214"
+  },
+  {
+    "market_name": "Broadway Farmers' Market",
+    "listing_id": "309026",
+    "address": "23 Lincoln St. Denver, CO 80203",
+    "lat": "-104.98624945096843",
+    "lon": "39.717045228578094",
+    "website": "",
+    "zipcode": "80203",
+    "phone": "303-242-1032"
+  },
+  {
+    "market_name": "Tiri's Garden Farmers Market",
+    "listing_id": "309128",
+    "address": "1522 California Denver, CO 80202",
+    "lat": "-104.9930815957288",
+    "lon": "39.744499104821784",
+    "website": "http://www.concertsforkids.org",
+    "zipcode": "80202",
+    "phone": "303-605-2885"
+  },
+  {
+    "market_name": "Urban Farmers' Market",
+    "listing_id": "309132",
+    "address": "16th St. Mall and Arapahoe, Skyline Park, Denver, CO, 80202",
+    "lat": "-104.99566998565368",
+    "lon": "39.747849996084284",
+    "website": "http://urbanmarketdenver.com/",
+    "zipcode": "80202",
+    "phone": "720-272-7467"
+  },
+  {
+    "market_name": "Larimer Street Market",
+    "listing_id": "309080",
+    "address": "2301 Larimer Street Denver, CO 80205",
+    "lat": "-104.98886187325867",
+    "lon": "39.75584225413244",
+    "website": "http://www.LarimerStreetMarket.com",
+    "zipcode": "80205",
+    "phone": "303-534-5140"
+  }
+]

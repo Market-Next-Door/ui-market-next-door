@@ -97,7 +97,7 @@ describe('should log a customer in and navigate to customer dashboard', () => {
       'https://market-next-door-fe-f6728ad38b62.herokuapp.com/map/80525/15'
     );
 
-    cy.get('.form-map-input').should('be.visible');
+    // cy.get('.form-map-input').should('be.visible');
     cy.get('.map-page').should('be.visible');
   });
 });

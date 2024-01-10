@@ -121,32 +121,39 @@ function Map({
       : [39.7414378, -104.961905]; // Default to Denver if no market is selected
   const zoom = 11;
 
-  const [errorMessage, setErrorMessage] = useState('')
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSearch = (e: any) => {
     e.preventDefault();
-    if (isNaN(Number(zipcode)) || isNaN(Number(radius)) || zipcode.length !== 5 || Number(radius) <= 0) {
-      setErrorMessage('Invalid input. Please check your entries and make sure both fields are filled.');
+    if (
+      isNaN(Number(zipcode)) ||
+      isNaN(Number(radius)) ||
+      zipcode.length !== 5 ||
+      Number(radius) <= 0
+    ) {
+      setErrorMessage(
+        'Invalid input. Please check your entries and make sure both fields are filled.'
+      );
 
       setTimeout(() => {
-      setErrorMessage('');
-    }, 3000);
+        setErrorMessage('');
+      }, 3000);
 
       return;
     }
-    
+
     addZipAndRadius(zipcode, radius);
     setSearchClicked(true);
     navigate(`/map/${zipcode}/${radius}`);
     setHeaderText('Search Results');
-    clearInputs()
-    setErrorMessage('')
+    clearInputs();
+    setErrorMessage('');
   };
 
   const clearInputs = () => {
-    setZipcode('')
-    setRadius('')
-  }
+    setZipcode('');
+    setRadius('');
+  };
 
   function MyComponent() {
     const map = useMap();
@@ -169,7 +176,7 @@ function Map({
   }
 
   return (
-    <div className='map-page'>
+    <div className="map-page">
       <Header name={headerText} />
       <NavigationBar
         selectedZipcode={selectedZipcode}
@@ -177,15 +184,15 @@ function Map({
         isVendor={isVendor}
         currentUserId={currentUserId}
       />
-      <form>
+      <form className="form-map-input">
         <input
-          className='map-form-input'
+          className="map-form-input"
           type="text"
           name="zip"
           placeholder="Enter zip code..."
           value={zipcode}
           onChange={e => setZipcode(e.target.value)}
-          onKeyDown={(e) => {
+          onKeyDown={e => {
             // Allow only numbers, the delete key, and the tab key
             const isNumericKey = !isNaN(Number(e.key));
             const isDeleteKey = e.key === 'Delete' || e.key === 'Backspace';
@@ -198,13 +205,13 @@ function Map({
         ></input>
         <input
           type="text"
-          className='map-form-input'
+          className="map-form-input"
           name="radius"
           placeholder="Enter radius..."
           value={radius}
           onChange={e => setRadius(e.target.value)}
           min="1"
-          onKeyDown={(e) => {
+          onKeyDown={e => {
             // Allow only numbers, the delete key, and the tab key
             const isNumericKey = !isNaN(Number(e.key));
             const isDeleteKey = e.key === 'Delete' || e.key === 'Backspace';
@@ -215,9 +222,11 @@ function Map({
             }
           }}
         ></input>
-        <button className='map-form-button' onClick={handleSearch}>Search</button>
+        <button className="map-form-button" onClick={handleSearch}>
+          Search
+        </button>
       </form>
-      <p className='error-message'>{errorMessage}</p>
+      <p className="error-message">{errorMessage}</p>
 
       <MapContainer className="map-container">
         <ConfigureMap center={center} zoom={zoom} />
@@ -229,8 +238,8 @@ function Map({
               Number(activeMarket.lat), //location_x is the negative number in our data (approx -107)
             ]}
           >
-            <div className='popup-container' style={{ overflow: 'hidden' }}>
-              <div className='popup-details-container'>
+            <div className="popup-container" style={{ overflow: 'hidden' }}>
+              <div className="popup-details-container">
                 <h2>{activeMarket.market_name}</h2>
                 <p>{activeMarket.address}</p>
                 <p>{activeMarket.phone}</p>
@@ -242,11 +251,10 @@ function Map({
                   {activeMarket.website}
                 </a>
               </div>
-              
-              <div className='popup-button-container'>
-                <button className='popup-button'>Select My Market</button>
+
+              <div className="popup-button-container">
+                <button className="popup-button">Select My Market</button>
               </div>
-              
             </div>
           </Popup>
         )}

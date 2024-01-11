@@ -90,7 +90,7 @@
 
 @media (max-width: 1077px) {
   .mnd-nav {
-    gap: 2rem;
+    gap: 0rem;
     flex-direction: column;
   }
   .products,

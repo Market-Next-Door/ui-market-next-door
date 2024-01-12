@@ -4,7 +4,7 @@
 
 Market Next Door is a dynamic application crafted with TypeScript and React on the front end, featuring Cypress for testing. The user interface was designed with both vendor and customer users in mind, taking into consideration their specific needs to create a minimalistic, intuitive, and accessible user experience.
 
-## Deployed Link (Placeholder)
+## Deployed Link
 
 [Explore Market Next Door - Deployed App](https://market-next-door-fe-f6728ad38b62.herokuapp.com/)
 
@@ -44,6 +44,9 @@ Screen Shots
 ![image](https://github.com/Market-Next-Door/ui-market-next-door/assets/125393235/43809480-fd27-41cf-be20-7045b011329c)
 
 ![image](https://github.com/Market-Next-Door/ui-market-next-door/assets/125393235/d3c16c22-df80-4d79-ae79-155146a4c0b3)
+
+### Market Map 
+![Screenshot 2024-01-12 at 8 57 35 AM](https://github.com/Market-Next-Door/ui-market-next-door/assets/125393235/43da4b20-09f3-4727-9272-438a8f63b81b)
 
 </div>
 </details>

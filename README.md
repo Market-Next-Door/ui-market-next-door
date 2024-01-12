@@ -132,6 +132,7 @@ Demo Clips
 - Ethan Van Gorkom [GitHub](https://github.com/EVanGorkom) // [LinkedIn](https://linkedin.com/in/evangorkom/)
 - Jorja Fleming [GitHub](https://github.com/JorjaF) // [LinkedIn](https://linkedin.com/in/jorjaf/)
 - Kaylee Janes [GitHub](https://github.com/kbug819) // [LinkedIn](https://linkedin.com/in/kaylee-janes/)
+- Antione Aube [GitHub](https://github.com/Antoine-Aube/Antoine-Aube) // [LinkedIn](https://www.linkedin.com/in/antoineaube/)
 
 ## Getting Started
 

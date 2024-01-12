@@ -95,7 +95,7 @@ Demo Clips
 ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
 ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
 ![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white)
-![leaflet_img_resized_120x30](https://github.com/Market-Next-Door/ui-market-next-door/assets/125393235/66688076-f143-4215-a1c5-44d2b377e6f8)
+![leaflet_img_resized_120x30_2nd_try](https://github.com/Market-Next-Door/ui-market-next-door/assets/125393235/a4cfb1e4-2396-473f-b02f-92aeabfa2ffa)
 
 
 

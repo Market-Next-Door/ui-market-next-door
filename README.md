@@ -1,8 +1,13 @@
 # Market Next Door
 ![image](https://github.com/Market-Next-Door/ui-market-next-door/assets/125393235/148e0b22-e963-4f5b-8d6b-d9d19d5520ea)
 
+## Revolutionizing the Farmers Market Experience!
+Market Next Door is a gateway to a vibrant community.  Crafted with TypeScript and React, this application stands out for its seamless, user-friendly interface, designed thoughtfully for both vendors and customers. This application bridges the gap between local farmers and the community, bringing the charm of a farmers market right to your fingertips.  
 
-Market Next Door is a dynamic application crafted with TypeScript and React on the front end, featuring Cypress for testing. The user interface was designed with both vendor and customer users in mind, taking into consideration their specific needs to create a minimalistic, intuitive, and accessible user experience.
+Key features include real-time inventory update for vendors and an easy-to-navigate product discovery experience for customers.  Whether you're a local vendor looking to expand your reach or a customer craving fresh, local produce, Market Next Door makes it all prossible with a few simple clicks.
+
+At the heart of Market Next Door's technical prowess is a suite of advanced technologies. TypeScript offers enhanced development efficiency and application stability, while React's dynamic capabilities make for an engaging and responsive user interface. Cypress, our choice for testing, ensures that each feature works flawlessly, providing users with a consistently reliable experience. Additionally, the integration of the Leaflet library offers an intuitive visual map, allowing users to effortlessly locate farmers markets in their area. This blend of technologies not only powers the application but also elevates the overall user experience.
+
 
 ## Deployed Link
 
@@ -90,6 +95,8 @@ Demo Clips
 ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
 ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
 ![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white)
+![leaflet_img_resized_120x30](https://github.com/Market-Next-Door/ui-market-next-door/assets/125393235/66688076-f143-4215-a1c5-44d2b377e6f8)
+
 
 
 # Key Features

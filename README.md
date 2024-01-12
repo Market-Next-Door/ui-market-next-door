@@ -29,6 +29,9 @@ At the heart of Market Next Door's technical prowess is a suite of advanced tech
 
 - **Order Management:**
   - Both customers and vendors can access an order management system. They can view and track their orders, access detailed invoices, and print invoices for their records.
+    
+- **Markets Nearby:**
+  - Customers and vendors can access a map to visualize the markets in their region. They can customize the map view by entering a zip code and radius.
  
 <details>
 <summary>

@@ -150,7 +150,7 @@ export function getSelectedVendorOrders(id: number) {
   });
 }
 
-export function getMarkets(zipcode:string, radius:string) {
+export function getMarkets(zipcode: string, radius: string) {
   return fetch(
     `https://quiet-depths-54407-77a00505f51e.herokuapp.com/markets/location/${zipcode}/${radius}`
   ).then(response => {

@@ -7,11 +7,22 @@
   background-color: #e5e7ebe2;
 }
 
-.vendor-item-image img {
-  max-width: 12rem;
+.vendor-item-image {
+  /* background-color: blue; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  height: 50%;
+  margin-bottom: 1rem;
+}
+
+img {
+  border-radius: 15px;
+  width: 80%;
+  /* max-width: 5%; */
   max-height: 12rem;
   object-fit: cover;
-  border-radius: 5;
   margin-right: 1rem;
 }
 
@@ -99,4 +110,3 @@
 .vendor-view-card-details::-webkit-scrollbar-track {
   background-color: #f1f1f1;
 }
-

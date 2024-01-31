@@ -400,8 +400,8 @@ const CustomerViewItemCard = ({
             <img src={image} alt={item_name} />
           </div>
           <div className="item-details">
-            <p>
-              Name: <span>{item_name}</span>
+            <p className="item-name">
+              <span>{item_name}</span>
             </p>
             <p>
               Size: <span>{size}</span>
@@ -410,7 +410,7 @@ const CustomerViewItemCard = ({
               Price: <span>${price}</span>
             </p>
             <p className="customer-view-card-details">
-              Details: <span>{description}</span>
+              <span>{description}</span>
             </p>
 
             <p>
@@ -441,14 +441,14 @@ const CustomerViewItemCard = ({
                 +
               </button>
             </div>
-            <button
-              className="purchase-btn"
-              onClick={handlePreOrderClick}
-              disabled={item_quantity === 0}
-            >
-              Pre-order
-            </button>
           </div>
+          <button
+            className="purchase-btn"
+            onClick={handlePreOrderClick}
+            disabled={item_quantity === 0}
+          >
+            Pre-order
+          </button>
         </div>
       ) : null}
 

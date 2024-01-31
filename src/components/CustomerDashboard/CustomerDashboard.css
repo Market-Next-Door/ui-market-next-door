@@ -2,7 +2,7 @@
   height: 100vh;
   background-size: cover;
   height: 100vh;
-  font-family: "Inter";
+  font-family: 'Inter';
   color: black;
   gap: 5rem;
   display: flex;
@@ -89,23 +89,41 @@
   width: 20rem;
 }
 
+.customer-view-items-display {
+  grid-area: customer-view-item-card;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
 .customer-view-item-card {
   font-size: 1.4rem;
   display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  /* border: 3px solid black; */
   margin: 2rem;
   padding: 1.5rem;
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
   background-color: #e5e7ebe2;
   align-items: center;
   justify-content: space-between;
 }
 
-.customer-item-image img {
-  max-width: 12rem;
-  max-height: 12rem;
+.customer-item-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 50%;
+  margin-bottom: 1rem;
+}
+
+img {
+  border-radius: 15px;
+  max-width: 20rem;
+  height: 100%;
   object-fit: cover;
-  border-radius: 5;
   margin-right: 1rem;
 }
 
@@ -127,10 +145,17 @@
 
 .item-details {
   display: flex;
-  gap: 3rem;
+  flex-direction: column;
+  gap: 2rem;
   justify-content: left;
   align-items: center;
   width: 65%;
+}
+
+.item-name {
+  font-size: larger;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 .quantity-num {
@@ -148,7 +173,6 @@
 
 .quantity-order-btn-container {
   display: flex;
-
 }
 
 .selected-vendor {
@@ -271,6 +295,12 @@
   .add-item-item-notes {
     font-size: 1.2rem;
   }
+
+  .customer-view-items-display {
+    grid-area: customer-view-item-card;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
   .add-item-form {
     gap: 1rem;
   }
@@ -291,18 +321,31 @@
     align-items: flex-start;
     font-size: 1.2rem;
   }
+
+  .customer-view-items-display {
+    grid-area: customer-view-item-card;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-@media (max-width: 341px) {
+@media (max-width: 369px) {
   .customer-view-item-card {
     flex-direction: column;
   }
   .item-details {
     margin: 10%;
   }
+
+  .customer-view-items-display {
+    grid-area: customer-view-item-card;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 
 .customer-view-card-details {
+  font-style: italic;
   max-height: 5rem;
   overflow: auto;
 }

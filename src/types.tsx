@@ -1,3 +1,5 @@
+//Types from CustomerDashboard
+
 export type Vendor = {
   email: string;
   first_name: string;
@@ -52,4 +54,22 @@ export type User = {
 export type CurrentCustomer = {
   first_name: string;
   email: string;
+};
+
+//Types from CustomerLogin
+export type Customer = {
+  email: string;
+  first_name: string;
+  id: number;
+  last_name: string;
+  location: string;
+  market: number;
+  vendor_name: string;
+  password: string;
+};
+
+export type CustomerLoginProps = {
+  allCustomers: Customer[];
+  setIsVendor: Function;
+  setCurrentUserId: Function;
 };

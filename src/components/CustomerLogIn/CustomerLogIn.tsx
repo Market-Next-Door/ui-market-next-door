@@ -1,24 +1,11 @@
 import React, { useState } from 'react';
 import './CustomerLogIn.css';
 import { useNavigate } from 'react-router';
-import { CustomerDashboardProps } from '../../types';
-
-export type Customer = {
-  email: string;
-  first_name: string;
-  id: number;
-  last_name: string;
-  location: string;
-  market: number;
-  vendor_name: string;
-  password: string;
-};
-
-export type CustomerLoginProps = {
-  allCustomers: Customer[];
-  setIsVendor: Function;
-  setCurrentUserId: Function;
-};
+import {
+  CustomerDashboardProps,
+  Customer,
+  CustomerLoginProps,
+} from '../../types';
 
 const CustomerLogIn = ({
   allCustomers,

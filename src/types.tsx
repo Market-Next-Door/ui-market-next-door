@@ -114,3 +114,16 @@ export type CustomerOrderCardProps = {
     vendorItems: VendorItem[];
   };
 };
+
+//Types from Customer Sign Up
+export type newCustomer = {
+  customerFirstName: string;
+  customerLastName: string;
+  customerEmail: string;
+  customerPassword: string;
+  customerPasswordMatch: string;
+};
+
+export type CustomerSignUpProps = {
+  addCustomer: Function;
+};

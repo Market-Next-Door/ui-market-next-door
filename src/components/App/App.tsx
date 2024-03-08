@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { newCustomer } from '../CustomerSignUp/CustomerSignUp';
+import { newCustomer } from '../../types';
 
 import './App.css';
 import {

@@ -8,12 +8,13 @@ export type Vendor = {
   location: string;
   market: number;
   vendor_name: string;
+  password: string;
 };
 
 export type selectedVendorItem = {
   id: number;
   item_name: string;
-  vendor: number;
+  vendor: string;
   price: string;
   size: string;
   quantity: number;
@@ -183,4 +184,44 @@ export type NavigationBarProps = {
   selectedRadius: string;
   isVendor: boolean;
   currentUserId: string;
+};
+
+//Types from Vendor Dashboard
+export type VendorParams = {
+  vendorid: string;
+};
+
+export type VendorDashboardProps = {
+  selectedZipcode: string;
+  selectedRadius: string;
+  allVendors: Vendor[];
+  allItems: Item[];
+  isVendor: boolean;
+  setIsVendor: Function;
+  setCurrentUserId: Function;
+  currentUserId: string;
+};
+
+export type Item = {
+  id: number;
+  item_name: string;
+  vendor: number;
+  price: string;
+  quantity: number;
+  size: string;
+  availability: boolean;
+  description: string;
+  image: string;
+};
+
+export type NewItem = {
+  item_name: string;
+  vendor: string;
+  size: string;
+  price: string;
+  quantity: number;
+  description: string;
+  availability: boolean;
+  image: File | null;
+  id: string;
 };

@@ -1,35 +1,10 @@
-import React from "react";
-import Switch from "react-switch";
-import "./VendorItemCard.css";
-import { useState } from "react";
-import { updateVendorItem } from "../../apiCalls";
-import ErrorPage from "../ErrorPage/ErrorPage";
-// import { VendorDashboardProps, Item } from '../VendorDashboard/VendorDashboard';
-
-type VendorItemCardProps = {
-  id: number;
-  item_name: string;
-  vendor: string;
-  price: string;
-  quantity: number;
-  size: string;
-  availability: boolean;
-  description: string;
-  image: string;
-  vendorid: string;
-  onDelete: (id: number) => void;
-};
-
-export type updatedItem = {
-  item_name: string;
-  vendor: number;
-  size: string;
-  price: string;
-  quantity: number;
-  description: string;
-  availability: boolean;
-  image: File | null;
-};
+import React from 'react';
+import Switch from 'react-switch';
+import './VendorItemCard.css';
+import { useState } from 'react';
+import { updateVendorItem } from '../../apiCalls';
+import ErrorPage from '../ErrorPage/ErrorPage';
+import { VendorItemCardProps, updatedItem } from '../../types';
 
 const VendorItemCard = ({
   id,
@@ -44,7 +19,6 @@ const VendorItemCard = ({
   vendorid,
   onDelete,
 }: VendorItemCardProps) => {
- 
   const [isChecked, setIsChecked] = useState(availability);
   const [isEditable, setIsEditable] = useState<boolean>(false);
 
@@ -58,7 +32,7 @@ const VendorItemCard = ({
     checkedAvailablehandleChangeAvailable,
     setCheckedAvailablehandleChangeAvailable,
   ] = useState(availability);
-  const [vendorItemCardError, setVendorItemCardError] = useState("");
+  const [vendorItemCardError, setVendorItemCardError] = useState('');
 
   const handleChangeAvailable = (newChecked: boolean) => {
     setCheckedAvailablehandleChangeAvailable(newChecked);
@@ -82,7 +56,7 @@ const VendorItemCard = ({
     setIsEditable(false);
     updateVendorItem(vendorid, id, updatedItem)
       // .then((data) => console.log(data))
-      .catch((error) => setVendorItemCardError(error.message));
+      .catch(error => setVendorItemCardError(error.message));
   };
 
   return vendorItemCardError ? (
@@ -102,7 +76,7 @@ const VendorItemCard = ({
             type="text"
             className="item-input"
             value={itemName}
-            onChange={(e) => setItemName(e.target.value)}
+            onChange={e => setItemName(e.target.value)}
             readOnly={!isEditable}
           />
         </p>
@@ -112,7 +86,7 @@ const VendorItemCard = ({
             type="text"
             className="item-input"
             value={itemSize}
-            onChange={(e) => setItemSize(e.target.value)}
+            onChange={e => setItemSize(e.target.value)}
             readOnly={!isEditable}
           />
         </p>
@@ -122,7 +96,7 @@ const VendorItemCard = ({
             type="number"
             className="item-input"
             value={itemPrice}
-            onChange={(e) => setItemPrice(e.target.value)}
+            onChange={e => setItemPrice(e.target.value)}
             readOnly={!isEditable}
           />
         </p>
@@ -132,7 +106,7 @@ const VendorItemCard = ({
             type="text"
             className="item-input vendor-view-card-details"
             value={itemDetails}
-            onChange={(e) => setItemDetails(e.target.value)}
+            onChange={e => setItemDetails(e.target.value)}
             readOnly={!isEditable}
           />
         </p>
@@ -143,7 +117,7 @@ const VendorItemCard = ({
               className="item-input"
               type="number"
               value={quantityAvailable}
-              onChange={(e) => setQuantityAvailable(Number(e.target.value))}
+              onChange={e => setQuantityAvailable(Number(e.target.value))}
               readOnly={!isEditable}
             />
           </p>

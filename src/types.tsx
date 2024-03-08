@@ -225,3 +225,29 @@ export type NewItem = {
   image: File | null;
   id: string;
 };
+
+//Types from Vendor Item Card
+export type VendorItemCardProps = {
+  id: number;
+  item_name: string;
+  vendor: string;
+  price: string;
+  quantity: number;
+  size: string;
+  availability: boolean;
+  description: string;
+  image: string;
+  vendorid: string;
+  onDelete: (id: number) => void;
+};
+
+export type updatedItem = {
+  item_name: string;
+  vendor: number;
+  size: string;
+  price: string;
+  quantity: number;
+  description: string;
+  availability: boolean;
+  image: File | null;
+};

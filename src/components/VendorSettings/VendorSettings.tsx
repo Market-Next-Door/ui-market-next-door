@@ -4,18 +4,11 @@ import React, { useEffect, useState } from 'react';
 import Header from '../Header/Header';
 import NavigationBar from '../NavigationBar/NavigationBar';
 import { deleteVendor, getOneVendor, updateVendorData } from '../../apiCalls';
-import { NavigationBarProps } from '../../types';
+import { NavigationBarProps, Vendor } from '../../types';
 import { ThreeDots } from 'react-loader-spinner';
 import { useNavigate, useParams } from 'react-router';
 import ErrorPage from '../ErrorPage/ErrorPage';
 
-type Vendor = {
-  first_name: string;
-  last_name: string;
-  email: string;
-  password: string;
-  vendor_name: string;
-};
 export default function VendorSettings({
   selectedZipcode,
   selectedRadius,

@@ -139,3 +139,40 @@ export type HeaderProps = {
   name: string;
   greeting?: string;
 };
+
+//Types from Map Component
+
+//types needed for our state object
+export type MarketProps = {
+  market_name: string;
+  address: string;
+  website: string;
+  phone: string;
+  lat: string;
+  lon: string;
+};
+
+export type selectedMarketProps = [
+  {
+    market_name: string;
+    address: string;
+    lat: string;
+    lon: string;
+    website: string;
+    zipcode: string;
+    phone: string;
+  }
+];
+
+export type MapProps = {
+  isVendor: boolean;
+  currentUserId: string;
+  addZipAndRadius: Function;
+  selectedZipcode: string;
+  selectedRadius: string;
+};
+
+export type MapConfigProps = {
+  center: [number, number];
+  zoom: number;
+};

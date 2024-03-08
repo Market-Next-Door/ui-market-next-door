@@ -251,3 +251,44 @@ export type updatedItem = {
   availability: boolean;
   image: File | null;
 };
+
+//Types from Vendor Orders
+export type VendorOrderCardProps = {
+  key: number;
+  data: {
+    orderObj: CustomerOrder;
+    vendorDetails: VendorDetails;
+    customerDetails: CustomerDetails;
+    vendorItems: VendorItem[];
+  };
+};
+
+// export type VendorDetails = {
+//     email: string;
+//     vendor_name: string;
+//   };
+
+// export type CustomerDetails = {
+//     email: string;
+//     first_name: string;
+//   };
+
+// export type VendorItem = {
+//     id: number;
+//     item_name: string;
+//     size: string;
+//     description: string;
+//     price: string;
+//   };
+
+//   export type CustomerOrder = {
+//     id: number;
+//     customer: number;
+//     item: number;
+//     ready: boolean;
+//     quantity_requested: number;
+//     vendor_id: number;
+//     date_created: string;
+//     updated_at: string;
+//     item_name: string;
+//   };

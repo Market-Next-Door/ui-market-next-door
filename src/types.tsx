@@ -133,3 +133,9 @@ export type ErrorPageProps = {
   error: string;
   message: string;
 };
+
+//Types from Header
+export type HeaderProps = {
+  name: string;
+  greeting?: string;
+};

@@ -127,3 +127,9 @@ export type newCustomer = {
 export type CustomerSignUpProps = {
   addCustomer: Function;
 };
+
+//Types from ErrorPage
+export type ErrorPageProps = {
+  error: string;
+  message: string;
+};

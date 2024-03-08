@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Header from '../Header/Header';
 import NavigationBar from '../NavigationBar/NavigationBar';
 import { deleteVendor, getOneVendor, updateVendorData } from '../../apiCalls';
-import { NavigationBarProps } from '../NavigationBar/NavigationBar';
+import { NavigationBarProps } from '../../types';
 import { ThreeDots } from 'react-loader-spinner';
 import { useNavigate, useParams } from 'react-router';
 import ErrorPage from '../ErrorPage/ErrorPage';

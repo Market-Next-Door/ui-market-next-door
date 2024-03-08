@@ -9,7 +9,6 @@ import { postCustomerOrder } from '../../apiCalls';
 import { updateItemQuantity } from '../../apiCalls';
 import { useParams } from 'react-router';
 import { getOneCustomer } from '../../apiCalls';
-import { NavigationBarProps } from '../NavigationBar/NavigationBar';
 import ErrorPage from '../ErrorPage/ErrorPage';
 import {
   Vendor,
@@ -18,6 +17,7 @@ import {
   selectedVendorItem,
   CurrentCustomer,
   CustomerViewItemCardProps,
+  NavigationBarProps,
 } from '../../types';
 
 const CustomerDash = ({

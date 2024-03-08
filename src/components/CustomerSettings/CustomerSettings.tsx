@@ -7,11 +7,10 @@ import {
   getOneCustomer,
   updateCustomerData,
 } from '../../apiCalls';
-import { NavigationBarProps } from '../NavigationBar/NavigationBar';
 import { ThreeDots } from 'react-loader-spinner';
 import { useNavigate, useParams } from 'react-router';
 import ErrorPage from '../ErrorPage/ErrorPage';
-import { Customer } from '../../types';
+import { Customer, NavigationBarProps } from '../../types';
 
 export default function CustomerSettings({
   selectedZipcode,

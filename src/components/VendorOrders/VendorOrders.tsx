@@ -9,7 +9,7 @@ import { getSelectedVendorOrders } from '../../apiCalls';
 import { getOneCustomer } from '../../apiCalls';
 import { getOneVendor } from '../../apiCalls';
 import { getSelectedVendorsItems } from '../../apiCalls';
-import { NavigationBarProps } from '../NavigationBar/NavigationBar';
+import { NavigationBarProps } from '../../types';
 import { ThreeDots } from 'react-loader-spinner';
 import { useParams } from 'react-router';
 import ErrorPage from '../ErrorPage/ErrorPage';

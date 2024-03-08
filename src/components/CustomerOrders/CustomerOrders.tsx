@@ -9,7 +9,6 @@ import { getSelectedCustomerOrders } from '../../apiCalls';
 import { getOneCustomer } from '../../apiCalls';
 import { getOneVendor } from '../../apiCalls';
 import { getSelectedVendorsItems } from '../../apiCalls';
-import { NavigationBarProps } from '../NavigationBar/NavigationBar';
 import { ThreeDots } from 'react-loader-spinner';
 import { useParams } from 'react-router';
 import ErrorPage from '../ErrorPage/ErrorPage';
@@ -19,6 +18,7 @@ import {
   CustomerDetails,
   CustomerOrder,
   CustomerOrderCardProps,
+  NavigationBarProps,
 } from '../../types';
 
 function CustomerOrders({

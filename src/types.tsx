@@ -176,3 +176,11 @@ export type MapConfigProps = {
   center: [number, number];
   zoom: number;
 };
+
+//Type from Navigation Bar
+export type NavigationBarProps = {
+  selectedZipcode: string;
+  selectedRadius: string;
+  isVendor: boolean;
+  currentUserId: string;
+};

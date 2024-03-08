@@ -292,3 +292,8 @@ export type VendorOrderCardProps = {
 //     updated_at: string;
 //     item_name: string;
 //   };
+
+//Types for Vendor Sign Up
+export type VendorSignUpProps = {
+  addVendor: Function;
+};

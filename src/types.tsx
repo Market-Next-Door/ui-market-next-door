@@ -73,3 +73,44 @@ export type CustomerLoginProps = {
   setIsVendor: Function;
   setCurrentUserId: Function;
 };
+
+//Types from Customer Orders
+export type VendorDetails = {
+  email: string;
+  vendor_name: string;
+};
+
+export type CustomerDetails = {
+  email: string;
+  first_name: string;
+};
+
+export type VendorItem = {
+  id: number;
+  item_name: string;
+  size: string;
+  description: string;
+  price: string;
+};
+
+export type CustomerOrder = {
+  id: number;
+  customer: number;
+  item: number;
+  ready: boolean;
+  quantity_requested: number;
+  vendor_id: number;
+  date_created: string;
+  updated_at: string;
+  item_name: string;
+};
+
+export type CustomerOrderCardProps = {
+  key: number;
+  data: {
+    orderObj: CustomerOrder;
+    vendorDetails: VendorDetails; // Update the type here
+    customerDetails: CustomerDetails;
+    vendorItems: VendorItem[];
+  };
+};

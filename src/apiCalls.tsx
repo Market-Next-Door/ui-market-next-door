@@ -1,4 +1,4 @@
-import { updatedItem } from './components/VendorItemCard/VendorItemCard';
+import { updatedItem } from './types';
 
 let url =
   process.env.REACT_APP_DEV_MODE === 'deployment'

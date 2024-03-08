@@ -1,15 +1,14 @@
-import React from "react";
-import "./LandingPage.css";
-import { useNavigate } from "react-router";
+import './LandingPage.css';
+import { useNavigate } from 'react-router';
 
 const LandingPage = () => {
   const navigate = useNavigate();
   function handleVendorClick() {
-    navigate("/vendorlogin");
+    navigate('/vendorlogin');
   }
 
   function handleCustomerClick() {
-    navigate("/customerlogin");
+    navigate('/customerlogin');
   }
 
   return (

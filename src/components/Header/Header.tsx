@@ -1,10 +1,7 @@
 import React from 'react';
 import './Header.css';
+import { HeaderProps } from '../../types';
 
-type HeaderProps = {
-  name: string;
-  greeting?: string;
-};
 const Header = ({ name, greeting }: HeaderProps) => {
   return (
     <div className="mnd-header">

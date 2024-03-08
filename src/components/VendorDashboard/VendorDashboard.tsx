@@ -10,63 +10,17 @@ import {
   getOneCustomer,
   getOneVendor,
 } from '../../apiCalls';
-
-import { Vendor } from '../VendorLogIn/VendorLogIn';
 import { useParams } from 'react-router';
 import ErrorPage from '../ErrorPage/ErrorPage';
+import {
+  VendorParams,
+  VendorDashboardProps,
+  Vendor,
+  Item,
+  NewItem,
+  selectedVendorItem,
+} from '../../types';
 
-type VendorParams = {
-  vendorid: string;
-};
-
-export type VendorDashboardProps = {
-  selectedZipcode: string;
-  selectedRadius: string;
-  allVendors: Vendor[];
-  allItems: Item[];
-  isVendor: boolean;
-  setIsVendor: Function;
-  setCurrentUserId: Function;
-  currentUserId: string;
-};
-
-export type Item = {
-  id: number;
-  item_name: string;
-  vendor: number;
-  price: string;
-  quantity: number;
-  size: string;
-  availability: boolean;
-  description: string;
-  image: string;
-};
-
-export type NewItem = {
-  item_name: string;
-  vendor: string;
-  size: string;
-  price: string;
-  quantity: number;
-  description: string;
-  availability: boolean;
-  image: File | null;
-  id: string;
-};
-
-type selectedVendorItem = {
-  id: number;
-  item_name: string;
-  vendor: string;
-  price: string;
-  size: string;
-  quantity: number;
-  availability: boolean;
-  description: string;
-  image: string;
-  date_created: string;
-  updated_at: string;
-};
 const VendorDashboard = ({
   selectedZipcode,
   selectedRadius,

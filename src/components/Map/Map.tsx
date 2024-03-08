@@ -10,6 +10,12 @@ import { getMarkets } from '../../apiCalls';
 import NavigationBar from '../NavigationBar/NavigationBar';
 import './Map.css';
 import Header from '../Header/Header';
+import {
+  MarketProps,
+  selectedMarketProps,
+  MapProps,
+  MapConfigProps,
+} from '../../types';
 
 //custom marker icon
 const customMarkerIcon: L.Icon = L.icon({
@@ -21,45 +27,6 @@ const customMarkerIcon: L.Icon = L.icon({
   popupAnchor: [1, -34],
   shadowSize: [41, 41],
 });
-
-//types needed for our state object
-type MarketProps = {
-  market_name: string;
-  address: string;
-  website: string;
-  phone: string;
-  lat: string;
-  lon: string;
-};
-
-type selectedMarketProps = [
-  {
-    market_name: string;
-    address: string;
-    lat: string;
-    lon: string;
-    website: string;
-    zipcode: string;
-    phone: string;
-  }
-];
-
-export type MapProps = {
-  isVendor: boolean;
-  currentUserId: string;
-  addZipAndRadius: Function;
-  selectedZipcode: string;
-  selectedRadius: string;
-};
-
-type MapConfigProps = {
-  center: [number, number];
-  zoom: number;
-};
-
-type User = {
-  first_name?: string;
-};
 
 // useMap hook
 function ConfigureMap({ center, zoom }: MapConfigProps) {

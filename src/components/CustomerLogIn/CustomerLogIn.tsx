@@ -1,24 +1,11 @@
-import React, { useState } from "react";
-import "./CustomerLogIn.css";
-import { useNavigate } from "react-router";
-import { CustomerDashboardProps } from "../CustomerDashboard/CustomerDashboard";
-
-export type Customer = {
-  email: string;
-  first_name: string;
-  id: number;
-  last_name: string;
-  location: string;
-  market: number;
-  vendor_name: string;
-  password: string;
-};
-
-export type CustomerLoginProps = {
-  allCustomers: Customer[];
-  setIsVendor: Function;
-  setCurrentUserId: Function;
-};
+import React, { useState } from 'react';
+import './CustomerLogIn.css';
+import { useNavigate } from 'react-router';
+import {
+  CustomerDashboardProps,
+  Customer,
+  CustomerLoginProps,
+} from '../../types';
 
 const CustomerLogIn = ({
   allCustomers,
@@ -28,17 +15,17 @@ const CustomerLogIn = ({
   const navigate = useNavigate();
 
   function handleGoBack() {
-    navigate("/");
+    navigate('/');
   }
 
   function handleSignUp() {
-    navigate("/customersignup");
+    navigate('/customersignup');
   }
 
   function handleLogin(e: any) {
     e.preventDefault();
     const validCustomer = allCustomers.find(
-      (customer) =>
+      customer =>
         customer.email === customerLoginEmail &&
         customer.password === customerLoginPassword
     );
@@ -47,20 +34,20 @@ const CustomerLogIn = ({
       setIsVendor(false);
       setCurrentUserId(validCustomer.id);
       navigate(`/customerdashboard/${validCustomer.id}`);
-      setMessage("");
+      setMessage('');
     } else {
       setMessage(
-        "Oops! Check your email and password. Or sign up for an account."
+        'Oops! Check your email and password. Or sign up for an account.'
       );
       setTimeout(() => {
-        setMessage("");
+        setMessage('');
       }, 3500);
     }
   }
 
-  const [customerLoginEmail, setCustomerLoginEmail] = useState("");
-  const [customerLoginPassword, setCustomerLoginPassword] = useState("");
-  const [message, setMessage] = useState("");
+  const [customerLoginEmail, setCustomerLoginEmail] = useState('');
+  const [customerLoginPassword, setCustomerLoginPassword] = useState('');
+  const [message, setMessage] = useState('');
 
   return (
     <form className="customer-login-container">
@@ -72,7 +59,7 @@ const CustomerLogIn = ({
         name="customerEmail"
         placeholder="Enter email..."
         value={customerLoginEmail}
-        onChange={(e) => setCustomerLoginEmail(e.target.value)}
+        onChange={e => setCustomerLoginEmail(e.target.value)}
       />
       <input
         className="customer-login-input"
@@ -80,14 +67,14 @@ const CustomerLogIn = ({
         name="customerPassword"
         placeholder="Enter password..."
         value={customerLoginPassword}
-        onChange={(e) => setCustomerLoginPassword(e.target.value)}
-      />{" "}
-      <p className="message" style={{ fontSize: "1.4rem" }}>
-        {message}{" "}
+        onChange={e => setCustomerLoginPassword(e.target.value)}
+      />{' '}
+      <p className="message" style={{ fontSize: '1.4rem' }}>
+        {message}{' '}
       </p>
       <button
         className="customer-login-submit-btn"
-        onClick={(e) => handleLogin(e)}
+        onClick={e => handleLogin(e)}
       >
         SIGN IN
       </button>

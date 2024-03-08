@@ -1,17 +1,13 @@
-import { useNavigate, useParams, useLocation } from "react-router-dom";
-import "./ErrorPage.css";
-
-type ErrorPageProps = {
-  error: string;
-  message: string;
-};
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import './ErrorPage.css';
+import { ErrorPageProps } from '../../types';
 
 function ErrorPage({ error, message }: ErrorPageProps) {
   const location = useLocation();
   const { someProp } = location.state || {};
   const navigate = useNavigate();
   function navigateToHome() {
-    navigate("/");
+    navigate('/');
   }
 
   return (

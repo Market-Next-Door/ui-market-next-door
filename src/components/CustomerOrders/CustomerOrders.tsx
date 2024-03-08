@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './CustomerOrders.css';
 import Header from '../Header/Header';
 import NavigationBar from '../NavigationBar/NavigationBar';
@@ -9,50 +9,18 @@ import { getSelectedCustomerOrders } from '../../apiCalls';
 import { getOneCustomer } from '../../apiCalls';
 import { getOneVendor } from '../../apiCalls';
 import { getSelectedVendorsItems } from '../../apiCalls';
-import { NavigationBarProps } from '../NavigationBar/NavigationBar';
 import { ThreeDots } from 'react-loader-spinner';
 import { useParams } from 'react-router';
 import ErrorPage from '../ErrorPage/ErrorPage';
+import {
+  VendorDetails,
+  VendorItem,
+  CustomerDetails,
+  CustomerOrder,
+  CustomerOrderCardProps,
+  NavigationBarProps,
+} from '../../types';
 
-type VendorDetails = {
-  email: string;
-  vendor_name: string;
-};
-
-type CustomerDetails = {
-  email: string;
-  first_name: string;
-};
-
-type VendorItem = {
-  id: number;
-  item_name: string;
-  size: string;
-  description: string;
-  price: string;
-};
-
-type CustomerOrder = {
-  id: number;
-  customer: number;
-  item: number;
-  ready: boolean;
-  quantity_requested: number;
-  vendor_id: number;
-  date_created: string;
-  updated_at: string;
-  item_name: string;
-};
-
-type CustomerOrderCardProps = {
-  key: number;
-  data: {
-    orderObj: CustomerOrder;
-    vendorDetails: VendorDetails; // Update the type here
-    customerDetails: CustomerDetails;
-    vendorItems: VendorItem[];
-  };
-};
 function CustomerOrders({
   selectedZipcode,
   selectedRadius,

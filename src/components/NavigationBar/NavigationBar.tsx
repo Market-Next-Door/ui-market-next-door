@@ -2,13 +2,7 @@ import React from 'react';
 import './NavigationBar.css';
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router';
-
-export type NavigationBarProps = {
-  selectedZipcode: string;
-  selectedRadius: string;
-  isVendor: boolean;
-  currentUserId: string;
-};
+import { NavigationBarProps } from '../../types';
 
 const NavigationBar = ({
   selectedZipcode,

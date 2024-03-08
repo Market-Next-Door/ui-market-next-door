@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { newCustomer } from '../CustomerSignUp/CustomerSignUp';
+import { newCustomer } from '../../types';
 
 import './App.css';
 import {
@@ -19,9 +19,7 @@ import VendorOrders from '../VendorOrders/VendorOrders';
 import CustomerOrders from '../CustomerOrders/CustomerOrders';
 import CustomerSettings from '../CustomerSettings/CustomerSettings';
 import VendorSettings from '../VendorSettings/VendorSettings';
-import { NewItem, Item } from '../VendorDashboard/VendorDashboard';
-import { Customer } from '../CustomerLogIn/CustomerLogIn';
-import { Vendor } from '../VendorLogIn/VendorLogIn';
+import { Customer, Vendor, NewItem, Item } from '../../types';
 import Map from '../Map/Map';
 import ErrorPage from '../ErrorPage/ErrorPage';
 import 'leaflet/dist/leaflet.css';
@@ -35,8 +33,8 @@ function App() {
   const [isVendor, setIsVendor] = useState<boolean>(false);
   const [currentUserId, setCurrentUserId] = useState<string>('');
   const [appError, setAppError] = useState<string>('');
-  const [selectedZipcode, setSelectedZipcode] = useState<string>('80206')
-  const [selectedRadius, setSelectedRadius] = useState<string>('10')
+  const [selectedZipcode, setSelectedZipcode] = useState<string>('80206');
+  const [selectedRadius, setSelectedRadius] = useState<string>('10');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -62,9 +60,9 @@ function App() {
     setAllVendors([...allVendors, newVendor]);
   }
 
-  function addZipAndRadius(zipcode:string, radius:string) {
-    setSelectedZipcode(zipcode)
-    setSelectedRadius(radius)
+  function addZipAndRadius(zipcode: string, radius: string) {
+    setSelectedZipcode(zipcode);
+    setSelectedRadius(radius);
   }
 
   return appError ? (
@@ -115,7 +113,8 @@ function App() {
           path="/vendordashboard/:vendorid"
           element={
             <VendorDashboard
-              selectedZipcode={selectedZipcode} selectedRadius={selectedRadius}
+              selectedZipcode={selectedZipcode}
+              selectedRadius={selectedRadius}
               allItems={allItems}
               allVendors={allVendors}
               isVendor={isVendor}
@@ -144,8 +143,9 @@ function App() {
             <VendorOrders
               selectedZipcode={selectedZipcode}
               selectedRadius={selectedRadius}
-              isVendor={isVendor} 
-              currentUserId={currentUserId} />
+              isVendor={isVendor}
+              currentUserId={currentUserId}
+            />
           }
         />
         <Route
@@ -154,8 +154,9 @@ function App() {
             <CustomerOrders
               selectedZipcode={selectedZipcode}
               selectedRadius={selectedRadius}
-              isVendor={isVendor} 
-              currentUserId={currentUserId} />
+              isVendor={isVendor}
+              currentUserId={currentUserId}
+            />
           }
         />
         <Route
@@ -175,16 +176,23 @@ function App() {
             <VendorSettings
               selectedZipcode={selectedZipcode}
               selectedRadius={selectedRadius}
-              isVendor={isVendor} 
-              currentUserId={currentUserId} />
+              isVendor={isVendor}
+              currentUserId={currentUserId}
+            />
           }
         />
-        <Route path="/map/:zip/:radius" element={<Map
+        <Route
+          path="/map/:zip/:radius"
+          element={
+            <Map
               addZipAndRadius={addZipAndRadius}
               selectedZipcode={selectedZipcode}
               selectedRadius={selectedRadius}
               isVendor={isVendor}
-              currentUserId={currentUserId}/>} />
+              currentUserId={currentUserId}
+            />
+          }
+        />
         <Route
           path="*"
           element={

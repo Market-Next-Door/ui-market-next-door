@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '../Header/Header';
 import NavigationBar from '../NavigationBar/NavigationBar';
 import './CustomerSettings.css';
@@ -7,17 +7,11 @@ import {
   getOneCustomer,
   updateCustomerData,
 } from '../../apiCalls';
-import { NavigationBarProps } from '../NavigationBar/NavigationBar';
 import { ThreeDots } from 'react-loader-spinner';
 import { useNavigate, useParams } from 'react-router';
 import ErrorPage from '../ErrorPage/ErrorPage';
+import { Customer, NavigationBarProps } from '../../types';
 
-type Customer = {
-  first_name: string;
-  last_name: string;
-  email: string;
-  password: string;
-};
 export default function CustomerSettings({
   selectedZipcode,
   selectedRadius,

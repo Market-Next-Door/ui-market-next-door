@@ -35,14 +35,14 @@ describe('should log a customer in and navigate to customer dashboard', () => {
     cy.get('.landing-btns > :nth-child(2)').click();
     // cy.visit('http://localhost:3000/customerlogin');
     cy.visit(
-      'https://market-next-door-fe-f6728ad38b62.herokuapp.com/api/v1/customerlogin'
+      'https://market-next-door-fe-f6728ad38b62.herokuapp.com/customerlogin'
     );
     cy.get("input[name='customerEmail']")
       .type('jj@gmail.com')
       .should('have.value', 'jj@gmail.com');
     cy.get("input[name='customerPassword']")
-      .type('1234')
-      .should('have.value', '1234');
+      .type('password')
+      .should('have.value', 'password');
     cy.get('.customer-login-container > :nth-child(6)').click();
 
     cy.wait('@getOneCustomer');
@@ -55,7 +55,7 @@ describe('should log a customer in and navigate to customer dashboard', () => {
 
     cy.intercept(
       'GET',
-      'https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/*/items/',
+      'https://quiet-depths-54407-77a00505f51e.herokuapp.com/api/v1/vendors/*/items/',
       { statusCode: 200, fixture: 'vendor1ItemsStub' }
     ).as('getVendor1Items');
 

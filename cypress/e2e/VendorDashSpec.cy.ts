@@ -5,12 +5,12 @@ describe('should log a vendor in and navigate to vendor dashboard', () => {
     // Setup intercepts for all customers and all vendors
     cy.intercept(
       'GET',
-      'https://quiet-depths-54407-77a00505f51e.herokuapp.com/customers/',
+      'https://quiet-depths-54407-77a00505f51e.herokuapp.com/api/v1/customers/',
       { statusCode: 200, fixture: 'allCustomersStub' }
     ).as('getAllCustomers');
     cy.intercept(
       'GET',
-      'https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/',
+      'https://quiet-depths-54407-77a00505f51e.herokuapp.com/api/v1/vendors/',
       { statusCode: 200, fixture: 'allVendorsStub' }
     ).as('getAllVendors');
 
@@ -27,7 +27,7 @@ describe('should log a vendor in and navigate to vendor dashboard', () => {
     // Intercept GET for one vendor
     cy.intercept(
       'GET',
-      'https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/*',
+      'https://quiet-depths-54407-77a00505f51e.herokuapp.com/api/v1/vendors/*',
       { statusCode: 200, fixture: 'oneVendorStub' }
     ).as('getOneVendor');
 
@@ -55,7 +55,7 @@ describe('should log a vendor in and navigate to vendor dashboard', () => {
 
     cy.intercept(
       'GET',
-      'https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/*/items/',
+      'https://quiet-depths-54407-77a00505f51e.herokuapp.com/api/v1/vendors/*/items/',
       { statusCode: 200, fixture: 'vendor1ItemsStub' }
     ).as('getVendor1Items');
 
@@ -67,7 +67,7 @@ describe('should log a vendor in and navigate to vendor dashboard', () => {
     //add a new item
     cy.intercept(
       'POST',
-      'https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/*/items/',
+      'https://quiet-depths-54407-77a00505f51e.herokuapp.com/api/v1/vendors/*/items/',
       {
         statusCode: 201,
         fixture: 'vendor1newItemStub',

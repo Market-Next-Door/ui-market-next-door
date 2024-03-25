@@ -5,12 +5,12 @@ describe('should log a customer in and navigate to customer dashboard', () => {
     // Setup intercepts for all customers and all vendors
     cy.intercept(
       'GET',
-      'https://quiet-depths-54407-77a00505f51e.herokuapp.com/customers/',
+      'https://quiet-depths-54407-77a00505f51e.herokuapp.com/api/v1/customers/',
       { statusCode: 200, fixture: 'allCustomersStub' }
     ).as('getAllCustomers');
     cy.intercept(
       'GET',
-      'https://quiet-depths-54407-77a00505f51e.herokuapp.com/vendors/',
+      'https://quiet-depths-54407-77a00505f51e.herokuapp.com/api/v1/vendors/',
       { statusCode: 200, fixture: 'allVendorsStub' }
     ).as('getAllVendors');
 
@@ -27,7 +27,7 @@ describe('should log a customer in and navigate to customer dashboard', () => {
     // Intercept GET for one customer
     cy.intercept(
       'GET',
-      'https://quiet-depths-54407-77a00505f51e.herokuapp.com/customers/*',
+      'https://quiet-depths-54407-77a00505f51e.herokuapp.com/api/v1/customers/*',
       { statusCode: 200, fixture: 'oneCustomerStub' }
     ).as('getOneCustomer');
 

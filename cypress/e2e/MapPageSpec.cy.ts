@@ -60,7 +60,7 @@ describe('should log a customer in and navigate to customer dashboard', () => {
 
     cy.intercept(
       'GET',
-      'https://quiet-depths-54407-77a00505f51e.herokuapp.com/markets/location/80206/10',
+      'https://quiet-depths-54407-77a00505f51e.herokuapp.com/api/v1/markets/location/80206/10',
       {
         statusCode: 200,
         fixture: 'map80206Stub',
@@ -69,7 +69,7 @@ describe('should log a customer in and navigate to customer dashboard', () => {
 
     cy.intercept(
       'GET',
-      'https://quiet-depths-54407-77a00505f51e.herokuapp.com/markets/location/80525/15',
+      'https://quiet-depths-54407-77a00505f51e.herokuapp.com/api/v1/markets/location/80525/15',
       {
         statusCode: 200,
         fixture: 'map80525Stub',

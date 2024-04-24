@@ -52,8 +52,27 @@ export function getOneVendor(vendorID: number) {
   });
 }
 
+//v1 endpoint
+// export function postNewVendor(newVendor: any) {
+//   return fetch(`${url}/api/v1/vendors/`, {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify(newVendor),
+//   })
+//     .then(response => {
+//       if (!response.ok) {
+//         throw new Error(`${response.status} ${response.statusText}`);
+//       }
+//       return response;
+//     })
+//     .then(response => response.json());
+// }
+
+//v2 endpoint
 export function postNewVendor(newVendor: any) {
-  return fetch(`${url}/api/v1/vendors/`, {
+  return fetch(`${url}/api/v2/vendors/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -144,8 +163,27 @@ export function getOneCustomer(customerID: number) {
   });
 }
 
+//v1 endpoint
+// export function postNewCustomer(newCustomer: any) {
+//   return fetch(`${url}/api/v1/customers/`, {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify(newCustomer),
+//   })
+//     .then(response => {
+//       if (!response.ok) {
+//         throw new Error(`${response.status} ${response.statusText}`);
+//       }
+//       return response;
+//     })
+//     .then(response => response.json());
+// }
+
+//v2 endpoint
 export function postNewCustomer(newCustomer: any) {
-  return fetch(`${url}/api/v1/customers/`, {
+  return fetch(`${url}/api/v2/customers/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

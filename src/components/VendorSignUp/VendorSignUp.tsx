@@ -8,6 +8,7 @@ import { VendorSignUpProps } from '../../types';
 const VendorSignUp = ({ addVendor }: VendorSignUpProps) => {
   const [vendorFirstName, setVendorFirstName] = useState('');
   const [vendorLastName, setVendorLastName] = useState('');
+  const [vendorZipCode, setVendorZipCode] = useState('');
   // const [vendorMarketName, setVendorMarketName] = useState(0);
   const [vendorEmail, setVendorEmail] = useState('');
   const [vendorPassword, setVendorPassword] = useState('');
@@ -27,6 +28,7 @@ const VendorSignUp = ({ addVendor }: VendorSignUpProps) => {
       first_name: vendorFirstName,
       last_name: vendorLastName,
       vendor_name: vendorName,
+      default_zipcode: vendorZipCode,
       password: vendorPassword,
       email: vendorEmail,
       market: 1,
@@ -74,6 +76,14 @@ const VendorSignUp = ({ addVendor }: VendorSignUpProps) => {
         placeholder="LAST NAME..."
         value={vendorLastName}
         onChange={e => setVendorLastName(e.target.value)}
+      />
+      <input
+        className="vendor-sign-up-input"
+        type="text"
+        name="zipcode"
+        placeholder="ZIP CODE..."
+        value={vendorZipCode}
+        onChange={e => setVendorZipCode(e.target.value)}
       />
       {/* <input
         className="vendor-sign-up-input"

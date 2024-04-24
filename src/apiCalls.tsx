@@ -1,17 +1,30 @@
 import { updatedItem } from './types';
 
 let url =
-  process.env.REACT_APP_DEV_MODE === 'deployment'
+  process.env.REACT_APP_DEV_MODE === 'development'
     ? process.env.REACT_APP_DEVELOPEMENT_URL
     : process.env.REACT_APP_DEPLOYMENT_URL;
+
+console.log('Using API URL:', url);
 
 type ItemQuantity = {
   quantity: number;
 };
 
 // VENDOR apiCalls 👇
+//v1 endpoint
+// export function getAllVendors() {
+//   return fetch(`${url}/api/v1/vendors/`).then(response => {
+//     if (!response.ok) {
+//       throw new Error(`${response.status} ${response.statusText}`);
+//     }
+//     return response.json();
+//   });
+// }
+
+//v2 endpoint
 export function getAllVendors() {
-  return fetch(`${url}/api/v1/vendors/`).then(response => {
+  return fetch(`${url}/api/v2/vendors/`).then(response => {
     if (!response.ok) {
       throw new Error(`${response.status} ${response.statusText}`);
     }
@@ -19,8 +32,19 @@ export function getAllVendors() {
   });
 }
 
+//v1 endpoint
+// export function getOneVendor(vendorID: number) {
+//   return fetch(`${url}/api/v1/vendors/${vendorID}`).then(response => {
+//     if (!response.ok) {
+//       throw new Error(`${response.status} ${response.statusText}`);
+//     }
+//     return response.json();
+//   });
+// }
+
+//v2 endpoint
 export function getOneVendor(vendorID: number) {
-  return fetch(`${url}/api/v1/vendors/${vendorID}`).then(response => {
+  return fetch(`${url}/api/v2/vendors/${vendorID}`).then(response => {
     if (!response.ok) {
       throw new Error(`${response.status} ${response.statusText}`);
     }
@@ -80,8 +104,19 @@ export function deleteVendor(vendorID: number) {
 }
 
 // CUSTOMER apiCalls 👇
+//v1 endpoint
+// export function getAllCustomers() {
+//   return fetch(`${url}/api/v1/customers/`).then(response => {
+//     if (!response.ok) {
+//       throw new Error(`${response.status} ${response.statusText}`);
+//     }
+//     return response.json();
+//   });
+// }
+
+//v2 endpoint
 export function getAllCustomers() {
-  return fetch(`${url}/api/v1/customers/`).then(response => {
+  return fetch(`${url}/api/v2/customers/`).then(response => {
     if (!response.ok) {
       throw new Error(`${response.status} ${response.statusText}`);
     }
@@ -89,8 +124,19 @@ export function getAllCustomers() {
   });
 }
 
+//v1 endpoint
+// export function getOneCustomer(customerID: number) {
+//   return fetch(`${url}/api/v1/customers/${customerID}`).then(response => {
+//     if (!response.ok) {
+//       throw new Error(`${response.status} ${response.statusText}`);
+//     }
+//     return response.json();
+//   });
+// }
+
+//v2 endpoint
 export function getOneCustomer(customerID: number) {
-  return fetch(`${url}/api/v1/customers/${customerID}`).then(response => {
+  return fetch(`${url}/api/v2/customers/${customerID}`).then(response => {
     if (!response.ok) {
       throw new Error(`${response.status} ${response.statusText}`);
     }
@@ -284,11 +330,12 @@ export function postCustomerOrder(newOrder: any, customerid: string) {
 
 //MARKETS apiCalls 👇
 export function getMarkets(zipcode: string, radius: string) {
-  return fetch(`${url}/api/v1/markets/location/${zipcode}/${radius}/`
-  ).then(response => {
-    if (!response.ok) {
-      throw new Error(`${response.status} ${response.statusText}`);
+  return fetch(`${url}/api/v1/markets/location/${zipcode}/${radius}/`).then(
+    response => {
+      if (!response.ok) {
+        throw new Error(`${response.status} ${response.statusText}`);
+      }
+      return response.json();
     }
-    return response.json();
-  });
+  );
 }

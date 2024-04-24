@@ -18,6 +18,7 @@ const CustomerSignUp = ({ addCustomer }: CustomerSignUpProps) => {
     const newCustomer = {
       first_name: customerFirstName,
       last_name: customerLastName,
+      default_zipcode: customerZipCode,
       email: customerEmail,
       password: customerPassword,
     };
@@ -32,6 +33,7 @@ const CustomerSignUp = ({ addCustomer }: CustomerSignUpProps) => {
   const [customerFirstName, setCustomerFirstName] = useState('');
   const [customerLastName, setCustomerLastName] = useState('');
   const [customerEmail, setCustomerEmail] = useState('');
+  const [customerZipCode, setCustomerZipCode] = useState('');
   const [customerPassword, setCustomerPassword] = useState('');
   const [customerPasswordMatch, setCustomerPasswordMatch] = useState('');
 
@@ -60,6 +62,14 @@ const CustomerSignUp = ({ addCustomer }: CustomerSignUpProps) => {
         placeholder="LAST NAME..."
         value={customerLastName}
         onChange={e => setCustomerLastName(e.target.value)}
+      />
+      <input
+        className="customer-sign-up-input"
+        type="text"
+        name="zipcode"
+        placeholder="ZIP CODE..."
+        value={customerZipCode}
+        onChange={e => setCustomerZipCode(e.target.value)}
       />
       <input
         className="customer-sign-up-input"

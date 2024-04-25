@@ -33,7 +33,9 @@ const CustomerLogIn = ({
     if (validCustomer) {
       setIsVendor(false);
       setCurrentUserId(validCustomer.id);
-      navigate(`/customerdashboard/${validCustomer.id}`);
+      navigate(
+        `/customerdashboard/${validCustomer.id}?zipcode=${validCustomer.zipcode}`
+      );
       setMessage('');
     } else {
       setMessage(

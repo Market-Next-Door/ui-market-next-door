@@ -15,9 +15,10 @@ import {
   selectedMarketProps,
   MapProps,
   MapConfigProps,
+  User,
 } from '../../types';
 
-//custom marker icon
+// Custom marker icon
 const customMarkerIcon: L.Icon = L.icon({
   iconUrl: markerIcon,
   iconRetinaUrl: markerIcon2x,
@@ -28,7 +29,7 @@ const customMarkerIcon: L.Icon = L.icon({
   shadowSize: [41, 41],
 });
 
-// useMap hook
+// ConfigureMap component
 function ConfigureMap({ center, zoom }: MapConfigProps) {
   const map = useMap();
   useEffect(() => {
@@ -44,30 +45,39 @@ function Map({
   addZipAndRadius,
   isVendor,
   currentUserId,
-}: MapProps) {
-  console.log('selectedZipcode: ', selectedZipcode);
-
-  const urlZipRadius = useParams();
-  const urlZip = urlZipRadius.zip;
-  const urlRadius = urlZipRadius.radius;
+  currentUserObj,
+}: MapProps & { currentUserObj: User | null }) {
+  const { zip: urlZip, radius: urlRadius } = useParams();
 
   const [selectedMarketByZip, setSelectedMarketByZip] =
     useState<selectedMarketProps | null>(null);
-  const [zipcode, setZipcode] = useState('');
-  const [radius, setRadius] = useState('');
+
+  const [zipcode, setZipcode] = useState(currentUserObj?.zipcode || ''); // Use currentUserObj?.zipcode as default value
+
+  const [radius, setRadius] = useState(selectedRadius || ''); // Use selectedRadius as default value
+
   const [map, setMap] = useState<L.Map | null>(null);
   const [searchClicked, setSearchClicked] = useState(false);
   const [headerText, setHeaderText] = useState(
     'Please Select A Zip Code and Radius'
   );
 
+  const [activeMarket, setActiveMarket] = useState<MarketProps | null>(null);
+
+  const navigate = useNavigate();
+
+  const center: [number, number] =
+    selectedMarketByZip && selectedMarketByZip.length > 0
+      ? [Number(selectedMarketByZip[0].lon), Number(selectedMarketByZip[0].lat)]
+      : [39.7414378, -104.961905]; // Default to Denver if no market is selected
+  const zoom = 11;
+  const [errorMessage, setErrorMessage] = useState('');
+
   useEffect(() => {
     if (urlZip !== undefined && urlRadius !== undefined) {
       getMarkets(urlZip, urlRadius)
         .then(data => {
           setSelectedMarketByZip(data);
-          console.log('data from API', data);
-
           if (data && data.length > 0 && map) {
             const firstMarket = data[0];
             map.flyTo([Number(firstMarket.lon), Number(firstMarket.lat)], 11, {
@@ -78,17 +88,6 @@ function Map({
         .catch(error => console.log(error));
     }
   }, [urlZip, urlRadius, searchClicked, map]);
-
-  const [activeMarket, setActiveMarket] = useState<MarketProps | null>(null);
-  const navigate = useNavigate();
-
-  const center: [number, number] =
-    selectedMarketByZip && selectedMarketByZip.length > 0
-      ? [Number(selectedMarketByZip[0].lon), Number(selectedMarketByZip[0].lat)]
-      : [39.7414378, -104.961905]; // Default to Denver if no market is selected
-  const zoom = 11;
-
-  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSearch = (e: any) => {
     e.preventDefault();
@@ -101,14 +100,11 @@ function Map({
       setErrorMessage(
         'Invalid input. Please check your entries and make sure both fields are filled.'
       );
-
       setTimeout(() => {
         setErrorMessage('');
       }, 3000);
-
       return;
     }
-
     addZipAndRadius(zipcode, radius);
     setSearchClicked(true);
     navigate(`/map/${zipcode}/${radius}`);
@@ -121,26 +117,6 @@ function Map({
     setZipcode('');
     setRadius('');
   };
-
-  function MyComponent() {
-    const map = useMap();
-
-    useEffect(() => {
-      if (
-        searchClicked &&
-        selectedMarketByZip &&
-        selectedMarketByZip.length > 0 &&
-        map
-      ) {
-        const firstMarket = selectedMarketByZip[0];
-        map.flyTo([Number(firstMarket.lon), Number(firstMarket.lat)], 11, {
-          duration: 2,
-        });
-      }
-    }, [searchClicked, selectedMarketByZip, map]);
-
-    return null;
-  }
 
   return (
     <div className="map-page">
@@ -164,7 +140,6 @@ function Map({
             const isNumericKey = !isNaN(Number(e.key));
             const isDeleteKey = e.key === 'Delete' || e.key === 'Backspace';
             const isTabKey = e.key === 'Tab';
-
             if (!isNumericKey && !isDeleteKey && !isTabKey) {
               e.preventDefault();
             }
@@ -183,7 +158,6 @@ function Map({
             const isNumericKey = !isNaN(Number(e.key));
             const isDeleteKey = e.key === 'Delete' || e.key === 'Backspace';
             const isTabKey = e.key === 'Tab';
-
             if (!isNumericKey && !isDeleteKey && !isTabKey) {
               e.preventDefault();
             }
@@ -197,13 +171,9 @@ function Map({
 
       <MapContainer className="map-container">
         <ConfigureMap center={center} zoom={zoom} />
-        <MyComponent />
         {activeMarket && (
           <Popup
-            position={[
-              Number(activeMarket.lon), //location_y is the positive number (approx 38)
-              Number(activeMarket.lat), //location_x is the negative number in our data (approx -107)
-            ]}
+            position={[Number(activeMarket.lon), Number(activeMarket.lat)]}
           >
             <div className="popup-container" style={{ overflow: 'hidden' }}>
               <div className="popup-details-container">

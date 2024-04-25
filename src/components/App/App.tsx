@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { newCustomer } from '../../types';
+import { newCustomer, User } from '../../types';
 
 import './App.css';
-import {
-  getAllVendors,
-  getAllCustomers,
-  getAllPreOrders,
-} from '../../apiCalls';
+import { getAllVendors, getAllCustomers, getOneCustomer } from '../../apiCalls';
+import NavigationBar from '../NavigationBar/NavigationBar';
 import LandingPage from '../LandingPage/LandingPage';
 import VendorDashboard from '../VendorDashboard/VendorDashboard';
 import CustomerDash from '../CustomerDashboard/CustomerDashboard';
@@ -35,6 +32,7 @@ function App() {
   const [appError, setAppError] = useState<string>('');
   const [selectedZipcode, setSelectedZipcode] = useState<string>('80206');
   const [selectedRadius, setSelectedRadius] = useState<string>('10');
+  const [currentUserObj, setCurrentUserObj] = useState<User | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,6 +41,12 @@ function App() {
         const customersData = await getAllCustomers();
         setAllVendors(vendorsData);
         setAllCustomers(customersData);
+
+        if (currentUserId) {
+          const currentUser = await getOneCustomer(parseInt(currentUserId, 10));
+          setCurrentUserObj(currentUser);
+        }
+
         setIsLoading(false);
       } catch (error: any) {
         console.error('Error fetching data:', error);
@@ -50,7 +54,7 @@ function App() {
       }
     };
     fetchData();
-  }, []);
+  }, [currentUserId]);
 
   function addCustomer(newCustomer: Customer) {
     setAllCustomers([...allCustomers, newCustomer]);
@@ -127,16 +131,20 @@ function App() {
         <Route
           path="/customerdashboard/:id"
           element={
-            <CustomerDash
-              selectedZipcode={selectedZipcode}
-              selectedRadius={selectedRadius}
-              allVendors={allVendors}
-              isVendor={isVendor}
-              currentUserId={currentUserId}
-            />
+            currentUserObj ? (
+              <CustomerDash
+                selectedZipcode={selectedZipcode}
+                selectedRadius={selectedRadius}
+                allVendors={allVendors}
+                isVendor={isVendor}
+                currentUserId={currentUserId}
+                currentUserObj={currentUserObj!}
+              />
+            ) : (
+              <p>Loading...</p>
+            )
           }
         />
-
         <Route
           path="/vendororders/:id"
           element={
@@ -184,13 +192,18 @@ function App() {
         <Route
           path="/map/:zip/:radius"
           element={
-            <Map
-              addZipAndRadius={addZipAndRadius}
-              selectedZipcode={selectedZipcode}
-              selectedRadius={selectedRadius}
-              isVendor={isVendor}
-              currentUserId={currentUserId}
-            />
+            currentUserObj ? (
+              <Map
+                addZipAndRadius={addZipAndRadius}
+                selectedZipcode={selectedZipcode}
+                selectedRadius={selectedRadius}
+                isVendor={isVendor}
+                currentUserId={currentUserId}
+                currentUserObj={currentUserObj}
+              />
+            ) : (
+              <p>Loading...</p>
+            )
           }
         />
         <Route

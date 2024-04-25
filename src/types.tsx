@@ -9,6 +9,7 @@ export type Vendor = {
   market: number;
   vendor_name: string;
   password: string;
+  zipcode: string;
 };
 
 export type selectedVendorItem = {
@@ -31,9 +32,17 @@ export type CustomerDashboardProps = {
   allVendors: Vendor[];
   isVendor: boolean;
   currentUserId: string;
+  currentUserObj: {
+    id: string;
+    first_name: string;
+    last_name: string;
+    zipcode: string;
+    email: string;
+    password: string;
+  };
 };
 
-export type CustomerViewItemCardProps = {
+export type CustomerViewItemCardProps<T> = {
   availability: boolean;
   id: number;
   item_name: string;
@@ -43,18 +52,24 @@ export type CustomerViewItemCardProps = {
   description: string;
   selectedVendorObject: Vendor | null;
   onUpdateQuantity: (itemId: number, updatedQuantity: number) => void;
-  currentUser?: CurrentCustomer;
+  currentUser?: CurrentCustomer | null;
   image: string;
-  setMessage: Function;
+  setMessage: (message: string) => void;
 };
 
-export type User = {
-  first_name?: string;
-};
+export interface User {
+  id: string;
+  first_name: string;
+  last_name: string;
+  zipcode: string;
+  email: string;
+  password: string;
+}
 
 export type CurrentCustomer = {
   first_name: string;
   email: string;
+  zipcode: string;
 };
 
 //Types from CustomerLogin
@@ -67,6 +82,7 @@ export type Customer = {
   market: number;
   vendor_name: string;
   password: string;
+  zipcode: string;
 };
 
 export type CustomerLoginProps = {

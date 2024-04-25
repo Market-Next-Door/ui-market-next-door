@@ -27,9 +27,9 @@ const CustomerDash = ({
   isVendor,
   currentUserId,
 }: CustomerDashboardProps) => {
-  const customerid = useParams();
+  const customerid = useParams<{ id: string }>();
 
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [customerDashOneCustomerError, setCustomerDashOneCustomerError] =
     useState('');
 
@@ -39,7 +39,14 @@ const CustomerDash = ({
       .catch(error => setCustomerDashOneCustomerError(error.message));
   }, []);
 
-  const [currentUserObj, setCurrentUserObj] = useState<User>({});
+  const [currentUserObj, setCurrentUserObj] = useState<User>({
+    id: '',
+    first_name: '',
+    last_name: '',
+    zipcode: '',
+    email: '',
+    password: '',
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,6 +54,7 @@ const CustomerDash = ({
         if (customerid.id !== undefined) {
           const result = await getOneCustomer(parseInt(customerid.id));
           setCurrentUserObj(result);
+          console.log('currentUserObj:', result);
         }
       } catch (error: any) {
         console.error('Error fetching data:', error);
@@ -235,12 +243,12 @@ const CustomerViewItemCard = ({
   currentUser,
   image,
   setMessage,
-}: CustomerViewItemCardProps) => {
-  const customerid = useParams();
+}: CustomerViewItemCardProps<User | null>) => {
+  const customerid = useParams<{ id: string }>();
 
-  const componentRef = useRef(null);
+  const componentRef = useRef<HTMLDivElement>(null);
   const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
+    content: () => componentRef.current!,
   });
 
   const [isModalOpen, setModalOpen] = useState(false);
@@ -310,7 +318,7 @@ const CustomerViewItemCard = ({
         .catch(error => setPostCustomerOrderError(error.message));
       closeModal();
       setMessage(
-        'Your pre-order was recieved! Check out your ORDERS page for details.'
+        'Your pre-order was received! Check out your ORDERS page for details.'
       );
       setTimeout(() => {
         setMessage('');
@@ -348,7 +356,7 @@ const CustomerViewItemCard = ({
   ) : (
     <>
       {selectedVendorObject !== null && availability === true ? (
-        <div className="customer-view-item-card">
+        <div className="customer-view-item-card" ref={componentRef}>
           <div className="customer-item-image">
             <img src={image} alt={item_name} />
           </div>
@@ -406,8 +414,8 @@ const CustomerViewItemCard = ({
       ) : null}
 
       {isModalOpen && (
-        <div className="modal" ref={componentRef}>
-          <div className="modal-content">
+        <div className="modal">
+          <div className="modal-content" ref={componentRef}>
             <span className="close" onClick={closeModal}>
               &times;
             </span>

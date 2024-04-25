@@ -1,7 +1,7 @@
 import { updatedItem } from './types';
 
 let url =
-  process.env.REACT_APP_DEV_MODE === 'development'
+  process.env.REACT_APP_DEV_MODE === 'deployment'
     ? process.env.REACT_APP_DEVELOPEMENT_URL
     : process.env.REACT_APP_DEPLOYMENT_URL;
 

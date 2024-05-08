@@ -11,6 +11,7 @@ const CustomerLogIn = ({
   allCustomers,
   setIsVendor,
   setCurrentUserId,
+  selectedRadius,
 }: CustomerLoginProps) => {
   const navigate = useNavigate();
 
@@ -33,9 +34,10 @@ const CustomerLogIn = ({
     if (validCustomer) {
       setIsVendor(false);
       setCurrentUserId(validCustomer.id);
-      navigate(
-        `/customerdashboard/${validCustomer.id}?zipcode=${validCustomer.zipcode}`
-      );
+      // navigate(
+      //   `/customerdashboard/${validCustomer.id}?zipcode=${validCustomer.zipcode}`
+      // );
+      navigate(`/map/${validCustomer.zipcode}/${selectedRadius}`);
       setMessage('');
     } else {
       setMessage(

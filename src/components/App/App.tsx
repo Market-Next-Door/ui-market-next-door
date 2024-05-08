@@ -106,6 +106,7 @@ function App() {
               allCustomers={allCustomers}
               setIsVendor={setIsVendor}
               setCurrentUserId={setCurrentUserId}
+              selectedRadius={selectedRadius}
             />
           }
         />

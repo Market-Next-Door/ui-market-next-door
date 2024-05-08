@@ -89,6 +89,7 @@ export type CustomerLoginProps = {
   allCustomers: Customer[];
   setIsVendor: Function;
   setCurrentUserId: Function;
+  selectedRadius: string;
 };
 
 //Types from Customer Orders

@@ -10,6 +10,11 @@ const NavigationBar = ({
   isVendor,
   currentUserId,
 }: NavigationBarProps) => {
+  let rootMap = '';
+  isVendor
+    ? (rootMap = `/map/${selectedZipcode}/${selectedRadius}`)
+    : (rootMap = `/map/${selectedZipcode}/${selectedRadius}`);
+
   let rootProducts = '';
   isVendor
     ? (rootProducts = `/vendordashboard/${currentUserId}`)
@@ -25,11 +30,6 @@ const NavigationBar = ({
     ? (rootSettings = `/vendorsettings/${currentUserId}`)
     : (rootSettings = `/customersettings/${currentUserId}`);
 
-  let rootMap = '';
-  isVendor
-    ? (rootMap = `/map/${selectedZipcode}/${selectedRadius}`)
-    : (rootMap = `/map/${selectedZipcode}/${selectedRadius}`);
-
   const navigate = useNavigate();
 
   function handleSignOut() {
@@ -39,6 +39,21 @@ const NavigationBar = ({
 
   return (
     <nav className="mnd-nav">
+      <NavLink
+        className="map btn"
+        to={rootMap}
+        style={({ isActive }) => {
+          return isActive && window.location.pathname === rootMap
+            ? {
+                color: 'white',
+                backgroundColor: '#2A81CB',
+                textDecoration: 'none',
+              }
+            : {};
+        }}
+      >
+        MARKET MAP
+      </NavLink>
       <NavLink
         className="products btn"
         to={rootProducts}
@@ -68,21 +83,6 @@ const NavigationBar = ({
         }}
       >
         ORDERS
-      </NavLink>
-      <NavLink
-        className="map btn"
-        to={rootMap}
-        style={({ isActive }) => {
-          return isActive
-            ? {
-                color: 'white',
-                backgroundColor: '#2A81CB',
-                textDecoration: 'none',
-              }
-            : {};
-        }}
-      >
-        MARKET MAP
       </NavLink>
       <NavLink
         className="settings btn"

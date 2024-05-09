@@ -7,7 +7,6 @@ import {
   getSelectedVendorsItems,
   postVendorItem,
   deleteVendorItem,
-  getOneCustomer,
   getOneVendor,
 } from '../../apiCalls';
 import { useParams } from 'react-router';
@@ -15,19 +14,15 @@ import ErrorPage from '../ErrorPage/ErrorPage';
 import {
   VendorParams,
   VendorDashboardProps,
-  Vendor,
-  Item,
   NewItem,
   selectedVendorItem,
+  User,
 } from '../../types';
 
 const VendorDashboard = ({
   selectedZipcode,
   selectedRadius,
-  allItems,
-  allVendors,
   isVendor,
-  setIsVendor,
   currentUserId,
 }: VendorDashboardProps) => {
   const { vendorid } = useParams<VendorParams>();
@@ -66,10 +61,33 @@ const VendorDashboard = ({
       console.error('Vendor ID is not available.');
     }
   }
-  type User = {
-    first_name?: string;
-  };
-  const [currentUserObj, setCurrentUserObj] = useState<User>({});
+  // type User = {
+  //   first_name?: string;
+  // };
+  const [currentUserObj, setCurrentUserObj] = useState<User>({
+    id: '',
+    first_name: '',
+    last_name: '',
+    zipcode: '',
+    email: '',
+    password: '',
+  });
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       if (vendorid !== undefined) {
+  //         const result = await getOneVendor(parseInt(vendorid));
+  //         setCurrentUserObj(result);
+  //       }
+  //     } catch (error: any) {
+  //       console.error('Error fetching data:', error);
+  //       setVendorDashError(error.message);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, [vendorid]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -77,6 +95,7 @@ const VendorDashboard = ({
         if (vendorid !== undefined) {
           const result = await getOneVendor(parseInt(vendorid));
           setCurrentUserObj(result);
+          console.log('currentUserObj:', result);
         }
       } catch (error: any) {
         console.error('Error fetching data:', error);

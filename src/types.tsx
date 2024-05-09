@@ -9,7 +9,7 @@ export type Vendor = {
   market: number;
   vendor_name: string;
   password: string;
-  zipcode: string;
+  default_zipcode: string;
 };
 
 export type selectedVendorItem = {
@@ -218,6 +218,7 @@ export type VendorDashboardProps = {
   setIsVendor: Function;
   setCurrentUserId: Function;
   currentUserId: string;
+  setCurrentUserObj: Function;
 };
 
 export type Item = {

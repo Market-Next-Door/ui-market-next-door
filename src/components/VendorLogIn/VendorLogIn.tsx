@@ -9,6 +9,7 @@ const VendorLogIn = ({
   isVendor,
   setIsVendor,
   setCurrentUserId,
+  setCurrentUserObj,
   selectedRadius,
 }: VendorDashboardProps) => {
   const navigate = useNavigate();
@@ -31,8 +32,9 @@ const VendorLogIn = ({
     if (validUser) {
       setIsVendor(true);
       setCurrentUserId(validUser.id);
+      setCurrentUserObj(validUser);
       // navigate(`/vendordashboard/${validUser.id}`);
-      navigate(`/map/${validUser.zipcode}/${selectedRadius}`);
+      navigate(`/map/${validUser.default_zipcode}/${selectedRadius}`);
       setMessage('');
     } else {
       setMessage(

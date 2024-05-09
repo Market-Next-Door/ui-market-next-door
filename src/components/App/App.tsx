@@ -3,7 +3,12 @@ import { Routes, Route } from 'react-router-dom';
 import { newCustomer, User } from '../../types';
 
 import './App.css';
-import { getAllVendors, getAllCustomers, getOneCustomer } from '../../apiCalls';
+import {
+  getAllVendors,
+  getAllCustomers,
+  getOneCustomer,
+  getOneVendor,
+} from '../../apiCalls';
 import NavigationBar from '../NavigationBar/NavigationBar';
 import LandingPage from '../LandingPage/LandingPage';
 import VendorDashboard from '../VendorDashboard/VendorDashboard';
@@ -73,19 +78,41 @@ function App() {
         // Check if currentUserId exists
         if (currentUserId) {
           console.log('Fetching current user data...');
-          // Fetch customer data using currentUserId
-          const currentUser = await getOneCustomer(parseInt(currentUserId, 10));
 
-          console.log('Current user data:', currentUser);
+          // Check if the user is a vendor or a customer
+          if (isVendor) {
+            // Fetch vendor data using currentUserId
+            const currentVendor = await getOneVendor(
+              parseInt(currentUserId, 10)
+            );
 
-          // Handle default_zipcode
-          const updatedZipcode =
-            currentUser.zipcode === 'default_zipcode'
-              ? '78750'
-              : currentUser.zipcode;
+            console.log('Current vendor data:', currentVendor);
 
-          // Set currentUserObj state with updated zipcode
-          setCurrentUserObj({ ...currentUser, zipcode: updatedZipcode });
+            // Handle default_zipcode if needed
+            const updatedZipcode =
+              currentVendor.zipcode === 'default_zipcode'
+                ? '78750'
+                : currentVendor.zipcode;
+
+            // Set currentUserObj state with updated zipcode
+            setCurrentUserObj({ ...currentVendor, zipcode: updatedZipcode });
+          } else {
+            // Fetch customer data using currentUserId
+            const currentCustomer = await getOneCustomer(
+              parseInt(currentUserId, 10)
+            );
+
+            console.log('Current customer data:', currentCustomer);
+
+            // Handle default_zipcode if needed
+            const updatedZipcode =
+              currentCustomer.zipcode === 'default_zipcode'
+                ? '78750'
+                : currentCustomer.zipcode;
+
+            // Set currentUserObj state with updated zipcode
+            setCurrentUserObj({ ...currentCustomer, zipcode: updatedZipcode });
+          }
 
           // Add a console log here to check the structure of currentUserObj
           console.log('Structure of currentUserObj:', currentUserObj);
@@ -102,7 +129,7 @@ function App() {
 
     // Call fetchData function
     fetchData();
-  }, [currentUserId]);
+  }, [currentUserId, isVendor]);
 
   // Add a console log to check currentUserObj in the Map component
   console.log('currentUserObj in Map component:', currentUserObj);
@@ -142,6 +169,7 @@ function App() {
               isVendor={isVendor}
               setIsVendor={setIsVendor}
               setCurrentUserId={setCurrentUserId}
+              setCurrentUserObj={setCurrentUserObj}
               currentUserId={currentUserId}
             />
           }
@@ -177,6 +205,7 @@ function App() {
               isVendor={isVendor}
               setIsVendor={setIsVendor}
               setCurrentUserId={setCurrentUserId}
+              setCurrentUserObj={setCurrentUserObj}
               currentUserId={currentUserId}
             />
           }

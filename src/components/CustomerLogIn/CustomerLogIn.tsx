@@ -10,6 +10,7 @@ import {
 const CustomerLogIn = ({
   allCustomers,
   setIsVendor,
+  setCurrentUserObj,
   setCurrentUserId,
   selectedRadius,
 }: CustomerLoginProps) => {
@@ -34,10 +35,12 @@ const CustomerLogIn = ({
     if (validCustomer) {
       setIsVendor(false);
       setCurrentUserId(validCustomer.id);
+      setCurrentUserObj(validCustomer);
+      console.log('setCurrentUserObj-Login:', validCustomer);
       // navigate(
       //   `/customerdashboard/${validCustomer.id}?zipcode=${validCustomer.zipcode}`
       // );
-      navigate(`/map/${validCustomer.zipcode}/${selectedRadius}`);
+      navigate(`/map/${validCustomer.default_zipcode}/${selectedRadius}`);
       setMessage('');
     } else {
       setMessage(

@@ -34,27 +34,78 @@ function App() {
   const [selectedRadius, setSelectedRadius] = useState<string>('10');
   const [currentUserObj, setCurrentUserObj] = useState<User | null>(null);
 
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const vendorsData = await getAllVendors();
+  //       const customersData = await getAllCustomers();
+  //       setAllVendors(vendorsData);
+  //       setAllCustomers(customersData);
+
+  //       if (currentUserId) {
+  //         const currentUser = await getOneCustomer(parseInt(currentUserId, 10));
+  //         setCurrentUserObj(currentUser);
+  //       }
+
+  //       setIsLoading(false);
+  //     } catch (error: any) {
+  //       console.error('Error fetching data:', error);
+  //       setAppError(error.message);
+  //     }
+  //   };
+  //   fetchData();
+  // }, [currentUserId]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
+        console.log('Fetching vendors and customers data...');
         const vendorsData = await getAllVendors();
         const customersData = await getAllCustomers();
+
+        console.log('Vendors data:', vendorsData);
+        console.log('Customers data:', customersData);
+
+        // Set vendors and customers state
         setAllVendors(vendorsData);
         setAllCustomers(customersData);
 
+        // Check if currentUserId exists
         if (currentUserId) {
+          console.log('Fetching current user data...');
+          // Fetch customer data using currentUserId
           const currentUser = await getOneCustomer(parseInt(currentUserId, 10));
-          setCurrentUserObj(currentUser);
+
+          console.log('Current user data:', currentUser);
+
+          // Handle default_zipcode
+          const updatedZipcode =
+            currentUser.zipcode === 'default_zipcode'
+              ? '78750'
+              : currentUser.zipcode;
+
+          // Set currentUserObj state with updated zipcode
+          setCurrentUserObj({ ...currentUser, zipcode: updatedZipcode });
+
+          // Add a console log here to check the structure of currentUserObj
+          console.log('Structure of currentUserObj:', currentUserObj);
         }
 
+        // Set loading state to false
         setIsLoading(false);
       } catch (error: any) {
+        // Handle errors
         console.error('Error fetching data:', error);
         setAppError(error.message);
       }
     };
+
+    // Call fetchData function
     fetchData();
   }, [currentUserId]);
+
+  // Add a console log to check currentUserObj in the Map component
+  console.log('currentUserObj in Map component:', currentUserObj);
 
   function addCustomer(newCustomer: Customer) {
     setAllCustomers([...allCustomers, newCustomer]);
@@ -107,6 +158,7 @@ function App() {
               setIsVendor={setIsVendor}
               setCurrentUserId={setCurrentUserId}
               selectedRadius={selectedRadius}
+              setCurrentUserObj={setCurrentUserObj}
             />
           }
         />

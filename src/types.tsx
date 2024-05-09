@@ -82,7 +82,7 @@ export type Customer = {
   market: number;
   vendor_name: string;
   password: string;
-  zipcode: string;
+  default_zipcode: string;
 };
 
 export type CustomerLoginProps = {
@@ -90,6 +90,7 @@ export type CustomerLoginProps = {
   setIsVendor: Function;
   setCurrentUserId: Function;
   selectedRadius: string;
+  setCurrentUserObj: Function;
 };
 
 //Types from Customer Orders

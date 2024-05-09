@@ -202,6 +202,7 @@ export type NavigationBarProps = {
   selectedRadius: string;
   isVendor: boolean;
   currentUserId: string;
+  currentUserObj: User | null;
 };
 
 //Types from Vendor Dashboard

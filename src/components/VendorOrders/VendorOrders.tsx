@@ -19,6 +19,7 @@ import {
   CustomerDetails,
   VendorItem,
   CustomerOrder,
+  User,
 } from '../../types';
 
 function VendorOrders({
@@ -77,10 +78,17 @@ function VendorOrders({
     fetchData();
   }, [selectedCustomerId]);
 
-  type User = {
-    first_name?: string;
-  };
-  const [currentUserObj, setCurrentUserObj] = useState<User>({});
+  // type User = {
+  //   first_name?: string;
+  // };
+  const [currentUserObj, setCurrentUserObj] = useState<User>({
+    id: '',
+    first_name: '',
+    last_name: '',
+    zipcode: '',
+    email: '',
+    password: '',
+  });
 
   const vendorID = useParams();
 
@@ -125,6 +133,7 @@ function VendorOrders({
         selectedRadius={selectedRadius}
         isVendor={isVendor}
         currentUserId={currentUserId}
+        currentUserObj={currentUserObj}
       />
       <div className="vendor-orders-display">
         {selectedVendorOrders.map(orderData => {

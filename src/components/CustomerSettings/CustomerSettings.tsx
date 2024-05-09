@@ -17,6 +17,7 @@ export default function CustomerSettings({
   selectedRadius,
   isVendor,
   currentUserId,
+  currentUserObj,
 }: NavigationBarProps) {
   const [currentCustomer, setCurrentCustomer] = useState<Customer | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -99,6 +100,7 @@ export default function CustomerSettings({
         selectedRadius={selectedRadius}
         isVendor={isVendor}
         currentUserId={currentUserId}
+        currentUserObj={currentUserObj}
       />
       <div className="account-box">
         <p className="my-account-info">

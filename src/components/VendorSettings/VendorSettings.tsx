@@ -14,6 +14,7 @@ export default function VendorSettings({
   selectedRadius,
   isVendor,
   currentUserId,
+  currentUserObj,
 }: NavigationBarProps) {
   const [currentVendor, setCurrentVendor] = useState<Vendor | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -26,6 +27,7 @@ export default function VendorSettings({
   const [vendorSettingsError, setVendorSettingsError] = useState('');
   const navigate = useNavigate();
   const paramsid = useParams();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -97,6 +99,7 @@ export default function VendorSettings({
         selectedRadius={selectedRadius}
         isVendor={isVendor}
         currentUserId={currentUserId}
+        currentUserObj={currentUserObj}
       />
       <div className="account-box">
         <p className="my-account-info">

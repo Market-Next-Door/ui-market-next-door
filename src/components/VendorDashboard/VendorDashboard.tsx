@@ -230,6 +230,7 @@ const VendorDashboard = ({
         selectedRadius={selectedRadius}
         isVendor={isVendor}
         currentUserId={currentUserId}
+        currentUserObj={currentUserObj}
       />
       <form className="add-item-form" ref={formRef}>
         <input

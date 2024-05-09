@@ -135,6 +135,7 @@ function Map({
         selectedRadius={selectedRadius}
         isVendor={isVendor}
         currentUserId={currentUserId}
+        currentUserObj={currentUserObj}
       />
       <form className="form-map-input">
         <input

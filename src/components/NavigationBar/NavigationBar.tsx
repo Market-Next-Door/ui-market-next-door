@@ -9,6 +9,7 @@ const NavigationBar = ({
   selectedRadius,
   isVendor,
   currentUserId,
+  currentUserObj,
 }: NavigationBarProps) => {
   let rootMap = '';
   isVendor
@@ -43,7 +44,11 @@ const NavigationBar = ({
         className="map btn"
         to={rootMap}
         style={({ isActive }) => {
-          return isActive && window.location.pathname === rootMap
+          return isActive &&
+            window.location.pathname ===
+              `/map/${
+                currentUserObj?.zipcode || 'default_zipcode'
+              }/${selectedRadius}`
             ? {
                 color: 'white',
                 backgroundColor: '#2A81CB',

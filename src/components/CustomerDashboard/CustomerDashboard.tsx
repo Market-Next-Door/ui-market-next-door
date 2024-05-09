@@ -185,6 +185,7 @@ const CustomerDash = ({
         selectedRadius={selectedRadius}
         isVendor={isVendor}
         currentUserId={currentUserId}
+        currentUserObj={currentUserObj}
       />
       <section className="customer-find-vendor">
         <input

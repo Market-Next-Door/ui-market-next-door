@@ -64,7 +64,6 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log('Fetching vendors and customers data...');
         const vendorsData = await getAllVendors();
         const customersData = await getAllCustomers();
 
@@ -107,7 +106,7 @@ function App() {
             // Handle default_zipcode if needed
             const updatedZipcode =
               currentCustomer.zipcode === 'default_zipcode'
-                ? '78750'
+                ? '80206'
                 : currentCustomer.zipcode;
 
             // Set currentUserObj state with updated zipcode
@@ -235,6 +234,7 @@ function App() {
               selectedRadius={selectedRadius}
               isVendor={isVendor}
               currentUserId={currentUserId}
+              currentUserObj={currentUserObj}
             />
           }
         />
@@ -246,6 +246,7 @@ function App() {
               selectedRadius={selectedRadius}
               isVendor={isVendor}
               currentUserId={currentUserId}
+              currentUserObj={currentUserObj}
             />
           }
         />
@@ -257,6 +258,7 @@ function App() {
               selectedRadius={selectedRadius}
               isVendor={isVendor}
               currentUserId={currentUserId}
+              currentUserObj={currentUserObj}
             />
           }
         />
@@ -268,6 +270,7 @@ function App() {
               selectedRadius={selectedRadius}
               isVendor={isVendor}
               currentUserId={currentUserId}
+              currentUserObj={currentUserObj}
             />
           }
         />

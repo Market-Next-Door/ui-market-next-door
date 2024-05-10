@@ -86,6 +86,7 @@ function VendorOrders({
     first_name: '',
     last_name: '',
     zipcode: '',
+    default_zipcode: '',
     email: '',
     password: '',
   });
@@ -134,6 +135,7 @@ function VendorOrders({
         isVendor={isVendor}
         currentUserId={currentUserId}
         currentUserObj={currentUserObj}
+        showNavbar={true}
       />
       <div className="vendor-orders-display">
         {selectedVendorOrders.map(orderData => {

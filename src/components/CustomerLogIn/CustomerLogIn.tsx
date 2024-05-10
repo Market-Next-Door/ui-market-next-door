@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './CustomerLogIn.css';
 import { useNavigate } from 'react-router';
+import NavigationBar from '../NavigationBar/NavigationBar';
 import {
   CustomerDashboardProps,
   Customer,
@@ -13,6 +14,11 @@ const CustomerLogIn = ({
   setCurrentUserObj,
   setCurrentUserId,
   selectedRadius,
+  currentUserObj,
+  selectedZipcode,
+  isVendor,
+  currentUserId,
+  showNavbar,
 }: CustomerLoginProps) => {
   const navigate = useNavigate();
 
@@ -92,6 +98,14 @@ const CustomerLogIn = ({
       <button className="customer-login-go-back-btn" onClick={handleGoBack}>
         Go Back
       </button>
+      <NavigationBar
+        currentUserObj={currentUserObj}
+        selectedZipcode={selectedZipcode} // Pass the selectedZipcode
+        isVendor={isVendor} // Pass the isVendor
+        currentUserId={currentUserId} // Pass the currentUserId
+        selectedRadius={selectedRadius}
+        showNavbar={false}
+      />
     </form>
   );
 };

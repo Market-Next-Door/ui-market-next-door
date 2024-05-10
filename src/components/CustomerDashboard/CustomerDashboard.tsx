@@ -44,6 +44,7 @@ const CustomerDash = ({
     first_name: '',
     last_name: '',
     zipcode: '',
+    default_zipcode: '',
     email: '',
     password: '',
   });
@@ -186,6 +187,7 @@ const CustomerDash = ({
         isVendor={isVendor}
         currentUserId={currentUserId}
         currentUserObj={currentUserObj}
+        showNavbar={true}
       />
       <section className="customer-find-vendor">
         <input

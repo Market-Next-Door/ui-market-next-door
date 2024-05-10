@@ -62,6 +62,7 @@ export interface User {
   first_name: string;
   last_name: string;
   zipcode: string;
+  default_zipcode: string;
   email: string;
   password: string;
 }
@@ -88,9 +89,14 @@ export type Customer = {
 export type CustomerLoginProps = {
   allCustomers: Customer[];
   setIsVendor: Function;
+  isVendor: boolean;
   setCurrentUserId: Function;
+  currentUserId: string;
+  selectedZipcode: string;
   selectedRadius: string;
   setCurrentUserObj: Function;
+  currentUserObj: User | null;
+  showNavbar: boolean;
 };
 
 //Types from Customer Orders
@@ -203,6 +209,7 @@ export type NavigationBarProps = {
   isVendor: boolean;
   currentUserId: string;
   currentUserObj: User | null;
+  showNavbar: boolean;
 };
 
 //Types from Vendor Dashboard

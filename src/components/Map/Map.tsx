@@ -73,13 +73,6 @@ function Map({
   const zoom = 11;
   const [errorMessage, setErrorMessage] = useState('');
 
-  // useEffect(() => {
-  //   console.log('currentUserObj:', currentUserObj); // Add this console.log
-  //   if (currentUserObj && currentUserObj.zipcode) {
-  //     setZipcode(currentUserObj.zipcode);
-  //   }
-  // }, [currentUserObj]);
-
   useEffect(() => {
     console.log('currentUserObj:', currentUserObj); // Add this console.log
     console.log('zipcode:', zipcode); // Add this console.log
@@ -136,6 +129,7 @@ function Map({
         isVendor={isVendor}
         currentUserId={currentUserId}
         currentUserObj={currentUserObj}
+        showNavbar={true}
       />
       <form className="form-map-input">
         <input

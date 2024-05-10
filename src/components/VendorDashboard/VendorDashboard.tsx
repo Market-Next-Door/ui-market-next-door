@@ -69,6 +69,7 @@ const VendorDashboard = ({
     first_name: '',
     last_name: '',
     zipcode: '',
+    default_zipcode: '',
     email: '',
     password: '',
   });
@@ -231,6 +232,7 @@ const VendorDashboard = ({
         isVendor={isVendor}
         currentUserId={currentUserId}
         currentUserObj={currentUserObj}
+        showNavbar={true}
       />
       <form className="add-item-form" ref={formRef}>
         <input

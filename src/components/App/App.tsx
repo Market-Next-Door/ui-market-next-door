@@ -38,28 +38,7 @@ function App() {
   const [selectedZipcode, setSelectedZipcode] = useState<string>('80206');
   const [selectedRadius, setSelectedRadius] = useState<string>('10');
   const [currentUserObj, setCurrentUserObj] = useState<User | null>(null);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const vendorsData = await getAllVendors();
-  //       const customersData = await getAllCustomers();
-  //       setAllVendors(vendorsData);
-  //       setAllCustomers(customersData);
-
-  //       if (currentUserId) {
-  //         const currentUser = await getOneCustomer(parseInt(currentUserId, 10));
-  //         setCurrentUserObj(currentUser);
-  //       }
-
-  //       setIsLoading(false);
-  //     } catch (error: any) {
-  //       console.error('Error fetching data:', error);
-  //       setAppError(error.message);
-  //     }
-  //   };
-  //   fetchData();
-  // }, [currentUserId]);
+  const [showNavbar, setShowNavbar] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -183,9 +162,14 @@ function App() {
             <CustomerLogIn
               allCustomers={allCustomers}
               setIsVendor={setIsVendor}
+              isVendor={isVendor}
               setCurrentUserId={setCurrentUserId}
+              currentUserId={currentUserId}
+              selectedZipcode={selectedZipcode}
               selectedRadius={selectedRadius}
               setCurrentUserObj={setCurrentUserObj}
+              currentUserObj={currentUserObj}
+              showNavbar={showNavbar}
             />
           }
         />
@@ -235,6 +219,7 @@ function App() {
               isVendor={isVendor}
               currentUserId={currentUserId}
               currentUserObj={currentUserObj}
+              showNavbar={showNavbar}
             />
           }
         />
@@ -247,6 +232,7 @@ function App() {
               isVendor={isVendor}
               currentUserId={currentUserId}
               currentUserObj={currentUserObj}
+              showNavbar={showNavbar}
             />
           }
         />
@@ -259,6 +245,7 @@ function App() {
               isVendor={isVendor}
               currentUserId={currentUserId}
               currentUserObj={currentUserObj}
+              showNavbar={showNavbar}
             />
           }
         />
@@ -271,6 +258,7 @@ function App() {
               isVendor={isVendor}
               currentUserId={currentUserId}
               currentUserObj={currentUserObj}
+              showNavbar={showNavbar}
             />
           }
         />

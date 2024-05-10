@@ -100,6 +100,7 @@ export default function VendorSettings({
         isVendor={isVendor}
         currentUserId={currentUserId}
         currentUserObj={currentUserObj}
+        showNavbar={true}
       />
       <div className="account-box">
         <p className="my-account-info">

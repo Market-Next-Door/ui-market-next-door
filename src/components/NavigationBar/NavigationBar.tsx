@@ -10,11 +10,16 @@ const NavigationBar = ({
   isVendor,
   currentUserId,
   currentUserObj,
+  showNavbar,
 }: NavigationBarProps) => {
-  let rootMap = '';
-  isVendor
-    ? (rootMap = `/map/${selectedZipcode}/${selectedRadius}`)
-    : (rootMap = `/map/${selectedZipcode}/${selectedRadius}`);
+  const defaultZipcode = currentUserObj?.default_zipcode || 'default_zipcode';
+
+  const rootMap = `/map/${defaultZipcode}/${selectedRadius}`;
+
+  // let rootMap = '';
+  // isVendor
+  //   ? (rootMap = `/map/${selectedZipcode}/${selectedRadius}`)
+  //   : (rootMap = `/map/${selectedZipcode}/${selectedRadius}`);
 
   let rootProducts = '';
   isVendor
@@ -39,76 +44,52 @@ const NavigationBar = ({
   }
 
   return (
-    <nav className="mnd-nav">
-      <NavLink
-        className="map btn"
-        to={rootMap}
-        style={({ isActive }) => {
-          return isActive &&
-            window.location.pathname ===
-              `/map/${
-                currentUserObj?.zipcode || 'default_zipcode'
-              }/${selectedRadius}`
-            ? {
-                color: 'white',
-                backgroundColor: '#2A81CB',
-                textDecoration: 'none',
-              }
-            : {};
-        }}
-      >
-        MARKET MAP
-      </NavLink>
-      <NavLink
-        className="products btn"
-        to={rootProducts}
-        style={({ isActive }) => {
-          return isActive
-            ? {
-                color: 'white',
-                backgroundColor: '#274e13',
-                textDecoration: 'none',
-              }
-            : {};
-        }}
-      >
-        PRODUCTS
-      </NavLink>
-      <NavLink
-        className="orders btn"
-        to={rootOrders}
-        style={({ isActive }) => {
-          return isActive
-            ? {
-                color: 'white',
-                backgroundColor: '#ce7e00',
-                textDecoration: 'none',
-              }
-            : {};
-        }}
-      >
-        ORDERS
-      </NavLink>
-      <NavLink
-        className="settings btn"
-        to={rootSettings}
-        style={({ isActive }) => {
-          return isActive
-            ? {
-                color: 'white',
-                backgroundColor: '#343a40',
-                textDecoration: 'none',
-              }
-            : {};
-        }}
-      >
-        SETTINGS
-      </NavLink>
+    <>
+      {showNavbar && ( // Conditionally render NavigationBar
+        <nav className="mnd-nav">
+          <NavLink
+            className="map btn"
+            to={rootMap}
+            style={({ isActive }) => {
+              return isActive && window.location.pathname === rootMap
+                ? {
+                    color: 'white',
+                    backgroundColor: '#2A81CB',
+                    textDecoration: 'none',
+                  }
+                : {};
+            }}
+          >
+            MARKET MAP
+          </NavLink>
+          <NavLink
+            className="products btn"
+            to={rootProducts}
+            // Style code
+          >
+            PRODUCTS
+          </NavLink>
+          <NavLink
+            className="orders btn"
+            to={rootOrders}
+            // Style code
+          >
+            ORDERS
+          </NavLink>
+          <NavLink
+            className="settings btn"
+            to={rootSettings}
+            // Style code
+          >
+            SETTINGS
+          </NavLink>
 
-      <button className="signout btn" onClick={handleSignOut}>
-        SIGN OUT
-      </button>
-    </nav>
+          <button className="signout btn" onClick={handleSignOut}>
+            SIGN OUT
+          </button>
+        </nav>
+      )}
+    </>
   );
 };
 

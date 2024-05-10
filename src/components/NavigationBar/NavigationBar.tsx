@@ -14,6 +14,7 @@ const NavigationBar = ({
 }: NavigationBarProps) => {
   const defaultZipcode = currentUserObj?.default_zipcode || 'default_zipcode';
 
+  //This isn't going to confirm if user is a vendor
   const rootMap = `/map/${defaultZipcode}/${selectedRadius}`;
 
   // let rootMap = '';
@@ -65,21 +66,45 @@ const NavigationBar = ({
           <NavLink
             className="products btn"
             to={rootProducts}
-            // Style code
+            style={({ isActive }) => {
+              return isActive && window.location.pathname === rootProducts
+                ? {
+                    color: 'white',
+                    backgroundColor: '#274e13',
+                    textDecoration: 'none',
+                  }
+                : {};
+            }}
           >
             PRODUCTS
           </NavLink>
           <NavLink
             className="orders btn"
             to={rootOrders}
-            // Style code
+            style={({ isActive }) => {
+              return isActive && window.location.pathname === rootOrders
+                ? {
+                    color: 'white',
+                    backgroundColor: '#ce7e00',
+                    textDecoration: 'none',
+                  }
+                : {};
+            }}
           >
             ORDERS
           </NavLink>
           <NavLink
             className="settings btn"
             to={rootSettings}
-            // Style code
+            style={({ isActive }) => {
+              return isActive && window.location.pathname === rootSettings
+                ? {
+                    color: 'white',
+                    backgroundColor: '#343a40',
+                    textDecoration: 'none',
+                  }
+                : {};
+            }}
           >
             SETTINGS
           </NavLink>

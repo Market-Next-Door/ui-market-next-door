@@ -21,6 +21,7 @@ export default function VendorSettings({
   const [isEditable, setIsEditable] = useState(false);
   const [firstName, setFirstName] = useState<string>('');
   const [lastName, setLastName] = useState<string>('');
+  const [defaultZipcode, setDefaultZipcode] = useState<string>('');
   const [marketName, setMarketName] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [email, setEmail] = useState<string>('');
@@ -35,6 +36,7 @@ export default function VendorSettings({
         setCurrentVendor(vendorData);
         setFirstName(vendorData?.first_name || '');
         setLastName(vendorData?.last_name || '');
+        setDefaultZipcode(vendorData?.default_zipcode || '');
         setMarketName(vendorData?.vendor_name || '');
         setPassword(vendorData?.password || '');
         setEmail(vendorData?.email || '');
@@ -118,6 +120,15 @@ export default function VendorSettings({
             className="account-input"
             value={lastName}
             onChange={e => setLastName(e.target.value)}
+            readOnly={!isEditable}
+          />
+        </p>
+        <p className="my-account-info">
+          Zip code:
+          <input
+            className="account-input"
+            value={defaultZipcode}
+            onChange={e => setDefaultZipcode(e.target.value)}
             readOnly={!isEditable}
           />
         </p>

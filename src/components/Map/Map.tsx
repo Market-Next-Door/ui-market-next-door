@@ -58,9 +58,13 @@ function Map({
 
   const [map, setMap] = useState<L.Map | null>(null);
   const [searchClicked, setSearchClicked] = useState(false);
-  const [headerText, setHeaderText] = useState(
-    'Please Select A Zip Code and Radius'
-  );
+  const [headerText, setHeaderText] = useState('');
+
+  useEffect(() => {
+    if (currentUserObj) {
+      setHeaderText(`Welcome ${currentUserObj.first_name}`);
+    }
+  }, [currentUserObj]);
 
   const [activeMarket, setActiveMarket] = useState<MarketProps | null>(null);
 

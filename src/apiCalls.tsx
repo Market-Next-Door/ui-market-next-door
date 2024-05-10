@@ -88,9 +88,29 @@ export function postNewVendor(newVendor: any) {
     .then(response => response.json());
 }
 
+//v1 endpoint
+// export function updateVendorData(userID: number, updatedUserData: any) {
+//   console.log('userdata look', updatedUserData);
+//   return fetch(`${url}/api/v1/vendors/${userID}/`, {
+//     method: 'PUT',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify(updatedUserData),
+//   })
+//     .then(response => {
+//       if (!response.ok) {
+//         throw new Error(`${response.status} ${response.statusText}`);
+//       }
+//       return response.json();
+//     })
+//     .catch(error => console.log(error));
+// }
+
+//v2 endpoint
 export function updateVendorData(userID: number, updatedUserData: any) {
   console.log('userdata look', updatedUserData);
-  return fetch(`${url}/api/v1/vendors/${userID}/`, {
+  return fetch(`${url}/api/v2/vendors/${userID}/`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -106,8 +126,26 @@ export function updateVendorData(userID: number, updatedUserData: any) {
     .catch(error => console.log(error));
 }
 
+//v1 endpoint
+// export function deleteVendor(vendorID: number) {
+//   return fetch(`${url}/api/v1/vendors/${vendorID}/`, {
+//     method: 'DELETE',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//   })
+//     .then(response => {
+//       if (!response.ok) {
+//         throw new Error(`${response.status} ${response.statusText}`);
+//       }
+//       return response;
+//     })
+//     .catch(error => console.log(error));
+// }
+
+//v2 endpoint
 export function deleteVendor(vendorID: number) {
-  return fetch(`${url}/api/v1/vendors/${vendorID}/`, {
+  return fetch(`${url}/api/v2/vendors/${vendorID}/`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -199,9 +237,29 @@ export function postNewCustomer(newCustomer: any) {
     .then(response => response.json());
 }
 
+//v1 endpoint
+// export function updateCustomerData(userID: number, updatedUserData: any) {
+//   console.log('userdata look', updatedUserData);
+//   return fetch(`${url}/api/v1/customers/${userID}/`, {
+//     method: 'PUT',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify(updatedUserData),
+//   })
+//     .then(response => {
+//       if (!response.ok) {
+//         throw new Error(`${response.status} ${response.statusText}`);
+//       }
+//       return response.json();
+//     })
+//     .catch(error => console.log(error));
+// }
+
+//v2 endpoint
 export function updateCustomerData(userID: number, updatedUserData: any) {
   console.log('userdata look', updatedUserData);
-  return fetch(`${url}/api/v1/customers/${userID}/`, {
+  return fetch(`${url}/api/v2/customers/${userID}/`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -217,8 +275,26 @@ export function updateCustomerData(userID: number, updatedUserData: any) {
     .catch(error => console.log(error));
 }
 
+//v1 endpoint
+// export function deleteCustomer(customerID: number) {
+//   return fetch(`${url}/api/v1/customers/${customerID}/`, {
+//     method: 'DELETE',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//   })
+//     .then(response => {
+//       if (!response.ok) {
+//         throw new Error(`${response.status} ${response.statusText}`);
+//       }
+//       return response;
+//     })
+//     .catch(error => console.log(error));
+// }
+
+//v2 endpoint
 export function deleteCustomer(customerID: number) {
-  return fetch(`${url}/api/v1/customers/${customerID}/`, {
+  return fetch(`${url}/api/v2/customers/${customerID}/`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',

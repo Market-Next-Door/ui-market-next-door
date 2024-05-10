@@ -1,6 +1,6 @@
 import './VendorSettings.css';
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '../Header/Header';
 import NavigationBar from '../NavigationBar/NavigationBar';
 import { deleteVendor, getOneVendor, updateVendorData } from '../../apiCalls';
@@ -71,6 +71,7 @@ export default function VendorSettings({
     const updatedUserData = {
       first_name: firstName,
       last_name: lastName,
+      default_zipcode: defaultZipcode,
       email: email,
       password: password,
       vendor_name: marketName,

@@ -227,6 +227,7 @@ export type VendorDashboardProps = {
   setCurrentUserId: Function;
   currentUserId: string;
   setCurrentUserObj: Function;
+  currentUserObj: User | null;
 };
 
 export type Item = {

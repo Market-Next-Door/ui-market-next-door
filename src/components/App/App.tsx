@@ -148,6 +148,7 @@ function App() {
               setIsVendor={setIsVendor}
               setCurrentUserId={setCurrentUserId}
               setCurrentUserObj={setCurrentUserObj}
+              currentUserObj={currentUserObj}
               currentUserId={currentUserId}
             />
           }
@@ -189,6 +190,7 @@ function App() {
               setIsVendor={setIsVendor}
               setCurrentUserId={setCurrentUserId}
               setCurrentUserObj={setCurrentUserObj}
+              currentUserObj={currentUserObj}
               currentUserId={currentUserId}
             />
           }

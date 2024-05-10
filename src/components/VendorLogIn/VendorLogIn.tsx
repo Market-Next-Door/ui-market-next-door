@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './VendorLogIn.css';
 import { useNavigate } from 'react-router';
 import { VendorDashboardProps, Vendor } from '../../types';
+import NavigationBar from '../NavigationBar/NavigationBar';
 
 const VendorLogIn = ({
   allItems,
@@ -9,7 +10,10 @@ const VendorLogIn = ({
   isVendor,
   setIsVendor,
   setCurrentUserId,
+  currentUserId,
   setCurrentUserObj,
+  currentUserObj,
+  selectedZipcode,
   selectedRadius,
 }: VendorDashboardProps) => {
   const navigate = useNavigate();
@@ -83,6 +87,14 @@ const VendorLogIn = ({
       <button className="vendor-login-go-back-btn" onClick={handleGoBack}>
         Go Back
       </button>
+      <NavigationBar
+        currentUserObj={currentUserObj}
+        selectedZipcode={selectedZipcode} // Pass the selectedZipcode
+        isVendor={isVendor} // Pass the isVendor
+        currentUserId={currentUserId} // Pass the currentUserId
+        selectedRadius={selectedRadius}
+        showNavbar={false}
+      />
     </form>
   );
 };

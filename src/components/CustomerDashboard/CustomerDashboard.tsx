@@ -26,6 +26,7 @@ const CustomerDash = ({
   allVendors,
   isVendor,
   currentUserId,
+  updateZipcode,
 }: CustomerDashboardProps) => {
   const customerid = useParams<{ id: string }>();
 
@@ -188,6 +189,8 @@ const CustomerDash = ({
         currentUserId={currentUserId}
         currentUserObj={currentUserObj}
         showNavbar={true}
+        updateZipcode={updateZipcode}
+        setCurrentUserObj={setCurrentUserObj}
       />
       <section className="customer-find-vendor">
         <input

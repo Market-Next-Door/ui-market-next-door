@@ -46,6 +46,8 @@ function Map({
   isVendor,
   currentUserId,
   currentUserObj,
+  setCurrentUserObj,
+  updateZipcode,
 }: MapProps & { currentUserObj: User | null }) {
   const { zip: urlZip, radius: urlRadius } = useParams();
 
@@ -133,7 +135,9 @@ function Map({
         isVendor={isVendor}
         currentUserId={currentUserId}
         currentUserObj={currentUserObj}
+        setCurrentUserObj={setCurrentUserObj}
         showNavbar={true}
+        updateZipcode={updateZipcode}
       />
       <form className="form-map-input">
         <input

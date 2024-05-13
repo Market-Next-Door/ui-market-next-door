@@ -15,6 +15,8 @@ export default function VendorSettings({
   isVendor,
   currentUserId,
   currentUserObj,
+  setCurrentUserObj,
+  updateZipcode,
 }: NavigationBarProps) {
   const [currentVendor, setCurrentVendor] = useState<Vendor | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -103,7 +105,9 @@ export default function VendorSettings({
         isVendor={isVendor}
         currentUserId={currentUserId}
         currentUserObj={currentUserObj}
+        setCurrentUserObj={setCurrentUserObj}
         showNavbar={true}
+        updateZipcode={updateZipcode}
       />
       <div className="account-box">
         <p className="my-account-info">

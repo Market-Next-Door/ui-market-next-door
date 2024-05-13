@@ -18,6 +18,8 @@ export default function CustomerSettings({
   isVendor,
   currentUserId,
   currentUserObj,
+  setCurrentUserObj,
+  updateZipcode,
 }: NavigationBarProps) {
   const [currentCustomer, setCurrentCustomer] = useState<Customer | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -31,6 +33,7 @@ export default function CustomerSettings({
   const [customerSettingsError, setCustomerSettingsError] = useState('');
 
   const navigate = useNavigate();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -67,7 +70,7 @@ export default function CustomerSettings({
     }
   }
 
-  function handleSaveChanges() {
+  async function handleSaveChanges() {
     console.log('changes saved!');
     const updatedUserData = {
       first_name: firstName,
@@ -76,10 +79,23 @@ export default function CustomerSettings({
       email: email,
       password: password,
     };
-    updateCustomerData(Number(paramsid.id), updatedUserData);
 
-    setIsEditable(false);
+    try {
+      await updateCustomerData(Number(paramsid.id), updatedUserData);
+      updateZipcode(defaultZipcode); // Update zip code here
+      setCurrentUserObj(updatedUserData);
+      // // Navigate to the new URL with the updated zip code
+      // navigate(`/map/${defaultZipcode}/${selectedRadius}`);
+
+      setIsEditable(false);
+    } catch (error) {
+      console.error('Error updating customer data:', error);
+      setCustomerSettingsError(
+        'Failed to save changes. Please try again later.'
+      );
+    }
   }
+
   return customerSettingsError ? (
     <ErrorPage
       error={customerSettingsError}
@@ -104,7 +120,9 @@ export default function CustomerSettings({
         isVendor={isVendor}
         currentUserId={currentUserId}
         currentUserObj={currentUserObj}
+        setCurrentUserObj={setCurrentUserObj}
         showNavbar={true}
+        updateZipcode={updateZipcode}
       />
       <div className="account-box">
         <p className="my-account-info">

@@ -28,6 +28,7 @@ export type selectedVendorItem = {
 
 export type CustomerDashboardProps = {
   selectedZipcode: string;
+  updateZipcode: Function;
   selectedRadius: string;
   allVendors: Vendor[];
   isVendor: boolean;
@@ -97,6 +98,7 @@ export type CustomerLoginProps = {
   setCurrentUserObj: Function;
   currentUserObj: User | null;
   showNavbar: boolean;
+  updateZipcode: Function;
 };
 
 //Types from Customer Orders
@@ -192,9 +194,11 @@ export type selectedMarketProps = [
 export type MapProps = {
   isVendor: boolean;
   currentUserId: string;
+  setCurrentUserObj: Function;
   addZipAndRadius: Function;
   selectedZipcode: string;
   selectedRadius: string;
+  updateZipcode: Function;
 };
 
 export type MapConfigProps = {
@@ -209,7 +213,9 @@ export type NavigationBarProps = {
   isVendor: boolean;
   currentUserId: string;
   currentUserObj: User | null;
+  setCurrentUserObj: Function;
   showNavbar: boolean;
+  updateZipcode: Function;
 };
 
 //Types from Vendor Dashboard
@@ -228,6 +234,7 @@ export type VendorDashboardProps = {
   currentUserId: string;
   setCurrentUserObj: Function;
   currentUserObj: User | null;
+  updateZipcode: Function;
 };
 
 export type Item = {

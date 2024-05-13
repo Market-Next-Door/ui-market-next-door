@@ -15,6 +15,7 @@ const VendorLogIn = ({
   currentUserObj,
   selectedZipcode,
   selectedRadius,
+  updateZipcode,
 }: VendorDashboardProps) => {
   const navigate = useNavigate();
   function handleGoBack() {
@@ -94,6 +95,8 @@ const VendorLogIn = ({
         currentUserId={currentUserId} // Pass the currentUserId
         selectedRadius={selectedRadius}
         showNavbar={false}
+        updateZipcode={updateZipcode}
+        setCurrentUserObj={setCurrentUserObj}
       />
     </form>
   );

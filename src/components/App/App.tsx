@@ -112,6 +112,10 @@ function App() {
   // Add a console log to check currentUserObj in the Map component
   console.log('currentUserObj in Map component:', currentUserObj);
 
+  function updateZipcode(zipcode: string) {
+    setSelectedZipcode(zipcode);
+  }
+
   function addCustomer(newCustomer: Customer) {
     setAllCustomers([...allCustomers, newCustomer]);
   }
@@ -150,6 +154,7 @@ function App() {
               setCurrentUserObj={setCurrentUserObj}
               currentUserObj={currentUserObj}
               currentUserId={currentUserId}
+              updateZipcode={updateZipcode}
             />
           }
         />
@@ -171,6 +176,7 @@ function App() {
               setCurrentUserObj={setCurrentUserObj}
               currentUserObj={currentUserObj}
               showNavbar={showNavbar}
+              updateZipcode={updateZipcode}
             />
           }
         />
@@ -192,6 +198,7 @@ function App() {
               setCurrentUserObj={setCurrentUserObj}
               currentUserObj={currentUserObj}
               currentUserId={currentUserId}
+              updateZipcode={updateZipcode}
             />
           }
         />
@@ -206,6 +213,7 @@ function App() {
                 isVendor={isVendor}
                 currentUserId={currentUserId}
                 currentUserObj={currentUserObj!}
+                updateZipcode={updateZipcode}
               />
             ) : (
               <p>Loading...</p>
@@ -221,7 +229,9 @@ function App() {
               isVendor={isVendor}
               currentUserId={currentUserId}
               currentUserObj={currentUserObj}
+              setCurrentUserObj={setCurrentUserObj}
               showNavbar={showNavbar}
+              updateZipcode={updateZipcode}
             />
           }
         />
@@ -234,7 +244,9 @@ function App() {
               isVendor={isVendor}
               currentUserId={currentUserId}
               currentUserObj={currentUserObj}
+              setCurrentUserObj={setCurrentUserObj}
               showNavbar={showNavbar}
+              updateZipcode={updateZipcode}
             />
           }
         />
@@ -247,7 +259,9 @@ function App() {
               isVendor={isVendor}
               currentUserId={currentUserId}
               currentUserObj={currentUserObj}
+              setCurrentUserObj={setCurrentUserObj}
               showNavbar={showNavbar}
+              updateZipcode={updateZipcode}
             />
           }
         />
@@ -260,7 +274,9 @@ function App() {
               isVendor={isVendor}
               currentUserId={currentUserId}
               currentUserObj={currentUserObj}
+              setCurrentUserObj={setCurrentUserObj}
               showNavbar={showNavbar}
+              updateZipcode={updateZipcode}
             />
           }
         />
@@ -275,6 +291,8 @@ function App() {
                 isVendor={isVendor}
                 currentUserId={currentUserId}
                 currentUserObj={currentUserObj}
+                updateZipcode={updateZipcode}
+                setCurrentUserObj={setCurrentUserObj}
               />
             ) : (
               <p>Loading...</p>

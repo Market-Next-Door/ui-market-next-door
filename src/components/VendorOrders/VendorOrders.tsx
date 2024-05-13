@@ -27,6 +27,7 @@ function VendorOrders({
   selectedRadius,
   isVendor,
   currentUserId,
+  updateZipcode,
 }: NavigationBarProps) {
   const { id: paramsId } = useParams<{ id?: string }>();
 
@@ -136,6 +137,8 @@ function VendorOrders({
         currentUserId={currentUserId}
         currentUserObj={currentUserObj}
         showNavbar={true}
+        updateZipcode={updateZipcode}
+        setCurrentUserObj={setCurrentUserObj}
       />
       <div className="vendor-orders-display">
         {selectedVendorOrders.map(orderData => {

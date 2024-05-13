@@ -24,6 +24,7 @@ const VendorDashboard = ({
   selectedRadius,
   isVendor,
   currentUserId,
+  updateZipcode,
 }: VendorDashboardProps) => {
   const { vendorid } = useParams<VendorParams>();
   const [addItemName, setAddItemName] = useState<string>();
@@ -233,6 +234,8 @@ const VendorDashboard = ({
         currentUserId={currentUserId}
         currentUserObj={currentUserObj}
         showNavbar={true}
+        updateZipcode={updateZipcode}
+        setCurrentUserObj={setCurrentUserObj}
       />
       <form className="add-item-form" ref={formRef}>
         <input

@@ -19,6 +19,7 @@ const CustomerLogIn = ({
   isVendor,
   currentUserId,
   showNavbar,
+  updateZipcode,
 }: CustomerLoginProps) => {
   const navigate = useNavigate();
 
@@ -100,11 +101,13 @@ const CustomerLogIn = ({
       </button>
       <NavigationBar
         currentUserObj={currentUserObj}
+        setCurrentUserObj={setCurrentUserObj}
         selectedZipcode={selectedZipcode} // Pass the selectedZipcode
         isVendor={isVendor} // Pass the isVendor
         currentUserId={currentUserId} // Pass the currentUserId
         selectedRadius={selectedRadius}
         showNavbar={false}
+        updateZipcode={updateZipcode}
       />
     </form>
   );

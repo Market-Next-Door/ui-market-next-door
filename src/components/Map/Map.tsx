@@ -70,6 +70,8 @@ function Map({
 
   const [activeMarket, setActiveMarket] = useState<MarketProps | null>(null);
 
+  const [mapLoaded, setMapLoaded] = useState<boolean>(false);
+
   const navigate = useNavigate();
 
   const center: [number, number] =
@@ -119,6 +121,7 @@ function Map({
     setHeaderText('Search Results');
     clearInputs();
     setErrorMessage('');
+    setMapLoaded(true);
   };
 
   const clearInputs = () => {
@@ -139,100 +142,109 @@ function Map({
         showNavbar={true}
         updateZipcode={updateZipcode}
       />
-      <form className="form-map-input">
-        <input
-          className="map-form-input"
-          type="text"
-          name="zip"
-          placeholder="Enter zip code..."
-          value={zipcode}
-          onChange={e => setZipcode(e.target.value)}
-          onKeyDown={e => {
-            // Allow only numbers, the delete key, and the tab key
-            const isNumericKey = !isNaN(Number(e.key));
-            const isDeleteKey = e.key === 'Delete' || e.key === 'Backspace';
-            const isTabKey = e.key === 'Tab';
-            if (!isNumericKey && !isDeleteKey && !isTabKey) {
-              e.preventDefault();
-            }
-          }}
-        ></input>
-        <input
-          type="text"
-          className="map-form-input"
-          name="radius"
-          placeholder="Enter radius..."
-          value={radius}
-          onChange={e => setRadius(e.target.value)}
-          min="1"
-          onKeyDown={e => {
-            // Allow only numbers, the delete key, and the tab key
-            const isNumericKey = !isNaN(Number(e.key));
-            const isDeleteKey = e.key === 'Delete' || e.key === 'Backspace';
-            const isTabKey = e.key === 'Tab';
-            if (!isNumericKey && !isDeleteKey && !isTabKey) {
-              e.preventDefault();
-            }
-          }}
-        ></input>
-        <button className="map-form-button" onClick={handleSearch}>
-          Search
+      {!mapLoaded && ( // Render button if map is not loaded
+        <button className="map-load-button" onClick={() => setMapLoaded(true)}>
+          Select My Markets
         </button>
-      </form>
-      <p className="error-message">{errorMessage}</p>
+      )}
+      {mapLoaded && ( // Render map if map is loaded
+        <>
+          <form className="form-map-input">
+            <input
+              className="map-form-input"
+              type="text"
+              name="zip"
+              placeholder="Enter zip code..."
+              value={zipcode}
+              onChange={e => setZipcode(e.target.value)}
+              onKeyDown={e => {
+                // Allow only numbers, the delete key, and the tab key
+                const isNumericKey = !isNaN(Number(e.key));
+                const isDeleteKey = e.key === 'Delete' || e.key === 'Backspace';
+                const isTabKey = e.key === 'Tab';
+                if (!isNumericKey && !isDeleteKey && !isTabKey) {
+                  e.preventDefault();
+                }
+              }}
+            ></input>
+            <input
+              type="text"
+              className="map-form-input"
+              name="radius"
+              placeholder="Enter radius..."
+              value={radius}
+              onChange={e => setRadius(e.target.value)}
+              min="1"
+              onKeyDown={e => {
+                // Allow only numbers, the delete key, and the tab key
+                const isNumericKey = !isNaN(Number(e.key));
+                const isDeleteKey = e.key === 'Delete' || e.key === 'Backspace';
+                const isTabKey = e.key === 'Tab';
+                if (!isNumericKey && !isDeleteKey && !isTabKey) {
+                  e.preventDefault();
+                }
+              }}
+            ></input>
+            <button className="map-form-button" onClick={handleSearch}>
+              Search
+            </button>
+          </form>
+          <p className="error-message">{errorMessage}</p>
 
-      <MapContainer className="map-container">
-        <ConfigureMap center={center} zoom={zoom} />
-        {activeMarket && (
-          <Popup
-            position={[Number(activeMarket.lon), Number(activeMarket.lat)]}
-          >
-            <div className="popup-container" style={{ overflow: 'hidden' }}>
-              <div className="popup-details-container">
-                <h2>{activeMarket.market_name}</h2>
-                <p>{activeMarket.address}</p>
-                <p>{activeMarket.phone}</p>
-                <a
-                  href={activeMarket.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {activeMarket.website}
-                </a>
-              </div>
+          <MapContainer className="map-container">
+            <ConfigureMap center={center} zoom={zoom} />
+            {activeMarket && (
+              <Popup
+                position={[Number(activeMarket.lon), Number(activeMarket.lat)]}
+              >
+                <div className="popup-container" style={{ overflow: 'hidden' }}>
+                  <div className="popup-details-container">
+                    <h2>{activeMarket.market_name}</h2>
+                    <p>{activeMarket.address}</p>
+                    <p>{activeMarket.phone}</p>
+                    <a
+                      href={activeMarket.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {activeMarket.website}
+                    </a>
+                  </div>
 
-              <div className="popup-button-container">
-                <button className="popup-button">Select My Market</button>
-              </div>
-            </div>
-          </Popup>
-        )}
-        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        {selectedMarketByZip &&
-          selectedMarketByZip.map(market => {
-            console.log(
-              `Market: ${market.market_name}, X: ${market.lat}, Y: ${market.lon}`
-            );
-            console.log(
-              `Type of X: ${typeof Number(
-                market.lat
-              )}, Type of Y: ${typeof Number(market.lon)}`
-            );
+                  <div className="popup-button-container">
+                    <button className="popup-button">Select My Market</button>
+                  </div>
+                </div>
+              </Popup>
+            )}
+            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+            {selectedMarketByZip &&
+              selectedMarketByZip.map(market => {
+                console.log(
+                  `Market: ${market.market_name}, X: ${market.lat}, Y: ${market.lon}`
+                );
+                console.log(
+                  `Type of X: ${typeof Number(
+                    market.lat
+                  )}, Type of Y: ${typeof Number(market.lon)}`
+                );
 
-            return (
-              <Marker
-                key={market.market_name}
-                position={[Number(market.lon), Number(market.lat)]}
-                icon={customMarkerIcon}
-                eventHandlers={{
-                  click: () => {
-                    setActiveMarket(market);
-                  },
-                }}
-              />
-            );
-          })}
-      </MapContainer>
+                return (
+                  <Marker
+                    key={market.market_name}
+                    position={[Number(market.lon), Number(market.lat)]}
+                    icon={customMarkerIcon}
+                    eventHandlers={{
+                      click: () => {
+                        setActiveMarket(market);
+                      },
+                    }}
+                  />
+                );
+              })}
+          </MapContainer>
+        </>
+      )}
     </div>
   );
 }

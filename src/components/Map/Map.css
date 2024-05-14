@@ -23,6 +23,14 @@ a {
   font-size: 1.5rem;
 }
 
+.map-load-button {
+  background-color: #516346;
+  color: white;
+  width: 35rem;
+  height: 5rem;
+  border-radius: 10px;
+}
+
 .map-form-input {
   background-color: #e5e7ebe2;
   border: none;
@@ -59,7 +67,7 @@ a {
 }
 
 .popup-container {
-  font-family: "Inter";
+  font-family: 'Inter';
   display: flex;
   flex-direction: column;
 }

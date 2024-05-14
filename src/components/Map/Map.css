@@ -22,6 +22,16 @@ p {
 a {
   font-size: 1.5rem;
 }
+.map-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #d9d9d9;
+  width: 100rem;
+  height: 7rem;
+  border-radius: 10px;
+}
 
 .map-load-button {
   background-color: #516346;

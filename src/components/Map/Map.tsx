@@ -143,9 +143,15 @@ function Map({
         updateZipcode={updateZipcode}
       />
       {!mapLoaded && ( // Render button if map is not loaded
-        <button className="map-load-button" onClick={() => setMapLoaded(true)}>
-          Select My Markets
-        </button>
+        <div className="map-button-container">
+          <p>Select the Markets You Would Like to Attend</p>
+          <button
+            className="map-load-button"
+            onClick={() => setMapLoaded(true)}
+          >
+            Select My Markets
+          </button>
+        </div>
       )}
       {mapLoaded && ( // Render map if map is loaded
         <>

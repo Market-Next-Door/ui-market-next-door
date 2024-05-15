@@ -129,6 +129,10 @@ function Map({
     setRadius('');
   };
 
+  const toggleMap = () => {
+    setMapLoaded(!mapLoaded);
+  };
+
   return (
     <div className="map-page">
       <Header name={headerText} />
@@ -142,18 +146,7 @@ function Map({
         showNavbar={true}
         updateZipcode={updateZipcode}
       />
-      {!mapLoaded && ( // Render button if map is not loaded
-        <div className="map-button-container">
-          <p>Select the Markets You Would Like to Attend</p>
-          <button
-            className="map-load-button"
-            onClick={() => setMapLoaded(true)}
-          >
-            Select My Markets
-          </button>
-        </div>
-      )}
-      {mapLoaded && ( // Render map if map is loaded
+      {mapLoaded ? (
         <>
           <form className="form-map-input">
             <input
@@ -249,7 +242,20 @@ function Map({
                 );
               })}
           </MapContainer>
+          <button className="map-load-button" onClick={toggleMap}>
+            Hide Map
+          </button>
         </>
+      ) : (
+        <div className="map-button-container">
+          <p>Select the Markets You Would Like to Attend</p>
+          <button
+            className="map-load-button"
+            onClick={() => setMapLoaded(true)}
+          >
+            Select My Markets
+          </button>
+        </div>
       )}
     </div>
   );

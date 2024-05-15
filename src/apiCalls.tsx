@@ -22,7 +22,7 @@ type ItemQuantity = {
 //   });
 // }
 
-//v2 endpoint
+//v2 endpoint 📍
 export function getAllVendors() {
   return fetch(`${url}/api/v2/vendors/`).then(response => {
     if (!response.ok) {
@@ -42,7 +42,7 @@ export function getAllVendors() {
 //   });
 // }
 
-//v2 endpoint
+//v2 endpoint 📍
 export function getOneVendor(vendorID: number) {
   return fetch(`${url}/api/v2/vendors/${vendorID}`).then(response => {
     if (!response.ok) {
@@ -70,7 +70,7 @@ export function getOneVendor(vendorID: number) {
 //     .then(response => response.json());
 // }
 
-//v2 endpoint
+//v2 endpoint 📍
 export function postNewVendor(newVendor: any) {
   return fetch(`${url}/api/v2/vendors/`, {
     method: 'POST',
@@ -107,7 +107,7 @@ export function postNewVendor(newVendor: any) {
 //     .catch(error => console.log(error));
 // }
 
-//v2 endpoint
+//v2 endpoint 📍
 export function updateVendorData(userID: number, updatedUserData: any) {
   console.log('userdata look', updatedUserData);
   return fetch(`${url}/api/v2/vendors/${userID}/`, {
@@ -143,7 +143,7 @@ export function updateVendorData(userID: number, updatedUserData: any) {
 //     .catch(error => console.log(error));
 // }
 
-//v2 endpoint
+//v2 endpoint 📍
 export function deleteVendor(vendorID: number) {
   return fetch(`${url}/api/v2/vendors/${vendorID}/`, {
     method: 'DELETE',
@@ -171,7 +171,7 @@ export function deleteVendor(vendorID: number) {
 //   });
 // }
 
-//v2 endpoint
+//v2 endpoint 📍
 export function getAllCustomers() {
   return fetch(`${url}/api/v2/customers/`).then(response => {
     if (!response.ok) {
@@ -191,7 +191,7 @@ export function getAllCustomers() {
 //   });
 // }
 
-//v2 endpoint
+//v2 endpoint 📍
 export function getOneCustomer(customerID: number) {
   return fetch(`${url}/api/v2/customers/${customerID}`).then(response => {
     if (!response.ok) {
@@ -219,7 +219,7 @@ export function getOneCustomer(customerID: number) {
 //     .then(response => response.json());
 // }
 
-//v2 endpoint
+//v2 endpoint 📍
 export function postNewCustomer(newCustomer: any) {
   return fetch(`${url}/api/v2/customers/`, {
     method: 'POST',
@@ -256,7 +256,7 @@ export function postNewCustomer(newCustomer: any) {
 //     .catch(error => console.log(error));
 // }
 
-//v2 endpoint
+//v2 endpoint 📍
 export function updateCustomerData(userID: number, updatedUserData: any) {
   console.log('userdata look', updatedUserData);
   return fetch(`${url}/api/v2/customers/${userID}/`, {
@@ -292,7 +292,7 @@ export function updateCustomerData(userID: number, updatedUserData: any) {
 //     .catch(error => console.log(error));
 // }
 
-//v2 endpoint
+//v2 endpoint 📍
 export function deleteCustomer(customerID: number) {
   return fetch(`${url}/api/v2/customers/${customerID}/`, {
     method: 'DELETE',
@@ -443,13 +443,55 @@ export function postCustomerOrder(newOrder: any, customerid: string) {
 }
 
 //MARKETS apiCalls 👇
+// export function getMarkets(zipcode: string, radius: string) {
+//   return fetch(`${url}/api/v1/markets/location/${zipcode}/${radius}/`).then(
+//     response => {
+//       if (!response.ok) {
+//         throw new Error(`${response.status} ${response.statusText}`);
+//       }
+//       return response.json();
+//     }
+//   );
+
+//v1 endpoint with data visible for console logs to help with listing_id
+// export function getMarkets(zipcode: string, radius: string) {
+//   return fetch(`${url}/api/v1/markets/location/${zipcode}/${radius}/`)
+//     .then(response => {
+//       if (!response.ok) {
+//         throw new Error(`${response.status} ${response.statusText}`);
+//       }
+//       return response.json();
+//     })
+//     .then(data => {
+//       console.log('Market data:', data); // Log the entire data object
+//       console.log(
+//         'Listing IDs:',
+//         data.map((market: any) => market.listingId)
+//       ); // Log listing IDs if they are present
+//       return data; // Return data for further processing if needed
+//     })
+//     .catch(error => {
+//       console.error('Error fetching markets:', error);
+//       throw error; // Rethrow the error for error handling in components
+//     });
+//   }
+
+//v2 endpoint 📍
 export function getMarkets(zipcode: string, radius: string) {
-  return fetch(`${url}/api/v1/markets/location/${zipcode}/${radius}/`).then(
-    response => {
+  return fetch(`${url}/api/v2/markets/location/${zipcode}/${radius}/`)
+    .then(response => {
       if (!response.ok) {
         throw new Error(`${response.status} ${response.statusText}`);
       }
       return response.json();
-    }
-  );
+    })
+    .then(data => {
+      // Return data so I can console log and see what's here
+      console.log('Market data:', data); // Log the entire data object
+      return data;
+    })
+    .catch(error => {
+      console.error('Error fetching markets:', error);
+      throw error;
+    });
 }

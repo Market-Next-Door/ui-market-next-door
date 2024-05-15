@@ -79,6 +79,9 @@ export default function VendorSettings({
       vendor_name: marketName,
     };
     updateVendorData(Number(paramsid.id), updatedUserData);
+
+    updateZipcode(defaultZipcode); // Update zip code here
+    setCurrentUserObj(updatedUserData);
     setIsEditable(false);
   }
   return vendorSettingsError ? (
